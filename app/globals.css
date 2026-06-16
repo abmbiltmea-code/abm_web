@@ -1,26 +1,288 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss"; 
+ 
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1601px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "Parabolica Test";
+  src: url("/assets/fonts/Parabolica-Regular.woff2") format("opentype"),
+    url("/assets/fonts/Parabolica-Regular.woff2") format("opentype");
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: "Parabolica Test Medium";
+  src: url("/assets/fonts/Parabolica-Medium.otf") format("opentype"),
+    url("/assets/fonts/Parabolica-Medium.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TASA Orbiter";
+  src: url("/assets/fonts/TASAOrbiter-variable.woff2") format("woff2"),
+    url("/assets/fonts/TASAOrbiter-variable.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* scrollbar hide */
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
+}
+html {
+  -ms-overflow-style: none;
+}
+
+/* input autofill bg-remove */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #333333 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* custom scrollbar hide */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
+/* ---------- Variables ---------- */
+:root {
+--background: #ffffff;
+--cream-background: #F9F9F9;
+--primary: #E31E26;
+--secondary: #333333;
+--border-color: #CCCCCC;  
+--description-color: #838383;
+
+
+/* 100px → 20px at 420px, 100px at 1920px */
+--text-100: clamp(30px, 4.67vw + 10.4px, 100px);
+
+/* 70px → 20px at 420px, 70px at 1920px */
+--text-70: clamp(20px, 3.33vw + 6px, 70px);
+
+/* 60px → 18px at 420px, 60px at 1920px */
+--text-60: clamp(18px, 2.8vw + 6.2px, 60px);
+
+/* 30px → 20px at 420px, 30px at 1500px */
+--text-30: clamp(20px, 0.6vw + 18.4px, 30px);
+
+/* 20px → 14px at 420px, 20px at 1400px */
+--text-20: clamp(14px, 0.61vw + 11.4px, 20px);
+
+/* 15px → 12px at 420px, 15px at 1400px */
+--text-15: clamp(12px, 0.31vw + 10.7px, 15px);
+
+ 
+
+/* 170px → 65px at 420px, 170px at 1920px */
+--space-170: clamp(65px, 7.03vw - 0.6px, 170px);
+
+/* 190px → 70px at 420px, 190px at 1920px */
+--space-190: clamp(70px, 7.87vw - 1.2px, 190px);
+
+/* 300px → 100px at 420px, 300px at 1920px */
+--space-300: clamp(100px, 15.4vw + 44px, 300px);
+
+/* 150px → 60px at 420px, 150px at 1820px */
+--space-150: clamp(60px, 6.52vw + 32.6px, 150px);
+
+/* 140px → 50px at 420px, 140px at 1820px */
+--space-140: clamp(50px, 6.52vw + 22.6px, 140px);
+
+/* 100px → 44px at 390px, 100px at 1810px */
+--space-100: clamp(44px, 3.94vw + 28.6px, 100px);
+ 
+/* 120px → 50px at 390px, 120px at 1810px */
+--space-120: clamp(50px, 4.93vw + 30.8px, 120px);
+
+/* 90px → 44px at 390px, 90px at 1810px */
+--space-90: clamp(44px, 3.24vw + 31.4px, 90px);
+
+/* 80px → 40px at 420px, 80px at 1820px */
+--space-80: clamp(40px, 2.9vw + 27.8px, 80px);
+
+/* 70px → 35px at 420px, 70px at 1820px */
+--space-70: clamp(35px, 2.54vw + 24.3px, 70px);
+
+/* 60px → 30px at 420px, 60px at 1820px */
+--space-60: clamp(30px, 2.17vw + 20.9px, 60px);
+
+/* 50px → 28px at 390px, 50px at 1810px */
+--space-50: clamp(30px, 1.55vw + 21.9px, 50px);
+
+/* 40px → 30px at 420px, 40px at 1820px */
+--space-40: clamp(30px, 0.72vw + 26.9px, 40px);
+
+/* 30px → 24px at 420px, 30px at 1820px */
+--space-30: clamp(24px, 0.43vw + 22.2px, 30px);
+
+/* 20px → 10px at 420px, 20px at 1820px */
+--space-20: clamp(10px, 0.72vw + 6.97px, 20px);
+}
+
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-border-color: var(--border-color);
+  --color-background: var(--background);
+  --color-cream-background: var(--cream-background);
+  --color-description-color: var(--description-color);
+
+  --font-parabolica: "Parabolica Test", serif;
+  --font-parabolica-medium: "Parabolica Test Medium", serif;
+  --font-tasa: "TASA Orbiter", serif;
+
+
+  --text-100: var(--text-100);
+  --text-70: var(--text-70);
+  --text-60: var(--text-60);
+  --text-30: var(--text-30);
+  --text-20: var(--text-20);
+  --text-15: var(--text-15);
+   
+  --spacing-300: var(--space-300);
+  --spacing-190: var(--space-190);
+  --spacing-170: var(--space-170);
+  --spacing-150: var(--space-150);
+  --spacing-140: var(--space-140);
+  --spacing-120: var(--space-120);
+  --spacing-100: var(--space-100);
+  --spacing-90: var(--space-90);
+  --spacing-80: var(--space-80);
+  --spacing-70: var(--space-70);
+  --spacing-60: var(--space-60);
+  --spacing-50: var(--space-50);
+  --spacing-40: var(--space-40);
+  --spacing-30: var(--space-30);
+  --spacing-20: var(--space-20);
+}
+
+
+/* ---------- Base Styles ---------- */
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--secondary);
+  font-family: var(--font-parabolica);
+}
+
+.container {
+  @apply mx-auto w-full px-[16px] xl:px-[15px];
+}
+ 
+@media (min-width: 640px) {
+  .container { max-width: 600px; }
+}
+ 
+@media (min-width: 720px) {
+  .container { max-width: 680px; }
+}
+ 
+@media (min-width: 768px) {
+  .container { max-width: 740px; }
+}
+ 
+@media (min-width: 820px) {
+  .container { max-width: 800px; }
+}
+ 
+@media (min-width: 860px) {
+  .container { max-width: 840px; }
+}
+ 
+@media (min-width: 920px) {
+  .container { max-width: 890px; }
+}
+ 
+@media (min-width: 960px) {
+  .container { max-width: 900px; }
+}
+ 
+@media (min-width: 1024px) {
+  .container { max-width: 960px; }
+}
+ 
+@media (min-width: 1100px) {
+  .container { max-width: 1050px; }
+}
+ 
+@media (min-width: 1140px) {
+  .container { max-width: 1100px; }
+}
+ 
+@media (min-width: 1280px) {
+  .container { max-width: 1200px; }
+}
+ 
+@media (min-width: 1340px) {
+  .container { max-width: 1270px; }
+}
+ 
+@media (min-width: 1440px) {
+  .container { max-width: 1380px; }
+}
+ 
+@media (min-width: 1500px) {
+  .container { max-width: 1440px; }
+}
+ 
+@media (min-width: 1600px) {
+  .container { max-width: 1520px; }
+}
+ 
+@media (min-width: 1700px) {
+  .container { max-width: 1620px; }
+}
+ 
+@media (min-width: 1830px) {
+  .container { max-width: 1750px; }
+}
+
+@utility hero-title {
+  @apply text-70 leading-[1.214285714] uppercase font-tasa font-bold;
+}
+
+@utility section-heading {
+  @apply text-60 leading-[1.16666667] uppercase font-tasa font-bold ;
+}
+
+@utility text-subtitle {
+  @apply text-20 leading-[1.5] font-tasa font-bold;
+}
+
+@utility text-subtitle-2 {
+  @apply text-30 leading-[1.5] font-tasa font-bold;
+}
+
+@utility text-description {
+  @apply text-20 leading-[1.45] 3xl:leading-[1.75] font-parabolica;
+}
+
+@utility text-description-2 {
+  @apply text-20 leading-[1.3] 3xl:leading-[1.5] font-parabolica;
+}
+
+@utility section-content-spacing {
+  @apply ml-[10%] 3xl:w-[1285px];
 }
