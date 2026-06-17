@@ -24,10 +24,10 @@ export default function FormTextArea({
       htmlFor={name}
       className="relative w-full pb-5 block cursor-text"
     >
-      <span className="text-description text-[#7C7C7C]">
+      <span className="text-description text-description-color">
         {label}
         {required && (
-          <span className="ml-[-0.5px] text-description text-[#7C7C7C]">﹡</span>
+          <span className="ml-[-0.5px] text-description text-description-color">﹡</span>
         )}
       </span>
 
@@ -39,11 +39,11 @@ export default function FormTextArea({
         value={value}
         onChange={onChange}
         // style={{ height: `calc(${rows} * 1.5rem)` }}
-        className="peer mt-[54px] w-full bg-transparent text-description font-poppins text-[#7C7C7C] outline-none resize-none placeholder:text-secondary block p-0 leading-3 overflow-hidden"
+        className="peer mt-[54px] w-full bg-transparent text-description font-poppins text-description-color outline-none resize-none placeholder:text-secondary block p-0 leading-3 overflow-hidden"
       />
 
       {/* Base line */}
-      <span className="absolute left-0 bottom-5 w-full h-px bg-[#7C7C7C]/30" />
+      <span className="absolute left-0 bottom-5 w-full h-px bg-description-color/30" />
       {/* Animated fill line */}
       <span
         className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out

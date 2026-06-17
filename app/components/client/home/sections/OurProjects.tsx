@@ -72,7 +72,7 @@ export default function OurProjects() {
                   <h3 className="mt-20 text-subtitle text-secondary uppercase">
                     {project.title}
                   </h3>
-                  <p className="text-description text-[#7c7c7c]">
+                  <p className="text-description text-description-color">
                     {project.location}
                   </p>
                 </Link>

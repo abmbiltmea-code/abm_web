@@ -62,13 +62,15 @@ export default function Footer() {
                 />
                 <div className="flex flex-col gap-[5px]">
                   <span className="text-subtitle text-secondary">ADDRESS</span>
-                  <p className="text-description text-[#7c7c7c] 3xl:whitespace-nowrap">
-                    {address.value}
+                  <p className="text-description-2 text-description-color 3xl:whitespace-nowrap flex gap-[10px]">
+                    {address.value.map((item, index) => (
+                      <span key={index}>{item}</span>
+                    ))}
                   </p>
                 </div>
               </div>
-              <div className="flex gap-10 mt-30 3xl:mt-40">
-                <div className="flex items-start gap-3">
+              <div className="flex gap-10 3xl:gap-[57px] mt-30 3xl:mt-40">
+                <div className="flex items-start gap-[15px]">
                   <Image
                     src={phone.icon}
                     alt="Phone"
@@ -82,7 +84,7 @@ export default function Footer() {
                     </span>
                     <a
                       href={phone.href}
-                      className="text-description text-[#7C7C7C]"
+                      className="text-description-2 text-description-color"
                     >
                       {phone.value}
                     </a>
@@ -102,7 +104,7 @@ export default function Footer() {
                     </span>
                     <a
                       href={email.href}
-                      className="text-description text-[#7C7C7C]"
+                      className="text-description-2 text-description-color"
                     >
                       {email.value}
                     </a>
