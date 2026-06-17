@@ -16,7 +16,7 @@ export const footerData = {
 
   address: {
     icon: "/assets/icons/footer/location.svg",
-    value: "Al Basti & Muktha LLC P.O. Box 2393, Dubai (U.A.E.)",
+    value: ["Al Basti & Muktha LLC", "P.O. Box 2393, Dubai (U.A.E.)"],
   },
 
   phone: {

@@ -24,10 +24,10 @@ export default function FormInput({
       htmlFor={name}
       className="relative w-full pb-[calc(40px+20px)] block cursor-text"
     >
-      <span className="text-description text-[#7C7C7C]">
+      <span className="text-description text-description-color">
         {label}
         {required && (
-          <span className="ml-[-0.5px] text-description text-[#7C7C7C]">
+          <span className="ml-[-0.5px] text-description text-description-color">
             ﹡
           </span>
         )}
@@ -39,10 +39,10 @@ export default function FormInput({
         required={required}
         value={value}
         onChange={onChange}
-        className="peer absolute left-0 bottom-5 w-full bg-transparent text-description text-[#7C7C7C] outline-none placeholder:text-secondary"
+        className="peer absolute left-0 bottom-5 w-full bg-transparent text-description text-description-color outline-none placeholder:text-secondary"
       />
       {/* base line */}
-      <span className="absolute left-0 bottom-5 w-full h-px bg-[#7C7C7C]/30" />
+      <span className="absolute left-0 bottom-5 w-full h-px bg-description-color/30" />
       {/* animated fill line */}
       <span
         className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out

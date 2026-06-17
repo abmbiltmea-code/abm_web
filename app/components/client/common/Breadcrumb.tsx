@@ -20,7 +20,7 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
     href: "/" + segments.slice(0, i + 1).join("/"),
   }));
 
-  const color = variant === "1" ? "text-[#7c7c7c]" : "text-white";
+  const color = variant === "1" ? "text-description-color" : "text-white";
 
   return (
     <nav aria-label="Breadcrumb">

@@ -69,11 +69,11 @@ export default function FormSelect({
       className="relative w-full pb-[calc(40px+20px)] cursor-pointer"
     >
       {/* Label */}
-      <div className="text-description text-[#7C7C7C] flex justify-between">
+      <div className="text-description text-description-color flex justify-between">
         <div>
           {label}
           {required && (
-            <span className="text-description text-[#7C7C7C] ml-[-0.5px]">
+            <span className="text-description text-description-color ml-[-0.5px]">
               ﹡
             </span>
           )}
@@ -88,14 +88,14 @@ export default function FormSelect({
       </div>
 
       {/* Selected value */}
-      <div className="absolute left-0 bottom-5 w-full text-description text-[#7C7C7C] select-none">
-        <span className={selected ? "text-[#7C7C7C]" : "text-secondary/50"}>
+      <div className="absolute left-0 bottom-5 w-full text-description text-description-color select-none">
+        <span className={selected ? "text-description-color" : "text-secondary/50"}>
           {selected ? selected.label : placeholder}
         </span>
       </div>
 
       {/* Base line */}
-      <span className="absolute left-0 bottom-5 w-full h-px bg-[#7C7C7C]/30" />
+      <span className="absolute left-0 bottom-5 w-full h-px bg-description-color/30" />
       {/* Animated fill line */}
       <span
         className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out
@@ -126,7 +126,7 @@ export default function FormSelect({
                 ${
                   opt.value === value
                     ? "text-primary bg-white"
-                    : "text-[#7C7C7C] hover:bg-white"
+                    : "text-description-color hover:bg-white"
                 }`}
             >
               {opt.label}

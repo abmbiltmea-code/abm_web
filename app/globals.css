@@ -72,7 +72,7 @@ input:-webkit-autofill:active {
 --primary: #E31E26;
 --secondary: #333333;
 --border-color: #CCCCCC;  
---description-color: #838383;
+--description-color: #7c7c7c;
 
 
 /* 100px → 20px at 420px, 100px at 1920px */
@@ -95,14 +95,18 @@ input:-webkit-autofill:active {
 
  
 
-/* 170px → 65px at 420px, 170px at 1920px */
---space-170: clamp(65px, 7.03vw - 0.6px, 170px);
+
+/* 300px → 100px at 420px, 300px at 1920px */
+--space-300: clamp(100px, 15.4vw + 44px, 300px);
+
+/* 200px → 80px at 390px, 200px at 1810px */
+--space-200: clamp(80px, 8.45vw + 47px, 200px);
 
 /* 190px → 70px at 420px, 190px at 1920px */
 --space-190: clamp(70px, 7.87vw - 1.2px, 190px);
 
-/* 300px → 100px at 420px, 300px at 1920px */
---space-300: clamp(100px, 15.4vw + 44px, 300px);
+/* 170px → 65px at 420px, 170px at 1920px */
+--space-170: clamp(65px, 7.03vw - 0.6px, 170px);
 
 /* 150px → 60px at 420px, 150px at 1820px */
 --space-150: clamp(60px, 6.52vw + 32.6px, 150px);
@@ -163,6 +167,7 @@ input:-webkit-autofill:active {
   --text-15: var(--text-15);
    
   --spacing-300: var(--space-300);
+  --spacing-200: var(--space-200);
   --spacing-190: var(--space-190);
   --spacing-170: var(--space-170);
   --spacing-150: var(--space-150);
@@ -285,4 +290,8 @@ body {
 
 @utility section-content-spacing {
   @apply ml-[10%] 3xl:w-[1285px];
+}
+
+@utility section-content-spacing-2 {
+  @apply ml-[25.3%] 3xl:w-[1285px];
 }
