@@ -291,3 +291,7 @@ body {
 @utility section-content-spacing {
   @apply ml-[10%] 3xl:w-[1285px];
 }
+
+@utility section-content-spacing-2 {
+  @apply ml-[25.3%] 3xl:w-[1285px];
+}

@@ -44,6 +44,7 @@ export default function AboutSection() {
                     alt={stat.label}
                     width={29.33}
                     height={29.33}
+                    className="pointer-events-none"
                   />
                 </div>
                 <span className="section-heading text-secondary">

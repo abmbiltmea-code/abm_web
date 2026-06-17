@@ -1,0 +1,71 @@
+import Image from "next/image";
+import { purposeData } from "../data";
+import SectionLabel from "../../common/SectionLabel";
+import SectionTitle from "../../animations/SectionTitle";
+
+export default function PurposeSection() {
+  const { sectionLabel, title, items } = purposeData;
+  const [vision, mission] = items;
+
+  return (
+    <section className="py-120 3xl:py-150 overflow-hidden container">
+      <div className="section-content-spacing-2">
+        <div className="flex flex-col gap-40">
+          <SectionLabel title={sectionLabel} />
+          <SectionTitle title={title} className="max-w-[16ch]" />
+        </div>
+
+        <hr className="border-black/20 mt-50" />
+
+        {/* Vision */}
+        <div>
+          <div className="flex pt-[24px] pb-50 gap-70 3xl:gap-[69px]">
+            <div className="shrink-0">
+              <Image
+                src={vision.icon}
+                alt={vision.title}
+                width={100}
+                height={100}
+                className="h-[100px] w-auto 3xl:h-[100px] pointer-events-none"
+              />
+            </div>
+            <div className="flex flex-col pt-[26px] gap-20">
+              <h3 className="text-subtitle-2 uppercase">
+                {vision.title}
+              </h3>
+              <p className="text-description-2 text-description-color max-w-[826px]">
+                {vision.description}
+              </p>
+            </div>
+          </div>
+          <hr className="border-black/20" />
+        </div>
+
+        {/* Mission */}
+        <div>
+          <div className="flex pt-[24px] pb-50 gap-50">
+            <div className="shrink-0">
+              <Image
+                src={mission.icon}
+                alt={mission.title}
+                width={119}
+                height={100}
+                className="h-[100px] w-auto 3xl:w-[119px] pointer-events-none"
+              />
+            </div>
+            <div className="flex flex-col pt-[26px] gap-20">
+              <h3 className="text-subtitle-2 uppercase">
+                {mission.title}
+              </h3>
+              <p className="text-description-2 text-description-color max-w-[826px]">
+                {mission.description}
+              </p>
+            </div>
+          </div>
+          <hr className="border-black/20" />
+        </div>
+
+      </div>
+    </section>
+  );
+}

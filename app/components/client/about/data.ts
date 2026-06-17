@@ -32,3 +32,61 @@ export const aboutData = {
     },
   ],
 };
+
+
+export const purposeData = {
+  sectionLabel: "Vision & Mission",
+  title: "Our Purpose",
+  items: [
+    {
+      icon: "/assets/images/about/vision-mission/vision.svg",
+      title: "Our Vision",
+      description:
+        "To be a leading force in the construction industry in Dubai and the GCC, recognized for excellence, innovation, and the ability to build lasting partnerships with clients, stakeholders, and communities.",
+    },
+    {
+      icon: "/assets/images/about/vision-mission/mission.svg",
+      title: "Our Mission",
+      description:
+        "To deliver high-quality, prestigious construction projects through a timely, efficient, and cost-effective approach. We are committed to maintaining excellence across every stage of the project lifecycle, ensuring that we not only meet but exceed client expectations.",
+    },
+  ],
+};
+
+
+export const coreValuesData = {
+  sectionLabel: "Core Values",
+  title: "What Drives Us",
+  items: [
+    {
+      tab: "Integrity",
+      image: "/assets/images/home/hero/slide-1.jpg",
+      description:
+        "We uphold the highest standards of integrity in all of our actions, building trust with our clients, partners, and communities through transparency and accountability.",
+    },
+    {
+      tab: "Quality Commitment",
+      image: "/assets/images/about/core-values/quality-commitment.jpg",
+      description:
+        "To deliver high-quality, prestigious construction projects through a timely, efficient, and cost-effective approach. We are committed to maintaining excellence.",
+    },
+    {
+      tab: "Innovation",
+      image: "/assets/images/home/capabilities/1.jpg",
+      description:
+        "We embrace innovation and continuously seek new ways to improve our processes, technologies, and solutions to deliver better outcomes for our clients.",
+    },
+    {
+      tab: "Customer Focus",
+      image: "/assets/images/home/capabilities/2.jpg",
+      description:
+        "Our clients are at the heart of everything we do. We listen, adapt, and deliver solutions tailored to meet and exceed their expectations at every stage.",
+    },
+    {
+      tab: "Sustainability",
+      image: "/assets/images/home/capabilities/3.jpg",
+      description:
+        "We are committed to sustainable construction practices that minimize environmental impact and contribute to a better future for generations to come.",
+    },
+  ],
+};
