@@ -50,7 +50,7 @@ export default function Header() {
               alt="ABM Logo"
               width={1300}
               height={270}
-              className="object-contain h-[55px] 3xl:h-[66px] w-auto"
+              className="object-contain h-[55px] 3xl:h-[66px] w-auto pointer-events-none"
             />
           </Link>
         </div>
@@ -73,7 +73,7 @@ export default function Header() {
             alt="Menu"
             width={20}
             height={20}
-            className="h-[20px] w-auto"
+            className="h-[20px] w-auto pointer-events-none"
           />
         </button>
       </header>

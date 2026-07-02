@@ -47,7 +47,7 @@ export default function Footer() {
                 alt="logo"
                 width={1300}
                 height={270}
-                className="h-[66px] w-auto"
+                className="h-[66px] w-auto pointer-events-none"
               />
             </div>
             {/* Middle — Contact info */}
@@ -58,7 +58,7 @@ export default function Footer() {
                   alt="Address"
                   width={24}
                   height={24}
-                  className="mt-1 shrink-0"
+                  className="mt-1 shrink-0 pointer-events-none"
                 />
                 <div className="flex flex-col gap-[5px]">
                   <span className="text-subtitle text-secondary">ADDRESS</span>
@@ -76,7 +76,7 @@ export default function Footer() {
                     alt="Phone"
                     width={24}
                     height={24}
-                    className="mt-1 shrink-0"
+                    className="mt-1 shrink-0 pointer-events-none"
                   />
                   <div className="flex flex-col gap-[5px]">
                     <span className="text-subtitle text-secondary">
@@ -96,7 +96,7 @@ export default function Footer() {
                     alt="Email"
                     width={24}
                     height={24}
-                    className="mt-1 shrink-0"
+                    className="mt-1 shrink-0 pointer-events-none"
                   />
                   <div className="flex flex-col gap-[5px]">
                     <span className="text-subtitle text-secondary">
@@ -132,7 +132,7 @@ export default function Footer() {
                     alt=""
                     width={14}
                     height={14}
-                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-3 transition-all duration-300"
+                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-3 transition-all duration-300 pointer-events-none"
                   />
                 </Link>
               ))}
@@ -149,7 +149,6 @@ export default function Footer() {
                 key={item.label}
                 href={item.href}
                 className="text-description-2 text-secondary/80 hover:text-primary transition-colors duration-300"
-
                 dangerouslySetInnerHTML={{ __html: item.label }}
               />
             ))}
@@ -174,7 +173,7 @@ export default function Footer() {
                     alt=""
                     width={16}
                     height={16}
-                    className="group-hover:rotate-45 group-hover:translate-x-1 transition-transform duration-300"
+                    className="group-hover:rotate-45 group-hover:translate-x-1 transition-transform duration-300 pointer-events-none"
                   />
                 </div>
               </Link>

@@ -41,6 +41,7 @@ export default function ContactSection() {
                     alt={info.title}
                     width={25}
                     height={25}
+                    className="pointer-events-none"
                   />
                 </div>
                 <div className="flex flex-col gap-[5px]">
