@@ -27,7 +27,7 @@ export default function Sectors() {
       </div>
       {/* Left */}
       <div
-        className="flex flex-col w-[48.53%] shrink-0 py-120 3xl:py-140 relative"
+        className="flex flex-col w-[48.33%] shrink-0 py-120 3xl:py-140 relative"
         style={{ paddingLeft: inset }}
       >
         <div
@@ -81,7 +81,7 @@ export default function Sectors() {
         </div>
       </div>
       {/* Right — 51.47% */}
-      <div className="relative w-[51.47%] shrink-0 overflow-hidden">
+      <div className="relative w-[51.67%] shrink-0 overflow-hidden">
         {/* Background image per active tab */}
         {tabs.map((tab) => (
           <Image

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useLenis } from "@/app/components/client/layout/LenisProvider";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Option {
   label: string;
@@ -89,7 +90,9 @@ export default function FormSelect({
 
       {/* Selected value */}
       <div className="absolute left-0 bottom-5 w-full text-description text-description-color select-none">
-        <span className={selected ? "text-description-color" : "text-secondary/50"}>
+        <span
+          className={selected ? "text-description-color" : "text-secondary/50"}
+        >
           {selected ? selected.label : placeholder}
         </span>
       </div>
@@ -108,32 +111,38 @@ export default function FormSelect({
       </span>
 
       {/* Dropdown */}
-      {open && (
-        <div
-          ref={dropdownRef}
-          onClick={(e) => e.stopPropagation()}
-          className="absolute left-0 top-full -mt-4 w-full bg-cream-background rounded-[10px] max-h-[300px] overflow-y-auto z-50 shadow-lg border border-black/8 max-w-[300px]"
-        >
-          {options.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => {
-                onChange(opt.value);
-                setOpen(false);
-              }}
-              className={`w-full text-left px-20 py-2 text-[16px] transition-colors duration-300 first:rounded-t-[10px] last:rounded-b-[10px]
-                ${
-                  opt.value === value
-                    ? "text-primary bg-white"
-                    : "text-description-color hover:bg-white"
-                }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            ref={dropdownRef}
+            onClick={(e) => e.stopPropagation()}
+            initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="absolute left-0 top-full -mt-4 w-full bg-cream-background rounded-[10px] max-h-[300px] overflow-y-auto z-50 shadow-lg border border-black/8 max-w-[300px]"
+          >
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+                className={`w-full text-left px-20 py-2 text-[16px] transition-colors duration-300 first:rounded-t-[10px] last:rounded-b-[10px]
+            ${
+              opt.value === value
+                ? "text-primary bg-white"
+                : "text-description-color hover:bg-white"
+            }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -27,10 +27,12 @@ export default function OurProjects() {
               text={ourProjectsData.description}
               className="text-description-color mb-40"
             />
-            <CustomButton
-              text={ourProjectsData.buttonText}
-              href={ourProjectsData.href}
-            />
+            <div>
+              <CustomButton
+                text={ourProjectsData.buttonText}
+                href={ourProjectsData.href}
+              />
+            </div>
           </div>
         </div>
 

@@ -9,7 +9,7 @@ export default function ContactSection() {
     contactSectionData;
 
   return (
-    <section className="relative h-screen 3xl:h-[1040px] py-120 3xl:py-140 overflow-hidden">
+    <section className="relative min-h-screen py-120 3xl:py-140 overflow-hidden">
       {/* Background Image */}
       <Image
         src={backgroundImage}
@@ -44,12 +44,11 @@ export default function ContactSection() {
                   />
                 </div>
                 <div className="flex flex-col gap-[5px]">
-                  <p className="text-white text-subtitle">
-                    {info.title}
-                  </p>
-                  <p className="text-white/80 text-description">
-                    {info.value}
-                  </p>
+                  <p className="text-white text-subtitle">{info.title}</p>
+                  <p
+                    className="text-white/80 text-description"
+                    dangerouslySetInnerHTML={{ __html: info.value }}
+                  />
                 </div>
               </div>
             ))}

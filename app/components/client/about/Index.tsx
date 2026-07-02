@@ -1,9 +1,12 @@
 import InnerBanner from "../common/InnerBanner";
-import { bannerData } from "./data";
+import InnerCta from "../common/InnerCta";
+import { bannerData, ctaData } from "./data";
 import AboutSection from "./sections/AboutSection";
 import CoreValuesSection from "./sections/CoreValues";
+import GroupCompanies from "./sections/GroupCompanies";
 import PurposeSection from "./sections/PurposeSection";
 import VideoSection from "./sections/VideoSection";
+import WhyChooseUs from "./sections/WhyChooseUs";
 
 const Index = () => {
   return (
@@ -13,6 +16,9 @@ const Index = () => {
       <VideoSection />
       <PurposeSection />
       <CoreValuesSection />
+      <GroupCompanies />
+      <WhyChooseUs />
+      <InnerCta {...ctaData} />
     </>
   );
 };

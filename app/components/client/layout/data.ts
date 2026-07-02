@@ -1,13 +1,12 @@
 export const NAV_ITEMS = [
   { label: "ABOUT", href: "/about" },
-  { label: "OUR SECTORS", href: "/sectors" },
-  { label: "OUR DIVISIONS", href: "/divisions" },
-  { label: "PROJECT", href: "/project" },
-  { label: "CLIENTS", href: "/clients" },
-  { label: "HOW WE WORK", href: "/how-we-work" },
-  { label: "GALLERY", href: "/gallery" },
+  { label: "OUR SECTORS", href: "#" },
+  { label: "OUR DIVISIONS", href: "#" },
+  { label: "PROJECT", href: "#" },
+  { label: "CLIENTS", href: "#" },
+  { label: "HOW WE WORK", href: "#" },
+  { label: "GALLERY", href: "#" },
 ];
-
 
 export const footerData = {
   logo: {
@@ -16,7 +15,7 @@ export const footerData = {
 
   address: {
     icon: "/assets/icons/footer/location.svg",
-    value: ["Al Basti & Muktha LLC", "P.O. Box 2393, Dubai (U.A.E.)"],
+    value: [`Al Basti <span class="font-tasa">&amp;</span> Muktha LLC`, `P.O. Box 2393, Dubai (U.A.E.)`],
   },
 
   phone: {
@@ -37,7 +36,7 @@ export const footerData = {
     { label: "HOME", href: "/" },
     { label: "CERTIFICATIONS", href: "#" },
     { label: "HOW WE WORK", href: "#" },
-    { label: "ABOUT", href: "#" },
+    { label: "ABOUT", href: "/about" },
     { label: "CLIENTS", href: "#" },
     { label: "CAREERS", href: "#" },
     { label: "OUR DIVISIONS", href: "#" },
@@ -48,7 +47,7 @@ export const footerData = {
   ],
 
   legal: [
-    { label: "Terms & conditions", href: "#" },
+    { label: `Terms <span class="font-tasa">&amp;</span> conditions`, href: "#" },
     { label: "Privacy Policy", href: "#" },
   ],
 

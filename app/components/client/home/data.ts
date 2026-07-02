@@ -1,3 +1,5 @@
+import { px } from "framer-motion";
+
 export interface HeroSlide {
   id: number;
   image: string;
@@ -28,7 +30,7 @@ export const aboutSectionData = {
   label: "About Us",
   title: "SUCCESS IS A JOURNEY, NOT A DESTINATION",
   description:
-    "Founded in 1974, <span class='font-parabolica-medium'>Al Basti & Muktha LLC (ABM)</span> is widely regarded amongst the leading building and civil construction companies in the UAE. ABM have contributed to the rapidly changing face of Dubai, driven to success by the enthusiasm and efforts of its staff and project partners.",
+    `Founded in 1974, <span class='font-parabolica-medium'>Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM)</span> is widely regarded amongst the leading building and civil construction companies in the UAE. ABM have contributed to the rapidly changing face of Dubai, driven to success by the enthusiasm and efforts of its staff and project partners.`,
   logo: "/assets/images/logos/50years.svg",
   stats: [
     { value: "100", suffix: "+", label: "Employees" },
@@ -50,7 +52,7 @@ export const coreCapabilitiesSectionData = {
         "Construction focuses on delivering complete building solutions with quality, safety, and timely execution across all project phases.",
       image: "/assets/images/home/capabilities/1.jpg",
       buttonText: "VIEW MORE",
-      href: "/services/construction",
+      href: "#",
     },
     {
       id: "value-engineering",
@@ -59,7 +61,7 @@ export const coreCapabilitiesSectionData = {
         "Value Engineering focuses on optimizing project costs without compromising quality or performance. It requires smarter material selection.",
       image: "/assets/images/home/capabilities/2.jpg",
       buttonText: "VIEW MORE",
-      href: "/services/value-engineering",
+      href: "#",
     },
     {
       id: "design-build",
@@ -68,7 +70,7 @@ export const coreCapabilitiesSectionData = {
         "Design & Build integrates planning, design, and construction into a single streamlined process for efficient project delivery.",
       image: "/assets/images/home/capabilities/3.jpg",
       buttonText: "VIEW MORE",
-      href: "/services/design-build",
+      href: "#",
     },
   ],
 };
@@ -86,7 +88,7 @@ export const sectorsData = {
         "We deliver quality residential projects, creating modern, durable, and comfortable living spaces.",
       image: "/assets/images/home/sectors/1.jpg",
       icon: "/assets/images/home/sectors/icons/1.svg",
-      href: "/projects?sector=residential",
+      href: "#",
       buttonText: "View Projects",
     },
     {
@@ -96,7 +98,7 @@ export const sectorsData = {
         "We construct purpose-built institutional facilities with precision, safety, and longevity in mind.",
       image: "/assets/images/home/sectors/2.jpg",
       icon: "/assets/images/home/sectors/icons/2.svg",
-      href: "/projects?sector=institution",
+      href: "#",
       buttonText: "View Projects",
     },
     {
@@ -106,7 +108,7 @@ export const sectorsData = {
         "From boutique hotels to large-scale resorts, we bring world-class hospitality environments to life.",
       image: "/assets/images/home/sectors/3.jpg",
       icon: "/assets/images/home/sectors/icons/3.svg",
-      href: "/projects?sector=hospitality",
+      href: "#",
       buttonText: "View Projects",
     },
     {
@@ -116,7 +118,7 @@ export const sectorsData = {
         "Our infrastructure expertise spans roads, bridges, utilities, and large-scale civil engineering works.",
       image: "/assets/images/home/sectors/4.jpg",
       icon: "/assets/images/home/sectors/icons/4.svg",
-      href: "/projects?sector=infrastructure",
+      href: "#",
       buttonText: "View Projects",
     },
     {
@@ -126,7 +128,7 @@ export const sectorsData = {
         "We design and build high-performance commercial spaces that support modern business needs.",
       image: "/assets/images/home/sectors/5.jpg",
       icon: "/assets/images/home/sectors/icons/5.svg",
-      href: "/projects?sector=commercial",
+      href: "#",
       buttonText: "View Projects",
     },
   ],
@@ -162,31 +164,31 @@ export const ourProjectsData = {
   description:
     "Explore our diverse portfolio of successfully delivered projects across commercial, residential, institutional, and infrastructure sectors. Each project reflects our commitment to quality, innovation, safety, and excellence in construction.",
   buttonText: "VIEW ALL PROJECTS",
-  href: "/projects",
+  href: "#",
   projects: [
     {
       image: "/assets/images/home/projects/1.jpg",
       title: "JUMEIRAH LIVING BUSINESS BAY",
       location: "Dubai",
-      href: "/projects/jumeirah-living-business-bay",
+      href: "#",
     },
     {
       image: "/assets/images/home/projects/2.jpg",
       title: "VIDA RESIDENCE DOWNTOWN",
       location: "Dubai",
-      href: "/projects/vida-residence-downtown",
+      href: "#",
     },
     {
       image: "/assets/images/home/projects/3.jpg",
       title: "PALACE BEACH",
       location: "Dubai Harbour",
-      href: "/projects/palace-beach",
+      href: "#",
     },
     {
       image: "/assets/images/home/projects/4.jpg",
       title: "BURJ CROWN",
       location: "Downtown Dubai.",
-      href: "/projects/burj-crown",
+      href: "#",
     },
   ],
 };
@@ -226,7 +228,7 @@ export const contactSectionData = {
     {
       icon: "/assets/images/home/contact/icons/office.svg",
       title: "OFFICE",
-      value: "Al Basti & Muktha LLC | P.O. Box 2393, Dubai (U.A.E.)",
+      value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-[20px] w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
     },
     {
       icon: "/assets/images/home/contact/icons/phone.svg",
