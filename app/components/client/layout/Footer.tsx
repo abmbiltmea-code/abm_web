@@ -64,7 +64,7 @@ export default function Footer() {
                   <span className="text-subtitle text-secondary">ADDRESS</span>
                   <p className="text-description-2 text-description-color 3xl:whitespace-nowrap flex gap-[10px]">
                     {address.value.map((item, index) => (
-                      <span key={index}>{item}</span>
+                      <span key={index} dangerouslySetInnerHTML={{ __html: item }} />
                     ))}
                   </p>
                 </div>
@@ -148,10 +148,10 @@ export default function Footer() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-description text-secondary/80 hover:text-primary transition-colors duration-300"
-              >
-                {item.label}
-              </Link>
+                className="text-description-2 text-secondary/80 hover:text-primary transition-colors duration-300"
+
+                dangerouslySetInnerHTML={{ __html: item.label }}
+              />
             ))}
           </div>
 
@@ -165,7 +165,7 @@ export default function Footer() {
                 key={social.label}
                 href={social.href}
                 target="_blank"
-                className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300"
+                className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
               >
                 {social.label}
                 <div>
@@ -174,6 +174,7 @@ export default function Footer() {
                     alt=""
                     width={16}
                     height={16}
+                    className="group-hover:rotate-45 group-hover:translate-x-1 transition-transform duration-300"
                   />
                 </div>
               </Link>

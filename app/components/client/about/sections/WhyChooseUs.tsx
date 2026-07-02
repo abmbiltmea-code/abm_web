@@ -1,0 +1,162 @@
+"use client";
+
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperClass } from "swiper";
+import { useRef, useState, useEffect } from "react";
+import "swiper/css";
+
+import { whyChooseUsSection } from "../data";
+import SectionLabel from "../../common/SectionLabel";
+import SectionTitle from "../../animations/SectionTitle";
+
+const AUTOPLAY_DELAY = 4000;
+
+export default function WhyChooseUs() {
+  const { label, title } = whyChooseUsSection;
+  const slides = whyChooseUsSection.slides;
+
+  const swiperRef = useRef<SwiperClass | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const isIndexVisible = (index: number) => {
+    const swiper = swiperRef.current;
+    if (!swiper) return true;
+    const slidesPerView =
+      typeof swiper.params.slidesPerView === "number"
+        ? swiper.params.slidesPerView
+        : 1;
+    const start = swiper.activeIndex;
+    const end = start + slidesPerView - 1;
+    return index >= start && index <= end;
+  };
+
+  const startAutoplay = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setActiveIndex((prev) => {
+        const next = prev + 1 >= slides.length ? 0 : prev + 1;
+        requestAnimationFrame(() => {
+          if (next === 0) {
+            swiperRef.current?.slideTo(0);
+          } else if (!isIndexVisible(next)) {
+            swiperRef.current?.slideNext();
+          }
+        });
+        return next;
+      });
+    }, AUTOPLAY_DELAY);
+  };
+
+  useEffect(() => {
+    startAutoplay();
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [activeIndex]);
+
+  const activeSlide = slides[activeIndex];
+
+  return (
+    <section className="py-120 3xl:py-140 bg-cream-background">
+      <div className="container">
+        {/* HEADER */}
+        <div className="flex flex-col gap-40 mb-50">
+          <SectionLabel title={label} />
+          <SectionTitle title={title} />
+        </div>
+
+        {/* TAB SWIPER */}
+        <Swiper
+          spaceBetween={20}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          breakpoints={{
+            0: { slidesPerView: 1.5 },
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1400: { slidesPerView: 4 },
+          }}
+          className="mb-60"
+        >
+          {slides.map((slide, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <SwiperSlide key={slide.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveIndex(index);
+                    if (!isIndexVisible(index)) {
+                      swiperRef.current?.slideTo(index);
+                    }
+                    startAutoplay();
+                  }}
+                  className="w-full flex flex-col items-center group cursor-pointer"
+                >
+                  {/* Number */}
+                  <span
+                    className={`mb-[10px] text-15 leading-[1.33333] w-9 h-9 rounded-[5px] flex items-center justify-center border border-border-color transition-colors duration-300
+                      ${isActive ? "border-primary bg-primary/10" : "border-border-color text-[#5B5B5B]"}`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Title */}
+                  <span
+                    className={`text-subtitle transition-colors duration-300 mb-[15px]
+                      ${isActive ? "" : "text-secondary"}`}
+                  >
+                    {slide.title}
+                  </span>
+
+                  {/* Line */}
+                  <span
+                    className={`block w-full relative ${isActive ? "h-[2px] -mt-px" : "h-px"}`}
+                  >
+                    {/* Base track — always visible at 1px */}
+                    <span className="absolute inset-0 top-auto bottom-0 h-px w-full bg-border-color" />
+                    {isActive && (
+                      <span
+                        key={activeIndex}
+                        className="absolute inset-y-0 left-0 bg-primary"
+                        style={{
+                          animation: `progress-line ${AUTOPLAY_DELAY}ms linear forwards`,
+                        }}
+                      />
+                    )}
+                  </span>
+                </button>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* ACTIVE SLIDE CONTENT */}
+        <div className="flex flex-col lg:flex-row gap-40 lg:gap-120 3xl:gap-[145px] items-center">
+          {/* Image */}
+          {/* Image */}
+          <div className="relative w-full max-w-[50%] 3xl:max-w-[849px] rounded-[10px] overflow-hidden aspect-16/10 shrink-0">
+            <Image
+              key={activeIndex}
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col gap-20">
+            <h3 className="text-subtitle-2 text-secondary">
+              {activeSlide.title}
+            </h3>
+            <p className="text-description-2 text-description-color max-w-[42ch] 3xl:max-w-[600px]">
+              {activeSlide.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

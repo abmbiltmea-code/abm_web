@@ -33,7 +33,6 @@ export const aboutData = {
   ],
 };
 
-
 export const purposeData = {
   sectionLabel: "Vision & Mission",
   title: "Our Purpose",
@@ -52,7 +51,6 @@ export const purposeData = {
     },
   ],
 };
-
 
 export const coreValuesData = {
   sectionLabel: "Core Values",
@@ -89,4 +87,80 @@ export const coreValuesData = {
         "We are committed to sustainable construction practices that minimize environmental impact and contribute to a better future for generations to come.",
     },
   ],
+};
+
+export const groupCompaniesSection = {
+  label: "TRUSTED NETWORK",
+  title: "GROUP COMPANIES",
+  groupCompanies: [
+    {
+      id: "bill-middle-east",
+      logo: "/assets/images/about/group-companies/1.svg",
+      title: "BILL MIDDLE EAST LLC",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      buttonText: "VIEW WEBSITE",
+      href: "https://billmiddleeast.com",
+    },
+    {
+      id: "duct-fab",
+      logo: "/assets/images/about/group-companies/2.svg",
+      title: "DUCT FAB",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      buttonText: "VIEW WEBSITE",
+      href: "https://ductfab.com",
+    },
+    {
+      id: "al-basti-ink",
+      logo: "/assets/images/about/group-companies/3.svg",
+      title: "AL BASTI INK INDUSTRY",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      buttonText: "VIEW WEBSITE",
+      href: "https://albastiink.com",
+    },
+  ],
+};
+
+export const whyChooseUsSection = {
+  label: "END-TO-END SERVICES",
+  title: "WHY CHOOSE ABM",
+  slides: [
+    {
+      id: 1,
+      title: "MULTI-SECTOR EXPERTISE",
+      image: "/assets/images/about/why-choose/1.jpg",
+      description:
+        "A team of highly qualified and experienced professionals committed to delivering precision, maintaining the highest quality standards, and ensuring efficient execution at every stage of the project lifecycle—from planning and design to completion and handover.",
+    },
+    {
+      id: 2,
+      title: "PROVEN PROJECT DELIVERY",
+      image: "/assets/images/about/why-choose/2.jpg",
+      description:
+        "A team of highly qualified and experienced professionals committed to delivering precision, maintaining the highest quality standards, and ensuring efficient execution at every stage of the project lifecycle—from planning and design to completion and handover.",
+    },
+    {
+      id: 3,
+      title: "SKILLED WORKFORCE",
+      image: "/assets/images/about/why-choose/3.jpg",
+      description:
+        "A team of highly qualified and experienced professionals committed to delivering precision, maintaining the highest quality standards, and ensuring efficient execution at every stage of the project lifecycle—from planning and design to completion and handover.",
+    },
+    {
+      id: 4,
+      title: "CLIENT-FIRST APPROACH",
+      image: "/assets/images/about/why-choose/4.jpg",
+      description:
+        "A team of highly qualified and experienced professionals committed to delivering precision, maintaining the highest quality standards, and ensuring efficient execution at every stage of the project lifecycle—from planning and design to completion and handover.",
+    },
+  ],
+};
+
+export const ctaData = {
+  title: "Let’s Build Together",
+  description:
+    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+  image: "/assets/images/about/cta.jpg",
 };

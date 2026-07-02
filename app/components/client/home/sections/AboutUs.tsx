@@ -39,7 +39,7 @@ export default function AboutSection() {
           {/* Row 2: description */}
           <SectionDescription
             html={description}
-            className="text-description-color 3xl:max-w-[101ch] mb-40"
+            className="text-description-color max-w-[95%] 3xl:max-w-[101ch] mb-40"
           />
 
           {/* Row 3: stats */}

@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "@/app/components/client/forms/FormInput";
 import FormSelect from "@/app/components/client/forms/FormSelect";
 import FormTextArea from "@/app/components/client/forms/FormTextArea";
 import CustomButton from "@/app/components/client/common/CustomButton";
+import {
+  homeEnquiryFormSchema,
+  HomeEnquiryFormValues,
+} from "@/app/lib/validations/homeEnquiryForm";
 
 const subjectOptions = [
   { label: "General Inquiry", value: "general" },
@@ -14,36 +19,26 @@ const subjectOptions = [
   { label: "Other", value: "other" },
 ];
 
-interface FormState {
-  name: string;
-  firstName: string;
-  organization: string;
-  country: string;
-  subject: string;
-  message: string;
-}
-
 export default function ContactForm() {
-  const [formState, setFormState] = useState<FormState>({
-    name: "",
-    firstName: "",
-    organization: "",
-    country: "",
-    subject: "",
-    message: "",
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<HomeEnquiryFormValues>({
+    resolver: zodResolver(homeEnquiryFormSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      organization: "",
+      country: "",
+      subject: "",
+      message: "",
+    },
   });
 
-  const handleInput = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
-  ) => {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formState);
+  const onSubmit = (data: HomeEnquiryFormValues) => {
+    console.log(data);
   };
 
   return (
@@ -52,23 +47,21 @@ export default function ContactForm() {
         Send an Inquiry
       </h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="flex flex-col gap-40">
           {/* Row 1 */}
           <div className="grid grid-cols-2 gap-x-40 3xl:gap-x-[65.77px]">
             <FormInput
-              label="Name"
-              name="name"
+              label="First Name"
               required
-              value={formState.name}
-              onChange={handleInput}
+              error={errors.firstName?.message}
+              {...register("firstName")}
             />
             <FormInput
-              label="First Name"
-              name="firstName"
+              label="Last Name"
               required
-              value={formState.firstName}
-              onChange={handleInput}
+              error={errors.lastName?.message}
+              {...register("lastName")}
             />
           </div>
 
@@ -76,46 +69,47 @@ export default function ContactForm() {
           <div className="grid grid-cols-2 gap-x-40 3xl:gap-x-[65.77px]">
             <FormInput
               label="Your Organization"
-              name="organization"
               required
-              value={formState.organization}
-              onChange={handleInput}
+              error={errors.organization?.message}
+              {...register("organization")}
             />
             <FormInput
               label="Country"
-              name="country"
               required
-              value={formState.country}
-              onChange={handleInput}
+              error={errors.country?.message}
+              {...register("country")}
             />
           </div>
 
           {/* Subject */}
-          <FormSelect
-            label="Subject"
+          <Controller
             name="subject"
-            required
-            value={formState.subject}
-            options={subjectOptions}
-            onChange={(value) =>
-              handleInput({
-                target: { name: "subject", value },
-              } as React.ChangeEvent<HTMLInputElement>)
-            }
+            control={control}
+            render={({ field }) => (
+              <FormSelect
+                label="Subject"
+                name="subject"
+                required
+                value={field.value}
+                onChange={field.onChange}
+                options={subjectOptions}
+                error={errors.subject?.message}
+              />
+            )}
           />
 
           {/* Message */}
           <FormTextArea
             label="Message"
-            name="message"
             required
-            value={formState.message}
-            onChange={handleInput}
+            error={errors.message?.message}
+            {...register("message")}
           />
         </div>
+
         {/* Submit */}
         <div className="mt-20">
-          <CustomButton text="Submit Inquiry" href="#" />
+          <CustomButton type="submit" text="Submit Inquiry" />
         </div>
       </form>
     </div>

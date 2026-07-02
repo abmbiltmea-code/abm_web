@@ -25,7 +25,7 @@ export default function WhyAbm() {
           {whyAbmData.items.map((item, index) => (
             <div
               key={index}
-              className="relative py-[28px] flex flex-col items-center gap-y-20"
+              className="relative py-[27px] flex flex-col items-center gap-y-20"
             >
               {/* Separator line */}
               {index !== 0 && (
