@@ -24,7 +24,7 @@ export default function AboutSection() {
               className="text-secondary max-w-[19ch] 3xl:max-w-[695px]"
             />
 
-            <div className="w-px self-stretch bg-black/20 shrink-0" />
+            <div className="w-px self-stretch bg-black/20 shrink-0 3xl:max-h-[147px]" />
             <div className="shrink-0">
               <Image
                 src={logo}
