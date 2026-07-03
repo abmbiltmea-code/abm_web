@@ -33,7 +33,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           rows={rows}
           ref={ref}
           {...rest}
-          className="peer mt-[54px] w-full bg-transparent text-description font-poppins text-description-color outline-none resize-none placeholder:text-secondary block p-0 leading-3 overflow-hidden"
+          className="peer mt-[54px] w-full bg-transparent text-description font-poppins text-description-color outline-none resize-none placeholder:text-secondary block p-0 leading-3 overflow-x-auto overflow-y-hidden whitespace-nowrap"
         />
 
         {/* Base line */}

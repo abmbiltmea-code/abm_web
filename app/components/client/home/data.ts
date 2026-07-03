@@ -29,8 +29,7 @@ export const heroSlides: HeroSlide[] = [
 export const aboutSectionData = {
   label: "About Us",
   title: "SUCCESS IS A JOURNEY, NOT A DESTINATION",
-  description:
-    `Founded in 1974, <span class='font-parabolica-medium'>Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM)</span> is widely regarded amongst the leading building and civil construction companies in the UAE. ABM have contributed to the rapidly changing face of Dubai, driven to success by the enthusiasm and efforts of its staff and project partners.`,
+  description: `Founded in 1974, <span class='font-parabolica-medium'>Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM)</span> is widely regarded amongst the leading building and civil construction companies in the UAE. ABM have contributed to the rapidly changing face of Dubai, driven to success by the enthusiasm and efforts of its staff and project partners.`,
   logo: "/assets/images/logos/50years.svg",
   stats: [
     { value: "100", suffix: "+", label: "Employees" },
@@ -229,16 +228,19 @@ export const contactSectionData = {
       icon: "/assets/images/home/contact/icons/office.svg",
       title: "OFFICE",
       value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-[20px] w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
+      href: "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6",
     },
     {
       icon: "/assets/images/home/contact/icons/phone.svg",
       title: "PHONE",
       value: "+971 4 3439444",
+      href: "tel:+97143439444",
     },
     {
       icon: "/assets/images/home/contact/icons/mail.svg",
       title: "E-MAIL",
       value: "abmbilt@emirates.net.ae",
+      href: "mailto:[EMAIL_ADDRESS]",
     },
   ],
 };
