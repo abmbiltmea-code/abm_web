@@ -65,7 +65,7 @@ const CoreCapabilities = () => {
             />
             <SectionDescription
               text={coreCapabilitiesSectionData.description}
-              className="text-description-color"
+              className="text-description-color max-w-[70ch] 3xl:max-w-none"
             />
           </div>
         </div>
