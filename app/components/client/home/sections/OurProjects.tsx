@@ -25,7 +25,7 @@ export default function OurProjects() {
             />
             <SectionDescription
               text={ourProjectsData.description}
-              className="text-description-color mb-40"
+              className="text-description-color mb-40 max-w-[70ch] 3xl:max-w-none"
             />
             <div>
               <CustomButton
