@@ -62,9 +62,9 @@ export default function Footer() {
                 />
                 <div className="flex flex-col gap-[5px]">
                   <span className="text-subtitle text-secondary">ADDRESS</span>
-                  <p className="text-description-2 text-description-color 3xl:whitespace-nowrap flex gap-[10px]">
+                  <p className="text-description-2 text-description-color 3xl:whitespace-nowrap flex gap-[10px] hover:text-primary transition-colors duration-300">
                     {address.value.map((item, index) => (
-                      <span key={index} dangerouslySetInnerHTML={{ __html: item }} />
+                      <Link href={address.href} target="_blank" rel="noopener noreferrer" key={index} dangerouslySetInnerHTML={{ __html: item }} />
                     ))}
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export default function Footer() {
                     </span>
                     <a
                       href={phone.href}
-                      className="text-description-2 text-description-color"
+                      className="text-description-2 text-description-color hover:text-primary transition-colors duration-300"
                     >
                       {phone.value}
                     </a>
@@ -104,7 +104,7 @@ export default function Footer() {
                     </span>
                     <a
                       href={email.href}
-                      className="text-description-2 text-description-color"
+                      className="text-description-2 text-description-color hover:text-primary transition-colors duration-300"
                     >
                       {email.value}
                     </a>

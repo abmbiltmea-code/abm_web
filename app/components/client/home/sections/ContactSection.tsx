@@ -3,6 +3,7 @@ import { contactSectionData } from "../data";
 import SectionTitle from "@/app/components/client/animations/SectionTitle";
 import SectionDescription from "@/app/components/client/animations/SectionDescription";
 import ContactForm from "./ContactForm";
+import Link from "next/link";
 
 export default function ContactSection() {
   const { backgroundImage, title, description, contactInfo } =
@@ -46,10 +47,22 @@ export default function ContactSection() {
                 </div>
                 <div className="flex flex-col gap-[5px]">
                   <p className="text-white text-subtitle">{info.title}</p>
-                  <p
-                    className="text-white/80 text-description"
-                    dangerouslySetInnerHTML={{ __html: info.value }}
-                  />
+                  {info.href ? (
+                    <Link
+                      href={info.href}
+                      {...(!info.href.startsWith("tel:") &&
+                      !info.href.startsWith("mailto:")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="text-white/80 text-description hover:text-white transition-colors"
+                      dangerouslySetInnerHTML={{ __html: info.value }}
+                    />
+                  ) : (
+                    <p
+                      className="text-white/80 text-description"
+                      dangerouslySetInnerHTML={{ __html: info.value }}
+                    />
+                  )}
                 </div>
               </div>
             ))}
