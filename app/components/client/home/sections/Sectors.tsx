@@ -72,6 +72,7 @@ export default function Sectors() {
                       alt=""
                       width={14}
                       height={13}
+                      className="pointer-events-none"
                     />
                   </div>
                 )}
@@ -126,7 +127,7 @@ export default function Sectors() {
             {active.description}
           </p>
 
-          <div className="mt-2">
+          <div>
             <CustomButton text={active.buttonText} href={active.href} />
           </div>
         </div>
