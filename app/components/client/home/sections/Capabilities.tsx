@@ -170,7 +170,7 @@ const CoreCapabilities = () => {
                       }`}
                     >
                       <motion.p
-                        className="text-white/80 text-description max-w-[62ch] mb-20"
+                        className="text-white/80 text-description max-w-[45ch] 3xl:max-w-[62ch] mb-20"
                         initial={false}
                         animate={
                           isActive
@@ -180,7 +180,7 @@ const CoreCapabilities = () => {
                         transition={{
                           duration: 0.45,
                           ease: [0.25, 0.1, 0.25, 1],
-                          delay: isActive ? 0.35 : 0,
+                          delay: isActive ? 0.55 : 0,
                         }}
                       >
                         {card.description}
