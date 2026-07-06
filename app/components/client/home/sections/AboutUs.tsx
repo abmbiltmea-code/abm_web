@@ -7,6 +7,7 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
+import AnimatedIcon from "../../common/AnimatedSvg";
 
 export default function AboutSection() {
   const { label, title, description, logo, stats } = aboutSectionData;
@@ -30,7 +31,7 @@ export default function AboutSection() {
 
             <div className="w-px self-stretch bg-black/20 shrink-0 3xl:max-h-[147px] ml-[22px] mr-[23px]" />
             <div className="shrink-0">
-              <Image
+              <AnimatedIcon
                 src={logo}
                 alt="50 Year Legacy"
                 width={120}
