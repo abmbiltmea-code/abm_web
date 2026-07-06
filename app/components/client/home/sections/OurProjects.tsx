@@ -8,7 +8,9 @@ import SectionLabel from "@/app/components/client/common/SectionLabel";
 import SectionTitle from "@/app/components/client/animations/SectionTitle";
 import SectionDescription from "@/app/components/client/animations/SectionDescription";
 import CustomButton from "@/app/components/client/common/CustomButton";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function OurProjects() {
   return (
@@ -57,28 +59,35 @@ export default function OurProjects() {
             const isOdd = index % 2 === 0;
             return (
               <SwiperSlide className="group" key={index}>
-                <Link href={project.href}>
-                  <div
-                    className={`relative w-full rounded-[10px] overflow-hidden ${
-                      isOdd
-                        ? "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]"
-                        : "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[270px] 3xl:h-[386px]"
-                    }`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top group-hover:scale-105 transition-all duration-700"
-                    />
-                  </div>
-                  <h3 className="mt-[15px] xl:mt-20 text-subtitle text-secondary uppercase mb-[5px] xl:mb-0">
-                    {project.title}
-                  </h3>
-                  <p className="text-description text-description-color">
-                    {project.location}
-                  </p>
-                </Link>
+                <motion.div
+                variants={moveUp(0.11 * index)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                >
+                  <Link href={project.href}>
+                    <div
+                      className={`relative w-full rounded-[10px] overflow-hidden ${
+                        isOdd
+                          ? "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]"
+                          : "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[270px] 3xl:h-[386px]"
+                      }`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-top group-hover:scale-105 transition-all duration-700"
+                      />
+                    </div>
+                    <h3 className="mt-[15px] xl:mt-20 text-subtitle text-secondary uppercase mb-[5px] xl:mb-0">
+                      {project.title}
+                    </h3>
+                    <p className="text-description text-description-color">
+                      {project.location}
+                    </p>
+                  </Link>
+                </motion.div>
               </SwiperSlide>
             );
           })}

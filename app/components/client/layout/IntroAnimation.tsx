@@ -33,6 +33,7 @@ export default function IntroAnimation() {
         onComplete: () => {
           document.body.style.overflow = prevOverflow;
           setShow(false);
+          // window.dispatchEvent(new Event("introComplete"));
         },
       });
 
@@ -44,23 +45,37 @@ export default function IntroAnimation() {
         .to(
           leftLogoRef.current,
           { clipPath: REVEALED, duration: 1, ease: "expo.out" },
-          "-=0.05"
+          "-=0.05",
         )
         .to(
           rightLogoRef.current,
           { clipPath: REVEALED, duration: 1, ease: "expo.out" },
-          "<"
+          "<",
         )
         .to(
           leftLogoRef.current,
-          { clipPath: LEFT_HIDDEN, duration: 0.6, ease: "power2.inOut" },
-          "+=0.35"
+          { clipPath: LEFT_HIDDEN, duration: 0.7, ease: "power2.inOut" },
+          "+=0.35",
         )
-        .to(rightLogoRef.current, { clipPath: RIGHT_HIDDEN, duration: 0.6, ease: "power2.inOut" }, "<")
+        .to(
+          rightLogoRef.current,
+          { clipPath: RIGHT_HIDDEN, duration: 0.7, ease: "power2.inOut" },
+          "<",
+        )
         .to(
           containerRef.current,
-          { yPercent: -140, duration: 1, ease: "power2.inOut", opacity: 0.9 },
-          "<0.1"
+          {
+            scaleX: 0,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.inOut",
+          },
+          "<0.2",
+        )
+        .call(
+          () => window.dispatchEvent(new Event("introComplete")),
+          [],
+          "<0.2",
         );
     }, containerRef);
 

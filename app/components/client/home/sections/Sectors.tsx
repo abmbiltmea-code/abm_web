@@ -10,6 +10,8 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function Sectors() {
   const { label, title, description, tabs } = sectorsData;
@@ -53,14 +55,18 @@ export default function Sectors() {
           />
           {/* Tabs — two column grid matching design */}
           <div className="grid grid-cols-[200px_200px] gap-y-30 gap-x-80 3xl:gap-x-[88px]">
-            {tabs.map((tab) => {
+            {tabs.map((tab, i) => {
               const isActive = tab.id === active.id;
               return (
-                <button
+                <motion.button
+                variants={moveUp(0.1 * i)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
                   key={tab.id}
                   onClick={() => setActive(tab)}
                   className={[
-                    "text-subtitle uppercase transition-all duration-300 w-[220px] flex items-center gap-20 cursor-pointer",
+                    "text-subtitle uppercase transition-colors duration-300 w-[220px] flex items-center gap-20 cursor-pointer",
                     isActive ? "text-[#E63027]" : "text-white",
                   ].join(" ")}
                 >
@@ -76,7 +82,7 @@ export default function Sectors() {
                       />
                     </div>
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </div>

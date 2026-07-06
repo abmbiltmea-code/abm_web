@@ -1,8 +1,12 @@
+"use client";
+
 import SectionLabel from "@/app/components/client/common/SectionLabel";
 import Image from "next/image";
 import { aboutSectionData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function AboutSection() {
   const { label, title, description, logo, stats } = aboutSectionData;
@@ -44,8 +48,13 @@ export default function AboutSection() {
 
           {/* Row 3: stats */}
           <div className="flex justify-between gap-40 w-full">
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col gap-[5px] md:gap-[10px]">
+            {stats.map((stat, i) => (
+              <motion.div 
+              variants={moveUp(0.15 * i)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              key={stat.label} className="flex flex-col gap-[5px] md:gap-[10px]">
                 <div className="flex items-center gap-1.5 lg:gap-6 font-tasa">
                   <span className="text-100 font-semibold text-secondary leading-none md:leading-[1.2]">
                     {stat.value}
@@ -57,7 +66,7 @@ export default function AboutSection() {
                 <span className="text-[10px] font-tasa font-bold leading-none sm:text-subtitle text-secondary uppercase">
                   {stat.label}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
