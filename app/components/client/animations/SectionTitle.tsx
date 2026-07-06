@@ -32,11 +32,11 @@ export default function SectionTitle({
     <div ref={ref} className="overflow-hidden">
       <MotionTag
         className={`section-heading ${className}`}
-        initial={{ y: "40px", opacity: 0 }}
+        initial={{ y: "50px", opacity: 0 }}
         animate={
-          isInView ? { y: "0px", opacity: 1 } : { y: "40px", opacity: 0.1 }
+          isInView ? { y: "0px", opacity: 1 } : { y: "50px", opacity: 0.1 }
         }
-        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] , delay: 0.15 }}
       >
         {title}
       </MotionTag>

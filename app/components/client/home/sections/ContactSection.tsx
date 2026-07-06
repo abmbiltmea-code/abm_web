@@ -1,9 +1,13 @@
+"use client"
+
 import Image from "next/image";
 import { contactSectionData } from "../data";
 import SectionTitle from "@/app/components/client/animations/SectionTitle";
 import SectionDescription from "@/app/components/client/animations/SectionDescription";
 import ContactForm from "./ContactForm";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function ContactSection() {
   const {
@@ -48,8 +52,15 @@ export default function ContactSection() {
             </div>
 
             <div className="flex flex-col gap-[20px] sm:gap-30">
-              {contactInfo.map((info) => (
-                <div key={info.title} className="flex items-center gap-20">
+              {contactInfo.map((info, index) => (
+                <motion.div
+                  key={info.title}
+                  variants={moveUp(0.11 * index)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                >
+                <div className="flex items-center gap-20">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-15 lg:h-15 rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
                     <Image
                       src={info.icon}
@@ -81,6 +92,7 @@ export default function ContactSection() {
                     )}
                   </div>
                 </div>
+                </motion.div>
               ))}
             </div>
           </div>

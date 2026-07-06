@@ -10,6 +10,9 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
+import AnimatedIcon from "../../common/AnimatedSvg";
 
 export default function Sectors() {
   const { label, title, description, tabs } = sectorsData;
@@ -53,14 +56,18 @@ export default function Sectors() {
           />
           {/* Tabs — two column grid matching design */}
           <div className="grid grid-cols-[200px_200px] gap-y-30 gap-x-80 3xl:gap-x-[88px]">
-            {tabs.map((tab) => {
+            {tabs.map((tab, i) => {
               const isActive = tab.id === active.id;
               return (
-                <button
+                <motion.button
+                  variants={moveUp(0.1 * i)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
                   key={tab.id}
                   onClick={() => setActive(tab)}
                   className={[
-                    "text-subtitle uppercase transition-all duration-300 w-[220px] flex items-center gap-20 cursor-pointer",
+                    "text-subtitle uppercase transition-colors duration-300 w-[220px] flex items-center gap-20 cursor-pointer",
                     isActive ? "text-[#E63027]" : "text-white",
                   ].join(" ")}
                 >
@@ -76,7 +83,7 @@ export default function Sectors() {
                       />
                     </div>
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </div>
@@ -108,7 +115,7 @@ export default function Sectors() {
           {/* Content overlay */}
           <div className="absolute bottom-0 left-0 pl-60 3xl:pl-90 py-120 3xl:py-140 flex flex-col">
             <div className="w-[120px] h-[120px] 3xl:w-[150px] 3xl:h-[150px] mb-40">
-              <Image
+              <AnimatedIcon
                 src={active.icon}
                 alt={active.title}
                 width={150}
@@ -145,12 +152,12 @@ export default function Sectors() {
         <Swiper
           slidesPerView={1.184}
           spaceBetween={15}
-            speed={600}
-            breakpoints={{
-              550: { slidesPerView: 1.4 },
-              768: { slidesPerView: 2.2 },
-              1024: { slidesPerView: 2.5 },
-            }}
+          speed={600}
+          breakpoints={{
+            550: { slidesPerView: 1.4 },
+            768: { slidesPerView: 2.2 },
+            1024: { slidesPerView: 2.5 },
+          }}
           className="!overflow-visible"
         >
           {tabs.map((tab) => (
@@ -165,12 +172,15 @@ export default function Sectors() {
 
                 <div
                   className="absolute inset-0"
-                  style={{background: "linear-gradient(214.08deg, rgba(0, 0, 0, 0) 25.13%, rgba(0, 0, 0, 0.8) 88.47%)"}}
+                  style={{
+                    background:
+                      "linear-gradient(214.08deg, rgba(0, 0, 0, 0) 25.13%, rgba(0, 0, 0, 0.8) 88.47%)",
+                  }}
                 />
 
                 <div className="absolute inset-0 flex flex-col justify-end px-[15px] md:px-30 py-[20px] md:py-30">
                   <div className="w-[60px] h-[60px] mb-20">
-                    <Image
+                    <AnimatedIcon
                       src={tab.icon}
                       alt={tab.title}
                       width={200}

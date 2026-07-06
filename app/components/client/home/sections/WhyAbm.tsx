@@ -5,6 +5,7 @@ import Image from "next/image";
 import { whyAbmData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function WhyAbm() {
   return (
@@ -31,7 +32,11 @@ export default function WhyAbm() {
             />
           </div>
           {whyAbmData.items.map((item, index) => (
-            <div
+            <motion.div
+            variants={moveUp(0.11 * index)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
               key={index}
               className="relative sm:py-[27px] flex flex-col sm:items-center gap-y-20"
             >
@@ -57,7 +62,7 @@ export default function WhyAbm() {
               <h3 className="text-subtitle text-secondary uppercase sm:text-center max-w-[180px] sm:max-w-[200px] md:max-w-[269px]">
                 {item.title}
               </h3>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
