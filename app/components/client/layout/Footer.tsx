@@ -196,7 +196,7 @@ export default function Footer() {
             <Link
               key={social.label}
               href={social.href}
-              target="_blank"
+              // target="_blank"
               className="flex items-center gap-[5px] md:gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
             >
               {social.label}
@@ -236,7 +236,7 @@ export default function Footer() {
               <Link
                 key={social.label}
                 href={social.href}
-                target="_blank"
+                // target="_blank"
                 className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
               >
                 {social.label}
