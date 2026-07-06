@@ -79,16 +79,15 @@ input:-webkit-autofill:active {
 --text-100: clamp(30px, 4.67vw + 10.4px, 100px);
 
 /* 70px → 20px at 420px, 70px at 1920px */
---text-70: clamp(20px, 3.33vw + 6px, 70px);
+--text-70: clamp(30px, 3.33vw + 6px, 70px);
 
-/* 60px → 18px at 420px, 60px at 1920px */
---text-60: clamp(18px, 2.8vw + 6.2px, 60px);
+/* 60px → 26px at 420px, 60px at 1920px */
+--text-60: clamp(26px, 2.8vw + 6.2px, 60px);
 
 /* 30px → 20px at 420px, 30px at 1500px */
 --text-30: clamp(20px, 0.6vw + 18.4px, 30px);
 
-/* 20px → 14px at 420px, 20px at 1400px */
---text-20: clamp(14px, 0.61vw + 11.4px, 20px);
+--text-20: clamp(12px, 0.8163vw + 8.5714px, 20px);
 
 /* 15px → 12px at 420px, 15px at 1400px */
 --text-15: clamp(12px, 0.31vw + 10.7px, 15px);
@@ -97,7 +96,7 @@ input:-webkit-autofill:active {
 
 
 /* 300px → 100px at 420px, 300px at 1920px */
---space-300: clamp(100px, 15.4vw + 44px, 300px);
+--space-300: clamp(127px, 15.4vw + 44px, 300px);
 
 /* 200px → 80px at 390px, 200px at 1810px */
 --space-200: clamp(80px, 8.45vw + 47px, 200px);
@@ -118,7 +117,7 @@ input:-webkit-autofill:active {
 --space-100: clamp(44px, 3.94vw + 28.6px, 100px);
  
 /* 120px → 50px at 390px, 120px at 1810px */
---space-120: clamp(50px, 4.93vw + 30.8px, 120px);
+--space-120: clamp(50px, 4.93vw + 30.7px, 120px);
 
 /* 90px → 44px at 390px, 90px at 1810px */
 --space-90: clamp(44px, 3.24vw + 31.4px, 90px);
@@ -265,15 +264,15 @@ body {
 }
 
 @utility hero-title {
-  @apply text-70 leading-[1.214285714] uppercase font-tasa font-bold;
+  @apply text-70 leading-[1.1666666667] md:leading-[1.214285714] uppercase font-tasa font-bold;
 }
 
 @utility section-heading {
-  @apply text-60 leading-[1.16666667] uppercase font-tasa font-bold ;
+  @apply text-60 leading-[1.307692] sm:leading-[1.16666667] uppercase font-tasa font-bold ;
 }
 
 @utility text-subtitle {
-  @apply text-20 leading-[1.5] font-tasa font-bold;
+  @apply text-[14px] sm:text-20 leading-[1.5] font-tasa font-bold;
 }
 
 @utility text-subtitle-2 {
@@ -281,7 +280,7 @@ body {
 }
 
 @utility text-description {
-  @apply text-20 leading-[1.45] 3xl:leading-[1.75] font-parabolica;
+  @apply text-20 leading-[1.4166666666] sm:leading-[1.45] 3xl:leading-[1.75] font-parabolica;
 }
 
 @utility text-description-2 {
@@ -310,4 +309,10 @@ body {
 
 .button-text-zoom-pulse {
   animation: button-text-zoom-pulse 0.8s ease-in-out;
+}
+
+.heroSvgLaptop {
+  @media (min-width: 1500px) and (max-width: 1600px) {
+    height: 200px;
+  }
 }

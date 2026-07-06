@@ -16,7 +16,10 @@ interface FormTextAreaProps extends Omit<
 const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
   ({ label, name, required = false, rows = 2, error, ...rest }, ref) => {
     return (
-      <label htmlFor={name} className="relative w-full pb-5 block cursor-text">
+      <label
+        htmlFor={name}
+        className="relative w-full pb-3 md:pb-5 block cursor-text"
+      >
         <span className="text-description text-description-color">
           {label}
           {required && (

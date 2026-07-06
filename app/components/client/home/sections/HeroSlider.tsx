@@ -18,13 +18,13 @@ export default function HeroSlider() {
 
   return (
     <section className="relative h-svh w-full overflow-hidden">
-      <div className="absolute inset-0 z-10 flex flex-row justify-between pointer-events-none">
+      <div className="absolute inset-0 z-10">
         <Image
           src="/assets/images/logos/abm-watermark.svg"
           alt="ABM Watermark"
           width={1288}
           height={379}
-          className="absolute left-0 bottom-0 object-cover h-[270px] 3xl:h-[330px] w-auto"
+          className="absolute left-0 bottom-0 object-cover h-[114px] md:h-[120px] lg:h-[170px] xl:h-[220px] 2xl:h-[250px] heroSvgLaptop 3xl:h-[330px] w-auto pointer-events-none"
         />
       </div>
       {/* Swiper */}
@@ -55,7 +55,7 @@ export default function HeroSlider() {
         ))}
       </Swiper>
 
-      <div className="absolute inset-0 z-10 flex flex-row justify-between pointer-events-none  container">
+      <div className="absolute inset-0 z-10 flex flex-col lg:flex-row justify-between pointer-events-none  container">
         {/* ── LEFT COL ── */}
         <div className="pt-300 h-full relative flex flex-col justify-between">
           {/* Title */}
@@ -63,7 +63,7 @@ export default function HeroSlider() {
             {heroSlides[activeIndex].title}
           </h1>
           {/* Scroll to explore */}
-          <div className="flex gap-[15px] pointer-events-auto pb-190">
+          <div className="hidden lg:flex gap-[15px] pointer-events-auto pb-190">
             <p className="text-white text-15 leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
               Scroll to explore
             </p>
@@ -77,7 +77,7 @@ export default function HeroSlider() {
         </div>
 
         {/* ── VERTICAL LINE ── */}
-        <div className="flex items-end shrink-0 h-full ml-[12px]">
+        <div className="hidden lg:flex items-end shrink-0 h-full ml-[12px]">
           <div
             className="w-px h-[77vh] 3xl:h-[80vh]"
             style={{
@@ -87,9 +87,20 @@ export default function HeroSlider() {
           />
         </div>
 
+        {/* ── MOBILE Horizontal LINE ── */}
+<div className="mb-[20px]">
+  <div
+    className="w-full lg:hidden h-px"
+    style={{
+      background:
+        "linear-gradient(90deg, rgba(255,255,255,0) 0%, #FFFFFF 48.72%, rgba(255,255,255,0) 100%)",
+    }}
+  />
+</div>
+
         {/* ── RIGHT COL ── */}
-        <div className="flex items-end pb-170 shrink-0 pointer-events-auto">
-          <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-[20px] min-w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
+        <div className="flex md:justify-end items-end pb-[70px] md:pb-170 shrink-0 pointer-events-auto">
+          <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-[20px] w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
             <div className="flex flex-col gap-[10px]">
               <p className="text-white text-subtitle uppercase">
                 {heroSlides[activeIndex].subtitle}
@@ -99,7 +110,7 @@ export default function HeroSlider() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between mt-[20px]">
+            <div className="flex items-center justify-between mt-[18px] sm:mt-[20px]">
               <span className="text-white font-medium shrink-0 text-15 leading-1 lg:leading-[1.666667]">
                 {String(activeIndex + 1).padStart(2, "0")}/
                 <span className="text-white/30">
@@ -136,6 +147,19 @@ export default function HeroSlider() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll to explore - mobile */}
+        <div className="lg:hidden flex gap-[25px] pointer-events-auto pb-[51px]">
+          <p className="text-white text-[14px] leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
+            Scroll to explore
+          </p>
+          <Image
+            src="/assets/icons/double-arrow-white.svg"
+            alt="scroll-icon"
+            width={12}
+            height={12}
+          />
         </div>
       </div>
     </section>

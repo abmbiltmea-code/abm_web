@@ -10,9 +10,14 @@ import SectionDescription from "@/app/components/client/animations/SectionDescri
 
 function LogoCard({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex-shrink-0 w-[160px] h-[76px] sm:w-[300px] sm:h-[140px] 3xl:w-[328px] 3xl:h-[156px] bg-white rounded-[5px] flex items-center justify-center">
-      <div className="relative w-[130px] h-[56px] sm:w-[250px] sm:h-[100px] 3xl:w-[288px] 3xl:h-[116px]">
-        <Image src={logo} alt={name} fill className="object-contain pointer-events-none" />
+    <div className="shrink-0 w-[160px] h-[76px] md:w-[200px] md:h-[90px] lg:w-[200px] lg:h-[95px] xl:w-[300px] xl:h-[140px] 3xl:w-[328px] 3xl:h-[156px] bg-white rounded-[5px] flex items-center justify-center">
+      <div className="relative w-[130px] h-[60px] md:w-[180px] md:h-[82px] lg:w-[200px] lg:h-[90px] xl:w-[250px] xl:h-[100px] 3xl:w-[288px] 3xl:h-[116px]">
+        <Image
+          src={logo}
+          alt={name}
+          fill
+          className="object-contain pointer-events-none"
+        />
       </div>
     </div>
   );
@@ -94,13 +99,13 @@ export default function Clients() {
   const cardWidth = isMobile ? 160 : 328;
 
   return (
-    <section className="bg-cream-background py-120 3xl:py-140">
-      <div className="container flex mb-40 3xl:justify-between">
+    <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
+      <div className="container flex flex-col lg:flex-row justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
         <div>
           <SectionLabel title={clientsConsultantsData.label} />
         </div>
 
-        <div className="flex flex-col section-content-spacing">
+        <div className="flex flex-col lg:section-content-spacing">
           <SectionTitle
             title={clientsConsultantsData.title}
             className="text-secondary mb-20"

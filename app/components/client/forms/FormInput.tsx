@@ -17,7 +17,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     return (
       <label
         htmlFor={name}
-        className="relative w-full pb-[calc(40px+20px)] block cursor-text"
+        className="relative w-full pb-[calc(25px+20px)] md:pb-[calc(40px+20px)] block cursor-text"
       >
         <span className="text-description text-description-color">
           {label}

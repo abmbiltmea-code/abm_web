@@ -48,7 +48,7 @@ export const coreCapabilitiesSectionData = {
       id: "construction",
       title: "CONSTRUCTION",
       description:
-        "Construction focuses on delivering complete building solutions with quality, safety, and timely execution across all project phases.",
+        "Delivering greater project value through efficient construction methods and cost-effective material choices.",
       image: "/assets/images/home/capabilities/1.jpg",
       buttonText: "VIEW MORE",
       href: "#",
@@ -220,6 +220,7 @@ export const clientsConsultantsData = {
 
 export const contactSectionData = {
   backgroundImage: "/assets/images/home/contact/bg.jpg",
+  backgroundImageMobile: "/assets/images/home/contact/bg-mobile.jpg",
   title: "LET'S BUILD SOMETHING GREAT TOGETHER",
   description:
     "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
@@ -227,7 +228,7 @@ export const contactSectionData = {
     {
       icon: "/assets/images/home/contact/icons/office.svg",
       title: "OFFICE",
-      value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-[20px] w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
+      value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-3.5 md:h-[20px] w-px md:w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
       href: "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6",
     },
     {

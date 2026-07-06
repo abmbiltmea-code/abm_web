@@ -28,7 +28,7 @@ export default function CustomButton(props: CustomButtonProps) {
 
   const content = (
     <>
-      <span className="text-15 font-bold font-tasa leading-[1.3333333] rounded-[5px] bg-primary text-white p-20 uppercase inline-block">
+      <span className="text-[11px] sm:text-15 font-bold font-tasa leading-[1.3333333] rounded-[5px] bg-primary text-white p-20 uppercase inline-block">
         <span
           className={`inline-block ${pulse ? "button-text-zoom-pulse" : ""}`}
         >
@@ -36,7 +36,7 @@ export default function CustomButton(props: CustomButtonProps) {
         </span>
       </span>
 
-      <span className="relative w-[59px] self-stretch rounded-[5px] bg-primary flex items-center justify-center overflow-hidden">
+      <span className="relative min-h-[35px] w-[35px] sm:w-[45px] lg:w-[50px] xl:w-[54px] 3xl:w-[59px] self-stretch rounded-[5px] bg-primary flex items-center justify-center overflow-hidden">
         <div className="relative w-[70%] h-[50%] flex justify-center items-center overflow-hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export default function CustomButton(props: CustomButtonProps) {
     </>
   );
 
-  const sharedClassName = `inline-flex items-stretch gap-[5px] group ${className}`;
+  const sharedClassName = `inline-flex items-stretch gap-[3px] sm:gap-[5px] group ${className}`;
   const sharedHandlers = {
     onMouseEnter: () => setPulse(true),
     onAnimationEnd: () => setPulse(false),

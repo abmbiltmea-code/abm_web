@@ -39,9 +39,9 @@ export default function Header() {
   return (
     <div
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-999 mt-50 3xl:mt-[55px] container transition-transform duration-500 ease-in-out"
+      className="fixed top-0 left-0 right-0 z-999 mt-[20px] md:mt-50 3xl:mt-[55px] container transition-transform duration-500 ease-in-out"
     >
-      <header className="bg-white/75 backdrop-blur-[30px] rounded-[10px] px-40 py-[30px] flex items-center justify-between">
+      <header className="bg-white/75 backdrop-blur-[30px] rounded-[10px] px-3 md:px-5 xl:px-40 py-[20px] xl:py-[30px] flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center shrink-0 cursor-pointer">
           <Link href="/">
@@ -50,7 +50,7 @@ export default function Header() {
               alt="ABM Logo"
               width={1300}
               height={270}
-              className="object-contain h-[55px] 3xl:h-[66px] w-auto pointer-events-none"
+              className="object-contain h-[36.15px] xl:h-[55px] 3xl:h-[66px] w-auto pointer-events-none"
             />
           </Link>
         </div>
@@ -67,13 +67,13 @@ export default function Header() {
           ))}
         </nav>
         {/* Hamburger */}
-        <button className="flex items-center justify-center w-[60px] h-[50px] shrink-0 bg-black/10 rounded-[5px] cursor-pointer">
+        <button className="flex items-center justify-center w-[38px] h-[32px] md:w-[60px] md:h-[50px] shrink-0 bg-black/10 rounded-[4px] md:rounded-[5px] cursor-pointer">
           <Image
             src="/assets/icons/hamburger.svg"
             alt="Menu"
             width={20}
             height={20}
-            className="h-[20px] w-auto pointer-events-none"
+            className="h-[12px] md:h-[20px] w-auto pointer-events-none"
           />
         </button>
       </header>

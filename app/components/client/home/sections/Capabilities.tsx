@@ -8,6 +8,8 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { motion } from "framer-motion";
 import CustomButton from "../../common/CustomButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const CoreCapabilities = () => {
   const { capabilityCards } = coreCapabilitiesSectionData;
@@ -52,13 +54,13 @@ const CoreCapabilities = () => {
   }, [recalc]);
 
   return (
-    <section className="py-120 3xl:py-150">
+    <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex 3xl:justify-between mb-40">
+        <div className="flex flex-col lg:flex-row justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={coreCapabilitiesSectionData.label} />
           </div>
-          <div className="flex flex-col section-content-spacing gap-20">
+          <div className="flex flex-col lg:section-content-spacing gap-20">
             <SectionTitle
               title={coreCapabilitiesSectionData.title}
               className="text-secondary"
@@ -73,12 +75,12 @@ const CoreCapabilities = () => {
         <div
           ref={measureRef}
           aria-hidden
-          className="w-full md:w-[680px] 3xl:w-[979px] h-0 overflow-hidden invisible absolute pointer-events-none"
+          className="w-full xl:w-[580px] 3xl:w-[979px] h-0 overflow-hidden invisible absolute pointer-events-none"
         />
 
         <div
           ref={containerRef}
-          className="flex items-center gap-20 overflow-hidden h-[400px] md:h-[500px] 3xl:h-[633px]"
+          className="hidden xl:flex items-center gap-20 overflow-hidden xl:h-[400px] 3xl:h-[633px]"
         >
           {capabilityCards.map((card) => {
             const isActive = card.id === activeId;
@@ -98,11 +100,11 @@ const CoreCapabilities = () => {
                     : undefined
                 }
                 className={`relative rounded-[10px] overflow-hidden cursor-pointer transition-all duration-700 ease-in-out
-                  ${flexBasis === undefined ? (isActive ? "w-full md:w-[680px] 3xl:w-[979px]" : "flex-1") : ""}
+                  ${flexBasis === undefined ? (isActive ? "w-full xl:w-[540px] 3xl:w-[979px]" : "flex-1") : ""}
                   ${
                     isActive
-                      ? "h-[400px] md:h-[500px] 3xl:h-[633px]"
-                      : "h-[352px] md:h-[400px] 3xl:h-[529px]"
+                      ? "xl:h-[400px] 3xl:h-[633px]"
+                      : "xl:h-[332px] 3xl:h-[529px]"
                   }
                 `}
               >
@@ -206,6 +208,54 @@ const CoreCapabilities = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile/Tablet - below xl */}
+        <div className="xl:hidden">
+          <Swiper
+            slidesPerView={1.184}
+            spaceBetween={15}
+            speed={600}
+            breakpoints={{
+              550: { slidesPerView: 1.4 },
+              768: { slidesPerView: 2.2 },
+              1024: { slidesPerView: 2.5 },
+            }}
+            className="!overflow-visible"
+          >
+            {capabilityCards.map((card) => (
+              <SwiperSlide key={card.id}>
+                <div className="relative rounded-[10px] overflow-hidden h-[332px] md:h-[380px] lg:h-[410px]">
+                  <div
+                    className="absolute inset-0 z-10"
+                    style={{
+                      background:
+                        "linear-gradient(228.26deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+                    }}
+                  />
+
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                  />
+
+                  <div className="absolute inset-0 z-20">
+                    <div className="absolute bottom-0 right-0 px-[15px] md:px-30 py-[20px] md:py-30">
+                      <h3 className="text-white text-subtitle-2 mb-20">
+                        {card.title}
+                      </h3>
+                      <p className="text-white/80 text-description max-w-[45ch] mb-[15px] sm:mb-20">
+                        {card.description}
+                      </p>
+                      <CustomButton text={card.buttonText} href={card.href} />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>
