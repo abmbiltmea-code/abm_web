@@ -19,7 +19,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 2,
-    image: "/assets/images/home/hero/slide-1.jpg",
+    image: "/assets/images/home/contact/bg.jpg",
     title: "Building Tomorrow's Landmarks With Unmatched Expertise",
     subtitle: "Excellence in Every Detail",
     description: "From groundbreaking to handover",

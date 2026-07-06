@@ -3,9 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { gsap } from "gsap";
 import "swiper/css";
+import "swiper/css/effect-fade";
 
 import { heroSlides } from "../data";
 import Image from "next/image";
@@ -24,26 +25,9 @@ export default function HeroSlider() {
   const handlePrev = useCallback(() => swiperRef.current?.slidePrev(), []);
   const handleNext = useCallback(() => swiperRef.current?.slideNext(), []);
 
-  // Subtle zoom-out on whichever slide is active — transform only, cheap
-  const animateBg = useCallback((swiper: SwiperType) => {
-    const activeSlideEl = swiper.slides[swiper.activeIndex];
-    const bg = activeSlideEl?.querySelector<HTMLElement>(".hero-bg");
-    if (bg) {
-      gsap.fromTo(
-        bg,
-        { scale: 1.06 },
-        { scale: 1, duration: 6, ease: "none", overwrite: true }
-      );
-    }
+  const handleSlideChange = useCallback((swiper: SwiperType) => {
+    setActiveIndex(swiper.realIndex);
   }, []);
-
-  const handleSlideChange = useCallback(
-    (swiper: SwiperType) => {
-      setActiveIndex(swiper.realIndex);
-      animateBg(swiper);
-    },
-    [animateBg]
-  );
 
   // Move-up entrance for scroll hints + right card, gated on the intro overlay
   useEffect(() => {
@@ -88,19 +72,23 @@ export default function HeroSlider() {
       </div>
 
       <Swiper
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop
         speed={900}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
-          animateBg(swiper);
         }}
         onSlideChange={handleSlideChange}
         className="h-full w-full"
       >
         {heroSlides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative h-full w-full overflow-hidden">
+          <SwiperSlide
+            key={slide.id}
+            className="relative h-full w-full overflow-hidden"
+          >
             <div
               className="hero-bg absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
               style={{ backgroundImage: `url(${slide.image})` }}
@@ -130,7 +118,12 @@ export default function HeroSlider() {
             <p className="text-white text-15 leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
               Scroll to explore
             </p>
-            <Image src="/assets/icons/double-arrow-white.svg" alt="scroll-icon" width={12} height={12} />
+            <Image
+              src="/assets/icons/double-arrow-white.svg"
+              alt="scroll-icon"
+              width={12}
+              height={12}
+            />
           </div>
         </div>
 
@@ -171,25 +164,55 @@ export default function HeroSlider() {
             <div className="flex items-center justify-between mt-[18px] sm:mt-[20px]">
               <span className="text-white font-medium shrink-0 text-15 leading-1 lg:leading-[1.666667]">
                 {String(activeIndex + 1).padStart(2, "0")}/
-                <span className="text-white/30">{String(heroSlides.length).padStart(2, "0")}</span>
+                <span className="text-white/30">
+                  {String(heroSlides.length).padStart(2, "0")}
+                </span>
               </span>
               <div className="flex items-center gap-[20px]">
-                <button onClick={handlePrev} aria-label="Previous slide" className="hover:scale-110 transition-all duration-300 cursor-pointer">
-                  <Image src="/assets/icons/arrow-left-white.svg" alt="arrow-left" width={20} height={20} className="w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]" />
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous slide"
+                  className="hover:scale-110 transition-all duration-300 cursor-pointer"
+                >
+                  <Image
+                    src="/assets/icons/arrow-left-white.svg"
+                    alt="arrow-left"
+                    width={20}
+                    height={20}
+                    className="w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]"
+                  />
                 </button>
-                <button onClick={handleNext} aria-label="Next slide" className="hover:scale-110 transition-all duration-300 cursor-pointer">
-                  <Image src="/assets/icons/arrow-left-white.svg" alt="arrow-right" width={20} height={20} className="rotate-180 w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]" />
+                <button
+                  onClick={handleNext}
+                  aria-label="Next slide"
+                  className="hover:scale-110 transition-all duration-300 cursor-pointer"
+                >
+                  <Image
+                    src="/assets/icons/arrow-left-white.svg"
+                    alt="arrow-right"
+                    width={20}
+                    height={20}
+                    className="rotate-180 w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]"
+                  />
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div ref={scrollMobileRef} className="lg:hidden flex gap-[25px] pointer-events-auto pb-[51px]">
+        <div
+          ref={scrollMobileRef}
+          className="lg:hidden flex gap-[25px] pointer-events-auto pb-[51px]"
+        >
           <p className="text-white text-[14px] leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
             Scroll to explore
           </p>
-          <Image src="/assets/icons/double-arrow-white.svg" alt="scroll-icon" width={12} height={12} />
+          <Image
+            src="/assets/icons/double-arrow-white.svg"
+            alt="scroll-icon"
+            width={12}
+            height={12}
+          />
         </div>
       </div>
     </section>
