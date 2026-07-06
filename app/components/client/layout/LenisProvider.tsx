@@ -23,6 +23,7 @@ export default function LenisProvider({
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const lockedRef = useRef(false);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -32,6 +33,11 @@ export default function LenisProvider({
     });
 
     lenisRef.current = lenis;
+
+    // apply any lock requested before this instance existed
+    if (lockedRef.current) {
+      lenis.stop();
+    }
 
     return () => {
       lenis.destroy();
@@ -43,8 +49,15 @@ export default function LenisProvider({
     lenisRef.current?.scrollTo(target as any, options);
   };
 
-  const lock = () => lenisRef.current?.stop();
-  const unlock = () => lenisRef.current?.start();
+  const lock = () => {
+    lockedRef.current = true;
+    lenisRef.current?.stop();
+  };
+
+  const unlock = () => {
+    lockedRef.current = false;
+    lenisRef.current?.start();
+  };
 
   return (
     <LenisContext.Provider value={{ scrollTo, lock, unlock }}>

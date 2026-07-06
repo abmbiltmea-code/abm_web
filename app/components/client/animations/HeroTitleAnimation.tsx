@@ -3,7 +3,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-
 interface AnimatedTitleProps {
   text: string;
   className?: string;
@@ -49,6 +48,12 @@ export default function AnimatedTitle({
     // First mount waits for the intro overlay; later swaps (slide change) play right away
     if (!hasGatedOnIntro.current) {
       hasGatedOnIntro.current = true;
+
+      if (window.__introComplete) {
+        play();
+        return;
+      }
+
       window.addEventListener("introComplete", play, { once: true });
       return () => window.removeEventListener("introComplete", play);
     }

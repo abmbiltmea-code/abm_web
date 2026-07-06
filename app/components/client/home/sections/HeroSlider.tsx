@@ -12,8 +12,6 @@ import { heroSlides } from "../data";
 import Image from "next/image";
 import AnimatedTitle from "../../animations/HeroTitleAnimation";
 
-const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
-
 export default function HeroSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,9 +48,9 @@ export default function HeroSlider() {
         delay: 0.15,
       });
 
-    if (!INTRO_ENABLED) {
-      const id = requestAnimationFrame(play);
-      return () => cancelAnimationFrame(id);
+    if (window.__introComplete) {
+      play();
+      return;
     }
 
     window.addEventListener("introComplete", play, { once: true });
