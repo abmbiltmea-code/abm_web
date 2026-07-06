@@ -42,15 +42,15 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-[10px] p-40 w-[48%] 3xl:w-full max-w-[799px] 3xl:h-[760px]">
-      <h2 className="text-subtitle uppercase text-secondary mb-30">
+    <div className="bg-white rounded-[10px] lg:p-[25px] xl:p-40 w-full lg:w-[52%] xl:w-[48%] 3xl:w-full max-w-[799px] 3xl:h-[760px]">
+      <h2 className="text-subtitle uppercase text-secondary mb-40 lg:mb-30">
         Send an Inquiry
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="flex flex-col gap-40">
+        <div className="flex flex-col gap-[25px] lg:gap-[25px] xl:gap-40">
           {/* Row 1 */}
-          <div className="grid grid-cols-2 gap-x-40 3xl:gap-x-[65.77px]">
+          <div className="grid sm:grid-cols-2 gap-[25px] lg:gap-x-40 3xl:gap-x-[65.77px]">
             <FormInput
               label="First Name"
               required
@@ -66,7 +66,7 @@ export default function ContactForm() {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-2 gap-x-40 3xl:gap-x-[65.77px]">
+          <div className="grid sm:grid-cols-2 gap-[25px] lg:gap-x-40 3xl:gap-x-[65.77px]">
             <FormInput
               label="Your Organization"
               required

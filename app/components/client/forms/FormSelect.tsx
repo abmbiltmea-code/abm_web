@@ -67,7 +67,7 @@ export default function FormSelect({
     <div
       ref={containerRef}
       onClick={() => setOpen((p) => !p)}
-      className="relative w-full pb-[calc(40px+20px)] cursor-pointer"
+      className="relative w-full pb-[calc(25px+20px)] md:pb-[calc(40px+20px)] cursor-pointer"
     >
       {/* Label */}
       <div className="text-description text-description-color flex justify-between">
@@ -84,7 +84,7 @@ export default function FormSelect({
           alt="toggle"
           width={16}
           height={16}
-          className={`${open ? "rotate-180" : ""} transition-all duration-400 ease-in-out pointer-events-none select-none`}
+          className={`${open ? "rotate-180" : ""} transition-all duration-400 ease-in-out pointer-events-none select-none h-3 w-2.5 md:h-4 md:w-4`}
         />
       </div>
 

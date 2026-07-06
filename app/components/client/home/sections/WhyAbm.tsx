@@ -10,7 +10,7 @@ export default function WhyAbm() {
   return (
     <section className="w-full bg-cream-background py-120 3xl:py-140">
       <div className="container">
-        <div className="text-center mx-auto mb-40">
+        <div className="sm:text-center mx-auto mb-40">
           <SectionTitle
             title={whyAbmData.title}
             className="section-heading mb-20"
@@ -21,15 +21,23 @@ export default function WhyAbm() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-black/4 backdrop-blur-[30px] rounded-[10px]">
+        <div className="grid max-[391px]:grid-cols-[158px_180px] max-[391px]:gap-x-5 grid-cols-2 xl:grid-cols-4 lg:bg-black/4 lg:backdrop-blur-[30px] rounded-[10px] relative gap-y-40">
+          <div className="xl:hidden absolute left-0 top-1/2 -translate-y-1/2 h-px bg-black/20 w-full">
+            <motion.div
+              initial={{ width: "0%" }}
+              whileInView={{ width: "100%" }}
+              transition={{ duration: 1.3, ease: "easeOut" }}
+              className="absolute bottom-0 left-0 h-full bg-primary"
+            />
+          </div>
           {whyAbmData.items.map((item, index) => (
             <div
               key={index}
-              className="relative py-[27px] flex flex-col items-center gap-y-20"
+              className="relative sm:py-[27px] flex flex-col sm:items-center gap-y-20"
             >
               {/* Separator line */}
               {index !== 0 && (
-                <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-px bg-black/20 h-[120px]">
+                <div className="hidden xl:block absolute left-0 top-1/2 -translate-y-1/2 w-px bg-black/20 h-[120px]">
                   <motion.div
                     initial={{ height: "0%" }}
                     whileInView={{ height: "100%" }}
@@ -44,9 +52,9 @@ export default function WhyAbm() {
                 alt={item.title}
                 width={50}
                 height={50}
-                className="w-12.5 h-12.5 pointer-events-none"
+                className="w-[30px] h-[30px] sm:w-10 sm:h-10 md:w-12.5 md:h-12.5 pointer-events-none"
               />
-              <h3 className="text-subtitle text-secondary uppercas text-center max-w-[269px]">
+              <h3 className="text-subtitle text-secondary uppercase sm:text-center max-w-[180px] sm:max-w-[200px] md:max-w-[269px]">
                 {item.title}
               </h3>
             </div>

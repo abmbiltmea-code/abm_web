@@ -1,5 +1,5 @@
 export const NAV_ITEMS = [
-  { label: "ABOUT", href: "/about" },
+  { label: "ABOUT", href: "#" },
   { label: "OUR SECTORS", href: "#" },
   { label: "OUR DIVISIONS", href: "#" },
   { label: "PROJECT", href: "#" },
@@ -37,7 +37,7 @@ export const footerData = {
     { label: "HOME", href: "/" },
     { label: "CERTIFICATIONS", href: "#" },
     { label: "HOW WE WORK", href: "#" },
-    { label: "ABOUT", href: "/about" },
+    { label: "ABOUT", href: "#" },
     { label: "CLIENTS", href: "#" },
     { label: "CAREERS", href: "#" },
     { label: "OUR DIVISIONS", href: "#" },
