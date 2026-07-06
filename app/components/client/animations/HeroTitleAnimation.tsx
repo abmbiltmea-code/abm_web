@@ -34,7 +34,7 @@ export default function AnimatedTitle({
       return;
     }
 
-    gsap.set(words, { yPercent: 110, opacity: 0 });
+    gsap.set(words, { yPercent: 70, opacity: 0 });
 
     const play = () =>
       gsap.to(words, {
@@ -42,7 +42,7 @@ export default function AnimatedTitle({
         opacity: 1,
         duration: 0.7,
         ease: "power3.out",
-        stagger: 0.045,
+        stagger: 0.04,
         overwrite: true,
       });
 

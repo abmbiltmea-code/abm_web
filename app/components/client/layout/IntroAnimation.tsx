@@ -105,7 +105,7 @@ export default function IntroAnimation() {
             width={500}
             height={500}
             priority
-            className="h-10 md:h-16  3xl:h-[80px] w-auto object-contain"
+            className="h-11 md:h-16  3xl:h-[80px] w-auto object-contain"
           />
         </div>
 
@@ -126,7 +126,7 @@ export default function IntroAnimation() {
             width={500}
             height={500}
             priority
-            className="h-8 md:h-16 3xl:h-[80px] w-auto object-contain"
+            className="h-10 md:h-15 3xl:h-[75px] w-auto object-contain"
           />
         </div>
       </div>
