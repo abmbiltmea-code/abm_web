@@ -18,8 +18,23 @@ export default function AnimatedIcon({
 }: AnimatedIconProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [renderKey, setRenderKey] = useState(0);
+  const [introReady, setIntroReady] = useState(false);
+
+  // Wait for intro animation to complete
+  useEffect(() => {
+    if (window.__introComplete) {
+      setIntroReady(true);
+      return;
+    }
+
+    const onReady = () => setIntroReady(true);
+    window.addEventListener("introComplete", onReady);
+    return () => window.removeEventListener("introComplete", onReady);
+  }, []);
 
   useEffect(() => {
+    if (!introReady) return;
     const el = wrapperRef.current;
     if (!el) return;
 
@@ -27,7 +42,9 @@ export default function AnimatedIcon({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
+          setRenderKey((k) => k + 1);
+        } else {
+          setIsVisible(false);
         }
       },
       { threshold, rootMargin },
@@ -35,13 +52,13 @@ export default function AnimatedIcon({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [rootMargin, threshold]);
+  }, [rootMargin, threshold, introReady]);
 
   return (
     <div ref={wrapperRef} className="inline-block leading-none">
       {isVisible && (
         <Image
-          key={typeof src === "string" ? src : undefined}
+          key={`${typeof src === "string" ? src : "img"}-${renderKey}`}
           src={src}
           width={width}
           height={height}

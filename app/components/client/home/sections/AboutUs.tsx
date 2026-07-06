@@ -1,13 +1,13 @@
 "use client";
 
 import SectionLabel from "@/app/components/client/common/SectionLabel";
-import Image from "next/image";
 import { aboutSectionData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
 import AnimatedIcon from "../../common/AnimatedSvg";
+import AnimatedCounter from "../../animations/AnimatedCounter";
 
 export default function AboutSection() {
   const { label, title, description, logo, stats } = aboutSectionData;
@@ -56,9 +56,9 @@ export default function AboutSection() {
               whileInView="show"
               viewport={{ once: true }}
               key={stat.label} className="flex flex-col gap-[5px] md:gap-[10px]">
-                <div className="flex items-center gap-1.5 lg:gap-6 font-tasa">
+                <div className="flex items-center gap-1.5 lg:gap-3 3xl:gap-6 font-tasa">
                   <span className="text-100 font-semibold text-secondary leading-none md:leading-[1.2]">
-                    {stat.value}
+                    <AnimatedCounter from={Number(stat.value) - 8} to={stat.value} duration={1.6} />
                   </span>
                   <span className="font-semibold text-100 text-primary leading-[1.2]">
                     {stat.suffix}

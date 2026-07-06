@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { useLenis } from "../layout/LenisProvider";
 
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
 
@@ -10,8 +11,15 @@ const LEFT_HIDDEN = "inset(0% 0% 0% 100%)";
 const RIGHT_HIDDEN = "inset(0% 100% 0% 0%)";
 const REVEALED = "inset(0% 0% 0% 0%)";
 
+declare global {
+  interface Window {
+    __introComplete?: boolean;
+  }
+}
+
 export default function IntroAnimation() {
   const [show, setShow] = useState(INTRO_ENABLED);
+  const { lock, unlock } = useLenis();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
@@ -19,23 +27,28 @@ export default function IntroAnimation() {
   const rightLogoRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!INTRO_ENABLED) return;
+    if (!INTRO_ENABLED) {
+      window.__introComplete = true;
+      window.dispatchEvent(new Event("introComplete"));
+      return;
+    }
 
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    lock(); // stop Lenis from processing scroll input during intro
+
+    const finish = () => {
+      document.body.style.overflow = prevOverflow;
+      unlock(); // re-enable Lenis scrolling
+      setShow(false);
+    };
 
     const ctx = gsap.context(() => {
       gsap.set(lineRef.current, { scaleY: 0 });
       gsap.set(leftLogoRef.current, { clipPath: LEFT_HIDDEN });
       gsap.set(rightLogoRef.current, { clipPath: RIGHT_HIDDEN });
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.body.style.overflow = prevOverflow;
-          setShow(false);
-          // window.dispatchEvent(new Event("introComplete"));
-        },
-      });
+      const tl = gsap.timeline({ onComplete: finish });
 
       tl.to(lineRef.current, {
         scaleY: 1,
@@ -64,16 +77,14 @@ export default function IntroAnimation() {
         )
         .to(
           containerRef.current,
-          {
-            scaleX: 0,
-            opacity: 0,
-            duration: 0.7,
-            ease: "power2.inOut",
-          },
+          { scaleX: 0, opacity: 0, duration: 0.7, ease: "power2.inOut" },
           "<0.2",
         )
         .call(
-          () => window.dispatchEvent(new Event("introComplete")),
+          () => {
+            window.__introComplete = true;
+            window.dispatchEvent(new Event("introComplete"));
+          },
           [],
           "<0.2",
         );
@@ -82,8 +93,9 @@ export default function IntroAnimation() {
     return () => {
       ctx.revert();
       document.body.style.overflow = prevOverflow;
+      unlock();
     };
-  }, []);
+  }, [lock, unlock]);
 
   if (!show) return null;
 
