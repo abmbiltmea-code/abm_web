@@ -39,7 +39,7 @@ export default function ContactSection() {
         <div className="relative z-10 container flex flex-col lg:flex-row justify-between gap-60 2xl:gap-80">
           {/* Left */}
           <div className="flex flex-col max-w-[711px]">
-            <div className="flex flex-col gap-20 mb-[20px] sm:mb-40 lg:mb-80">
+            <div className="flex flex-col gap-[10px] sm:gap-20 mb-[20px] sm:mb-40 lg:mb-80">
               <SectionTitle title={title} className="text-white max-w-[20ch]" />
               <SectionDescription
                 text={description}
@@ -50,7 +50,7 @@ export default function ContactSection() {
             <div className="flex flex-col gap-[20px] sm:gap-30">
               {contactInfo.map((info) => (
                 <div key={info.title} className="flex items-center gap-20">
-                  <div className="w-8 h-8 md:w-10 md:h-10 lg:w-15 lg:h-15 rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-15 lg:h-15 rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
                     <Image
                       src={info.icon}
                       alt={info.title}
@@ -59,7 +59,7 @@ export default function ContactSection() {
                       className="pointer-events-none w-3 h-3 md:w-4 md:h-4 lg:w-6 lg:h-6"
                     />
                   </div>
-                  <div className="flex flex-col gap-[5px] pt-2 md:pt-0">
+                  <div className="flex flex-col justify-center gap-[5px]">
                     <p className="text-white text-[10px] font-bold font-tasa leading-none sm:text-subtitle">
                       {info.title}
                     </p>
@@ -70,12 +70,12 @@ export default function ContactSection() {
                         !info.href.startsWith("mailto:")
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="text-white/80 text-description hover:text-white transition-colors"
+                        className="text-white/80 text-[12px] leading-none sm:text-description hover:text-white transition-colors"
                         dangerouslySetInnerHTML={{ __html: info.value }}
                       />
                     ) : (
                       <p
-                        className="text-white/80 text-description"
+                        className="text-white/80 text-[12px] leading-none sm:text-description"
                         dangerouslySetInnerHTML={{ __html: info.value }}
                       />
                     )}

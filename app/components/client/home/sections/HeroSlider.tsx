@@ -102,10 +102,10 @@ export default function HeroSlider() {
         <div className="flex md:justify-end items-end pb-[70px] md:pb-170 shrink-0 pointer-events-auto">
           <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-[20px] w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
             <div className="flex flex-col gap-[10px]">
-              <p className="text-white text-subtitle uppercase">
+              <p className="text-white text-[14px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
                 {heroSlides[activeIndex].subtitle}
               </p>
-              <p className="text-white text-15 leading-[1.333] max-w-[398px] line-clamp-1">
+              <p className="text-white text-15 leading-none sm:leading-[1.333] max-w-[398px] line-clamp-1">
                 {heroSlides[activeIndex].description}
               </p>
             </div>
