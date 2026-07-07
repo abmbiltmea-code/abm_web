@@ -13,48 +13,48 @@ export const heroSlides: HeroSlide[] = [
     id: 1,
     image: "/assets/images/home/hero/sl01.jpg",
     title:
-      "Focused on Al Basti & Muktha Legacy and Position as a Leading Contractor",
-    subtitle: "The Future of Construction",
-    description: "With a commitment to precision, safety, and timely execution",
+      "BUILDING DUBAI’S MOST ICONIC LANDMARKS SINCE 1974 ",
+    subtitle: "A Legacy of Quality",
+    description: "One of Dubai's longest-standing construction companies ",
   },
   {
     id: 2,
     image: "/assets/images/home/hero/sl02.jpg",
-    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
-    subtitle: "Excellence in Every Detail",
-    description: "From groundbreaking to handover",
+    title: "BUILDING DUBAI’S MOST ICONIC LANDMARKS SINCE 1974 ",
+    subtitle: "Triple ISO Certified ",
+    description: "Committed to quality, safety and environmental responsibility ",
   },
   {
     id: 3,
     image: "/assets/images/home/hero/sl03.jpg",
-    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
-    subtitle: "Excellence in Every Detail",
-    description: "From groundbreaking to handover",
+    title: "BUILDING DUBAI’S MOST ICONIC LANDMARKS SINCE 1974 ",
+    subtitle: "Unlimited A Class Contractor ",
+    description: "Authorised to build projects of any scale or value ",
   },
   {
     id: 4,
     image: "/assets/images/home/hero/sl04.jpg",
-    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
-    subtitle: "Excellence in Every Detail",
-    description: "From groundbreaking to handover",
+    title: "BUILDING DUBAI’S MOST ICONIC LANDMARKS SINCE 1974 ",
+    subtitle: "Trusted by Dubai's Leading Names",
+    description: "Serving royal establishments, government bodies and prominent developers",
   },
   {
     id: 5,
     image: "/assets/images/home/hero/sl05.jpg",
-    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
-    subtitle: "Excellence in Every Detail",
-    description: "From groundbreaking to handover",
+    title: "BUILDING DUBAI’S MOST ICONIC LANDMARKS SINCE 1974 ",
+    subtitle: "A Group Built for Construction ",
+    description: "In-house MEP, ducting and specialist manufacturing under one roof ",
   },
 ];
 
 export const aboutSectionData = {
   label: "About Us",
   title: "SUCCESS IS A JOURNEY, NOT A DESTINATION",
-  description: `Founded in 1974, <span class='font-parabolica-medium'>Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM)</span> is widely regarded amongst the leading building and civil construction companies in the UAE. ABM have contributed to the rapidly changing face of Dubai, driven to success by the enthusiasm and efforts of its staff and project partners.`,
+  description: `Founded in 1974, <span class='font-parabolica-medium'>Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM)</span> is one of Dubai's leading building and civil construction companies, playing a significant role in the development and transformation of the city's skyline over five decades.`,
   logo: "/assets/images/logos/50years.svg",
   stats: [
-    { value: "100", suffix: "+", label: "Employees" },
-    { value: "500", suffix: "+", label: "Iconic Projects" },
+    { value: "900", suffix: "+", label: "Engineering & Managerial Staff" },
+    { value: "200", suffix: "+", label: "Projects Delivered" },
     { value: "6000", suffix: "+", label: "Manpower Strength" },
   ],
 };
@@ -63,13 +63,13 @@ export const coreCapabilitiesSectionData = {
   label: "SERVICES",
   title: "CORE CAPABILITIES",
   description:
-    "Our Divisions & Services position us among the leading building and civil construction companies. We deliver complete solutions in construction, infrastructure, and engineering with a strong focus on quality, safety, and timely execution.",
+    "ABM delivers a full range of building and civil construction services across diverse project types, with a consistent focus on quality, safety and timely delivery. ",
   capabilityCards: [
     {
       id: "construction",
       title: "CONSTRUCTION",
       description:
-        "Delivering greater project value through efficient construction methods and cost-effective material choices.",
+        " From high-rise towers and villa developments to schools and infrastructure, every project is managed through structured planning and supported by dedicated engineering, QA/QC and HSE teams.",
       image: "/assets/images/home/capabilities/01.jpg",
       buttonText: "VIEW MORE",
       href: "#",
@@ -78,7 +78,7 @@ export const coreCapabilitiesSectionData = {
       id: "value-engineering",
       title: "VALUE ENGINEERING",
       description:
-        "Value Engineering focuses on optimizing project costs without compromising quality or performance. It requires smarter material selection.",
+        " Drawing on decades of practical experience, ABM works with clients and consultants to identify opportunities for cost and programme optimisation without compromising quality or design intent.",
       image: "/assets/images/home/capabilities/02.jpg",
       buttonText: "VIEW MORE",
       href: "#",
@@ -87,7 +87,7 @@ export const coreCapabilitiesSectionData = {
       id: "design-build",
       title: "DESIGN & BUILD",
       description:
-        "Design & Build integrates planning, design, and construction into a single streamlined process for efficient project delivery.",
+        "ABM engages from project inception, contributing to design efficiency, buildability and cost planning. Taking full responsibility for both design coordination and construction delivery, ensures a well-integrated approach from the earliest stages through to final handover.",
       image: "/assets/images/home/capabilities/03.jpg",
       buttonText: "VIEW MORE",
       href: "#",
@@ -99,13 +99,13 @@ export const sectorsData = {
   label: "Key Industries",
   title: "Our Sectors",
   description:
-    "Our Divisions & Services position us among the leading building and civil construction companies.",
+    "ABM's experience spans a broad range of building typologies across Dubai's most significant development sectors. ",
   tabs: [
     {
       id: "residential",
       title: "Residential",
       description:
-        "We deliver quality residential projects, creating modern, durable, and comfortable living spaces.",
+        "From villa communities and high-rise towers to waterfront residences, ABM has delivered some of Dubai's most prominent residential developments.",
       image: "/assets/images/home/sectors/01.jpg",
       icon: "/assets/images/home/sectors/icons/1.svg",
       href: "#",
@@ -115,7 +115,7 @@ export const sectorsData = {
       id: "institution",
       title: "Institution",
       description:
-        "We construct purpose-built institutional facilities with precision, safety, and longevity in mind.",
+        "Government headquarters, knowledge facilities and school buildings delivered across Dubai for public sector clients and educational institutions.",
       image: "/assets/images/home/sectors/02.jpg",
       icon: "/assets/images/home/sectors/icons/2.svg",
       href: "#",
@@ -125,7 +125,7 @@ export const sectorsData = {
       id: "hospitality",
       title: "Hospitality",
       description:
-        "From boutique hotels to large-scale resorts, we bring world-class hospitality environments to life.",
+        "Five-star hotels and resorts constructed to the exacting standards of world-class operators, including the Hyatt Regency and Royal Mirage Resort.",
       image: "/assets/images/home/sectors/03.jpg",
       icon: "/assets/images/home/sectors/icons/3.svg",
       href: "#",
@@ -135,7 +135,7 @@ export const sectorsData = {
       id: "infrastructure",
       title: "Infrastructure",
       description:
-        "Our infrastructure expertise spans roads, bridges, utilities, and large-scale civil engineering works.",
+        "Port infrastructure, supply facilities and processing buildings, including the landmark MINA Jebel Ali Port Container Terminal.",
       image: "/assets/images/home/sectors/04.jpg",
       icon: "/assets/images/home/sectors/icons/4.svg",
       href: "#",
@@ -145,7 +145,7 @@ export const sectorsData = {
       id: "commercial",
       title: "Commercial",
       description:
-        "We design and build high-performance commercial spaces that support modern business needs.",
+        "Office buildings, business parks and mixed-use developments for some of Dubai's most active developers and government entities.",
       image: "/assets/images/home/sectors/05.jpg",
       icon: "/assets/images/home/sectors/icons/5.svg",
       href: "#",
@@ -157,23 +157,23 @@ export const sectorsData = {
 export const whyAbmData = {
   title: "WHY ABM",
   description:
-    "We don't just build structures; we build trust. Our commitment to safety, innovation, and sustainable practices sets us apart in the industry. With ABM, you gain a partner dedicated to bringing your vision to life with precision and excellence.",
+    "Built on five decades of consistent delivery, strong client relationships and a genuine commitment to quality on every project.",
   items: [
     {
       icon: "/assets/images/home/why-abm/1.svg",
-      title: "UNCOMPROMISING SAFETY STANDARDS",
+      title: "Uncompromising Safety Standards ",
     },
     {
       icon: "/assets/images/home/why-abm/2.svg",
-      title: "INNOVATIVE TECHNOLOGY INTEGRATION",
+      title: "In-House Engineering Capabilities",
     },
     {
       icon: "/assets/images/home/why-abm/3.svg",
-      title: "ON-TIME & ON-BUDGET DELIVERY",
+      title: "On-Time & On-Budget Delivery ",
     },
     {
       icon: "/assets/images/home/why-abm/4.svg",
-      title: "CLIENT COLLABORATIVE APPROACH",
+      title: "Client Collaborative Approach ",
     },
   ],
 };
@@ -182,32 +182,32 @@ export const ourProjectsData = {
   label: "FEATURED WORK",
   title: "OUR PROJECTS",
   description:
-    "Explore our diverse portfolio of successfully delivered projects across commercial, residential, institutional, and infrastructure sectors. Each project reflects our commitment to quality, innovation, safety, and excellence in construction.",
+    "ABM's portfolio spans some of the most prestigious addresses in Dubai, from high-rise residential towers and five-star hotels to government facilities and major infrastructure projects. ",
   buttonText: "VIEW ALL PROJECTS",
   href: "#",
   projects: [
     {
-      image: "/assets/images/home/projects/1.jpg",
-      title: "JUMEIRAH LIVING BUSINESS BAY",
-      location: "Dubai",
+      image: "/assets/images/home/projects/01.jpg",
+      title: "Hyatt Regency - Creek Heights  ",
+      location: "Dubai Healthcare City",
       href: "#",
     },
     {
-      image: "/assets/images/home/projects/2.jpg",
-      title: "VIDA RESIDENCE DOWNTOWN",
-      location: "Dubai",
+      image: "/assets/images/home/projects/02.jpg",
+      title: "Vida Residence",
+      location: "Downtown Dubai",
       href: "#",
     },
     {
-      image: "/assets/images/home/projects/3.jpg",
-      title: "PALACE BEACH",
-      location: "Dubai Harbour",
+      image: "/assets/images/home/projects/03.jpg",
+      title: "The Peninsula Five ",
+      location: "Business Bay",
       href: "#",
     },
     {
-      image: "/assets/images/home/projects/4.jpg",
-      title: "BURJ CROWN",
-      location: "Downtown Dubai.",
+      image: "/assets/images/home/projects/04.jpg",
+      title: "Grosvenor House - II",
+      location: "Dubai Marina",
       href: "#",
     },
   ],
@@ -217,7 +217,7 @@ export const clientsConsultantsData = {
   label: "TRUSTED CLIENTS",
   title: "CLIENTS & CONSULTANTS",
   description:
-    "Our major clients trust us for quality, reliability, and on-time project delivery across diverse sectors.",
+    "From royal establishments and government bodies to the UAE's most prominent real estate developers, ABM has built lasting working relationships across Dubai's public and private sectors. Repeat business from its clients remains the strongest testament to the company's performance. ",
   rowOne: [
     { name: "Wasl Properties", logo: "/assets/images/home/clients/1.png" },
     { name: "Sharaf Group", logo: "/assets/images/home/clients/2.png" },
@@ -244,7 +244,7 @@ export const contactSectionData = {
   backgroundImageMobile: "/assets/images/home/contact/bg-mobile.jpg",
   title: "LET'S BUILD SOMETHING GREAT TOGETHER",
   description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    "Whether you have a new development in mind or would like to learn more about how ABM can support your project, our team is ready to assist. ",
   contactInfo: [
     {
       icon: "/assets/images/home/contact/icons/office.svg",
