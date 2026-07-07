@@ -11,7 +11,7 @@ export interface HeroSlide {
 export const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    image: "/assets/images/home/hero/slide-1.jpg",
+    image: "/assets/images/home/hero/sl01.jpg",
     title:
       "Focused on Al Basti & Muktha Legacy and Position as a Leading Contractor",
     subtitle: "The Future of Construction",
@@ -19,7 +19,28 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 2,
-    image: "/assets/images/home/contact/bg.jpg",
+    image: "/assets/images/home/hero/sl02.jpg",
+    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
+    subtitle: "Excellence in Every Detail",
+    description: "From groundbreaking to handover",
+  },
+  {
+    id: 3,
+    image: "/assets/images/home/hero/sl03.jpg",
+    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
+    subtitle: "Excellence in Every Detail",
+    description: "From groundbreaking to handover",
+  },
+  {
+    id: 4,
+    image: "/assets/images/home/hero/sl04.jpg",
+    title: "Building Tomorrow's Landmarks With Unmatched Expertise",
+    subtitle: "Excellence in Every Detail",
+    description: "From groundbreaking to handover",
+  },
+  {
+    id: 5,
+    image: "/assets/images/home/hero/sl05.jpg",
     title: "Building Tomorrow's Landmarks With Unmatched Expertise",
     subtitle: "Excellence in Every Detail",
     description: "From groundbreaking to handover",
@@ -49,7 +70,7 @@ export const coreCapabilitiesSectionData = {
       title: "CONSTRUCTION",
       description:
         "Delivering greater project value through efficient construction methods and cost-effective material choices.",
-      image: "/assets/images/home/capabilities/1.jpg",
+      image: "/assets/images/home/capabilities/01.jpg",
       buttonText: "VIEW MORE",
       href: "#",
     },
@@ -58,7 +79,7 @@ export const coreCapabilitiesSectionData = {
       title: "VALUE ENGINEERING",
       description:
         "Value Engineering focuses on optimizing project costs without compromising quality or performance. It requires smarter material selection.",
-      image: "/assets/images/home/capabilities/2.jpg",
+      image: "/assets/images/home/capabilities/02.jpg",
       buttonText: "VIEW MORE",
       href: "#",
     },
@@ -67,7 +88,7 @@ export const coreCapabilitiesSectionData = {
       title: "DESIGN & BUILD",
       description:
         "Design & Build integrates planning, design, and construction into a single streamlined process for efficient project delivery.",
-      image: "/assets/images/home/capabilities/3.jpg",
+      image: "/assets/images/home/capabilities/03.jpg",
       buttonText: "VIEW MORE",
       href: "#",
     },
@@ -85,7 +106,7 @@ export const sectorsData = {
       title: "Residential",
       description:
         "We deliver quality residential projects, creating modern, durable, and comfortable living spaces.",
-      image: "/assets/images/home/sectors/1.jpg",
+      image: "/assets/images/home/sectors/01.jpg",
       icon: "/assets/images/home/sectors/icons/1.svg",
       href: "#",
       buttonText: "View Projects",
@@ -95,7 +116,7 @@ export const sectorsData = {
       title: "Institution",
       description:
         "We construct purpose-built institutional facilities with precision, safety, and longevity in mind.",
-      image: "/assets/images/home/sectors/2.jpg",
+      image: "/assets/images/home/sectors/02.jpg",
       icon: "/assets/images/home/sectors/icons/2.svg",
       href: "#",
       buttonText: "View Projects",
@@ -105,7 +126,7 @@ export const sectorsData = {
       title: "Hospitality",
       description:
         "From boutique hotels to large-scale resorts, we bring world-class hospitality environments to life.",
-      image: "/assets/images/home/sectors/3.jpg",
+      image: "/assets/images/home/sectors/03.jpg",
       icon: "/assets/images/home/sectors/icons/3.svg",
       href: "#",
       buttonText: "View Projects",
@@ -115,7 +136,7 @@ export const sectorsData = {
       title: "Infrastructure",
       description:
         "Our infrastructure expertise spans roads, bridges, utilities, and large-scale civil engineering works.",
-      image: "/assets/images/home/sectors/4.jpg",
+      image: "/assets/images/home/sectors/04.jpg",
       icon: "/assets/images/home/sectors/icons/4.svg",
       href: "#",
       buttonText: "View Projects",
@@ -125,7 +146,7 @@ export const sectorsData = {
       title: "Commercial",
       description:
         "We design and build high-performance commercial spaces that support modern business needs.",
-      image: "/assets/images/home/sectors/5.jpg",
+      image: "/assets/images/home/sectors/05.jpg",
       icon: "/assets/images/home/sectors/icons/5.svg",
       href: "#",
       buttonText: "View Projects",
