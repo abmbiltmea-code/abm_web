@@ -15,27 +15,36 @@ interface FormInputProps extends Omit<
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ label, name, type = "text", required = false, error, ...rest }, ref) => {
     return (
-      <label
-        htmlFor={name}
-        className="relative w-full pb-[calc(25px+20px)] md:pb-[calc(40px+20px)] block cursor-text"
-      >
-        <span className="text-description text-description-color">
-          {label}
-          {required && (
-            <span className="ml-[-0.5px] text-description text-description-color">
-              ﹡
-            </span>
-          )}
-        </span>
+      <div className="relative w-full pb-[calc(25px+20px)] md:pb-[calc(40px+20px)]">
         <input
           id={name}
           type={type}
           name={name}
           required={required}
+          placeholder=" "
           ref={ref}
           {...rest}
-          className="peer absolute left-0 bottom-5 w-full bg-transparent text-description text-description-color outline-none placeholder:text-secondary"
+          className="peer absolute left-0 bottom-5 w-full bg-transparent text-description text-description-color outline-none"
         />
+
+        <label
+          htmlFor={name}
+          className={`
+            absolute left-0 bottom-8 origin-left
+            transition-transform duration-500 ease-in-out
+            pointer-events-none text-description-color select-none
+            text-description
+            scale-[0.79] -translate-y-[10px] md:-translate-y-[15px]
+            peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+            peer-focus:!scale-[0.79] peer-focus:!-translate-y-[10px] md:peer-focus:!-translate-y-[15px]
+          `}
+        >
+          {label}
+          {required && (
+            <span className="ml-[-0.5px] text-description-color">﹡</span>
+          )}
+        </label>
+
         {/* base line */}
         <span className="absolute left-0 bottom-5 w-full h-px bg-description-color/30" />
         {/* animated fill line */}
@@ -46,7 +55,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         <span className="absolute left-0 bottom-0 h-5 text-15 text-red-500">
           {error ?? ""}
         </span>
-      </label>
+      </div>
     );
   },
 );

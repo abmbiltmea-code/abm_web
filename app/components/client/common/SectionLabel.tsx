@@ -46,7 +46,7 @@ export default function SectionLabel({
   }, []);
 
   return (
-    <div className="flex items-center gap-[10px] min-w-[210px] 3xl:pt-[13px]">
+    <div className="flex items-center gap-[10px] min-w-[210px] xl:pt-[10px]">
       <div ref={dotRef} className="w-[10px] h-[10px] bg-primary shrink-0 rounded-full" />
       <span
         ref={textRef}

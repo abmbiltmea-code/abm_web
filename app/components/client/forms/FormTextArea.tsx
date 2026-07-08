@@ -1,11 +1,9 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
-interface FormTextAreaProps extends Omit<
-  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-  "name"
-> {
+interface FormTextAreaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "name"> {
   label: string;
   name: string;
   required?: boolean;
@@ -14,46 +12,68 @@ interface FormTextAreaProps extends Omit<
 }
 
 const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
-  ({ label, name, required = false, rows = 2, error, ...rest }, ref) => {
-    return (
-      <label
-        htmlFor={name}
-        className="relative w-full pb-3 md:pb-5 block cursor-text"
-      >
-        <span className="text-description text-description-color">
-          {label}
-          {required && (
-            <span className="ml-[-0.5px] text-description text-description-color">
-              ﹡
-            </span>
-          )}
-        </span>
+  ({ label, name, required = false, error, placeholder, ...rest }, ref) => {
+    const localRef = useRef<HTMLTextAreaElement>(null);
 
+    const setRefs = (node: HTMLTextAreaElement | null) => {
+      localRef.current = node;
+
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    };
+
+    return (
+      <div
+        className="relative w-full pb-3 md:pb-[14px] 2xl:pb-5 cursor-text h-[80px] lg:h-[100px] xl:h-[140px] flex items-end"
+        onClick={() => localRef.current?.focus()}
+      >
         <textarea
           id={name}
           name={name}
+          ref={setRefs}
           required={required}
-          rows={rows}
-          ref={ref}
+          placeholder={placeholder ?? " "}
           {...rest}
-          className="peer mt-[54px] w-full bg-transparent text-description font-poppins text-description-color outline-none resize-none placeholder:text-secondary block p-0 leading-3 overflow-x-auto overflow-y-hidden whitespace-nowrap"
+          className="peer w-full bg-transparent text-description font-poppins text-description-color outline-none resize-none placeholder:text-transparent block p-0 leading-3 overflow-x-auto overflow-y-hidden whitespace-nowrap"
         />
 
-        {/* Base line */}
+        <label
+          htmlFor={name}
+          className="
+            absolute left-0 top-0 origin-left
+            transition-transform duration-500 ease-in-out
+            pointer-events-none text-description-color select-none
+            text-description
+            scale-[0.79] -translate-y-[10px] md:-translate-y-[15px]
+            peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+            peer-focus:!scale-[0.79] peer-focus:!-translate-y-[10px] md:peer-focus:!-translate-y-[15px]
+          "
+        >
+          {label}
+          {required && (
+            <span className="ml-[-0.5px] text-description-color">﹡</span>
+          )}
+        </label>
+
         <span className="absolute left-0 bottom-5 w-full h-px bg-description-color/30" />
-        {/* Animated fill line */}
+
         <span
-          className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out
-            ${error ? "w-full bg-red-500" : "w-0 bg-secondary peer-focus-within:w-full"}`}
+          className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out ${
+            error
+              ? "w-full bg-red-500"
+              : "w-0 bg-secondary peer-focus:w-full"
+          }`}
         />
 
-        {/* Error */}
         <span className="absolute left-0 bottom-0 h-5 text-15 text-red-500">
           {error ?? ""}
         </span>
-      </label>
+      </div>
     );
-  },
+  }
 );
 
 FormTextArea.displayName = "FormTextArea";

@@ -37,6 +37,7 @@ export default function FormSelect({
   const { scrollTo } = useLenis();
 
   const selected = options.find((o) => o.value === value);
+  const isFloated = Boolean(selected) || open;
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -70,28 +71,42 @@ export default function FormSelect({
       className="relative w-full pb-[calc(25px+20px)] md:pb-[calc(40px+20px)] cursor-pointer"
     >
       {/* Label */}
-      <div className="text-description text-description-color flex justify-between">
-        <div>
-          {label}
-          {required && (
-            <span className="text-description text-description-color ml-[-0.5px]">
-              ﹡
-            </span>
-          )}
-        </div>
-        <Image
-          src="/assets/icons/select-arrow-down.svg"
-          alt="toggle"
-          width={16}
-          height={16}
-          className={`${open ? "rotate-180" : ""} transition-all duration-400 ease-in-out pointer-events-none select-none h-3 w-2.5 md:h-4 md:w-4`}
-        />
-      </div>
+      <label
+        className={`
+          absolute left-0 bottom-8 origin-left
+          transition-transform duration-500 ease-in-out
+          pointer-events-none text-description-color select-none
+          text-description
+          ${
+            isFloated
+              ? "scale-[0.79] -translate-y-[10px] md:-translate-y-[15px]"
+              : "scale-100 translate-y-0"
+          }
+        `}
+      >
+        {label}
+        {required && (
+          <span className="ml-[-0.5px] text-description-color">﹡</span>
+        )}
+      </label>
+
+      {/* Toggle arrow */}
+      <Image
+        src="/assets/icons/select-arrow-down.svg"
+        alt="toggle"
+        width={16}
+        height={16}
+        className={`absolute right-0 -top-4 md:-top-3 ${
+          open ? "rotate-180" : ""
+        } transition-all duration-400 ease-in-out pointer-events-none select-none h-3 w-2.5 md:h-4 md:w-4`}
+      />
 
       {/* Selected value */}
-      <div className="absolute left-0 bottom-5 w-full text-description text-description-color select-none">
+      <div className="absolute left-0 bottom-5 w-full text-description text-description-color select-none pr-24">
         <span
-          className={selected ? "text-description-color" : "text-secondary/50"}
+          className={`transition-opacity duration-300 ${
+            selected ? "opacity-100" : "opacity-0"
+          }`}
         >
           {selected ? selected.label : placeholder}
         </span>

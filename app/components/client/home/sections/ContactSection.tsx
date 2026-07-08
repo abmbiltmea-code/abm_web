@@ -20,7 +20,7 @@ export default function ContactSection() {
 
   return (
     <section>
-      <div className="relative lg:min-h-screen py-120 3xl:py-140 overflow-hidden">
+      <div className="relative py-120 3xl:py-140 overflow-hidden">
         {/* Background Image */}
         <Image
           src={backgroundImage}
@@ -40,9 +40,9 @@ export default function ContactSection() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/65 z-1" />
 
-        <div className="relative z-10 container flex flex-col lg:flex-row justify-between gap-60 2xl:gap-80">
+        <div className="relative z-10 container flex flex-col lg:flex-row justify-between items-center gap-60 2xl:gap-80">
           {/* Left */}
-          <div className="flex flex-col max-w-[711px]">
+          <div className="flex flex-col max-w-[45%] 3xl:max-w-[711px]">
             <div className="flex flex-col gap-[10px] sm:gap-20 mb-[20px] sm:mb-40 lg:mb-80">
               <SectionTitle title={title} className="text-white max-w-[20ch]" />
               <SectionDescription
@@ -60,7 +60,7 @@ export default function ContactSection() {
                   whileInView="show"
                   viewport={{ once: true }}
                 >
-                <div className="flex items-center gap-20">
+                <div className="flex items-start gap-20">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-15 lg:h-15 rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
                     <Image
                       src={info.icon}
