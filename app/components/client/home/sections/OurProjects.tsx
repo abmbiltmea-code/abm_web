@@ -16,7 +16,7 @@ export default function OurProjects() {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row gap-y-[20px] md:gap-y-[30px] mb-40">
+        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={ourProjectsData.label} />
           </div>
