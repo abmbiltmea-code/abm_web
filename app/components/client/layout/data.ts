@@ -15,7 +15,8 @@ export const footerData = {
 
   address: {
     icon: "/assets/icons/footer/location.svg",
-    value: [`Al Basti <span class="font-tasa">&amp;</span> Muktha LLC`, `P.O. Box 2393, Dubai (U.A.E.)`],
+    // value: [`Al Basti <span class="font-tasa">&amp;</span> Muktha LLC`, `P.O. Box 2393, Dubai (U.A.E.)`],
+    value: `P.O. Box 2393, Al Addiyar Building, Ground Floor, Sheikh Zayed Road, Dubai, U.A.E.`,
     href: "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6",
   },
 
@@ -29,8 +30,8 @@ export const footerData = {
   email: {
     icon: "/assets/icons/footer/mail.svg",
     label: "EMAIL",
-    value: "abmbilt@emirates.net.ae",
-    href: "mailto:abmbilt@emirates.net.ae",
+    value: "abmbilt@abmgroup.ae",
+    href: "mailto:abmbilt@abmgroup.ae",
   },
 
   navLinks: [

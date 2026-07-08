@@ -249,7 +249,8 @@ export const contactSectionData = {
     {
       icon: "/assets/images/home/contact/icons/office.svg",
       title: "OFFICE",
-      value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-3.5 md:h-[20px] w-px md:w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
+      // value: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC <span class="inline-block h-3.5 md:h-[20px] w-px md:w-[2px] mx-[5px] bg-white/60 align-middle"></span> P.O. Box 2393, Dubai (U.A.E.)`,
+      value: `P.O. Box 2393, Al Addiyar Building, Ground Floor, Sheikh Zayed Road, Dubai, U.A.E.`,
       href: "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6",
     },
     {
@@ -261,8 +262,8 @@ export const contactSectionData = {
     {
       icon: "/assets/images/home/contact/icons/mail.svg",
       title: "E-MAIL",
-      value: "abmbilt@emirates.net.ae",
-      href: "mailto:[EMAIL_ADDRESS]",
+      value: "abmbilt@abmgroup.ae",
+      href: "mailto:abmbilt@abmgroup.ae",
     },
   ],
 };

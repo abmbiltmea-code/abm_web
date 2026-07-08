@@ -56,7 +56,7 @@ const CoreCapabilities = () => {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
+        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={coreCapabilitiesSectionData.label} />
           </div>
@@ -80,7 +80,7 @@ const CoreCapabilities = () => {
 
         <div
           ref={containerRef}
-          className="hidden xl:flex items-center gap-20 overflow-hidden xl:h-[400px] 3xl:h-[633px]"
+          className="hidden xl:flex items-center gap-20 overflow-hidden xl:h-[450px] 3xl:h-[633px]"
         >
           {capabilityCards.map((card) => {
             const isActive = card.id === activeId;
@@ -103,8 +103,8 @@ const CoreCapabilities = () => {
                   ${flexBasis === undefined ? (isActive ? "w-full xl:w-[540px] 3xl:w-[979px]" : "flex-1") : ""}
                   ${
                     isActive
-                      ? "xl:h-[400px] 3xl:h-[633px]"
-                      : "xl:h-[332px] 3xl:h-[529px]"
+                      ? "xl:h-[450px] 3xl:h-[633px]"
+                      : "xl:h-[342px] 3xl:h-[529px]"
                   }
                 `}
               >
@@ -167,7 +167,7 @@ const CoreCapabilities = () => {
                     <div
                       className={`overflow-hidden transition-all duration-700 ease-in-out ${
                         isActive
-                          ? "max-h-[200px] opacity-100"
+                          ? "max-h-[300px] opacity-100"
                           : "max-h-0 opacity-0"
                       }`}
                     >
@@ -225,7 +225,7 @@ const CoreCapabilities = () => {
           >
             {capabilityCards.map((card) => (
               <SwiperSlide key={card.id}>
-                <div className="relative rounded-[10px] overflow-hidden h-[332px] md:h-[380px] lg:h-[410px]">
+                <div className="relative rounded-[10px] overflow-hidden h-[342px] md:h-[380px] lg:h-[410px]">
                   <div
                     className="absolute inset-0 z-10"
                     style={{
