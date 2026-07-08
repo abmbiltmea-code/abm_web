@@ -16,7 +16,7 @@ export default function OurProjects() {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
+        <div className="flex flex-col lg:flex-row gap-y-[20px] md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={ourProjectsData.label} />
           </div>
@@ -56,7 +56,7 @@ export default function OurProjects() {
           className="!overflow-visible"
         >
           {ourProjectsData.projects.map((project, index) => {
-            const isOdd = index % 2 === 0;
+            // const isOdd = index % 2 === 0;
             return (
               <SwiperSlide className="group" key={index}>
                 <motion.div
@@ -67,11 +67,12 @@ export default function OurProjects() {
                 >
                   <Link href={project.href}>
                     <div
-                      className={`relative w-full rounded-[10px] overflow-hidden ${
-                        isOdd
-                          ? "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]"
-                          : "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[270px] 3xl:h-[386px]"
-                      }`}
+                      className={`relative w-full rounded-[10px] overflow-hidden h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]`}
+                      //    ${
+                      //   isOdd
+                      //     ? "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]"
+                      //     : "h-[315px] sm:h-[350px] md:h-[380px] xl:h-[270px] 3xl:h-[386px]"
+                      // }`}
                     >
                       <Image
                         src={project.image}
@@ -80,7 +81,7 @@ export default function OurProjects() {
                         className="object-cover object-top group-hover:scale-105 transition-all duration-700"
                       />
                     </div>
-                    <h3 className="mt-[15px] xl:mt-20 text-subtitle text-secondary uppercase mb-[5px] xl:mb-0">
+                    <h3 className="mt-[15px] xl:mt-20 text-subtitle text-secondary uppercase mb-[5px] xl:mb-0 line-clamp-1">
                       {project.title}
                     </h3>
                     <p className="text-description text-description-color">

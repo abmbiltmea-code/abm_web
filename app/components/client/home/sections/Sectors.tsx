@@ -120,7 +120,7 @@ export default function Sectors() {
                 alt={active.title}
                 width={150}
                 height={150}
-                className="pointer-events-none"
+                className="pointer-events-none invert brightness-0"
               />
             </div>
             <h3 className="text-white text-subtitle-2 mb-[10px] uppercase">
@@ -185,7 +185,7 @@ export default function Sectors() {
                       alt={tab.title}
                       width={200}
                       height={200}
-                      className="pointer-events-none"
+                      className="pointer-events-none invert brightness-0"
                     />
                   </div>
 

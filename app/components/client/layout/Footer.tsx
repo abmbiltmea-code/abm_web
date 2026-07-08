@@ -76,16 +76,8 @@ export default function Footer() {
                   <span className="font-tasa font-bold text-[10px] leading-none sm:text-subtitle text-secondary">
                     ADDRESS
                   </span>
-                  <p className="text-description-2 text-description-color 3xl:whitespace-nowrap flex gap-[10px] hover:text-primary transition-colors duration-300">
-                    {address.value.map((item, index) => (
-                      <Link
-                        href={address.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        key={index}
-                        dangerouslySetInnerHTML={{ __html: item }}
-                      />
-                    ))}
+                  <p className="text-description-2 text-description-color flex gap-[10px] hover:text-primary transition-colors duration-300 text-wrap max-w-[40ch]">
+                    {address.value}
                   </p>
                 </div>
               </div>

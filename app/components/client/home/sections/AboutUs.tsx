@@ -14,7 +14,7 @@ export default function AboutSection() {
 
   return (
     <section className="w-full bg-cream-background py-120 3xl:py-140 overflow-hidden">
-      <div className="container flex flex-col lg:flex-row justify-between gap-y-[20px] md:gap-y-[30px]">
+      <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px]">
         {/* Left: label */}
         <div className="shrink-0">
           <SectionLabel title={label} />
