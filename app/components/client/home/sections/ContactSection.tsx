@@ -40,9 +40,9 @@ export default function ContactSection() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/65 z-1" />
 
-        <div className="relative z-10 container flex flex-col lg:flex-row justify-between items-center gap-60 2xl:gap-80">
+        <div className="relative z-10 container flex flex-col lg:flex-row justify-between lg:items-center gap-60 2xl:gap-80">
           {/* Left */}
-          <div className="flex flex-col max-w-[45%] 3xl:max-w-[711px]">
+          <div className="flex flex-col lg:max-w-[45%] 3xl:max-w-[711px]">
             <div className="flex flex-col gap-[10px] sm:gap-20 mb-[20px] sm:mb-40 lg:mb-80">
               <SectionTitle title={title} className="text-white max-w-[20ch]" />
               <SectionDescription
