@@ -119,7 +119,7 @@ export default function HeroSlider() {
         <div className="pt-300 h-full relative flex flex-col justify-between">
           <AnimatedTitle
             text={heroSlides[activeIndex].title}
-            className="text-white hero-title max-w-[26ch]"
+            className="text-white hero-title max-w-[26ch] hidden sm:block"
           />
           <div
             ref={scrollDesktopRef}
@@ -149,7 +149,14 @@ export default function HeroSlider() {
           />
         </div>
 
-        <div className="mb-[20px]">
+        <div className="sm:hidden">
+          <AnimatedTitle
+            text={heroSlides[activeIndex].title}
+            className="text-white hero-title max-w-[26ch]"
+          />
+        </div>
+
+        <div className="my-[20px]">
           <div
             className="w-full lg:hidden h-px"
             style={{

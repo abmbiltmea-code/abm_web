@@ -30,8 +30,8 @@ export default function ContactForm() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      organization: "",
-      country: "",
+      company: "",
+      email: "",
       subject: "",
       message: "",
     },
@@ -42,7 +42,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-[10px] lg:p-[25px] xl:p-40 w-full lg:w-[52%] xl:w-[48%] 3xl:w-full max-w-[799px] 3xl:h-[760px]">
+    <div className="bg-white rounded-[10px] lg:p-[25px] xl:p-40 w-full lg:w-[70%] 3xl:w-full max-w-[799px]">
       <h2 className="text-subtitle uppercase text-secondary mb-40 lg:mb-30">
         Send an Inquiry
       </h2>
@@ -68,16 +68,16 @@ export default function ContactForm() {
           {/* Row 2 */}
           <div className="grid sm:grid-cols-2 gap-[25px] lg:gap-x-40 3xl:gap-x-[65.77px]">
             <FormInput
-              label="Your Organization"
+              label="Company Name"
               required
-              error={errors.organization?.message}
-              {...register("organization")}
+              error={errors.company?.message}
+              {...register("company")}
             />
             <FormInput
-              label="Country"
+              label="Email"
               required
-              error={errors.country?.message}
-              {...register("country")}
+              error={errors.email?.message}
+              {...register("email")}
             />
           </div>
 

@@ -253,17 +253,17 @@ export const contactSectionData = {
       value: `P.O. Box 2393, Al Addiyar Building, Ground Floor, Sheikh Zayed Road, Dubai, U.A.E.`,
       href: "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6",
     },
-    {
-      icon: "/assets/images/home/contact/icons/phone.svg",
-      title: "PHONE",
-      value: "+971 4 3439444",
-      href: "tel:+97143439444",
-    },
-    {
-      icon: "/assets/images/home/contact/icons/mail.svg",
-      title: "E-MAIL",
-      value: "abmbilt@abmgroup.ae",
-      href: "mailto:abmbilt@abmgroup.ae",
-    },
+    // {
+    //   icon: "/assets/images/home/contact/icons/phone.svg",
+    //   title: "PHONE",
+    //   value: "+971 4 3439444",
+    //   href: "tel:+97143439444",
+    // },
+    // {
+    //   icon: "/assets/images/home/contact/icons/mail.svg",
+    //   title: "E-MAIL",
+    //   value: "abmbilt@abmgroup.ae",
+    //   href: "mailto:abmbilt@abmgroup.ae",
+    // },
   ],
 };

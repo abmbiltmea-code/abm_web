@@ -5,9 +5,9 @@ export const homeEnquiryFormSchema = z.object({
 
   lastName: z.string().min(2, "Last name is required"),
 
-  organization: z.string().min(1, "Organization is required"),
+  company: z.string().min(1, "Company name is required"),
 
-  country: z.string().min(1, "Country is required"),
+  email: z.string().trim().min(1, "Email is required").email("Invalid email"),
 
   subject: z.string().min(1, "Please select a subject"),
 
