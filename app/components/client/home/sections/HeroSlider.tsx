@@ -11,10 +11,12 @@ import "swiper/css/effect-fade";
 import { heroSlides } from "../data";
 import Image from "next/image";
 import AnimatedTitle from "../../animations/HeroTitleAnimation";
+import { useLenis } from "../../layout/LenisProvider";
 
 export default function HeroSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+    const { scrollTo } = useLenis();
 
   const scrollDesktopRef = useRef<HTMLDivElement>(null);
   const scrollMobileRef = useRef<HTMLDivElement>(null);
@@ -23,9 +25,18 @@ export default function HeroSlider() {
   const handlePrev = useCallback(() => swiperRef.current?.slidePrev(), []);
   const handleNext = useCallback(() => swiperRef.current?.slideNext(), []);
 
+
   const handleSlideChange = useCallback((swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);
   }, []);
+
+  const handleScrollToNext = useCallback(() => {
+  const section = scrollDesktopRef.current?.closest("section");
+  const nextSection = section?.nextElementSibling as HTMLElement | null;
+  if (!nextSection) return;
+
+  scrollTo(nextSection, { offset: 0 });
+}, [scrollTo]);
 
   // Move-up entrance for scroll hints + right card, gated on the intro overlay
   useEffect(() => {
@@ -56,6 +67,7 @@ export default function HeroSlider() {
     window.addEventListener("introComplete", play, { once: true });
     return () => window.removeEventListener("introComplete", play);
   }, []);
+  
 
   return (
     <section className="relative h-svh w-full overflow-hidden">
@@ -111,9 +123,10 @@ export default function HeroSlider() {
           />
           <div
             ref={scrollDesktopRef}
-            className="hidden lg:flex gap-[15px] pointer-events-auto pb-190"
+            onClick={handleScrollToNext}
+            className="hidden lg:flex gap-[15px] pointer-events-auto mb-190 cursor-pointer group w-fit"
           >
-            <p className="text-white text-15 leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
+            <p className="text-white text-15 leading-[1.333] font-tasa font-bold uppercase pt-[3px] group-hover:opacity-70 transition-all duration-300">
               Scroll to explore
             </p>
             <Image
@@ -121,6 +134,7 @@ export default function HeroSlider() {
               alt="scroll-icon"
               width={12}
               height={12}
+              className="animate-scroll-bounce"
             />
           </div>
         </div>
@@ -200,7 +214,8 @@ export default function HeroSlider() {
 
         <div
           ref={scrollMobileRef}
-          className="lg:hidden flex gap-[25px] pointer-events-auto pb-[51px]"
+          onClick={handleScrollToNext}
+          className="lg:hidden flex gap-[25px] pointer-events-auto pb-[51px] cursor-pointer"
         >
           <p className="text-white text-[14px] leading-[1.333] font-tasa font-bold uppercase pt-[3px]">
             Scroll to explore
@@ -210,6 +225,7 @@ export default function HeroSlider() {
             alt="scroll-icon"
             width={12}
             height={12}
+            className="animate-scroll-bounce"
           />
         </div>
       </div>

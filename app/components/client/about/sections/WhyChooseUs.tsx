@@ -135,8 +135,7 @@ export default function WhyChooseUs() {
         {/* ACTIVE SLIDE CONTENT */}
         <div className="flex flex-col lg:flex-row gap-40 lg:gap-120 3xl:gap-[145px] items-center">
           {/* Image */}
-          {/* Image */}
-          <div className="relative w-full max-w-[50%] 3xl:max-w-[849px] rounded-[10px] overflow-hidden aspect-16/10 shrink-0">
+          <div className="relative w-full max-w-[50%] 3xl:max-w-[849px] rounded-[10px] overflow-hidden max-h-[560px] aspect-15/10 shrink-0">
             <Image
               key={activeIndex}
               src={activeSlide.image}
