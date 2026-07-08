@@ -58,31 +58,31 @@ export const coreValuesData = {
   items: [
     {
       tab: "Integrity",
-      image: "/assets/images/home/hero/slide-1.jpg",
+      image: "/assets/images/about/core-values/1.jpg",
       description:
         "We uphold the highest standards of integrity in all of our actions, building trust with our clients, partners, and communities through transparency and accountability.",
     },
     {
       tab: "Quality Commitment",
-      image: "/assets/images/about/core-values/quality-commitment.jpg",
+      image: "/assets/images/about/core-values/2.jpg",
       description:
         "To deliver high-quality, prestigious construction projects through a timely, efficient, and cost-effective approach. We are committed to maintaining excellence.",
     },
     {
       tab: "Innovation",
-      image: "/assets/images/home/capabilities/1.jpg",
+      image: "/assets/images/about/core-values/3.jpg",
       description:
         "We embrace innovation and continuously seek new ways to improve our processes, technologies, and solutions to deliver better outcomes for our clients.",
     },
     {
       tab: "Customer Focus",
-      image: "/assets/images/home/capabilities/2.jpg",
+      image: "/assets/images/about/core-values/4.jpg",
       description:
         "Our clients are at the heart of everything we do. We listen, adapt, and deliver solutions tailored to meet and exceed their expectations at every stage.",
     },
     {
       tab: "Sustainability",
-      image: "/assets/images/home/capabilities/3.jpg",
+      image: "/assets/images/about/core-values/5.jpg",
       description:
         "We are committed to sustainable construction practices that minimize environmental impact and contribute to a better future for generations to come.",
     },

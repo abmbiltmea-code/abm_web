@@ -17,7 +17,7 @@ export default function VideoSection() {
       {/* Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
         <button
-          className="w-[100px] h-[100px] rounded-full bg-white flex items-center justify-center"
+          className="group w-[100px] h-[100px] rounded-full bg-white flex items-center justify-center cursor-pointer"
           aria-label="Play video"
         >
           <Image
@@ -25,6 +25,7 @@ export default function VideoSection() {
             alt="Play"
             width={14}
             height={19}
+            className="group-hover:scale-130 transition-transform duration-500"
           />
         </button>
       </div>

@@ -77,7 +77,7 @@ export default function Footer() {
                     ADDRESS
                   </span>
                   <p className="text-description-2 text-description-color flex gap-[10px] hover:text-primary transition-colors duration-300 text-wrap max-w-[40ch]">
-                    {address.value}
+                    <Link target="_blank" href={address.href}>{address.value}</Link>
                   </p>
                 </div>
               </div>

@@ -112,7 +112,7 @@ const CoreCapabilities = () => {
                   className="absolute inset-0 z-10"
                   style={{
                     background:
-                      "linear-gradient(216.16deg, rgba(0, 0, 0, 0) 25.45%, rgba(0, 0, 0, 0.8) 100%)",
+                      "linear-gradient(216.16deg, rgba(0, 0, 0, 0.45) 15.45%, rgba(0, 0, 0, 0.9) 100%)",
                   }}
                 />
 
@@ -125,7 +125,7 @@ const CoreCapabilities = () => {
 
                 <div className="absolute inset-0 z-20">
                   <button
-                    className="absolute top-40 left-40 right-40 w-[59px] h-[59px] flex items-center justify-center rounded-[10px] bg-black/41 backdrop-blur-[30px] text-white text-[60px]"
+                    className="absolute top-40 left-40 right-40 3xl:w-[59px] 3xl:h-[59px] w-[44px] h-[44px] flex items-center justify-center rounded-[10px] bg-black/41 backdrop-blur-[30px] text-white text-[60px]"
                     aria-label={isActive ? "Collapse" : "Expand"}
                   >
                     <svg
@@ -134,6 +134,7 @@ const CoreCapabilities = () => {
                       height="22"
                       viewBox="0 0 22 22"
                       fill="none"
+                      className="scale-[0.90] 3xl:scale-[1]"
                     >
                       <path
                         d="M1 11H21"
@@ -165,7 +166,7 @@ const CoreCapabilities = () => {
                       {card.title}
                     </h3>
                     <div
-                      className={`overflow-hidden transition-all duration-700 ease-in-out ${
+                      className={`overflow-hidden transition-all duration-900 ease-in-out ${
                         isActive
                           ? "max-h-[300px] opacity-100"
                           : "max-h-0 opacity-0"

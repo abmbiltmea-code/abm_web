@@ -316,3 +316,16 @@ body {
     height: 200px;
   }
 }
+
+@keyframes scrollBounce {
+  0% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 0.8s ease-in-out infinite alternate;
+}
