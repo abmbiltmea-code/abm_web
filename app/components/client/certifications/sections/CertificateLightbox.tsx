@@ -28,7 +28,6 @@ export default function CertificateLightbox({
   const isOpen = activeIndex !== null;
   const activeItem = isOpen ? items[activeIndex] : null;
 
-  useLockHeader(isOpen);
 
   const handlePrev = useCallback(() => {
     if (activeIndex === null) return;
@@ -62,7 +61,7 @@ export default function CertificateLightbox({
 
   return (
     <div
-      className="fixed inset-0 z-100 bg-black/80 flex items-center justify-center"
+      className="fixed inset-0 z-999 bg-black/80 flex items-center justify-center"
       onClick={onClose}
     >
       <div className="container relative mx-auto flex items-center justify-center">
