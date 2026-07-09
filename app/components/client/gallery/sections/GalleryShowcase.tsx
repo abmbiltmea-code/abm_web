@@ -79,7 +79,7 @@ function GalleryCard({
       )}
 
       <div className="absolute bottom-30 left-30 w-full">
-        <p className="text-subtitle text-white mb-[20px] uppercase">{title}</p>
+        <p className="text-subtitle text-white mb-5 uppercase">{title}</p>
         <AvatarStack images={images} />
       </div>
     </div>
@@ -118,7 +118,7 @@ export default function GalleryShowcase() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-[20px] gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-5 gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
         {activeCategory?.items.map((item, index) => (
           <Reveal variants={moveUpV2} delayRange={0.03 * index} key={activeCategory?.label + index}>
 

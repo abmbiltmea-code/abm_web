@@ -67,7 +67,7 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
 
   return (
     <>
-      <div className="container grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-x-[20px] gap-y-80 pb-[60px] md:pb-120 3xl:pb-150">
+      <div className="container grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-80 pb-[60px] md:pb-120 3xl:pb-150">
         {items.map((item, i) => (
           <Reveal key={i} variants={moveUpV2} delayRange={i * 0.08}>
             <CertificateCard item={item} onClick={() => setActiveIndex(i)} />

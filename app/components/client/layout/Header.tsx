@@ -96,10 +96,10 @@ export default function Header() {
     <div
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-999 container transition-[transform,margin-top] duration-500 ease-in-out will-change-transform ${
-        isScrolled ? "" : "mt-[20px] lg:mt-50 3xl:mt-[55px]"
+        isScrolled ? "" : "mt-5 lg:mt-50 3xl:mt-[55px]"
       }`}
     >
-      <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-[20px] 2xl:py-[30px]">
+      <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-5 2xl:py-[30px]">
         <div
           aria-hidden
           className={`absolute inset-y-0 left-1/2 -translate-x-1/2 bg-white/75 backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
@@ -155,7 +155,7 @@ export default function Header() {
               alt="Menu"
               width={20}
               height={20}
-              className="h-[12px] md:h-[20px] w-auto pointer-events-none"
+              className="h-[12px] md:h-5 w-auto pointer-events-none"
             />
           </button>
         </div>

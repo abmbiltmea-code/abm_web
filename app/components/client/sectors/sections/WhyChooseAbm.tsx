@@ -12,7 +12,7 @@ export default function WhyChooseAbm() {
     <section className="pb-[60px] md:pb-120 3xl:pb-150 relative">
         <div className="bg-cream-background absolute inset-0 h-[76%]" />
       <div
-        className={`relative container flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] py-120 3xl:py-140`}
+        className={`relative container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] py-120 3xl:py-140`}
       >
         <div>
           <SectionLabel title={whyChooseAbmData.labelTitle} pt="lg:pt-[10px]" />

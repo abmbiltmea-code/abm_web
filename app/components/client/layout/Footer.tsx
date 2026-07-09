@@ -81,7 +81,7 @@ export default function Footer() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-[20px] sm:gap-10 3xl:gap-[57px] mt-[20px] sm:mt-30 3xl:mt-40">
+              <div className="flex flex-col sm:flex-row gap-5 sm:gap-10 3xl:gap-[57px] mt-5 sm:mt-30 3xl:mt-40">
                 <div className="flex items-start gap-[10px] sm:gap-[15px]">
                   <Image
                     src={phone.icon}
@@ -165,7 +165,7 @@ export default function Footer() {
         </div>
 
         {/* Socials - mobile */}
-        <div className="lg:hidden flex items-center gap-[20px] sm:gap-30 py-[20px] relative">
+        <div className="lg:hidden flex items-center gap-5 sm:gap-30 py-5 relative">
           <div className="absolute top-0 left-0 h-px w-full bg-black/20 overflow-hidden">
             <motion.div
               initial={{ scaleX: 0 }}

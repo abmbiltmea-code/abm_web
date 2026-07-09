@@ -22,7 +22,7 @@ const SectionHeader = ({
   return (
     <section className={`container ${className}`}>
       <div
-        className={`flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px]`}
+        className={`flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px]`}
       >
         <div>
           <SectionLabel title={labelTitle} pt="lg:pt-[10px]" />
