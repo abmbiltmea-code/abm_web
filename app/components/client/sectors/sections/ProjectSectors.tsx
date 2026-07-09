@@ -3,6 +3,7 @@ import { projectSectorsData } from "../data";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
+import InnerCtaSecondary from "../../common/InnerCtaSecondary";
 
 const ProjectSectors = () => {
   return (
@@ -20,21 +21,21 @@ const ProjectSectors = () => {
             >
               {/* Text content */}
               <div
-                className={`flex flex-col gap-20 ${
+                className={`flex flex-col ${
                   isEven ? "lg:order-2" : "lg:order-1"
                 }`}
               >
-                <SectionTitle title={item.title} />
+                <SectionTitle title={item.title} className="mb-20" />
                 <SectionDescription
                   text={item.description}
-                  className="text-description-color"
+                  className="text-description-color mb-40"
                 />
                 <CustomButton text={item.btnText} href={item.btnLink} />
               </div>
 
               {/* Image */}
               <div
-                className={`relative w-full h-[280px] lg:h-[400px] 3xl:h-[520px] rounded-[10px] max-w-[50%] 3xl:max-w-[850px] overflow-hidden ${
+                className={`relative w-full h-[280px] lg:h-[400px] 3xl:h-[520px] rounded-[10px] min-w-[50%] 3xl:min-w-auto 3xl:max-w-[850px] overflow-hidden ${
                   isEven ? "lg:order-1" : "lg:order-2"
                 }`}
               >

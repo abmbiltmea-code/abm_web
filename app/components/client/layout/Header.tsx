@@ -12,6 +12,7 @@ import {
 import { gsap } from "gsap";
 import { NAV_ITEMS } from "./data";
 import { usePathname } from "next/navigation";
+import { useHeaderLocked } from "@/app/lib/headerLock";
 
 const SCROLL_THRESHOLD = 100;
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
@@ -22,6 +23,7 @@ export default function Header() {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const pathname = usePathname();
+  const isHeaderLocked = useHeaderLocked();
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -45,16 +47,26 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      if (ticking.current) return;
+      if (ticking.current || isHeaderLocked) return;
       ticking.current = true;
       requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [update]);
+  }, [update, isHeaderLocked]);
 
-  // Staggered entrance, synced to the intro overlay finishing
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+
+    if (isHeaderLocked) {
+      el.style.transform = "translateY(-160%)";
+    } else {
+      update();
+    }
+  }, [isHeaderLocked, update]);
+
   useLayoutEffect(() => {
     const items =
       navRef.current?.querySelectorAll<HTMLElement>("[data-header-anim]");

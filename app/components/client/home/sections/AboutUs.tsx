@@ -17,7 +17,7 @@ export default function AboutSection() {
       <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px]">
         {/* Left: label */}
         <div className="shrink-0">
-          <SectionLabel title={label} />
+          <SectionLabel title={label} pt="lg:pt-[17px]" />
         </div>
 
         {/* Right: content */}

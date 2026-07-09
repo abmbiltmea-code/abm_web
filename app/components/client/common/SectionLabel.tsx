@@ -9,11 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 type SectionLabelProps = {
   title: string;
   textColor?: string;
+  pt?: string;
 };
 
 export default function SectionLabel({
   title,
   textColor = "text-[#5B5B5B]",
+  pt = "",
 }: SectionLabelProps) {
   const dotRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -46,7 +48,7 @@ export default function SectionLabel({
   }, []);
 
   return (
-    <div className="flex items-center gap-[10px] min-w-[210px] xl:pt-[10px]">
+    <div className={`flex items-center gap-[10px] min-w-[285px] ${pt}`}>
       <div ref={dotRef} className="w-[10px] h-[10px] bg-primary shrink-0 rounded-full" />
       <span
         ref={textRef}

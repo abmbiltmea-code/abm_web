@@ -15,17 +15,17 @@ const SectionHeader = ({
   labelTitle,
   sectionTitle,
   sectionDescription,
-  className = "",
+  className = "pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150",
   titleClassName = "",
   descriptionClassName = "",
 }: SectionHeaderProps) => {
   return (
-    <section className="container pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150">
+    <section className={`container ${className}`}>
       <div
-        className={`flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] ${className}`}
+        className={`flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px]`}
       >
         <div>
-          <SectionLabel title={labelTitle} />
+          <SectionLabel title={labelTitle} pt="lg:pt-[10px]" />
         </div>
         <div className="flex flex-col lg:section-content-spacing gap-20">
           <SectionTitle title={sectionTitle} className={titleClassName} />

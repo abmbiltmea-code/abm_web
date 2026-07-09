@@ -279,6 +279,10 @@ body {
   @apply text-30 leading-[1.5] font-tasa font-bold;
 }
 
+@utility text-subtitle-3 {
+  @apply text-30 leading-[1.333333] font-tasa font-bold uppercase;
+}
+
 @utility text-description {
   @apply text-20 leading-[1.4166666666] sm:leading-[1.45] 3xl:leading-[1.75] font-parabolica;
 }
@@ -288,7 +292,7 @@ body {
 }
 
 @utility section-content-spacing {
-  @apply ml-[10%] 3xl:w-[1285px];
+  @apply ml-[8%] 3xl:w-[1285px];
 }
 
 @utility section-content-spacing-2 {
