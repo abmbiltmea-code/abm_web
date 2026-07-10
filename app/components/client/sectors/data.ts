@@ -59,3 +59,22 @@ export const projectSectorsData = [
     btnLink: "#",
   },
 ];
+
+export const whyChooseAbmData = {
+  labelTitle: "Why ABM",
+  sectionTitle: "Why Choose ABM Across Sectors",
+  ctaTitle: "Looking for a trusted construction partner for your next project?",
+  ctaBtnText: "Contact Us Today",
+  ctaBtnLink: "#",
+  items: [
+    { title: "Proven Multi-Sector Experience" },
+    {
+      title: "Strong Engineering and Execution Capability",
+    },
+    { title: "Commitment to Safety and Quality" },
+    { title: "On-Time Project Delivery" },
+    {
+      title: "Integrated Project Management Approach",
+    },
+  ],
+};

@@ -16,7 +16,7 @@ export default function OurProjects() {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
+        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={ourProjectsData.label} />
           </div>
@@ -27,7 +27,7 @@ export default function OurProjects() {
             />
             <SectionDescription
               text={ourProjectsData.description}
-              className="text-description-color mb-[20px] xl:mb-40 max-w-[70ch] 3xl:max-w-none"
+              className="text-description-color mb-5 xl:mb-40 max-w-[70ch] 3xl:max-w-none"
             />
             <div>
               <CustomButton

@@ -14,16 +14,16 @@ export default function AboutSection() {
 
   return (
     <section className="w-full bg-cream-background py-120 3xl:py-140 overflow-hidden">
-      <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px]">
+      <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px]">
         {/* Left: label */}
         <div className="shrink-0">
-          <SectionLabel title={label} />
+          <SectionLabel title={label} pt="lg:pt-[17px]" />
         </div>
 
         {/* Right: content */}
         <div className="flex flex-col lg:section-content-spacing">
           {/* Row 1: title + divider + logo */}
-          <div className="flex items-center sm:gap-70 mb-[20px] w-fit">
+          <div className="flex items-center sm:gap-70 mb-5 w-fit">
             <SectionTitle
               title={title}
               className="text-secondary max-w-[19ch] 3xl:max-w-[695px]"

@@ -12,10 +12,10 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
 
   const segments = pathname.split("/").filter(Boolean);
 
-  const crumbs = segments.map((seg, i) => ({
+ const crumbs = segments.map((seg, i) => ({
     label: seg
       .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .map((w) => (w.toLowerCase() === "and" ? "&" : w.charAt(0).toUpperCase() + w.slice(1)))
       .join(" "),
     href: "/" + segments.slice(0, i + 1).join("/"),
   }));

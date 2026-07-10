@@ -3,6 +3,7 @@ import InnerCta from "../common/InnerCta";
 import { bannerData, ctaData, sectionHeaderData } from "./data";
 import SectionHeader from "../common/SectionHeader";
 import ProjectSectors from "./sections/ProjectSectors";
+import WhyChooseAbm from "./sections/WhyChooseAbm";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
         descriptionClassName="max-w-[65ch] 3xl:max-w-[78ch]"
       />
       <ProjectSectors />
+      <WhyChooseAbm />
       <InnerCta {...ctaData} />
     </>
   );

@@ -12,6 +12,7 @@ import {
 import { gsap } from "gsap";
 import { NAV_ITEMS } from "./data";
 import { usePathname } from "next/navigation";
+import { useHeaderLocked } from "@/app/lib/headerLock";
 
 const SCROLL_THRESHOLD = 100;
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
@@ -22,6 +23,7 @@ export default function Header() {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const pathname = usePathname();
+  const isHeaderLocked = useHeaderLocked();
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -45,16 +47,46 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      if (ticking.current) return;
+      if (ticking.current || isHeaderLocked) return;
       ticking.current = true;
       requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [update]);
+  }, [update, isHeaderLocked]);
 
-  // Staggered entrance, synced to the intro overlay finishing
+  // useEffect(() => {
+  //   const el = headerRef.current;
+  //   if (!el) return;
+
+  //   if (isHeaderLocked) {
+  //     el.style.transform = "translateY(-160%)";
+  //   } else {
+  //     update();
+  //   }
+  // }, [isHeaderLocked, update]);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+
+    if (isHeaderLocked) {
+      el.style.transform = "translateY(-160%)";
+    } else {
+      const current = window.scrollY;
+      lastScrollY.current = current;
+
+      if (current > SCROLL_THRESHOLD) {
+        el.style.transform = "translateY(-160%)";
+        setIsScrolled(true);
+      } else {
+        el.style.transform = "translateY(0)";
+        setIsScrolled(false);
+      }
+    }
+  }, [isHeaderLocked]);
+
   useLayoutEffect(() => {
     const items =
       navRef.current?.querySelectorAll<HTMLElement>("[data-header-anim]");
@@ -84,10 +116,10 @@ export default function Header() {
     <div
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-999 container transition-[transform,margin-top] duration-500 ease-in-out will-change-transform ${
-        isScrolled ? "" : "mt-[20px] lg:mt-50 3xl:mt-[55px]"
+        isScrolled ? "" : "mt-5 lg:mt-50 3xl:mt-[55px]"
       }`}
     >
-      <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-[20px] 2xl:py-[30px]">
+      <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-5 2xl:py-[30px]">
         <div
           aria-hidden
           className={`absolute inset-y-0 left-1/2 -translate-x-1/2 bg-white/75 backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
@@ -143,7 +175,7 @@ export default function Header() {
               alt="Menu"
               width={20}
               height={20}
-              className="h-[12px] md:h-[20px] w-auto pointer-events-none"
+              className="h-[12px] md:h-5 w-auto pointer-events-none"
             />
           </button>
         </div>

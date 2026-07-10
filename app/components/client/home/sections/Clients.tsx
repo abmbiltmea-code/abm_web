@@ -100,7 +100,7 @@ export default function Clients() {
 
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
-      <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
+      <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
         <div>
           <SectionLabel title={clientsConsultantsData.label} />
         </div>

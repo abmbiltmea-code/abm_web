@@ -56,7 +56,7 @@ const CoreCapabilities = () => {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-[20px] md:gap-y-[30px] mb-40">
+        <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
           <div>
             <SectionLabel title={coreCapabilitiesSectionData.label} />
           </div>
@@ -243,7 +243,7 @@ const CoreCapabilities = () => {
                   />
 
                   <div className="absolute inset-0 z-20">
-                    <div className="absolute bottom-0 right-0 px-[15px] md:px-30 py-[20px] md:py-30">
+                    <div className="absolute bottom-0 right-0 px-[15px] md:px-30 py-5 md:py-30">
                       <h3 className="text-white text-subtitle-2 mb-20">
                         {card.title}
                       </h3>

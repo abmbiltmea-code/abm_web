@@ -58,7 +58,7 @@ linear-gradient(249.19deg, rgba(0, 0, 0, 0) 20.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
       </div>
 
       {/* White bottom pill */}
-      <div className="absolute bottom-0 inset-x-0 h-[67px] rounded-t-[30px] bg-white" />
+      <div className="absolute bottom-0 inset-x-0 h-[31px] lg:h-[40px] xl:h-[50px] 3xl:h-[67px] rounded-t-[30px] bg-white" />
     </section>
   );
 }

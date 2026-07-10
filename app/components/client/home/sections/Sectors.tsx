@@ -139,7 +139,7 @@ export default function Sectors() {
       {/* Mobile/Tablet - below xl */}
       <div className="xl:hidden py-120 container">
         <div className="mb-30">
-          <div className="mb-[20px]">
+          <div className="mb-5">
             <SectionLabel title={label} textColor="text-white" />
           </div>
           <SectionTitle title={title} className="text-white mb-20" />
@@ -178,7 +178,7 @@ export default function Sectors() {
                   }}
                 />
 
-                <div className="absolute inset-0 flex flex-col justify-end px-[15px] md:px-30 py-[20px] md:py-30">
+                <div className="absolute inset-0 flex flex-col justify-end px-[15px] md:px-30 py-5 md:py-30">
                   <div className="w-[60px] h-[60px] mb-20">
                     <AnimatedIcon
                       src={tab.icon}

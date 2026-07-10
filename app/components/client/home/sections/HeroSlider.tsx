@@ -156,7 +156,7 @@ export default function HeroSlider() {
           />
         </div>
 
-        <div className="my-[20px]">
+        <div className="my-5">
           <div
             className="w-full lg:hidden h-px"
             style={{
@@ -170,7 +170,7 @@ export default function HeroSlider() {
           ref={rightCardRef}
           className="flex md:justify-end items-end pb-[70px] md:pb-170 shrink-0 pointer-events-auto"
         >
-          <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-[20px] w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
+          <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-5 w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
             <div className="flex flex-col gap-[10px]">
               <p className="text-white text-[14px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
                 {heroSlides[activeIndex].subtitle}
@@ -180,14 +180,14 @@ export default function HeroSlider() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between mt-[18px] sm:mt-[20px]">
+            <div className="flex items-center justify-between mt-[18px] sm:mt-5">
               <span className="text-white font-medium shrink-0 text-15 leading-1 lg:leading-[1.666667]">
                 {String(activeIndex + 1).padStart(2, "0")}/
                 <span className="text-white/30">
                   {String(heroSlides.length).padStart(2, "0")}
                 </span>
               </span>
-              <div className="flex items-center gap-[20px]">
+              <div className="flex items-center gap-5">
                 <button
                   onClick={handlePrev}
                   aria-label="Previous slide"
@@ -198,7 +198,7 @@ export default function HeroSlider() {
                     alt="arrow-left"
                     width={20}
                     height={20}
-                    className="w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]"
+                    className="w-[15px] h-[15px] lg:w-5 lg:h-5"
                   />
                 </button>
                 <button
@@ -211,7 +211,7 @@ export default function HeroSlider() {
                     alt="arrow-right"
                     width={20}
                     height={20}
-                    className="rotate-180 w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]"
+                    className="rotate-180 w-[15px] h-[15px] lg:w-5 lg:h-5"
                   />
                 </button>
               </div>
