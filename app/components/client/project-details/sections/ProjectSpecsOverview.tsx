@@ -35,7 +35,7 @@ export default function ProjectSpecsOverview({
     <div className="container flex flex-col gap-10 lg:flex-row lg:gap-80 pt-80 pb-[60px] md:pb-120 3xl:pb-150">
       <div className="w-full lg:max-w-[510px] bg-cream-background h-fit rounded-[10px] p-50">
         {specEntries.map(([key, value], index) => (
-          <Reveal key={key} variants={moveUpV2} delayRange={index * 0.06}>
+          <Reveal key={index} variants={moveUpV2} delayRange={index * 0.06}>
             <div
               className={`py-30 ${
                 index !== 0 ? "border-t border-border-color" : "pt-0"

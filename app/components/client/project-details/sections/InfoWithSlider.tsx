@@ -55,7 +55,7 @@ export default function InfoWithSlider({
           className="w-full"
         >
           {images.map((src, index) => (
-            <SwiperSlide key={src + index}>
+            <SwiperSlide key={index}>
               <div className="relative h-[40.625vw] max-h-[780px] min-h-[430px] w-full rounded-b-[10px] rounded-tr-[10px] overflow-hidden">
                 <Image
                   src={src}
