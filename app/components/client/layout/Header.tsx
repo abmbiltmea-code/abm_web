@@ -56,6 +56,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [update, isHeaderLocked]);
 
+  // useEffect(() => {
+  //   const el = headerRef.current;
+  //   if (!el) return;
+
+  //   if (isHeaderLocked) {
+  //     el.style.transform = "translateY(-160%)";
+  //   } else {
+  //     update();
+  //   }
+  // }, [isHeaderLocked, update]);
+
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
@@ -63,9 +74,18 @@ export default function Header() {
     if (isHeaderLocked) {
       el.style.transform = "translateY(-160%)";
     } else {
-      update();
+      const current = window.scrollY;
+      lastScrollY.current = current;
+
+      if (current > SCROLL_THRESHOLD) {
+        el.style.transform = "translateY(-160%)";
+        setIsScrolled(true);
+      } else {
+        el.style.transform = "translateY(0)";
+        setIsScrolled(false);
+      }
     }
-  }, [isHeaderLocked, update]);
+  }, [isHeaderLocked]);
 
   useLayoutEffect(() => {
     const items =
