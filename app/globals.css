@@ -368,3 +368,10 @@ body {
   background-color: var(--color-primary, #dc2626);
   border-radius: 1px;
 }
+
+
+.division-overview-content p {
+  color: var(--color-description-color);
+  font-size: var(--text-20);
+  line-height: 1.75;
+}

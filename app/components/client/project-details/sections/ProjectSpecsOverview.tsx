@@ -55,7 +55,7 @@ export default function ProjectSpecsOverview({
         <SectionTitle title="Project Overview" className="mb-5" />
 
         <div
-          className="space-y-7 text-description-2 text-description-color"
+          className="space-y-6 3xl:space-y-7 text-description-2 text-description-color"
           dangerouslySetInnerHTML={{ __html: projectOverview }}
         />
 

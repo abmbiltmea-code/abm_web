@@ -18,7 +18,9 @@ const InnerCtaSecondary = ({
     <div className="py-100 3xl:py-[105px] bg-secondary rounded-[10px]">
       <div className="flex flex-col gap-40 px-100">
         <SectionTitle title={title} className={`${maxTitleWidth} text-white`} />
-        <CustomButton text={btnText} href={btnLink} />
+        <div>
+          <CustomButton text={btnText} href={btnLink} />
+        </div>
       </div>
     </div>
   );
