@@ -115,5 +115,5 @@ export const strengthsData = {
 export const cta2Data = {
   title: "Explore Our Expertise Through Our Project Portfolio",
   btnText: "View ABM Construction Projects",
-  btnLink: "/projects",
+  btnLink: "/projects?division=Construction",
 };
