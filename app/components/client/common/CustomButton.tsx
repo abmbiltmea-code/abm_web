@@ -6,10 +6,11 @@ import { useState } from "react";
 interface CustomButtonBaseProps {
   text: string;
   className?: string;
+  onClick?: () => void;
 }
 
 interface CustomButtonAsLink extends CustomButtonBaseProps {
-  href: string;
+  href?: string;
   type?: never;
   disabled?: never;
 }
@@ -23,7 +24,7 @@ interface CustomButtonAsButton extends CustomButtonBaseProps {
 type CustomButtonProps = CustomButtonAsLink | CustomButtonAsButton;
 
 export default function CustomButton(props: CustomButtonProps) {
-  const { text, className = "" } = props;
+  const { text, className = "", onClick } = props;
   const [pulse, setPulse] = useState(false);
 
   const content = (
@@ -112,6 +113,7 @@ export default function CustomButton(props: CustomButtonProps) {
   return (
     <button
       type={props.type}
+      onClick={props.onClick}
       disabled={props.disabled}
       className={`${sharedClassName} disabled:opacity-50 disabled:cursor-not-allowed`}
       {...sharedHandlers}

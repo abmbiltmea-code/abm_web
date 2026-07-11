@@ -288,7 +288,7 @@ body {
 }
 
 @utility text-description-2 {
-  @apply text-20 leading-[1.3] 3xl:leading-[1.5] font-parabolica;
+  @apply text-20 leading-[1.3] xl:leading-normal font-parabolica;
 }
 
 @utility section-content-spacing {
@@ -297,6 +297,10 @@ body {
 
 @utility section-content-spacing-2 {
   @apply ml-[25.3%] 3xl:w-[1285px];
+}
+
+@utility box-size {
+  @apply w-[30px] h-[30px] md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-15 xl:h-15;
 }
 
 @keyframes progress-line {
@@ -332,4 +336,35 @@ body {
 
 .animate-scroll-bounce {
   animation: scrollBounce 0.8s ease-in-out infinite alternate;
+}
+
+
+.work-methodology-content {
+  color: var(--color-description-color, #6b7280);
+  font-size: var(--text-20);
+  line-height: 1.5;
+}
+
+.work-methodology-content p {
+  font-size: var(--text-20);
+  line-height: 1.5;
+  color: var(--color-description-color);
+}
+
+
+.work-methodology-content ul li,
+.work-methodology-content ol li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.work-methodology-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-primary, #dc2626);
+  border-radius: 1px;
 }

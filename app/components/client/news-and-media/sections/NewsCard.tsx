@@ -21,7 +21,7 @@ export default function NewsCard({
         <Image src={image} alt={title} fill className="object-cover" />
       </div>
 
-        <div className="absolute top-30 3xl:top-40 right-30 3xl:right-40 w-12 h-12 3xl:w-15 3xl:h-15 bg-primary rounded-[5px] flex items-center justify-center scale-50 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100">
+        <div className="absolute top-30 3xl:top-40 right-30 3xl:right-40 box-size bg-primary rounded-[5px] flex items-center justify-center scale-50 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100">
           <Image
             src={"/assets/icons/arrow-right-top.svg"}
             alt={"arrow"}

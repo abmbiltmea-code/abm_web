@@ -61,7 +61,7 @@ export default function ContactSection() {
                   viewport={{ once: true }}
                 >
                 <div className="flex items-start gap-20">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-15 lg:h-15 rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
+                  <div className="box-size rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
                     <Image
                       src={info.icon}
                       alt={info.title}
