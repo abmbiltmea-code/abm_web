@@ -17,6 +17,12 @@ import { useHeaderLocked } from "@/app/lib/headerLock";
 const SCROLL_THRESHOLD = 100;
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
 
+// helper function to check if the current page is a detail page
+const DETAIL_PAGE_PREFIXES = ["/news-and-media/", "/careers/", "/projects/"];
+function isDetailPage(pathname: string) {
+  return DETAIL_PAGE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
 export default function Header() {
   const headerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
@@ -26,6 +32,7 @@ export default function Header() {
   const isHeaderLocked = useHeaderLocked();
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const isDetail = isDetailPage(pathname);
 
   const update = useCallback(() => {
     const current = window.scrollY;
@@ -122,7 +129,9 @@ export default function Header() {
       <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-5 2xl:py-[30px]">
         <div
           aria-hidden
-          className={`absolute inset-y-0 left-1/2 -translate-x-1/2 bg-white/75 backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
+          className={`absolute inset-y-0 left-1/2 -translate-x-1/2 ${
+            isDetail ? "bg-cream-background" : "bg-white/75"
+          } backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
             isScrolled
               ? "w-screen rounded-none shadow-[0px_4px_28.9px_0px_rgba(0,0,0,0.09)]"
               : "w-full rounded-[10px]"

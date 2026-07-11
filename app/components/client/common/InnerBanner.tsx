@@ -47,13 +47,13 @@ linear-gradient(249.19deg, rgba(0, 0, 0, 0) 20.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
       </div>
 
       {/* Watermark — sits directly on top of the white pill */}
-      <div className="absolute bottom-[67px] left-[18px] pointer-events-none">
+      <div className="absolute bottom-[31px] lg:bottom-[40px] xl:bottom-[50px] 3xl:bottom-[67px] left-[18px] pointer-events-none">
         <Image
           src="/assets/images/logos/abm-watermark-banner.svg"
           alt="ABM Watermark"
           width={853}
           height={225}
-          className="h-[170px] 3xl:h-[225px] w-auto"
+          className="h-[170px] lg:h-[180px] xl:h-[200px] 3xl:h-[225px] w-auto"
         />
       </div>
 
