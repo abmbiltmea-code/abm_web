@@ -337,3 +337,34 @@ body {
 .animate-scroll-bounce {
   animation: scrollBounce 0.8s ease-in-out infinite alternate;
 }
+
+
+.work-methodology-content {
+  color: var(--color-description-color, #6b7280);
+  font-size: var(--text-20);
+  line-height: 1.5;
+}
+
+.work-methodology-content p {
+  font-size: var(--text-20);
+  line-height: 1.5;
+  color: var(--color-description-color);
+}
+
+
+.work-methodology-content ul li,
+.work-methodology-content ol li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.work-methodology-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-primary, #dc2626);
+  border-radius: 1px;
+}
