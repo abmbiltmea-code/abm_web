@@ -20,7 +20,7 @@ const Standards = ({
               key={index}
               className="flex items-center gap-20 border border-border-color rounded-[10px] px-40 py-40 3xl:py-[38px]"
             >
-              <div className="w-12 h-12 3xl:w-15 3xl:h-15 bg-primary rounded-[5px] flex items-center justify-center">
+              <div className="box-size bg-primary rounded-[5px] flex items-center justify-center">
                 <Image
                   src={standard.icon}
                   alt={standard.title}

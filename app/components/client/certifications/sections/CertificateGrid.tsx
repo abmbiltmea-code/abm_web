@@ -30,7 +30,7 @@ function CertificateCard({ item, onClick }: CertificateCardProps) {
           }}
         />
         <div className="z-20 absolute top-30 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-          <div className="bg-primary/10 border border-white rounded-full w-15 h-15 flex items-center justify-center">
+          <div className="bg-primary/10 border border-white rounded-full box-size flex items-center justify-center">
             <Image
               src="/assets/icons/plus-primary.svg"
               alt="plus-icon"

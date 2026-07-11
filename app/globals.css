@@ -299,6 +299,10 @@ body {
   @apply ml-[25.3%] 3xl:w-[1285px];
 }
 
+@utility box-size {
+  @apply w-[30px] h-[30px] md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-15 xl:h-15;
+}
+
 @keyframes progress-line {
   from { width: 0%; }
   to   { width: 100%; }
