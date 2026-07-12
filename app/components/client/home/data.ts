@@ -184,31 +184,31 @@ export const ourProjectsData = {
   description:
     "ABM's portfolio spans some of the most prestigious addresses in Dubai, from high-rise residential towers and five-star hotels to government facilities and major infrastructure projects. ",
   buttonText: "VIEW ALL PROJECTS",
-  href: "#",
+  href: "/projects",
   projects: [
     {
       image: "/assets/images/home/projects/01.jpg",
       title: "Hyatt Regency - Creek Heights  ",
       location: "Dubai Healthcare City",
-      href: "#",
+      href: "/projects/hyatt-regency-creek-heights",
     },
     {
       image: "/assets/images/home/projects/02.jpg",
       title: "Vida Residence",
       location: "Downtown Dubai",
-      href: "#",
+      href: "/projects/vida-residence",
     },
     {
       image: "/assets/images/home/projects/03.jpg",
       title: "The Peninsula Five ",
       location: "Business Bay",
-      href: "#",
+      href: "/projects/the-peninsula-five",
     },
     {
       image: "/assets/images/home/projects/04.jpg",
       title: "Grosvenor House - II",
       location: "Dubai Marina",
-      href: "#",
+      href: "/projects/grosvenor-house-ii",
     },
   ],
 };

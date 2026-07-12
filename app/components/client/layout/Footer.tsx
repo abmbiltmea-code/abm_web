@@ -54,13 +54,15 @@ export default function Footer() {
             </div>
             {/* Left — Logo */}
             <div className="shrink-0 lg:pr-50 min-[1800px]:pr-[53.23px] mb-40 w-fit">
-              <Image
-                src={logo.src}
-                alt="logo"
-                width={1300}
-                height={270}
-                className="h-[36.15px] sm:h-[66px] w-auto pointer-events-none"
-              />
+              <Link href="/">
+                <Image
+                  src={logo.src}
+                  alt="logo"
+                  width={1300}
+                  height={270}
+                  className="h-[36.15px] sm:h-[66px] w-auto pointer-events-none"
+                />
+              </Link>
             </div>
             {/* Middle — Contact info */}
             <div className="flex flex-col">

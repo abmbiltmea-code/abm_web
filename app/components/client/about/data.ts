@@ -164,3 +164,78 @@ export const ctaData = {
     "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
   image: "/assets/images/about/cta.jpg",
 };
+
+
+
+export const growthJourneyData = {
+  label: "Growth Journey",
+  title: "Our Evolution",
+  description:
+    "A timeline-style section showing company growth, milestones, expansion into divisions.",
+  items: [
+    {
+      id: "1987",
+      year: "1987",
+      title: "Company Founded",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/why-choose/1.jpg",
+    },
+    {
+      id: "1988",
+      year: "1988",
+      title: "First Expansion",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/why-choose/2.jpg",
+    },
+    {
+      id: "1989",
+      year: "1989",
+      title: "New Division",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/why-choose/3.jpg",
+    },
+    {
+      id: "1990",
+      year: "1990",
+      title: "Regional Growth",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/why-choose/4.jpg",
+    },
+    {
+      id: "2001",
+      year: "2001",
+      title: "Jumeirah Lakes Towers",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/evolution/2001.jpg",
+    },
+    {
+      id: "2010",
+      year: "2010",
+      title: "Portfolio Growth",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/core-values/1.jpg",
+    },
+    {
+      id: "2012",
+      year: "2012",
+      title: "New Markets",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/core-values/2.jpg",
+    },
+    {
+      id: "2013",
+      year: "2013",
+      title: "Sustainability Focus",
+      description:
+        "A timeline-style section showing company growth, milestones, expansion into divisions.",
+      image: "/assets/images/about/core-values/3.jpg",
+    },
+  ],
+};

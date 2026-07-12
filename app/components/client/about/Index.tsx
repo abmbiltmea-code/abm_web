@@ -3,6 +3,7 @@ import InnerCta from "../common/InnerCta";
 import { bannerData, ctaData } from "./data";
 import AboutSection from "./sections/AboutSection";
 import CoreValuesSection from "./sections/CoreValues";
+import Evolution from "./sections/Evolution";
 import GroupCompanies from "./sections/GroupCompanies";
 import PurposeSection from "./sections/PurposeSection";
 import VideoSection from "./sections/VideoSection";
@@ -16,6 +17,7 @@ const Index = () => {
       <VideoSection />
       <PurposeSection />
       <CoreValuesSection />
+      <Evolution />
       <GroupCompanies />
       <WhyChooseUs />
       <InnerCta {...ctaData} />
