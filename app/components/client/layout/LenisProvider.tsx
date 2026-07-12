@@ -1,7 +1,93 @@
+// "use client";
+
+// import Lenis from "lenis";
+// import { createContext, useContext, useEffect, useRef } from "react";
+
+// type LenisContextType = {
+//   scrollTo: (target: number | string | HTMLElement, options?: object) => void;
+//   lock: () => void;
+//   unlock: () => void;
+//   resize: () => void;
+// };
+
+// const LenisContext = createContext<LenisContextType>({
+//   scrollTo: () => {},
+//   lock: () => {},
+//   unlock: () => {},
+//   resize: () => {},
+// });
+
+// export const useLenis = () => useContext(LenisContext);
+
+// export default function LenisProvider({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   const lenisRef = useRef<Lenis | null>(null);
+//   const lockedRef = useRef(false);
+
+//   useEffect(() => {
+//     const lenis = new Lenis({
+//       lerp: 0.1,
+//       syncTouch: true,
+//       autoRaf: true,
+//     });
+
+//     lenisRef.current = lenis;
+
+//     // apply any lock requested before this instance existed
+//     if (lockedRef.current) {
+//       lenis.stop();
+//     }
+
+//     return () => {
+//       lenis.destroy();
+//       lenisRef.current = null;
+//     };
+//   }, []);
+
+//   const scrollTo: LenisContextType["scrollTo"] = (target, options) => {
+//     lenisRef.current?.scrollTo(target as any, options);
+//   };
+
+//   const lock = () => {
+//     lockedRef.current = true;
+//     lenisRef.current?.stop();
+//   };
+
+//   const unlock = () => {
+//     lockedRef.current = false;
+//     lenisRef.current?.start();
+//   };
+
+//   const resize = () => {
+//     lenisRef.current?.resize();
+//   };
+
+//   return (
+//     <LenisContext.Provider value={{ scrollTo, lock, unlock, resize }}>
+//       {children}
+//     </LenisContext.Provider>
+//   );
+// }
+
 "use client";
 
 import Lenis from "lenis";
-import { createContext, useContext, useEffect, useRef } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { usePathname } from "next/navigation";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type LenisContextType = {
   scrollTo: (target: number | string | HTMLElement, options?: object) => void;
@@ -26,48 +112,85 @@ export default function LenisProvider({
 }) {
   const lenisRef = useRef<Lenis | null>(null);
   const lockedRef = useRef(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.1,
-      syncTouch: true,
-      autoRaf: true,
-    });
-
+    const lenis = new Lenis({ lerp: 0.1, syncTouch: true });
     lenisRef.current = lenis;
 
-    // apply any lock requested before this instance existed
+    const raf = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(0);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // apply whatever lock state was requested before Lenis existed
     if (lockedRef.current) {
+      document.documentElement.style.overflow = "hidden";
       lenis.stop();
+    } else {
+      document.documentElement.style.overflow = "";
+      // lenis starts running by default, nothing else needed
     }
 
+    const failsafe = setTimeout(() => {
+      if (lenis.isStopped) {
+        console.warn("Lenis failsafe: force-unlocking stuck scroll");
+        lockedRef.current = false;
+        document.documentElement.style.overflow = "";
+        lenis.start();
+      }
+    }, 5000);
+
     return () => {
+      clearTimeout(failsafe);
+      gsap.ticker.remove(raf);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  const scrollTo: LenisContextType["scrollTo"] = (target, options) => {
-    lenisRef.current?.scrollTo(target as any, options);
-  };
+  // route change: reset scroll, refresh ScrollTrigger once layout settles
+  useEffect(() => {
+    if (!lenisRef.current) return;
+    lenisRef.current.scrollTo(0, { immediate: true });
 
-  const lock = () => {
+    const t = setTimeout(() => {
+      lenisRef.current?.resize();
+      ScrollTrigger.refresh();
+    }, 300);
+
+    return () => clearTimeout(t);
+  }, [pathname]);
+
+  const scrollTo = useCallback<LenisContextType["scrollTo"]>(
+    (target, options) => {
+      lenisRef.current?.scrollTo(target as any, options);
+    },
+    [],
+  );
+
+  const lock = useCallback(() => {
     lockedRef.current = true;
     lenisRef.current?.stop();
-  };
+  }, []);
 
-  const unlock = () => {
+  const unlock = useCallback(() => {
     lockedRef.current = false;
+    document.documentElement.style.overflow = "";
     lenisRef.current?.start();
-  };
+  }, []);
 
-  const resize = () => {
+  const resize = useCallback(() => {
     lenisRef.current?.resize();
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ scrollTo, lock, unlock, resize }),
+    [scrollTo, lock, unlock, resize],
+  );
 
   return (
-    <LenisContext.Provider value={{ scrollTo, lock, unlock, resize }}>
-      {children}
-    </LenisContext.Provider>
+    <LenisContext.Provider value={value}>{children}</LenisContext.Provider>
   );
 }

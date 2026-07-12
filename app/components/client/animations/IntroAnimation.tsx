@@ -27,11 +27,14 @@ export default function IntroAnimation() {
   const rightLogoRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!INTRO_ENABLED) {
-      window.__introComplete = true;
-      window.dispatchEvent(new Event("introComplete"));
-      return;
-    }
+
+
+      if (!INTRO_ENABLED) {
+    window.__introComplete = true;
+    window.dispatchEvent(new Event("introComplete"));
+    unlock();
+    return;
+  }
 
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
