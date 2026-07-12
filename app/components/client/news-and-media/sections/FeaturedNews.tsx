@@ -33,7 +33,10 @@ export default function FeaturedNews({
             <span className="inline-block h-[18px] w-px bg-description-color mx-3" />{" "}
             {date}
           </p>
-          <CustomButton text="Read News" href="#" />
+          <CustomButton
+            text="Read News"
+            href={`/news-and-media/${title.toLowerCase().replace(/ /g, "-")}`}
+          />
         </div>
       </div>
     </div>

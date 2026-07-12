@@ -1,11 +1,11 @@
 export const NAV_ITEMS = [
-  { label: "ABOUT", href: "#" },
-  { label: "OUR SECTORS", href: "#" },
-  { label: "OUR DIVISIONS", href: "#" },
-  { label: "PROJECT", href: "#" },
-  { label: "CLIENTS", href: "#" },
-  { label: "HOW WE WORK", href: "#" },
-  { label: "GALLERY", href: "#" },
+  { label: "ABOUT", href: "/about" },
+  { label: "OUR SECTORS", href: "/sectors" },
+  { label: "OUR DIVISIONS", href: "/construction-division" },
+  { label: "PROJECT", href: "/projects" },
+  { label: "CLIENTS", href: "/clients" },
+  { label: "HOW WE WORK", href: "/how-we-work" },
+  { label: "GALLERY", href: "/gallery" },
 ];
 
 export const footerData = {
@@ -36,16 +36,16 @@ export const footerData = {
 
   navLinks: [
     { label: "HOME", href: "/" },
-    { label: "CERTIFICATIONS", href: "#" },
-    { label: "HOW WE WORK", href: "#" },
-    { label: "ABOUT", href: "#" },
-    { label: "CLIENTS", href: "#" },
-    { label: "CAREERS", href: "#" },
-    { label: "OUR DIVISIONS", href: "#" },
-    { label: "NEWS & MEDIA", href: "#" },
-    { label: "GALLERY", href: "#" },
-    { label: "PROJECTS", href: "#" },
-    { label: "CONTACT US", href: "#" },
+    { label: "CERTIFICATIONS", href: "/certifications-and-accreditations" },
+    { label: "HOW WE WORK", href: "/how-we-work" },
+    { label: "ABOUT", href: "/about" },
+    { label: "CLIENTS", href: "/clients" },
+    { label: "CAREERS", href: "/careers" },
+    { label: "OUR DIVISIONS", href: "/construction-division" },
+    { label: "NEWS & MEDIA", href: "/news-and-media" },
+    { label: "GALLERY", href: "/gallery" },
+    { label: "PROJECTS", href: "/projects" },
+    { label: "CONTACT US", href: "/contact-us" },
   ],
 
   legal: [
