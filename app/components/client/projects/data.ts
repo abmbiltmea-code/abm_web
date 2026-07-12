@@ -17,9 +17,6 @@ export const sectionHeaderData = {
     "Explore our portfolio of completed and ongoing projects, showcasing our expertise in delivering quality, precision, and reliable execution.",
 };
 
-
-
-
 export type Sector =
   | "Residential"
   | "Commercial"

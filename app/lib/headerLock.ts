@@ -31,6 +31,14 @@ function release() {
 export function useHeaderLocked() {
   return useSyncExternalStore(subscribe, getSnapshot, () => false);
 }
+export function acquireHeaderLock() {
+  acquire();
+}
+
+export function releaseHeaderLock() {
+  release();
+}
+
 export function useLockHeader(isOpen: boolean) {
   useEffect(() => {
     if (!isOpen) return;

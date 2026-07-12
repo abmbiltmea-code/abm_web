@@ -7,12 +7,14 @@ type LenisContextType = {
   scrollTo: (target: number | string | HTMLElement, options?: object) => void;
   lock: () => void;
   unlock: () => void;
+  resize: () => void;
 };
 
 const LenisContext = createContext<LenisContextType>({
   scrollTo: () => {},
   lock: () => {},
   unlock: () => {},
+  resize: () => {},
 });
 
 export const useLenis = () => useContext(LenisContext);
@@ -59,8 +61,12 @@ export default function LenisProvider({
     lenisRef.current?.start();
   };
 
+  const resize = () => {
+    lenisRef.current?.resize();
+  };
+
   return (
-    <LenisContext.Provider value={{ scrollTo, lock, unlock }}>
+    <LenisContext.Provider value={{ scrollTo, lock, unlock, resize }}>
       {children}
     </LenisContext.Provider>
   );

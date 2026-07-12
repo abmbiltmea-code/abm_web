@@ -3,6 +3,7 @@ import InnerCta from "../common/InnerCta";
 import { bannerData, sectionHeaderData, ctaData } from "./data";
 import SectionHeader from "../common/SectionHeader";
 import ProjectsMain from "./sections/Main";
+import { Suspense } from "react";
 
 const Index = () => {
   return (
@@ -15,7 +16,9 @@ const Index = () => {
         titleClassName="max-w-[25ch]"
         descriptionClassName="max-w-[65ch] 3xl:max-w-[78ch]"
       />
-      <ProjectsMain />
+      <Suspense>
+        <ProjectsMain />
+      </Suspense>
       <InnerCta {...ctaData} />
     </>
   );

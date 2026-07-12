@@ -69,7 +69,7 @@ export default function OpenPositions() {
                 </div>
 
                 <div className="flex items-stretch gap-10 shrink-0">
-                  <CustomButton href="#" text="Apply Now" />
+                  <CustomButton href={`/careers/${job.title.toLowerCase().replace(" ", "-")}`} text="Apply Now" />
                 </div>
               </div>
             ))}
