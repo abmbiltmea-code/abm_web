@@ -79,7 +79,9 @@ export default function Footer() {
                     ADDRESS
                   </span>
                   <p className="text-description-2 text-description-color flex gap-[10px] hover:text-primary transition-colors duration-300 text-wrap max-w-[40ch]">
-                    <Link target="_blank" href={address.href}>{address.value}</Link>
+                    <Link target="_blank" href={address.href}>
+                      {address.value}
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -234,14 +236,32 @@ export default function Footer() {
                 className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
               >
                 {social.label}
-                <div>
-                  <Image
-                    src="/assets/icons/arrow-right-top.svg"
-                    alt=""
+                <div className="text-[#333333] group-hover:text-primary transition-colors duration-300">
+                  <svg
                     width={16}
                     height={16}
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                     className="group-hover:rotate-45 group-hover:translate-x-1 transition-transform duration-300 pointer-events-none"
-                  />
+                  >
+                    <path
+                      d="M15 1L1 15"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M15 11.27V1H4.73"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
               </Link>
             ))}
