@@ -54,8 +54,8 @@ export default function LogoGrid({ items, line = false }: LogoGridProps) {
     <section className="container pb-[60px] md:pb-120 3xl:pb-150 relative">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-50 3xl:gap-[52px]">
         {items.map((item, i) => (
-          <Reveal variants={moveUpV2}>
-            <LogoCard key={i} item={item} />
+          <Reveal key={i} variants={moveUpV2}>
+            <LogoCard item={item} />
           </Reveal>
         ))}
       </div>
