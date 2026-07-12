@@ -13,6 +13,7 @@ import { gsap } from "gsap";
 import { NAV_ITEMS } from "./data";
 import { usePathname } from "next/navigation";
 import { useHeaderLocked } from "@/app/lib/headerLock";
+import DropdownMenu from "./DropDownMenu";
 
 const SCROLL_THRESHOLD = 100;
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
@@ -32,6 +33,7 @@ export default function Header() {
   const isHeaderLocked = useHeaderLocked();
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isDetail = isDetailPage(pathname);
 
   const update = useCallback(() => {
@@ -62,17 +64,6 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [update, isHeaderLocked]);
-
-  // useEffect(() => {
-  //   const el = headerRef.current;
-  //   if (!el) return;
-
-  //   if (isHeaderLocked) {
-  //     el.style.transform = "translateY(-160%)";
-  //   } else {
-  //     update();
-  //   }
-  // }, [isHeaderLocked, update]);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -177,6 +168,7 @@ export default function Header() {
           </nav>
           <button
             data-header-anim
+            onClick={() => setIsMenuOpen(true)}
             className="flex items-center justify-center w-[38px] h-[32px] md:w-[60px] md:h-[50px] shrink-0 bg-black/10 rounded-[4px] md:rounded-[5px] cursor-pointer"
           >
             <Image
@@ -189,6 +181,8 @@ export default function Header() {
           </button>
         </div>
       </header>
+      <DropdownMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
     </div>
   );
 }
