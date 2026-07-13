@@ -45,9 +45,7 @@ export default function SustainablePractices() {
             <div
               key={item.title}
               onMouseEnter={() => handleSetActive(index)}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-              className={`rounded-[10px] px-30 3xl:px-40 pt-50 pb-30 transition-colors cursor-pointer -mr-px -mb-px ${
+              className={`rounded-[10px] px-30 3xl:px-40 pt-50 pb-30 transition-colors -mr-px -mb-px ${
                 active === index
                   ? "bg-primary/10 border border-primary/10 z-10"
                   : "border border-border-color z-0"
