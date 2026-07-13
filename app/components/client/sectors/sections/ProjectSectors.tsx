@@ -3,7 +3,6 @@ import { projectSectorsData } from "../data";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
-import InnerCtaSecondary from "../../common/InnerCtaSecondary";
 
 const ProjectSectors = () => {
   return (
@@ -15,13 +14,13 @@ const ProjectSectors = () => {
           return (
             <div
               key={item.title}
-              className={`flex flex-col lg:flex-row  items-center justify-between pt-40 pb-80 gap-y-30 gap-x-80 3xl:gap-x-[81px] ${
+              className={`flex flex-col lg:flex-row items-center justify-between pt-40 pb-80 gap-y-30 gap-x-80 3xl:gap-x-[81px] ${
                 index !== 0 ? "border-t border-border-color" : ""
               }`}
             >
               {/* Text content */}
               <div
-                className={`flex flex-col ${
+                className={`flex flex-col w-full lg:w-[48%] 3xl:w-auto ${
                   isEven ? "lg:order-2" : "lg:order-1"
                 }`}
               >
@@ -35,7 +34,7 @@ const ProjectSectors = () => {
 
               {/* Image */}
               <div
-                className={`relative w-full h-[280px] lg:h-[400px] 3xl:h-[520px] rounded-[10px] min-w-[50%] 3xl:min-w-auto 3xl:max-w-[850px] overflow-hidden ${
+                className={`relative w-full lg:w-[52%] h-[280px] lg:h-[400px] rounded-[10px] overflow-hidden 3xl:shrink-0 3xl:w-[850px] 3xl:h-[520px] ${
                   isEven ? "lg:order-1" : "lg:order-2"
                 }`}
               >

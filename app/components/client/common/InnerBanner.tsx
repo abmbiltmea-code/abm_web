@@ -24,11 +24,20 @@ export default function InnerBanner({
       />
 
       {/* Overlay */}
-      <div
+      {/* <div
         className="absolute inset-0"
         style={{
           background: `linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
 linear-gradient(249.19deg, rgba(0, 0, 0, 0) 20.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
+        }}
+      /> */}
+
+      {/* Overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+linear-gradient(249.19deg, rgba(0, 0, 0, 0) 28.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
         }}
       />
 

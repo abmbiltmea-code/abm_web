@@ -29,6 +29,7 @@ export default function WhyChooseAbm() {
               const isFirstCol = i % 2 === 0;
               const isFirstRow = i < 2;
               const lastCell = i === whyChooseAbmData.items.length - 1;
+              const secondLastCell = i === whyChooseAbmData.items.length - 2;
 
               return (
                 <Reveal
@@ -48,7 +49,7 @@ export default function WhyChooseAbm() {
                     <span className="shrink-0 flex items-center justify-center bg-primary text-white text-subtitle w-9 h-9">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="text-subtitle-3 text-secondary max-w-[411px]">
+                    <p className={`text-subtitle-3 text-secondary ${secondLastCell ? "max-w-[396px]" : "max-w-[411px]"}`}>
                       {item.title}
                     </p>
                   </div>
