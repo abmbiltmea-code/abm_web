@@ -19,18 +19,18 @@ export default function FeaturedNews({
     <div className="container pb-40">
       <div className="flex flex-col items-center justify-between gap-60 3xl:gap-[68px] lg:flex-row border-b border-border-color pb-50">
         {/* Left: image */}
-        <div className="relative aspect-5/3 w-full overflow-hidden rounded-[10px] 3xl:h-[523px] 3xl:w-[850px] 3xl:shrink-0">
+        <div className="relative aspect-5/3.5 w-full overflow-hidden rounded-[10px] 3xl:h-[523px] 3xl:w-[850px] 3xl:shrink-0">
           <Image src={image} alt={title} fill className="object-cover" />
         </div>
         {/* Right: content */}
         <div className="flex w-full flex-col items-start">
-          <div className="rounded-[10px] border border-border-color px-5 py-1 bg-cream-background text-description-2 text-description-color mb-40">
+          <div className="rounded-[10px] border border-border-color px-5 py-1 bg-cream-background text-description-2 text-description-color mb-40 min-h-[38px] leading-0 flex justify-between items-center">
             Featured News
           </div>
           <SectionTitle title={title} className="mb-30" />
           <p className="text-description-2 text-description-color mb-40 flex items-center">
             {category}{" "}
-            <span className="inline-block h-[18px] w-px bg-description-color mx-3" />{" "}
+            <span className="inline-block h-[21px] w-px bg-description-color mx-[14px]" />{" "}
             {date}
           </p>
           <CustomButton
