@@ -2,6 +2,7 @@
 
 import SectionLabel from "@/app/components/client/common/SectionLabel";
 import { workMethodologyData } from "../data";
+import SectionTitle from "../../animations/SectionTitle";
 
 export default function Methodology() {
   const { pageLabel, title, items } = workMethodologyData;
@@ -15,7 +16,8 @@ export default function Methodology() {
 
         {/* Right: content */}
         <div className="flex flex-col lg:section-content-spacing">
-          <div className="flex flex-col">
+          <SectionTitle title={title} className="max-w-[20ch] mb-50" />
+          <div className="flex flex-col max-w-[92%] 3xl:max-w-[1140px]">
             {items.map((item, index) => (
               <div
                 key={item.title}
