@@ -56,12 +56,10 @@ export default function CareerHeader() {
           </span>
         </div>
 
-        <div className="flex items-stretch gap-10 shrink-0">
           <CustomButton
             text="Apply Now"
             onClick={() => setOpen(true)}
           />
-        </div>
       </div>
 
       <CareerApplicationForm

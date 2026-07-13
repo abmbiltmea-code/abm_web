@@ -30,7 +30,7 @@ export default function CustomButton(props: CustomButtonProps) {
 
   const content = (
     <>
-      <span className="text-[11px] sm:text-15 font-bold font-tasa leading-[1.3333333] rounded-[5px] bg-primary text-white p-20 uppercase inline-block">
+      <span className="text-[11px] sm:text-15 font-bold font-tasa leading-[1.3333333] rounded-[5px] bg-primary text-white p-20 uppercase inline-block cursor-pointer">
         <span
           className={`inline-block ${pulse ? "button-text-zoom-pulse" : ""}`}
         >
