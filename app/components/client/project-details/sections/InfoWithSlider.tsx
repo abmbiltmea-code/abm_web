@@ -28,15 +28,15 @@ export default function InfoWithSlider({
   return (
     <div className="container">
       <div className="flex gap-100 bg-secondary rounded-t-[10px] w-fit px-40 pt-5 3xl:pt-[22px] pb-5 3xl:pb-[19px] pr-[10%] min-[1800px]:max-w-[725px]">
-        <div>
+        <div className="3xl:min-w-[100px] shrink-0">
           <p className="text-white text-15 leading-[1.6666667] mb-1 uppercase">Status</p>
           <p className="text-white text-subtitle">{status}</p>
         </div>
-        <div>
+        <div className="3xl:min-w-[100px] shrink-0">
           <p className="text-white text-15 leading-[1.6666667] mb-1 uppercase">Location</p>
           <p className="text-white text-subtitle">{location}</p>
         </div>
-        <div>
+        <div className="3xl:min-w-[100px] shrink-0">
           <p className="text-white text-15 leading-[1.6666667] mb-1 uppercase">Sector</p>
           <p className="text-white text-subtitle">{sector}</p>
         </div>
@@ -73,12 +73,12 @@ export default function InfoWithSlider({
             <SliderNavButton
               direction="prev"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-50 3xl:left-[56px] top-1/2 z-10 -translate-y-1/2"
+              className="absolute left-40 top-1/2 z-10 -translate-y-1/2"
             />
             <SliderNavButton
               direction="next"
               onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-50 3xl:right-[56px] top-1/2 z-10 -translate-y-1/2"
+              className="absolute right-40 top-1/2 z-10 -translate-y-1/2"
             />
           </>
         )}
