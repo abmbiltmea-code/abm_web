@@ -90,7 +90,7 @@ export default function GalleryLightbox({
       e.stopPropagation();
       goPrev();
     },
-    [goPrev]
+    [goPrev],
   );
 
   const handleNextClick = useCallback(
@@ -98,19 +98,15 @@ export default function GalleryLightbox({
       e.stopPropagation();
       goNext();
     },
-    [goNext]
+    [goNext],
   );
 
   return (
     <div
-      className="fixed inset-0 z-999 overflow-y-auto bg-black/80 cursor-pointer"
+      className="fixed inset-0 z-999 overflow-y-auto bg-black/80"
       onClick={onClose}
     >
       <div className="flex min-h-full items-center justify-center py-100 3xl:py-[105px]">
-        {/* Nothing here stops propagation at the row/wrapper level anymore.
-            Only the actual interactive elements (arrows, image, thumbs)
-            stop the click — any empty space around them, even inside
-            these full-width rows, still closes the lightbox. */}
         <div className="container mx-auto flex flex-col items-center">
           {/* Main image row (with lg+ side arrows) */}
           <div className="relative flex w-full items-center justify-center gap-15">
@@ -133,7 +129,7 @@ export default function GalleryLightbox({
                 src={images[activeIndex]}
                 alt=""
                 fill
-                className="object-cover"
+                className="object-cover pointer-events-none"
                 priority
               />
             </div>
