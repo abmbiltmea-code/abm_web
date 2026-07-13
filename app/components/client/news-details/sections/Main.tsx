@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { newsDetailData, relatedTopicsData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
+import SectionLabel from "../../common/SectionLabel";
 
 export default function Main() {
   return (
@@ -22,7 +23,7 @@ export default function Main() {
             </Link>
           </div>
 
-          <div className="flex flex-col gap-y-30 3xl:gap-y-[33px]">
+          <div className="flex flex-col gap-y-30 3xl:gap-y-[33px] shrink-0">
             {relatedTopicsData.items.map((item) => (
               <Link
                 key={item.id}
@@ -60,10 +61,7 @@ export default function Main() {
         {/* Detail content */}
         <div className="w-full xl:ml-[6%] 3xl:ml-[8.4%]">
           <div className="flex items-center justify-between mb-60">
-            <span className="text-description-2 text-description-color flex items-center gap-[10px]">
-              <span className="w-[7px] h-[7px] bg-primary"></span>
-              {newsDetailData.category}
-            </span>
+            <SectionLabel title={newsDetailData.category} />
             <span className="text-description-2 text-description-color">
               Publish Date: {newsDetailData.publishDate}
             </span>
