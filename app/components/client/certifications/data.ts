@@ -20,7 +20,7 @@ export const sectionHeaderData = {
 export const ctaData2 = {
   ctaTitle: "Discover the Standards That Guide Our Work",
   ctaBtnText: "Learn About Our Standards",
-  ctaBtnLink: "#",
+  ctaBtnLink: "/how-we-work",
 };
 
 export const certificates = [

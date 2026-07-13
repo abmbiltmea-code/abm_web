@@ -147,9 +147,9 @@ export default function CertificateLightbox({
             </div>
           )}
 
-          <div className="text-center text-white">
-            <h3 className="text-lg sm:text-xl font-semibold">{activeItem.name}</h3>
-            <p className="text-sm sm:text-base text-white/70">Authority: {activeItem.label}</p>
+          <div className="text-center">
+            <h3 className="text-subtitle-3 mb-2 text-white">{activeItem.name}</h3>
+            <p className="text-subtitle text-white/70 uppercase">Authority: {activeItem.label}</p>
           </div>
         </div>
       </div>

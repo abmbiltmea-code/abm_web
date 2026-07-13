@@ -10,7 +10,7 @@ const Standards = ({
   ctaData2: any;
 }) => {
   return (
-    <section className="relative py-[60px] md:py-120 3xl:py-150">
+    <section className="relative pb-[60px] md:pb-120 3xl:pb-150 pt-120 3xl:pt-140">
       <div className="bg-cream-background absolute inset-0 h-[66%]" />
       <div className="relative container">
         <SectionTitle title="Compliance & Standards" className="mb-50" />
