@@ -1,3 +1,5 @@
+import image from "next/image";
+
 export const relatedTopicsData = {
   label: "RELATED TOPICS",
   viewAllHref: "/news-and-media",
@@ -55,4 +57,11 @@ export const newsDetailData = {
       <li>Sustainable building practices</li>
     </ul>
   `,
+};
+
+export const ctaData = {
+  title: "Explore Our Work ",
+  description:
+    `Ready to start your next project<span class="font-tasa">?</span> Get in touch with our team of experts for a consultation or quote.`,
+  image: "/assets/images/about/cta.jpg",
 };
