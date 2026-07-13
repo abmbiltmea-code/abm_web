@@ -24,8 +24,8 @@ export const EMPTY_FILTERS: Filters = {
 
 export default function FilterBar({ filters, onChange }: FilterBarProps) {
   return (
-    <div className="flex justify-between bg-cream-background py-30 3xl:py-[27px] px-30">
-      <div className="grid flex-1 3xl:flex-none grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-[88%] 3xl:max-w-auto">
+    <div className="flex justify-between bg-cream-background px-30  py-30 3xl:py-[26px] rounded-[10px]">
+      <div className="grid flex-1 3xl:flex-none grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-[88%] 3xl:max-w-auto self-end pb-[7px]">
         <FilterSelectDropDown
           label="Division"
           options={DIVISIONS}
