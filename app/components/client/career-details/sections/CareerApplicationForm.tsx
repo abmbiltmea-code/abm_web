@@ -57,7 +57,7 @@ export default function CareerApplicationForm({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[9999] bg-black/80 flex items-start sm:items-center justify-center overflow-y-auto py-70"
+          className="fixed inset-0 z-9999 bg-black/80 flex items-start sm:items-center justify-center overflow-y-auto py-70"
         >
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
@@ -65,7 +65,7 @@ export default function CareerApplicationForm({
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="container !p-0 bg-white rounded-[10px] w-full"
+            className="container !p-0 bg-white rounded-[10px] w-full min-[1900px]:!max-w-[1720px]"
           >
             <div className="p-40">
               <div className="flex items-center justify-between pb-20 mb-40 border-b border-border-color">

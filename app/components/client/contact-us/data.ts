@@ -4,7 +4,7 @@ export const bannerData = {
 };
 
 export const CONNECT_INFO = {
-  heading: "LET'S CONNECT",
+  heading: "Let’s Connect",
   description:
     "Connect with ABM for career opportunities, project inquiries, and collaborations. We're here to help you build something great together.",
   image: {

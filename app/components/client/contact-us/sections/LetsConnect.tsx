@@ -17,11 +17,11 @@ export default function LetsConnect() {
 
           <SectionDescription
             text={CONNECT_INFO.description}
-            className="!text-description-2 text-description-color mb-50"
+            className="!text-description-2 text-description-color mb-50 max-w-[50ch]"
           />
 
           <div className="bg-cream-background rounded-[10px] p-30 3xl:p-40">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-70 3xl:gap-120">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-70 3xl:gap-120 min-[1900px]:gap-[172px]">
               {/* Address */}
               <div className="flex items-start min-[1900px]:min-w-[330px]">
                 <Image
@@ -61,7 +61,7 @@ export default function LetsConnect() {
             {/* Divider */}
             <div className="w-full h-px bg-border-color my-30" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-70 3xl:gap-120">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-70 3xl:gap-120 min-[1900px]:gap-[172px]">
               {/* Email */}
               <div className="flex items-start min-[1900px]:min-w-[350px]">
                 <Image

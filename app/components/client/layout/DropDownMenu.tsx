@@ -93,14 +93,14 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-[35px] w-[40px] cursor-pointer items-center justify-center bg-black/10 xl:h-[50px] xl:w-[60px] rounded-[5px]"
+            className="flex h-[35px] w-[40px] cursor-pointer items-center justify-center bg-black/10 xl:h-[50px] xl:w-[60px] rounded-[5px] group"
           >
             <Image
               src="/assets/icons/close-black.svg"
               alt="Close"
               width={20}
               height={20}
-              className="pointer-events-none h-[14px] w-auto md:h-[20px]"
+              className="pointer-events-none h-[14px] w-auto md:h-[20px] group-hover:scale-120 transition-transform duration-500 ease-in-out"
             />
           </button>
         </div>
@@ -118,14 +118,14 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
                   onMouseEnter={() => setActiveIndex(i)}
                   className="relative flex items-center gap-100 py-30 3xl:py-[35px] pl-60 3xl:pl-80"
                 >
-                  <span
-                    className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent transition-opacity duration-300 ease-in-out ${
-                      isActive ? "opacity-100" : "opacity-0"
+<span
+                    className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent origin-left transition-transform duration-500 ease-in-out ${
+                      isActive ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
                   <span
-                    className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent transition-opacity duration-300 ease-in-out ${
-                      isActive ? "opacity-100" : "opacity-0"
+                    className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent origin-right transition-transform duration-500 ease-in-out ${
+                      isActive ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
 
