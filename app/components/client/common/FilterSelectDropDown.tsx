@@ -107,7 +107,7 @@ export default function FilterSelectDropDown({
               <button
                 type="button"
                 onClick={() => handleSelect(null)}
-                className="block w-full px-4 py-2.5 text-left text-description-2 text-description-color hover:bg-cream-background"
+                className="block w-full px-4 py-2.5 text-left text-description-2 text-description-color bg-primary/10 rounded-b-[10px]"
               >
                 {label}
               </button>
