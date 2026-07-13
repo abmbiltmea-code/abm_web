@@ -41,7 +41,7 @@ export default function NewsCard({
           }}
         />
 
-        <div className="relative z-20 max-h-[220px] overflow-hidden bg-cream-background p-30 opacity-100 transition-all duration-500 ease-in-out group-hover:max-h-0 group-hover:p-0 group-hover:opacity-0 3xl:max-h-[280px] 3xl:p-40">
+        <div className="relative z-20 max-h-[220px] overflow-hidden bg-cream-background p-30 opacity-100 transition-all duration-500 ease-in-out group-hover:max-h-0 group-hover:p-0 group-hover:opacity-0 3xl:max-h-[250px] 3xl:p-40">
           <h3 className="text-subtitle-3 text-secondary line-clamp-2">
             {title}
           </h3>

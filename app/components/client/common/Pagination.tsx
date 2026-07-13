@@ -75,7 +75,7 @@ const Pagination = ({
   const pages = getPages();
 
   const boxBase =
-    "flex items-center justify-center box-size rounded-[5px] border transition-colors duration-300 cursor-pointer";
+    "flex items-center justify-center box-size rounded-[5px] border transition-colors duration-300 cursor-pointer text-description-2";
 
   return (
     <div className="flex items-center gap-[10px]">
