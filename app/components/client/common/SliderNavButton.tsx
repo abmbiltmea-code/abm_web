@@ -23,8 +23,8 @@ export default function SliderNavButton({
       <Image
         src="/assets/icons/arrow-right-primary.svg"
         alt=""
-        width={22}
-        height={16}
+        width={23}
+        height={17}
         className={direction === "prev" ? "rotate-180" : ""}
       />
     </button>

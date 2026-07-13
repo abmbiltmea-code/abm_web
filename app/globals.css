@@ -27,6 +27,14 @@
 }
 
 @font-face {
+  font-family: "Parabolica Test Bold";
+  src: url("/assets/fonts/Parabolica-Bold.otf") format("opentype"),
+    url("/assets/fonts/Parabolica-Bold.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "TASA Orbiter";
   src: url("/assets/fonts/TASAOrbiter-variable.woff2") format("woff2"),
     url("/assets/fonts/TASAOrbiter-variable.woff2") format("woff2");
@@ -159,6 +167,7 @@ input:-webkit-autofill:active {
 
   --font-parabolica: "Parabolica Test", serif;
   --font-parabolica-medium: "Parabolica Test Medium", serif;
+  --font-parabolica-bold: "Parabolica Test Bold", serif;
   --font-tasa: "TASA Orbiter", serif;
 
 

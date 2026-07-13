@@ -33,7 +33,7 @@ export default function ProjectSpecsOverview({
 
   return (
     <div className="container flex flex-col gap-10 lg:flex-row lg:gap-80 pt-80 pb-[60px] md:pb-120 3xl:pb-150">
-      <div className="w-full lg:max-w-[510px] bg-cream-background h-fit rounded-[10px] p-50">
+      <div className="w-full lg:max-w-[510px] bg-cream-background h-fit rounded-[10px] p-50 min-[1900px]:max-h-[520px]">
         {specEntries.map(([key, value], index) => (
           <Reveal key={index} variants={moveUpV2} delayRange={index * 0.06}>
             <div
@@ -64,11 +64,11 @@ export default function ProjectSpecsOverview({
           className="mt-60 mb-5 !text-subtitle-3"
         />
 
-        <div className="flex flex-wrap gap-[18px]">
+        <div className="flex flex-wrap gap-y-[10px] gap-x-[18px]">
           {scopeOfWork.map((item, i) => (
             <Reveal key={i} variants={moveUpV2} delayRange={i * 0.06}>
-              <div className="rounded-[10px] bg-primary/20 border-primary/20 border text-description-2 font-bold uppercase text-description-color px-30 py-[25px] max-h-[80px]">
-                {item}
+              <div className="rounded-[10px] bg-primary/20 border border-primary/20 px-30 py-[25px] max-h-[80px]">
+                <p className="text-20 leading-normal font-bold font-parabolica-bold uppercase text-description-color">{item}</p>
               </div>
             </Reveal>
           ))}

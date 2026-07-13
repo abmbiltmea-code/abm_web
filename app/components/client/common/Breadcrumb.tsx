@@ -24,11 +24,11 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex items-center gap-2">
+      <ol className="flex items-center gap-1">
         {crumbs.map((crumb, i) => {
           const isLast = i === crumbs.length - 1;
           return (
-            <li key={crumb.href} className="flex items-center gap-2">
+            <li key={crumb.href} className="flex items-center gap-1">
               {i > 0 && (
                 <span
                   className={`${color} text-15 leading-[1.33333] font-tasa uppercase`}
