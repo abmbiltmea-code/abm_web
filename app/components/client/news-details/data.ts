@@ -28,7 +28,7 @@ export const newsDetailData = {
 
     <img src="/assets/images/news-details/main.jpg" alt="Construction skyline" />
 
-    <p class="mt-40 mb-6 3xl:mb-7">This achievement reflects our commitment to adopting innovative construction techniques and smart technologies that improve project efficiency and enhance long-term building performance. Through careful planning, professional project management, and attention to detail, we continue to create developments that support modern lifestyles and future urban growth.</p>
+    <p class="mt-40 mb-6 3xl:mb-[30px]">This achievement reflects our commitment to adopting innovative construction techniques and smart technologies that improve project efficiency and enhance long-term building performance. Through careful planning, professional project management, and attention to detail, we continue to create developments that support modern lifestyles and future urban growth.</p>
     <p class="mb-60">One of the major factors behind this recognition is our strong focus on workplace safety and operational excellence. The company follows strict safety regulations, conducts regular training sessions, and ensures that all project sites maintain internationally recognized safety standards. By prioritizing employee well-being and risk management, we have successfully created safer and more productive working environments across all our projects.</p>
 
     <h2 class="mb-5">ACHIEVEMENT HIGHLIGHTS</h2>
