@@ -52,7 +52,7 @@ export default function OpenPositions() {
                   <h3 className="text-secondary text-subtitle-2 uppercase mb-[10px]">
                     {job.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-10">
+                  <div className="flex flex-wrap items-center gap-40 3xl:gap-[42px]">
                     <span className="flex items-center gap-[10px] text-description-color text-description-2">
                       <span className="w-[7px] h-[7px] bg-primary" />
                       {job.location}

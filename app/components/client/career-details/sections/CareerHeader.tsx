@@ -12,12 +12,12 @@ export default function CareerHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="container pt-300 pb-100">
+    <section className="container pt-300 3xl:pt-[291px] pb-100">
       <span className="block text-description-color text-description-2 mb-5">
         {category}
       </span>
 
-      <SectionTitle title={title} className="mb-[5px]" />
+      <SectionTitle title={title} className="mb-[5px] text-70 leading-[1.2142857143]" />
 
       <div className="flex flex-col sm:flex-row items-end gap-100 3xl:gap-[111px] pb-50 border-b border-border-color">
         <div className="flex flex-wrap items-end gap-50 3xl:gap-[58px]">
