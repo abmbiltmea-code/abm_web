@@ -14,7 +14,7 @@ export default function SafetySection() {
   return (
     <section className="bg-cream-background">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-40 3xl:gap-80">
-        <div className="py-140 lg:w-1/2" style={{ paddingLeft: inset }}>
+        <div className="py-140 lg:w-[55%] 3xl:w-1/2" style={{ paddingLeft: inset }}>
           <div className="mb-40">
             <SectionLabel title={label} />
           </div>
@@ -39,7 +39,7 @@ export default function SafetySection() {
                     className="h-[28px] xl:h-[32px] 3xl:h-[40px] w-auto"
                   />
                 </div>
-                <span className="text-subtitle uppercase">{item.title}</span>
+                <span className="text-subtitle uppercase max-w-[229px]">{item.title}</span>
               </div>
             ))}
           </div>

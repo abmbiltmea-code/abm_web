@@ -41,7 +41,7 @@ export const workMethodologyData = {
     {
       title: "Risk Assessment & HSE Planning",
       content: `
-        <p class="font-bold mb-[10px]">Before execution, we:</p>
+        <p class="font-parabolica-bold font-bold mb-[10px]">Before execution, we:</p>
         <ul>
           <li>Conduct risk assessments</li>
           <li>Develop HSE plans</li>

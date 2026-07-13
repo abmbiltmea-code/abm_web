@@ -38,7 +38,9 @@ export default function InnerCta({ title, description, image }: InnerCtaProps) {
             {description}
           </p>
 
-          <CustomButton text={"CONTACT US"} href={"/contact-us"} />
+          <div>
+            <CustomButton text={"CONTACT US"} href={"/contact-us"} />
+          </div>
         </div>
       </div>
     </section>

@@ -26,7 +26,7 @@ export default function SustainablePractices() {
         {/* Row 1, Col 2 */}
         <div>
           <SectionTitle title={title} className="mb-5 max-w-[22ch]" />
-          <SectionDescription text={description} />
+          <SectionDescription text={description} className="text-description-color text-description-2"/>
         </div>
 
         {/* Row 2, Col 1 — image */}
@@ -40,7 +40,7 @@ export default function SustainablePractices() {
         </div>
 
         {/* Row 2, Col 2 — items grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2">
+<div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr">
           {items.map((item, index) => (
             <div
               key={item.title}
