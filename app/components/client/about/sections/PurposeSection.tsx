@@ -19,7 +19,7 @@ export default function PurposeSection() {
 
         {/* Vision */}
         <div>
-          <div className="flex pt-[24px] pb-50 gap-70 3xl:gap-[69px]">
+          <div className="flex py-50 gap-70 3xl:gap-[69px]">
             <div className="shrink-0">
               <Image
                 src={vision.icon}
@@ -29,7 +29,7 @@ export default function PurposeSection() {
                 className="h-[100px] w-auto 3xl:h-[100px] pointer-events-none"
               />
             </div>
-            <div className="flex flex-col pt-[26px] gap-20">
+            <div className="flex flex-col gap-20">
               <h3 className="text-subtitle-2 uppercase">
                 {vision.title}
               </h3>
@@ -43,7 +43,7 @@ export default function PurposeSection() {
 
         {/* Mission */}
         <div>
-          <div className="flex pt-[24px] pb-50 gap-50">
+          <div className="flex py-50 gap-50">
             <div className="shrink-0">
               <Image
                 src={mission.icon}
@@ -53,7 +53,7 @@ export default function PurposeSection() {
                 className="h-[100px] w-auto 3xl:w-[119px] pointer-events-none"
               />
             </div>
-            <div className="flex flex-col pt-[26px] gap-20">
+            <div className="flex flex-col gap-20">
               <h3 className="text-subtitle-2 uppercase">
                 {mission.title}
               </h3>
