@@ -24,7 +24,7 @@ export const projectSectorsData = [
       "We create residential developments that offer comfort, functionality, and modern living standards, including villas, apartments, and community housing projects.",
     image: "/assets/images/sectors/project-sectors/1.jpg",
     btnText: "View Residential Projects",
-    btnLink: "#",
+    btnLink: "/projects?sector=Residential",
   },
   {
     title: "Hospitality",
@@ -32,7 +32,7 @@ export const projectSectorsData = [
       "We build hospitality spaces that combine luxury, comfort, and functionality. Our expertise covers hotels, resorts, and serviced accommodations designed to enhance guest experience.",
     image: "/assets/images/sectors/project-sectors/2.jpg",
     btnText: "View Hospitality Projects",
-    btnLink: "#",
+    btnLink: "/projects?sector=Hospitality",
   },
   {
     title: "Commercial",
@@ -40,7 +40,7 @@ export const projectSectorsData = [
       "We deliver modern commercial developments designed to support business growth, operational efficiency, and long-term value. Our projects include office buildings, retail complexes, and mixed-use developments.",
     image: "/assets/images/sectors/project-sectors/3.jpg",
     btnText: "View Commercial Projects",
-    btnLink: "#",
+    btnLink: "/projects?sector=Commercial",
   },
   {
     title: "Institutions",
@@ -48,7 +48,7 @@ export const projectSectorsData = [
       "We develop institutional infrastructure that supports education, healthcare, and public services with a strong focus on durability, safety, and functionality.",
     image: "/assets/images/sectors/project-sectors/4.jpg",
     btnText: "View Institutional Projects",
-    btnLink: "#",
+    btnLink: "/projects?sector=Institutional",
   },
   {
     title: "Infrastructure",
@@ -56,7 +56,7 @@ export const projectSectorsData = [
       "Delivering reliable infrastructure projects with quality execution, durable construction, and efficient project management.",
     image: "/assets/images/sectors/project-sectors/5.jpg",
     btnText: "View Infrastructure Projects",
-    btnLink: "#",
+    btnLink: "/projects?sector=Infrastructure",
   },
 ];
 
@@ -65,7 +65,7 @@ export const whyChooseAbmData = {
   sectionTitle: "Why Choose ABM Across Sectors",
   ctaTitle: "Looking for a trusted construction partner for your next project?",
   ctaBtnText: "Contact Us Today",
-  ctaBtnLink: "#",
+  ctaBtnLink: "/contact-us",
   items: [
     { title: "Proven Multi-Sector Experience" },
     {

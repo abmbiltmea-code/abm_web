@@ -37,10 +37,10 @@ export default function ProjectsMain() {
       requestAnimationFrame(() => {
         resize();
         requestAnimationFrame(() => {
-          scrollTo("#projects-list", { offset: -120 });
+          scrollTo("#projects-list", { offset: -40 });
           const t = setTimeout(() => {
             resize();
-            scrollTo("#projects-list", { offset: -120 });
+            scrollTo("#projects-list", { offset: -40 });
           }, 300);
           return () => clearTimeout(t);
         });
