@@ -114,5 +114,5 @@ export const ctaData2 = {
   ctaTitle: "Partner with Us to Build Lasting Success Together",
   ctaBtnText:
     "Become Our Partner",
-  ctaBtnLink: "#",
+  ctaBtnLink: "/contact-us#join-us",
 };
