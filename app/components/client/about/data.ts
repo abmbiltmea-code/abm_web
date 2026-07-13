@@ -8,7 +8,7 @@ export const aboutData = {
   title: "Building Excellence Across Industries",
   subtitle:
     "Delivering Integrated Solutions Through Innovation, Expertise, and Commitment.",
-  description: `Al Basti & Muktha LLC (ABM), a leading Building and Civil Construction Company was incorporated in the year 1974. Mr. S K Pathak, one of Dubai's early entrepreneurs perceived enormous potential for a construction company offering expertise and good quality, founded ABM, a company that would go on to make Quality its trademark. At ABM, Quality is a way of Life. Since its inception, ABM has been consistently delivering projects on time and to the complete satisfaction of its Customers. Judging by the company's performance over the years and the repeat orders given by our customers consistently, ABM's performance can now stand testimony to the fact that our long-standing association with our Customers is built on a foundation of Quality and Trust.<br/><br/>ABM's portfolio extends from construction of high-rise buildings, Hotels, Shopping Malls, Cluster of Villas, Commercial and Residential developments, Processing industries, Parks, Leisure facilities, Port facilities, Multi-storeyed car parks etc.`,
+  description: `Al Basti <span class="font-tasa">&amp;</span> Muktha LLC (ABM), a leading Building and Civil Construction Company was incorporated in the year 1974. Mr. S K Pathak, one of Dubai's early entrepreneurs perceived enormous potential for a construction company offering expertise and good quality, founded ABM, a company that would go on to make Quality its trademark. At ABM, Quality is a way of Life. Since its inception, ABM has been consistently delivering projects on time and to the complete satisfaction of its Customers. Judging by the company's performance over the years and the repeat orders given by our customers consistently, ABM's performance can now stand testimony to the fact that our long-standing association with our Customers is built on a foundation of Quality and Trust.<br/><br/>ABM's portfolio extends from construction of high-rise buildings, Hotels, Shopping Malls, Cluster of Villas, Commercial and Residential developments, Processing industries, Parks, Leisure facilities, Port facilities, Multi-storeyed car parks etc.`,
   stats: [
     {
       icon: "/assets/images/about/who-we-are/icons/1.svg",
@@ -100,7 +100,7 @@ export const groupCompaniesSection = {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       buttonText: "VIEW WEBSITE",
-      href: "https://billmiddleeast.com",
+      href: "#",
     },
     {
       id: "duct-fab",
@@ -109,7 +109,7 @@ export const groupCompaniesSection = {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       buttonText: "VIEW WEBSITE",
-      href: "https://ductfab.com",
+      href: "#",
     },
     {
       id: "al-basti-ink",
@@ -118,7 +118,7 @@ export const groupCompaniesSection = {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       buttonText: "VIEW WEBSITE",
-      href: "https://albastiink.com",
+      href: "#",
     },
   ],
 };

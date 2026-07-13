@@ -46,7 +46,7 @@ export default function GroupCompanies() {
                 <p className="text-description-2 text-description-color mb-40 flex-1">
                   {card.description}
                 </p>
-                <CustomButton className="w-fit" text={card.buttonText} href={card.href} />
+                <CustomButton className="w-fit" target="_blank" text={card.buttonText} href={card.href} />
               </div>
             </SwiperSlide>
           ))}
