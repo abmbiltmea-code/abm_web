@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import CustomButton from "@/app/components/client/common/CustomButton";
+import NewsletterForm from "./NewsletterFormProps";
 
 interface InnerCtaProps {
   title: string;
   description: string;
   image: string;
+  email?: boolean;
 }
 
-export default function InnerCta({ title, description, image }: InnerCtaProps) {
+export default function InnerCta({ title, description, image, email }: InnerCtaProps) {
   return (
     <section className="relative w-full h-[400px] lg:h-[550px] 3xl:h-[708px] overflow-hidden">
       {/* BG Image */}
@@ -34,12 +36,10 @@ export default function InnerCta({ title, description, image }: InnerCtaProps) {
             }}
           />
 
-          <p className="text-white/80 text-description max-w-[50ch] mb-20">
-            {description}
-          </p>
+          <p className="text-white/80 text-description max-w-[50ch] mb-20" dangerouslySetInnerHTML={{ __html: description }} />
 
           <div>
-            <CustomButton text={"CONTACT US"} href={"/contact-us"} />
+            {email ? <NewsletterForm /> : <CustomButton text={"CONTACT US"} href={"/contact-us"} /> }
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ export default function Strengths() {
                 key={item.title}
                 onMouseEnter={() => setActive(index)}
                 onClick={() => setActive(index)}
-                className={`relative overflow-hidden py-40 pr-40 transition-[padding] duration-500 cursor-pointer ${
+                className={`relative overflow-hidden py-40 pr-40 transition-[padding] duration-500 ${
                   isActive ? "pl-40" : "pl-0"
                 } ${showBorder ? "border-b border-border-color" : ""}`}
               >

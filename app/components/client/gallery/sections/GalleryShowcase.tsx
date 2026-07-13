@@ -111,7 +111,7 @@ export default function GalleryShowcase() {
             >
               {cat.label}
               {activeTab === cat.label && (
-                <span className="absolute bottom-0 left-0 h-[2px] w-full bg-red-600" />
+                <span className="absolute -bottom-[1px] left-0 h-[3px] w-full bg-red-600" />
               )}
             </button>
           ))}
