@@ -41,13 +41,13 @@ export default function SectorWeServe() {
                   className="h-full"
                 >
                   <div
-                    className={`flex items-center gap-[18px] px-40 py-50 3xl:py-[55px] border rounded-[5px] border-[#f9f9f9] h-full 3xl:max-h-[139px] -mr-px
+                    className={`flex items-center gap-[18px] px-40 py-50 3xl:py-[56px] border rounded-[5px] border-[#f9f9f9] h-full 3xl:max-h-[181px] -mr-px
           ${lastCell ? "sm:-mt-[2px] 3xl:-mt-px" : ""}
           ${secondLastCell ? "xl:-mt-px" : ""}
           ${thirdCell ? "sm:-mt-px" : ""}
         `}
                   >
-                    <span className="shrink-0 flex items-center justify-center bg-primary text-white text-subtitle w-[50px] h-[50px]">
+                    <span className="shrink-0 flex items-center justify-center bg-primary text-white text-subtitle w-[40px] h-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-[5px]">
                       <Image src={item.icon} alt="icon" width={29} height={29} />
                     </span>
                     <p className="text-30 leading-[1.1666666667] font-tasa font-bold uppercase text-white max-w-[280px]">
