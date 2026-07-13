@@ -359,8 +359,8 @@ export default function Evolution() {
                     if (dragState.current.moved) return; // was a drag, not a click
                     goToYear(i % BLOCK);
                   }}
-                  className={`w-full text-center transition-all duration-300 text-description text-white/80 cursor-pointer hover:opacity-100 ${
-                    i === displayIndex ? "opacity-100 font-bold" : "opacity-20"
+                  className={`w-full text-center transition-all duration-300 text-20 leading-[1.4166666666] sm:leading-[1.45] 3xl:leading-[1.75] text-white/80 cursor-pointer hover:opacity-100 ${
+                    i === displayIndex ? "opacity-100 font-parabolica-bold" : "opacity-20 font-parabolica"
                   }`}
                 >
                   {item.year}
@@ -371,7 +371,7 @@ export default function Evolution() {
 
           {/* Divider */}
           <div
-            className="shrink-0 w-px my-40 3xl:my-[42px] mx-100 relative"
+            className="shrink-0 w-px my-30 3xl:my-[32px] mx-100 relative"
             style={{
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)",
@@ -388,7 +388,7 @@ export default function Evolution() {
           </div>
 
           {/* Active year / title / description */}
-          <div className="flex flex-col justify-center min-w-0">
+          <div className="flex flex-col justify-center min-w-0 mt-2 3xl:-mt-6">
             <div className="flex items-center justify-center bg-[#D9D9D90D] text-subtitle-3 leading-0 text-primary px-30 3xl:px-[32px] py-[2px] border border-white rounded-[27.5px] w-fit mb-60 min-h-[46px] 3xl:min-h-[49px] max-w-[130px]">
               {active.year}
             </div>
