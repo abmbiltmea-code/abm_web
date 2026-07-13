@@ -3,6 +3,7 @@ import { aboutData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionSubtitle from "../../animations/SectonSubtitle";
+import AnimatedCounter from "../../animations/AnimatedCounter";
 
 export default function AboutSection() {
   const { sectionLabel, title, subtitle, description, stats } = aboutData;
@@ -48,7 +49,7 @@ export default function AboutSection() {
                   />
                 </div>
                 <span className="section-heading text-secondary">
-                  {stat.value}
+                  <AnimatedCounter from={Number(stat.value) - 8} to={stat.value} duration={1.6} />
                   <span className="section-heading text-primary">+</span>
                 </span>
               </div>

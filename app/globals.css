@@ -46,6 +46,10 @@ html {
   -ms-overflow-style: none;
 }
 
+body {
+  font-synthesis-weight: none; /* stop any browser from faux-bolding */
+}
+
 /* input autofill bg-remove */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -85,7 +89,7 @@ input:-webkit-autofill:active {
 --text-60: clamp(26px, 2.8vw + 6.2px, 60px);
 
 /* 30px → 20px at 420px, 30px at 1500px */
---text-30: clamp(20px, 0.6vw + 18.4px, 30px);
+--text-30: clamp(20px, 0.926vw + 16.111px, 30px);
 
 --text-20: clamp(12px, 0.8163vw + 8.5714px, 20px);
 

@@ -389,7 +389,7 @@ export default function Evolution() {
 
           {/* Active year / title / description */}
           <div className="flex flex-col justify-center min-w-0">
-            <div className="flex items-center justify-center bg-[#D9D9D90D] text-subtitle-3 text-primary px-30 3xl:px-[32px] py-[2px] border border-white rounded-[27.5px] w-fit mb-60">
+            <div className="flex items-center justify-center bg-[#D9D9D90D] text-subtitle-3 leading-0 text-primary px-30 3xl:px-[32px] py-[2px] border border-white rounded-[27.5px] w-fit mb-60 min-h-[46px] 3xl:min-h-[49px] max-w-[130px]">
               {active.year}
             </div>
             <h3 className="text-subtitle-3 text-white uppercase mb-5">{active.title}</h3>

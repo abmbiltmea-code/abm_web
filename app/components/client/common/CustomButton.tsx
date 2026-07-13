@@ -13,6 +13,7 @@ interface CustomButtonAsLink extends CustomButtonBaseProps {
   href?: string;
   type?: never;
   disabled?: never;
+  target?: string;
 }
 
 interface CustomButtonAsButton extends CustomButtonBaseProps {
@@ -102,9 +103,17 @@ export default function CustomButton(props: CustomButtonProps) {
     onAnimationEnd: () => setPulse(false),
   };
 
-  if ("href" in props && props.href) {
+if ("href" in props && props.href) {
+    const isRealLink = props.href !== "#";
+
     return (
-      <Link href={props.href} className={sharedClassName} {...sharedHandlers}>
+      <Link
+        href={props.href}
+        target={isRealLink ? props.target : undefined}
+        rel={isRealLink && props.target === "_blank" ? "noopener noreferrer" : undefined}
+        className={sharedClassName}
+        {...sharedHandlers}
+      >
         {content}
       </Link>
     );
