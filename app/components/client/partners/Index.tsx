@@ -21,11 +21,12 @@ const Index = () => {
         sectionTitle={sectionHeaderData.title}
         sectionDescription={sectionHeaderData.description}
         titleClassName="max-w-[25ch]"
-        descriptionClassName="max-w-[65ch] 3xl:max-w-[78ch]"
+        descriptionClassName="max-w-[65ch] 3xl:max-w-[83ch]"
+        className="pt-70 3xl:pt-[73px] pb-120 3xl:pb-[115px]"
       />
       <LogoGrid items={clientLogos} line />
       <SectionHeader
-        className="py-[60px] md:py-120 3xl:py-150"
+        className="pt-[60px] md:py-120 3xl:py-150 pb-120 3xl:pb-[115px]"
         labelTitle={sectionHeaderData2.label}
         sectionTitle={sectionHeaderData2.title}
         sectionDescription={sectionHeaderData2.description}

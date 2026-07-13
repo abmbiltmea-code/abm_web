@@ -72,6 +72,8 @@
 //   );
 // }
 
+
+
 "use client";
 
 import Lenis from "lenis";
@@ -150,18 +152,42 @@ export default function LenisProvider({
     };
   }, []);
 
-  // route change: reset scroll, refresh ScrollTrigger once layout settles
+
+  // useEffect(() => {
+  //   if (!lenisRef.current) return;
+  //   lenisRef.current.scrollTo(0, { immediate: true });
+
+  //   const t = setTimeout(() => {
+  //     lenisRef.current?.resize();
+  //     ScrollTrigger.refresh();
+  //   }, 300);
+
+  //   return () => clearTimeout(t);
+  // }, [pathname]);
+
   useEffect(() => {
-    if (!lenisRef.current) return;
+  if (!lenisRef.current) return;
+
+  const hash = window.location.hash;
+
+  if (!hash) {
     lenisRef.current.scrollTo(0, { immediate: true });
+  }
 
-    const t = setTimeout(() => {
-      lenisRef.current?.resize();
-      ScrollTrigger.refresh();
-    }, 300);
+  const t = setTimeout(() => {
+    lenisRef.current?.resize();
+    ScrollTrigger.refresh();
 
-    return () => clearTimeout(t);
-  }, [pathname]);
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) {
+        lenisRef.current?.scrollTo(el, { offset: -100, immediate: false });
+      }
+    }
+  }, 300);
+
+  return () => clearTimeout(t);
+}, [pathname]);
 
   const scrollTo = useCallback<LenisContextType["scrollTo"]>(
     (target, options) => {

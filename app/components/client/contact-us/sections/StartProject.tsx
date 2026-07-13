@@ -4,7 +4,7 @@ import LetsConnectForm from "../sections/LetsConnectForm";
 
 export default function StartProjectSection() {
   return (
-    <section className="bg-cream-background py-100">
+    <section id="join-us" className="bg-cream-background py-100">
       <div className="container">
         <div className="flex justify-between gap-40 lg:gap-120 3xl:gap-140 items-start">
           <div className="max-w-[560px]">
