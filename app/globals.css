@@ -301,7 +301,7 @@ body {
 }
 
 @utility text-description-2 {
-  @apply text-20 leading-[1.3] xl:leading-normal font-parabolica;
+  @apply text-20 leading-[1.4166666666] lg:leading-[1.3] xl:leading-normal font-parabolica;
 }
 
 @utility section-content-spacing {

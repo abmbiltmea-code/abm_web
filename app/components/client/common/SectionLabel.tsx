@@ -48,11 +48,11 @@ export default function SectionLabel({
   }, []);
 
   return (
-    <div className={`flex items-center gap-[10px] min-w-[285px] ${pt}`}>
+    <div className={`flex items-center gap-[5px] sm:gap-[10px] min-w-[285px] ${pt}`}>
       <div ref={dotRef} className="w-[10px] h-[10px] bg-primary shrink-0 rounded-full" />
       <span
         ref={textRef}
-        className={`text-15 leading-[1.3333] font-tasa font-bold uppercase pt-[1px] ${textColor}`}
+        className={`text-[10px] sm:text-15 leading-none sm:leading-[1.3333] font-tasa font-bold uppercase pt-px ${textColor}`}
         style={{ clipPath: "inset(0 100% 0 0)" }}
       >
         {title}
