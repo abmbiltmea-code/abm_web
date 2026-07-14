@@ -7,14 +7,14 @@ import CustomButton from "../../common/CustomButton";
 const ProjectSectors = () => {
   return (
     <section className="container">
-      <div className="flex flex-col border-t border-border-color">
+      <div className="flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
         {projectSectorsData.map((item, index) => {
           const isEven = index % 2 === 1;
 
           return (
             <div
               key={item.title}
-              className={`flex flex-col lg:flex-row items-center justify-between pt-40 pb-80 gap-y-30 gap-x-80 3xl:gap-x-[81px] ${
+              className={`flex flex-col lg:flex-row items-center justify-between pt-40 pb-80 last:pb-0 gap-y-30 gap-x-80 3xl:gap-x-[81px] ${
                 index !== 0 ? "border-t border-border-color" : ""
               }`}
             >
