@@ -31,21 +31,21 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
             <li key={crumb.href} className="flex items-center gap-1">
               {i > 0 && (
                 <span
-                  className={`${color} text-15 leading-[1.33333] font-tasa uppercase`}
+                  className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
                   -
                 </span>
               )}
               {isLast ? (
                 <span
-                  className={`${color} text-15 leading-[1.33333] font-tasa uppercase`}
+                  className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
                   {crumb.label}
                 </span>
               ) : (
                 <Link
                   href={crumb.href}
-                  className={`${color} text-15 leading-[1.33333] font-tasa uppercase`}
+                  className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
                   {crumb.label}
                 </Link>
