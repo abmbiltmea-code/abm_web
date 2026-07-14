@@ -65,10 +65,10 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #333333 !important;
+  -webkit-text-fill-color: var(--autofill-text-color, #7c7c7c) !important;
+  caret-color: var(--autofill-text-color, #7c7c7c);
   transition: background-color 5000s ease-in-out 0s;
 }
-
 /* custom scrollbar hide */
 @utility scrollbar-hide {
   scrollbar-width: none;

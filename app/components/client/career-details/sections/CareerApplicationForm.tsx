@@ -75,8 +75,11 @@ export default function CareerApplicationForm({
                 <button
                   type="button"
                   aria-label="Close"
-                  onClick={onClose}
-                  className="box-size rounded-[5px] flex items-center justify-center border border-border-color hover:border-primary transition-colors duration-500"
+                  onClick={() => {
+                    onClose();
+                    reset();
+                  }}
+                  className="box-size rounded-[5px] flex items-center justify-center border border-border-color hover:border-primary transition-colors duration-500 cursor-pointer"
                 >
                   <Image
                     src={"/assets/icons/close.svg"}

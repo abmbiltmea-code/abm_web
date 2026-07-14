@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
     <section className="py-120 3xl:py-140 bg-cream-background overflow-hidden">
       <div className="container">
         {/* HEADER */}
-        <div className="flex flex-col gap-40 mb-50">
+        <div className="flex flex-col gap-5 md:gap-40 mb-50">
           <SectionLabel title={label} />
           <SectionTitle title={title} />
         </div>
@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
                       src={slide.image}
                       alt={slide.title}
                       fill
-                      className="object-cover"
+                      className="object-cover pointer-events-none"
                     />
                   </div>
                   <div className="flex flex-col px-[15px] py-[20px] border border-border-color rounded-b-[10px]">
@@ -185,7 +185,7 @@ export default function WhyChooseUs() {
               src={activeSlide.image}
               alt={activeSlide.title}
               fill
-              className="object-cover"
+              className="object-cover pointer-events-none"
             />
           </div>
 

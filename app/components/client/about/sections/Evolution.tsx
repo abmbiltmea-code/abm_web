@@ -525,7 +525,7 @@ export default function Evolution() {
   // Horizontal (mobile) transform
   
   const targetLeftX = displayIndex * (itemWidth + YEAR_GAP_MOBILE);
-  const shiftX = -targetLeftX + dragOffset - 11;
+  const shiftX = -targetLeftX + dragOffset - 9;
 
   return (
     <section className="bg-secondary py-120 3xl:py-140">
@@ -542,7 +542,7 @@ export default function Evolution() {
 
         <div className="w-full flex flex-col lg:flex-row items-stretch">
           {/* Active image — manual crossfade */}
-          <div className="relative w-full aspect-849/559 3xl:w-[849px] h-[217px] sm:h-auto 3xl:h-[559px] mr-70 3xl:mr-[76px] order-2 lg:order-1">
+          <div className="relative w-full aspect-849/559 3xl:w-[849px] h-[217px] sm:h-auto max-lg:max-h-[350px] lg:h-auto 3xl:h-[559px] mr-50 xl:mr-70 3xl:mr-[76px] order-2 lg:order-1">
             {items.map((item, i) => (
               <div
                 key={item.id}
@@ -603,7 +603,7 @@ export default function Evolution() {
 
           {/* Desktop (vertical) */}
           <div
-            className="hidden lg:block shrink-0 relative overflow-hidden w-[45px] h-[420px] my-40 3xl:my-[42px] 3xl:h-[475px] cursor-grab active:cursor-grabbing order-1 lg:order-2"
+            className="hidden lg:block shrink-0 relative overflow-hidden w-[45px] h-[350px] xl:h-[420px] my-40 3xl:my-[42px] 3xl:h-[475px] cursor-grab active:cursor-grabbing order-1 lg:order-2"
             style={{ touchAction: "none" }}
             onPointerDown={onPointerDown("y")}
             onPointerMove={onPointerMove("y")}
@@ -638,7 +638,7 @@ export default function Evolution() {
 
           {/* Divider */}
           <div
-            className="shrink-0 w-px my-30 3xl:my-[32px] mx-100 relative hidden lg:block lg:order-3"
+            className="shrink-0 w-px my-30 3xl:my-[32px] mx-50 xl:mx-100 relative hidden lg:block lg:order-3"
             style={{
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)",
