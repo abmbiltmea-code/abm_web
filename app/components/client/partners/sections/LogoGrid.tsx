@@ -14,7 +14,7 @@ interface LogoCardProps {
 function LogoCard({ item }: LogoCardProps) {
   return (
     <div className="flex flex-col items-center group">
-      <div className="relative w-[150px] h-[70px] xl:w-[210px] xl:h-[100px] 3xl:w-[302px] 3xl:h-[132px] mb-30">
+      <div className="relative w-[150px] h-[70px] xl:w-[210px] xl:h-[100px] 3xl:w-[302px] 3xl:h-[132px] mb-40">
         <Image
           src={item.src}
           alt={item.alt}

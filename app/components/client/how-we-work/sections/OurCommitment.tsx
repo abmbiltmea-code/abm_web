@@ -44,7 +44,7 @@ export default function OurCommitment() {
                   type="button"
                   onMouseEnter={() => setActive(index)}
                   onClick={() => setActive(index)}
-                  className={`flex justify-between text-left border-b border-border-color transition-colors duration-500 text-20 leading-[2.5] ${
+                  className={`flex justify-between text-left border-b border-border-color last:border-0 transition-colors duration-500 text-20 leading-[2.5] font-tasa ${
                     active === index
                       ? "text-secondary font-bold"
                       : "text-description-color hover:text-secondary"

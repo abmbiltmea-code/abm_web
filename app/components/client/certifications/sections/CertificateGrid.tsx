@@ -51,8 +51,8 @@ function CertificateCard({ item, onClick }: CertificateCardProps) {
       </div>
 
       <p className="text-subtitle-3 mb-[5px]">{item.name}</p>
-      <p className="text-description-2 text-description-color uppercase">
-        Authority: {item.label}
+      <p className="text-description-2 text-description-color">
+        Authority: {item.label.toUpperCase()}
       </p>
     </div>
   );
