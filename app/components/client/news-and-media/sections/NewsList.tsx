@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import FilterSelectDropDown from "../../common/FilterSelectDropDown";
 import NewsCard from "../sections/NewsCard";
@@ -9,7 +9,8 @@ import Pagination from "../../common/Pagination";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE_DESKTOP = 9;
+const ITEMS_PER_PAGE_MOBILE = 6;
 
 export default function NewsList({ news }: { news: any[] }) {
   const router = useRouter();
@@ -18,6 +19,19 @@ export default function NewsList({ news }: { news: any[] }) {
 
   const division = searchParams.get("category");
   const currentPage = Math.max(1, Number(searchParams.get("page")) || 1);
+
+   const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE_DESKTOP);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 1023px)");
+
+    const update = () =>
+      setItemsPerPage(mql.matches ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE_DESKTOP);
+
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
 
   const updateParams = useCallback(
     (updates: Record<string, string | null>) => {
@@ -36,20 +50,20 @@ export default function NewsList({ news }: { news: any[] }) {
     [router, pathname, searchParams],
   );
 
-  const filteredNews = useMemo(() => {
+ const filteredNews = useMemo(() => {
     if (!division) return news;
     return news.filter((item) => item.category === division);
   }, [news, division]);
 
   const totalPages = Math.max(
     1,
-    Math.ceil(filteredNews.length / ITEMS_PER_PAGE),
+    Math.ceil(filteredNews.length / itemsPerPage),
   );
 
   const paginatedNews = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredNews.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredNews, currentPage]);
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredNews.slice(start, start + itemsPerPage);
+  }, [filteredNews, currentPage, itemsPerPage]);
 
   const handleDivisionChange = (value: string | null) => {
     updateParams({ category: value, page: null });
@@ -65,7 +79,7 @@ export default function NewsList({ news }: { news: any[] }) {
       className="container pb-[60px] md:pb-120 3xl:pb-150"
     >
       <div className="flex justify-end w-full">
-        <div className="w-full max-w-[360px] 3xl:max-w-[400px] mb-40 bg-cream-background px-30 py-30 3xl:py-[34px] rounded-[10px]">
+        <div className="w-full max-w-[360px] 3xl:max-w-[400px] mb-40 bg-cream-background px-[15px] sm:px-30 py-5 sm:py-30 3xl:py-[34px] rounded-[10px]">
           <FilterSelectDropDown
             label="Industries"
             options={CATEGORIES}
@@ -74,7 +88,7 @@ export default function NewsList({ news }: { news: any[] }) {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-x-5 gap-y-80 md:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 xl:gap-x-5 gap-y-5 sm:gap-y-80">
         {paginatedNews.map((item, i) => (
           <Reveal key={i} variants={moveUpV2} delayRange={i * 0.05}>
             <NewsCard {...item} />
@@ -83,7 +97,7 @@ export default function NewsList({ news }: { news: any[] }) {
       </div>
 
       {totalPages > 1 && (
-        <div className="mt-50 flex justify-center">
+        <div className="mt-[60px] lg:mt-50 flex justify-center">
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}
