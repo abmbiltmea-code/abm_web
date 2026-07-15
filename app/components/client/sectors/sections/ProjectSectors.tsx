@@ -3,11 +3,14 @@ import { projectSectorsData } from "../data";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 
 const ProjectSectors = () => {
   return (
     <section className="container">
-      <div className="flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
+      <div className="hidden lg:flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
         {projectSectorsData.map((item, index) => {
           const isEven = index % 2 === 1;
 
@@ -34,7 +37,7 @@ const ProjectSectors = () => {
 
               {/* Image */}
               <div
-                className={`relative w-full lg:w-[52%] h-[280px] lg:h-[400px] rounded-[10px] overflow-hidden 3xl:shrink-0 3xl:w-[850px] 3xl:h-[520px] ${
+                className={`relative w-full lg:w-[52%] h-[280px] lg:h-[350px] xl:h-[400px] rounded-[10px] overflow-hidden 3xl:shrink-0 3xl:w-[850px] 3xl:h-[520px] ${
                   isEven ? "lg:order-1" : "lg:order-2"
                 }`}
               >
@@ -48,6 +51,9 @@ const ProjectSectors = () => {
             </div>
           );
         })}
+      </div>
+      <div className="lg:hidden flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
+
       </div>
     </section>
   );

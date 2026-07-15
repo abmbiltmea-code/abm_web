@@ -124,7 +124,7 @@ if ("href" in props && props.href) {
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={`${sharedClassName} disabled:opacity-50 disabled:cursor-not-allowed`}
+      className={`${sharedClassName} cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
       {...sharedHandlers}
     >
       {content}

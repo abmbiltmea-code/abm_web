@@ -73,7 +73,7 @@ export default function Strengths() {
         </Swiper>
       </div>
 
-      <div className="container hidden xl:flex flex-col xl:flex-row justify-between gap-80">
+      <div className="container hidden xl:flex flex-col xl:flex-row justify-between gap-50 3xl:gap-80">
         {/* Left - Accordion */}
         <div className="w-full lg:w-1/2 border-t border-border-color">
           {items.map((item, index) => {
@@ -120,7 +120,7 @@ export default function Strengths() {
         </div>
 
         {/* Right - Image */}
-        <div className="relative w-full lg:w-1/2 3xl:w-[870px] min-[1900px]:h-[660px] shrink-0 rounded-[10px] overflow-hidden">
+        <div className="relative w-full lg:w-[48%] 3xl:w-[870px] min-[1900px]:h-[660px] shrink-0 rounded-[10px] overflow-hidden">
           <Image
             src={items[active].image}
             alt={items[active].title}
