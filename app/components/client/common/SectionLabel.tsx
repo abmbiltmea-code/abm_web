@@ -49,7 +49,7 @@ export default function SectionLabel({
 
   return (
     <div
-      className={`flex items-center gap-[5px] sm:gap-[10px] min-w-[285px] ${pt}`}
+      className={`flex items-center gap-[5px] sm:gap-[10px] lg:min-w-[285px] ${pt}`}
     >
       <div
         ref={dotRef}

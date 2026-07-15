@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { newsDetailData, relatedTopicsData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionLabel from "../../common/SectionLabel";
+import Breadcrumb from "../../common/Breadcrumb";
+import NewsCard from "../../news-and-media/sections/NewsCard";
+import { SwiperSlide, Swiper } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 export default function Main() {
   return (
-    <section className="container pt-300 pb-[60px] md:pb-120 3xl:pb-150">
-      <div className="flex flex-col xl:flex-row gap-40 xl:gap-0">
+    <section className="container pt-[157px] md:pt-300 pb-[60px] md:pb-120 3xl:pb-150 overflow-hidden">
+      <div className="flex flex-col xl:flex-row">
         {/* Sidebar */}
-        <aside className="w-full xl:max-w-[30%] 3xl:max-w-[435px] self-start xl:sticky xl:top-60 xl:mt-30 xl:pr-5 relative">
+        <aside className="hidden xl:block w-full xl:max-w-[30%] 3xl:max-w-[435px] self-start xl:sticky xl:top-60 xl:mt-30 xl:pr-5 relative">
           <div className="hidden xl:block w-px absolute top-0 right-0 bottom-0 h-full bg-gradient-to-b from-[#CCCCCC] to-transparent" />
           <div className="flex items-center justify-between pb-5">
             <span className="text-subtitle-3 uppercase">
@@ -60,6 +67,9 @@ export default function Main() {
 
         {/* Detail content */}
         <div className="w-full xl:ml-[6%] 3xl:ml-[8.4%]">
+          <div className="mb-[30px]">
+            <Breadcrumb variant="1" />
+          </div>
           <div className="flex items-center justify-between mb-60">
             <SectionLabel title={newsDetailData.category} />
             <span className="text-description-2 text-description-color">
@@ -68,7 +78,8 @@ export default function Main() {
           </div>
 
           <SectionTitle
-            title={newsDetailData.title} className="mb-80 3xl:mb-[84px] text-70 leading-[1.2142857143]"
+            title={newsDetailData.title}
+            className="mb-5 sm:mb-7 md:mb-80 3xl:mb-[84px] text-70 leading-[1.2142857143]"
           />
 
           <hr className="border-border-color" />
@@ -77,6 +88,38 @@ export default function Main() {
             className="news-detail-content mt-60"
             dangerouslySetInnerHTML={{ __html: newsDetailData.contentHtml }}
           />
+        </div>
+
+        <div className="contianer xl:hidden">
+          <div className="border-t border-border-color mt-[60px]">
+            <div className="mt-[60px]">
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={15}
+                slidesPerView={1.181}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1.5,
+                  },
+                  768: {
+                    slidesPerView: 2.2,
+                  },
+                }}
+                speed={700}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                className="w-full !overflow-visible"
+              >
+                {relatedTopicsData.items.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <NewsCard {...item} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
         </div>
       </div>
     </section>

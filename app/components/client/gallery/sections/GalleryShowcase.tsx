@@ -20,12 +20,12 @@ function AvatarStack({ images }: { images: string[] }) {
     rest.length > MAX_AVATARS ? rest.length - MAX_AVATARS : 0;
 
   return (
-    <div className="flex items-center gap-[5px] rounded-[10px] border border-white/20 bg-white/20 h-[36px] px-[11.5px] w-fit">
+    <div className="flex items-center gap-[5px] rounded-[10px] border border-white/20 bg-white/20 h-[36px] px-2.5 sm:px-[11.5px] w-fit">
       <div className="flex space-x-[-10px]">
         {visible.map((src, i) => (
           <div
             key={src + i}
-            className="relative h-6 w-6 overflow-hidden rounded-full border border-white"
+            className="relative h-5 w-5 sm:h-6 sm:w-6 overflow-hidden rounded-full border border-white"
           >
             <Image src={src} alt="" fill className="object-cover" />
           </div>
@@ -54,7 +54,7 @@ function GalleryCard({
   return (
     <div
       onClick={isClickable ? onOpen : undefined}
-      className={`group relative aspect-15/14 w-full overflow-hidden rounded-[10px] 3xl:aspect-auto 3xl:h-[520px] ${
+      className={`group relative min-h-[338px] aspect-15/14 w-full overflow-hidden rounded-[10px] 3xl:aspect-auto 3xl:h-[520px] ${
         isClickable ? "cursor-pointer" : ""
       }`}
     >
@@ -78,8 +78,8 @@ function GalleryCard({
         </div>
       )}
 
-      <div className="absolute bottom-30 left-30 w-full">
-        <p className="text-subtitle text-white mb-5 uppercase">{title}</p>
+      <div className="absolute bottom-5 sm:bottom-30 left-5 sm:left-30 right-5 sm:right-30 w-fit">
+        <p className="text-subtitle-3 md:text-subtitle text-white mb-5 uppercase">{title}</p>
         <AvatarStack images={images} />
       </div>
     </div>
@@ -94,16 +94,16 @@ export default function GalleryShowcase() {
   const activeCategory = galleryCategories.find((c) => c.label === activeTab);
 
   return (
-    <section className="container pt-80 3xl:pt-[83px] pb-[60px] md:pb-120 3xl:pb-150">
-      <div className="relative w-full flex mb-90 3xl:mb-[94px]">
+    <section className="container pt-[29px] md:pt-80 3xl:pt-[83px] pb-[60px] md:pb-120 3xl:pb-150">
+      <div className="relative w-full flex flex-col lg:flex-row gap-[40px] mb-[30px] sm:mb-90 3xl:mb-[94px]">
         <SectionLabel title="Gallery Showcase" />
 
-        <div className="absolute left-1/2 -translate-x-1/2 lg:left-[33.8%] lg:translate-x-[-10] flex items-center gap-80 border-b border-border-color">
+        <div className="lg:absolute lg:left-[33.8%] lg:translate-x-[-10] flex items-center gap-[30px] sm:gap-80 border-b border-border-color">
           {galleryCategories.map((cat) => (
             <button
               key={cat.label}
               onClick={() => setActiveTab(cat.label)}
-              className={`relative pb-[15px] text-subtitle transition-colors duration-300 cursor-pointer ${
+              className={`relative pb-[10px] sm:pb-[15px] text-[12px] font-bold font-tasa sm:text-subtitle transition-colors duration-300 cursor-pointer ${
                 activeTab === cat.label
                   ? "text-primary"
                   : "text-secondary hover:text-primary"
@@ -111,27 +111,30 @@ export default function GalleryShowcase() {
             >
               {cat.label}
               {activeTab === cat.label && (
-                <span className="absolute -bottom-[1px] left-0 h-[3px] w-full bg-red-600" />
+                <span className="absolute -bottom-[1px] left-0 h-[2px] sm:h-[3px] w-full bg-red-600" />
               )}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-5 gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
         {activeCategory?.items.map((item, index) => (
-          <Reveal variants={moveUpV2} delayRange={0.03 * index} key={activeCategory?.label + index}>
-
-          <GalleryCard
-            key={item.title}
-            title={item.title}
-            images={item.images}
-            onOpen={() => {
-              setLightboxImages(item.images);
-              setActiveIndex(0);
-            }}
+          <Reveal
+            variants={moveUpV2}
+            delayRange={0.03 * index}
+            key={activeCategory?.label + index}
+          >
+            <GalleryCard
+              key={item.title}
+              title={item.title}
+              images={item.images}
+              onOpen={() => {
+                setLightboxImages(item.images);
+                setActiveIndex(0);
+              }}
             />
-            </Reveal>
+          </Reveal>
         ))}
       </div>
 
