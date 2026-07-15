@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span>{project.sector}</span>
         </div>
 
-        <h3 className="mt-30 text-subtitle-3 line-clamp-1">{project.title}</h3>
+        <h3 className="mt-30 text-subtitle-3 line-clamp-2">{project.title}</h3>
       </div>
     </Link>
   );
