@@ -10,6 +10,7 @@ interface FilterSelectDropDownProps {
   options: string[];
   value: string | null;
   onChange: (value: string | null) => void;
+  className?: string;
 }
 
 export default function FilterSelectDropDown({
@@ -17,6 +18,7 @@ export default function FilterSelectDropDown({
   options,
   value,
   onChange,
+  className,
 }: FilterSelectDropDownProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -61,7 +63,7 @@ export default function FilterSelectDropDown({
     <div
       ref={rootRef}
       onClick={() => setOpen((prev) => !prev)}
-      className="relative w-full min-[1900]:min-w-[340px] cursor-pointer"
+      className={`relative w-full min-[1900]:min-w-[340px] cursor-pointer ${className}`}
     >
       <button
         type="button"
@@ -80,7 +82,7 @@ export default function FilterSelectDropDown({
           <Image
             src="/assets/icons/down-arrow.svg"
             alt="chevron-down"
-            className="w-auto h-[10px]"
+            className="w-auto sm:h-[10px] h-[9px] mr-[2px] sm:mr-0"
             width={30}
             height={30}
           />

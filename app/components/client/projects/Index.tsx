@@ -15,6 +15,7 @@ const Index = () => {
         sectionDescription={sectionHeaderData.description}
         titleClassName="max-w-[25ch]"
         descriptionClassName="max-w-[65ch] 3xl:max-w-[82ch]"
+        className="pt-[29px] md:pt-70 3xl:pt-[73px] pb-[30px] md:pb-120 3xl:pb-150"
       />
       <Suspense>
         <ProjectsMain />

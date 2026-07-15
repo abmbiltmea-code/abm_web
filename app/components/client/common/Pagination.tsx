@@ -78,7 +78,7 @@ const Pagination = ({
     "flex items-center justify-center box-size rounded-[5px] border transition-colors duration-300 cursor-pointer text-description-2";
 
   return (
-    <div className="flex items-center gap-[10px]">
+    <div className="flex items-center md:gap-[10px] gap-[5px]">
       <button
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
