@@ -108,12 +108,12 @@ export default function ProjectsMain() {
     >
       <FilterBar filters={filters} onChange={handleFiltersChange} />
 
-      <div className="mt-80">
+      <div className="mt-[30px] md:mt-80">
         <ProjectsGrid projects={paginatedProjects} />
       </div>
 
       {totalPages > 1 && (
-        <div className="mt-50 flex justify-center">
+        <div className="mt-[60px] md:mt-50 flex justify-center">
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

@@ -525,7 +525,7 @@ export default function Evolution() {
   // Horizontal (mobile) transform
   
   const targetLeftX = displayIndex * (itemWidth + YEAR_GAP_MOBILE);
-  const shiftX = -targetLeftX + dragOffset - 9;
+  const shiftX = -targetLeftX + dragOffset;
 
   return (
     <section className="bg-secondary py-120 3xl:py-140">
