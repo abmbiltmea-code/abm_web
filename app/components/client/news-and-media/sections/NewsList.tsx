@@ -65,7 +65,7 @@ export default function NewsList({ news }: { news: any[] }) {
       className="container pb-[60px] md:pb-120 3xl:pb-150"
     >
       <div className="flex justify-end w-full">
-        <div className="max-w-[400px] mb-40 bg-cream-background px-30 py-30 3xl:py-[34px] rounded-[10px]">
+        <div className="w-full max-w-[360px] 3xl:max-w-[400px] mb-40 bg-cream-background px-30 py-30 3xl:py-[34px] rounded-[10px]">
           <FilterSelectDropDown
             label="Industries"
             options={CATEGORIES}
