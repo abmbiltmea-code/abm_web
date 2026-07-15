@@ -20,11 +20,11 @@ export default function GroupCompanies() {
           <SectionTitle title={title} />
         </div>
         <Swiper
-          spaceBetween={20}
+          spaceBetween={15}
           breakpoints={{
             0: { slidesPerView: 1.181 },
             768: { slidesPerView: 2 },
-            1400: { slidesPerView: 3 },
+            1400: { slidesPerView: 3, spaceBetween: 20 },
           }}
           className="!overflow-visible"
         >

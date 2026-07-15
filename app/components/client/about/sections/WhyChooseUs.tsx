@@ -82,8 +82,8 @@ export default function WhyChooseUs() {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={slide.id}>
-                <div className="h-[339px] flex flex-col rounded-[10px] overflow-hidden">
-                  <div className="relative w-full h-[50.148%]">
+                <div className="flex flex-col rounded-[10px] overflow-hidden">
+                  <div className="relative w-full min-h-[170px] sm:h-[50.148%]">
                     <Image
                       src={slide.image}
                       alt={slide.title}
@@ -91,7 +91,7 @@ export default function WhyChooseUs() {
                       className="object-cover pointer-events-none"
                     />
                   </div>
-                  <div className="flex flex-col px-[15px] py-[20px] border border-border-color rounded-b-[10px]">
+                  <div className="flex flex-col px-[15px] py-[19px] border border-border-color rounded-b-[10px]">
                     <div className="flex items-center gap-[10px] mb-[10px]">
                       <div className="text-[10px] sm:text-15 font-tasa font-bold leading-none w-6 h-6 rounded-[5px] flex items-center justify-center border border-primary bg-primary/10">
                         {String(index + 1).padStart(2, "0")}

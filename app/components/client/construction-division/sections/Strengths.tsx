@@ -6,26 +6,74 @@ import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { strengthsData } from "../data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 export default function Strengths() {
   const { label, title, description, items } = strengthsData;
   const [active, setActive] = useState(1);
 
   return (
-    <section className="container py-[60px] md:py-120 3xl:py-150">
-      <div className="mb-40">
-        <SectionLabel title={label} />
+    <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
+      <div className="container">
+        <div className="mb-5 md:mb-[30px]">
+          <SectionLabel title={label} />
+        </div>
+        <div className="flex flex-col xl:flex-row xl:justify-between gap-2.5 md:gap-40 mb-50">
+          <SectionTitle title={title} className="max-w-[20ch]" />
+          <SectionDescription
+            text={description}
+            className="xl:max-w-[560px] text-description-color text-description-2"
+          />
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between gap-40 mb-50">
-        <SectionTitle title={title} className="max-w-[20ch]" />
-        <SectionDescription
-          text={description}
-          className="lg:max-w-[560px] text-description-color text-description-2"
-        />
+      {/* Below xl - Card Slider */}
+      <div className="xl:hidden container">
+      <Swiper
+        modules={[Autoplay]}
+        speed={700}
+          spaceBetween={15}
+          slidesPerView={1.1759}
+          breakpoints={{
+            640: { slidesPerView: 1.6, spaceBetween: 15 },
+            768: { slidesPerView: 2, spaceBetween: 15 },
+            1024: { slidesPerView: 2, spaceBetween: 20 }, 
+          }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+        >
+          {items.map((item) => (
+            <SwiperSlide key={item.title}>
+              <div className="rounded-[10px] overflow-hidden border border-border-color h-full flex flex-col">
+                <div className="relative w-full h-[170px] shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="py-5 px-[15px]">
+                  <h3 className="text-subtitle-2 uppercase mb-2.5 sm:mb-5">
+                    {item.title}
+                  </h3>
+                  <p className="text-description-color text-description-2">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between gap-80">
+      <div className="hidden xl:flex flex-col xl:flex-row justify-between gap-80">
         {/* Left - Accordion */}
         <div className="w-full lg:w-1/2 border-t border-border-color">
           {items.map((item, index) => {
