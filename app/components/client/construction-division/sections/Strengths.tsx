@@ -73,7 +73,7 @@ export default function Strengths() {
         </Swiper>
       </div>
 
-      <div className="hidden xl:flex flex-col xl:flex-row justify-between gap-80">
+      <div className="container hidden xl:flex flex-col xl:flex-row justify-between gap-80">
         {/* Left - Accordion */}
         <div className="w-full lg:w-1/2 border-t border-border-color">
           {items.map((item, index) => {
