@@ -15,8 +15,8 @@ const InnerCtaSecondary = ({
   btnLink,
 }: Props) => {
   return (
-    <div className="py-100 3xl:py-[105px] bg-secondary rounded-[10px]">
-      <div className="flex flex-col gap-40 px-100">
+    <div className="py-[50px] md:py-100 3xl:py-[105px] bg-secondary rounded-[10px]">
+      <div className="flex flex-col gap-5 md:gap-40 px-[15px] sm:px-30 md:px-100">
         <SectionTitle title={title} className={`${maxTitleWidth} text-white`} />
         <div>
           <CustomButton text={btnText} href={btnLink} />
