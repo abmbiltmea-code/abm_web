@@ -188,9 +188,6 @@
 // //   );
 // // }
 
-
-
-
 // "use client";
 
 // import { useCallback, useEffect, useRef, useState } from "react";
@@ -202,7 +199,7 @@
 
 // const YEAR_GAP = 20; // matches gap-5
 // const TRANSITION_MS = 500;
-// const BLOCK_COPIES = 5; 
+// const BLOCK_COPIES = 5;
 // const MID_BLOCK = Math.floor(BLOCK_COPIES / 2);
 // const DRAG_THRESHOLD = 5; // px before pointer-down counts as a drag, not a click
 
@@ -401,9 +398,6 @@
 //   );
 // }
 
-
-
-
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -438,7 +432,13 @@ export default function Evolution() {
   const listRef = useRef<HTMLDivElement>(null); // desktop (vertical)
   const listRefMobile = useRef<HTMLDivElement>(null); // mobile (horizontal)
   const recenterRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const dragState = useRef({ dragging: false, start: 0, moved: false, pointerId: null as number | null, axis: "y" as Axis });
+  const dragState = useRef({
+    dragging: false,
+    start: 0,
+    moved: false,
+    pointerId: null as number | null,
+    axis: "y" as Axis,
+  });
 
   const realIndex = ((displayIndex % BLOCK) + BLOCK) % BLOCK;
   const active = items[realIndex];
@@ -447,7 +447,9 @@ export default function Evolution() {
     const measure = () => {
       const firstV = listRef.current?.children[0] as HTMLElement | undefined;
       if (firstV) setItemHeight(firstV.offsetHeight);
-      const firstH = listRefMobile.current?.children[0] as HTMLElement | undefined;
+      const firstH = listRefMobile.current?.children[0] as
+        | HTMLElement
+        | undefined;
       if (firstH) setItemWidth(firstH.offsetWidth);
     };
     measure();
@@ -463,10 +465,12 @@ export default function Evolution() {
         const real = ((index % BLOCK) + BLOCK) % BLOCK;
         setTransitionEnabled(false);
         setDisplayIndex(MID + real);
-        requestAnimationFrame(() => requestAnimationFrame(() => setTransitionEnabled(true)));
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => setTransitionEnabled(true)),
+        );
       }
     },
-    [BLOCK, MID]
+    [BLOCK, MID],
   );
 
   const goTo = (index: number) => {
@@ -487,11 +491,18 @@ export default function Evolution() {
     };
   }, []);
 
-  const getPos = (e: React.PointerEvent, axis: Axis) => (axis === "x" ? e.clientX : e.clientY);
+  const getPos = (e: React.PointerEvent, axis: Axis) =>
+    axis === "x" ? e.clientX : e.clientY;
 
   const onPointerDown = (axis: Axis) => (e: React.PointerEvent) => {
     if (recenterRef.current) clearTimeout(recenterRef.current);
-    dragState.current = { dragging: true, start: getPos(e, axis), moved: false, pointerId: e.pointerId, axis };
+    dragState.current = {
+      dragging: true,
+      start: getPos(e, axis),
+      moved: false,
+      pointerId: e.pointerId,
+      axis,
+    };
     setTransitionEnabled(false);
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
   };
@@ -507,23 +518,27 @@ export default function Evolution() {
   const endDrag = (axis: Axis) => (e: React.PointerEvent) => {
     if (!dragState.current.dragging) return;
     dragState.current.dragging = false;
-    const size = axis === "x" ? itemWidth + YEAR_GAP_MOBILE : itemHeight + YEAR_GAP;
+    const size =
+      axis === "x" ? itemWidth + YEAR_GAP_MOBILE : itemHeight + YEAR_GAP;
     const moveBy = size ? -Math.round(dragOffset / size) : 0;
     setDragOffset(0);
     if (dragState.current.moved) goTo(displayIndex + moveBy);
     else setTransitionEnabled(true);
     if (dragState.current.pointerId !== null) {
-      (e.target as HTMLElement).releasePointerCapture(dragState.current.pointerId);
+      (e.target as HTMLElement).releasePointerCapture(
+        dragState.current.pointerId,
+      );
     }
   };
 
   // Vertical (desktop) transform
-  const listHeight = loopedItems.length * itemHeight + (loopedItems.length - 1) * YEAR_GAP;
+  const listHeight =
+    loopedItems.length * itemHeight + (loopedItems.length - 1) * YEAR_GAP;
   const targetCenterY = displayIndex * (itemHeight + YEAR_GAP) + itemHeight / 2;
   const shiftY = listHeight / 2 - targetCenterY + dragOffset;
 
   // Horizontal (mobile) transform
-  
+
   const targetLeftX = displayIndex * (itemWidth + YEAR_GAP_MOBILE);
   const shiftX = -targetLeftX + dragOffset;
 
@@ -535,8 +550,44 @@ export default function Evolution() {
             <SectionLabel title={label} textColor="text-white" />
           </div>
           <div className="flex flex-col lg:section-content-spacing">
-            <SectionTitle title={title} className="text-white mb-[10px] lg:mb-5" />
-            <SectionDescription text={description} className="text-white/80" />
+            <SectionTitle
+              title={title}
+              className="text-white mb-[10px] lg:mb-5"
+            />
+            <div className="flex justify-between">
+              <SectionDescription
+                text={description}
+                className="text-white/80 max-w-[265px] sm:max-w-[80%] lg:max-w-none"
+              />
+              <div className="lg:hidden flex gap-[5px]">
+                <button
+                  type="button"
+                  onClick={() => goTo(displayIndex - 1)}
+                  className="w-[35px] h-[35px] rounded-[5px] border border-primary flex justify-center items-center cursor-pointer"
+                >
+                  <Image
+                    src="/assets/icons/down-arrow.svg"
+                    alt="previous year"
+                    width={13}
+                    height={13}
+                    className="invert brightness-0 rotate-90"
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goTo(displayIndex + 1)}
+                  className="w-[35px] h-[35px] rounded-[5px] border border-primary flex justify-center items-center cursor-pointer"
+                >
+                  <Image
+                    src="/assets/icons/down-arrow.svg"
+                    alt="next year"
+                    width={13}
+                    height={13}
+                    className="invert brightness-0 -rotate-90"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -570,10 +621,12 @@ export default function Evolution() {
             onPointerUp={endDrag("x")}
             onPointerCancel={endDrag("x")}
           >
-<div
+            <div
               ref={listRefMobile}
               className={`absolute top-0 bottom-0 left-0 flex flex-row items-center gap-[30px] select-none ${
-                transitionEnabled ? "transition-transform duration-500 ease-in-out" : ""
+                transitionEnabled
+                  ? "transition-transform duration-500 ease-in-out"
+                  : ""
               }`}
               style={{ transform: `translateX(${shiftX}px)` }}
               data-lenis-prevent
@@ -613,7 +666,9 @@ export default function Evolution() {
             <div
               ref={listRef}
               className={`absolute top-1/2 left-0 right-0 flex flex-col gap-5 select-none ${
-                transitionEnabled ? "transition-transform duration-500 ease-in-out" : ""
+                transitionEnabled
+                  ? "transition-transform duration-500 ease-in-out"
+                  : ""
               }`}
               style={{ transform: `translateY(calc(-50% + ${shiftY}px))` }}
               data-lenis-prevent
@@ -627,7 +682,9 @@ export default function Evolution() {
                     goToYear(i % BLOCK);
                   }}
                   className={`w-full text-center transition-all duration-300 text-20 leading-[1.4166666666] sm:leading-[1.45] 3xl:leading-[1.75] text-white/80 cursor-pointer hover:opacity-100 ${
-                    i === displayIndex ? "opacity-100 font-parabolica-bold" : "opacity-20 font-parabolica"
+                    i === displayIndex
+                      ? "opacity-100 font-parabolica-bold"
+                      : "opacity-20 font-parabolica"
                   }`}
                 >
                   {item.year}
@@ -659,8 +716,12 @@ export default function Evolution() {
             <div className="hidden lg:flex items-center justify-center bg-[#D9D9D90D] text-subtitle-3 leading-0 text-primary px-30 3xl:px-[32px] py-[2px] border border-white rounded-[27.5px] w-fit mb-60 min-h-[46px] 3xl:min-h-[49px] max-w-[130px]">
               {active.year}
             </div>
-            <h3 className="text-subtitle-3 text-white uppercase mb-[10px] lg:mb-5">{active.title}</h3>
-            <p className="text-description-2 text-white/80">{active.description}</p>
+            <h3 className="text-subtitle-3 text-white uppercase mb-[10px] lg:mb-5">
+              {active.title}
+            </h3>
+            <p className="text-description-2 text-white/80">
+              {active.description}
+            </p>
           </div>
         </div>
       </div>
