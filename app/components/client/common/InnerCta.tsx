@@ -11,9 +11,14 @@ interface InnerCtaProps {
   email?: boolean;
 }
 
-export default function InnerCta({ title, description, image, email }: InnerCtaProps) {
+export default function InnerCta({
+  title,
+  description,
+  image,
+  email,
+}: InnerCtaProps) {
   return (
-    <section className="relative w-full h-[400px] lg:h-[550px] 3xl:h-[708px] overflow-hidden">
+    <section className="relative w-full h-[288px] sm:h-[350px] md:h-[400px] lg:h-[550px] 3xl:h-[708px] overflow-hidden">
       {/* BG Image */}
       <Image src={image} alt={title} fill className="object-cover" priority />
 
@@ -23,23 +28,28 @@ export default function InnerCta({ title, description, image, email }: InnerCtaP
       {/* Content */}
       <div className="relative z-10 h-full container flex items-center">
         <div className="flex flex-col w-full">
-          <h2 className="text-white section-heading mb-20">
-            {title}
-          </h2>
+          <h2 className="text-white section-heading mb-20">{title}</h2>
 
           {/* Gradient line */}
           <div
-            className="w-full h-px mb-50"
+            className="w-full h-px mb-5 sm:mb-50"
             style={{
               background:
                 "linear-gradient(90deg, rgba(255,255,255,0) 0%, #FFFFFF 50%, rgba(255,255,255,0) 100%)",
             }}
           />
 
-          <p className="text-white/80 text-description max-w-[50ch] mb-20" dangerouslySetInnerHTML={{ __html: description }} />
+          <p
+            className="text-white/80 text-description max-w-[50ch] mb-[15px] md:mb-20"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
 
-          <div>
-            {email ? <NewsletterForm /> : <CustomButton text={"CONTACT US"} href={"/contact-us"} /> }
+          <div style={{ ["--autofill-text-color" as string]: "#ffffff" }}>
+            {email ? (
+              <NewsletterForm />
+            ) : (
+              <CustomButton text={"CONTACT US"} href={"/contact-us"} />
+            )}
           </div>
         </div>
       </div>

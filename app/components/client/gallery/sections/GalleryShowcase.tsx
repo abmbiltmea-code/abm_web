@@ -103,7 +103,7 @@ export default function GalleryShowcase() {
             <button
               key={cat.label}
               onClick={() => setActiveTab(cat.label)}
-              className={`relative pb-[15px] text-subtitle transition-colors duration-300 ${
+              className={`relative pb-[15px] text-subtitle transition-colors duration-300 cursor-pointer ${
                 activeTab === cat.label
                   ? "text-primary"
                   : "text-secondary hover:text-primary"

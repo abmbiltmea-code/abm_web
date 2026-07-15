@@ -12,7 +12,7 @@ interface ProcessProps {
 export default function Process({ image, title, description }: ProcessProps) {
   return (
     <section className="bg-cream-background py-120 3xl:py-140">
-      <div className="container pb-40">
+      <div className="container">
         <div className="flex flex-col items-center justify-between gap-80 lg:flex-row">
           {/* Left: image */}
           <div className="relative aspect-4/3 w-full overflow-hidden rounded-[10px] 3xl:h-[600px] 3xl:w-[995px] 3xl:shrink-0">

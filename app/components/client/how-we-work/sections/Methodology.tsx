@@ -21,7 +21,7 @@ export default function Methodology() {
             {items.map((item, index) => (
               <div
                 key={item.title}
-                className={`flex items-start gap-40 pt-40 first:pt-0 ${
+                className={`flex items-start gap-40 pt-50 first:pt-0 ${
                   index !== items.length - 1
                     ? "border-b border-border-color pb-50"
                     : ""

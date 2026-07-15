@@ -15,7 +15,7 @@ const SectionHeader = ({
   labelTitle,
   sectionTitle,
   sectionDescription,
-  className = "pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150",
+  className = "pt-[29px] md:pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150",
   titleClassName = "",
   descriptionClassName = "",
 }: SectionHeaderProps) => {

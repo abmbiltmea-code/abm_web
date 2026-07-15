@@ -27,6 +27,7 @@ export default function CareerHeader() {
               alt="clock"
               width={32}
               height={32}
+              className="pointer-events-none select-none"
             />
             {type}
           </span>
@@ -39,6 +40,7 @@ export default function CareerHeader() {
               alt="location"
               width={32}
               height={32}
+              className="pointer-events-none select-none"
             />
             {location.toUpperCase()}
           </span>
@@ -51,6 +53,7 @@ export default function CareerHeader() {
               alt="experience"
               width={32}
               height={32}
+              className="pointer-events-none select-none"
             />
             {experience.toUpperCase()}
           </span>

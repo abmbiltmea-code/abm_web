@@ -1,9 +1,13 @@
 "use client";
 
+import { Swiper, SwiperSlide } from "swiper/react";
 import SectionLabel from "@/app/components/client/common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import { servicesGridData } from "../data";
 import ServiceCard from "./ServiceCard";
+
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 export default function WhatWeDo() {
   return (
@@ -19,19 +23,35 @@ export default function WhatWeDo() {
       </div>
 
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {servicesGridData.items.map((item, index) => (
-            <div
-              key={item.title}
-            >
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={15}
+          loop={true}
+          speed={800}
+          slidesPerView={1.184}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+           className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+          breakpoints={{
+            640: { slidesPerView: 1.6, spaceBetween: 15 },
+            768: { slidesPerView: 2, spaceBetween: 15 },
+            1024: { slidesPerView: 2, spaceBetween: 20 },
+            1280: { slidesPerView: 3, spaceBetween: 20 },
+            1600: { slidesPerView: 4, spaceBetween: 20 },
+          }}
+        >
+          {servicesGridData.items.map((item) => (
+            <SwiperSlide key={item.title}>
               <ServiceCard
                 image={item.image}
                 title={item.title}
                 description={item.description}
               />
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

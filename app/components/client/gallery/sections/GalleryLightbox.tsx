@@ -122,7 +122,7 @@ export default function GalleryLightbox({
             )}
 
             <div
-              className="relative h-[340px] w-full overflow-hidden rounded-[10px] sm:h-[320px] md:h-[400px] lg:h-[520px] 3xl:h-[678px] 3xl:w-[1470px]"
+              className="relative h-[340px] w-full overflow-hidden rounded-[10px] sm:h-[320px] md:h-[400px] lg:h-[520px] 3xl:h-[687px] 3xl:w-[1470px]"
               onClick={(e) => e.stopPropagation()}
             >
               <Image

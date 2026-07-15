@@ -65,10 +65,10 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #333333 !important;
+  -webkit-text-fill-color: var(--autofill-text-color, #7c7c7c) !important;
+  caret-color: var(--autofill-text-color, #7c7c7c);
   transition: background-color 5000s ease-in-out 0s;
 }
-
 /* custom scrollbar hide */
 @utility scrollbar-hide {
   scrollbar-width: none;
@@ -289,11 +289,11 @@ body {
 }
 
 @utility text-subtitle-2 {
-  @apply text-30 leading-[1.5] font-tasa font-bold;
+  @apply text-30 leading-none sm:leading-[1.5] font-tasa font-bold;
 }
 
 @utility text-subtitle-3 {
-  @apply text-30 leading-[1.333333] font-tasa font-bold uppercase;
+  @apply text-30 leading-[1.2] sm:leading-[1.333333] font-tasa font-bold uppercase;
 }
 
 @utility text-description {
@@ -305,7 +305,7 @@ body {
 }
 
 @utility section-content-spacing {
-  @apply ml-[8%] 3xl:w-[1285px];
+  @apply lg:ml-[0%] xl:ml-[8%] 3xl:w-[1285px];
 }
 
 @utility section-content-spacing-2 {

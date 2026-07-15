@@ -19,7 +19,7 @@ export default function PurposeSection() {
 
         {/* Vision */}
         <div>
-          <div className="flex py-5 md:py-50 gap-[30px] md:gap-50 xl:gap-70 3xl:gap-[69px]">
+          <div className="flex py-5 md:py-50 gap-50 xl:gap-70 3xl:gap-[69px]">
             <div className="shrink-0">
               <Image
                 src={vision.icon}
@@ -41,7 +41,7 @@ export default function PurposeSection() {
 
         {/* Mission */}
         <div>
-          <div className="flex py-5 md:py-50 gap-[30px] md:gap-50">
+          <div className="flex py-5 md:py-50 gap-50">
             <div className="shrink-0">
               <Image
                 src={mission.icon}

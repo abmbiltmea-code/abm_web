@@ -33,7 +33,7 @@ linear-gradient(249.19deg, rgba(0, 0, 0, 0) 28.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
       />
 
       {/* Title */}
-      <div className="absolute inset-x-0 md:top-0 bottom-[113px] md:bottom-[67px] flex items-center justify-center">
+      <div className="absolute inset-x-0 top-[157px] md:top-0 md:bottom-[67px] flex items-center justify-center">
         <div className="container mt-px">
           <h1 className="text-white hero-title">{title}</h1>
         </div>

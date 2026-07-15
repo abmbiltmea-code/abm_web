@@ -14,36 +14,37 @@ export default function GroupCompanies() {
 
   return (
     <section className="w-full overflow-hidden">
-      <div className="container py-120 3xl:py-150">
-        <div className="flex flex-col gap-40 mb-50">
+      <div className="container py-[60px] md:py-120 3xl:py-150">
+        <div className="flex flex-col gap-5 md:gap-40 mb-50">
           <SectionLabel title={label} />
           <SectionTitle title={title} />
         </div>
         <Swiper
-          spaceBetween={20}
+          spaceBetween={15}
           breakpoints={{
-            0: { slidesPerView: 1.2 },
+            0: { slidesPerView: 1.181 },
             768: { slidesPerView: 2 },
-            1400: { slidesPerView: 3 },
+            1400: { slidesPerView: 3, spaceBetween: 20 },
           }}
+          className="!overflow-visible"
         >
           {groupCompaniesSection.groupCompanies.map((card) => (
             <SwiperSlide key={card.id}>
-              <div className="flex flex-col rounded-[10px] border border-border-color px-40 3xl:px-60 pt-20 pb-60 3xl:pb-[66px] h-full">
+              <div className="flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pt-20 pb-60 3xl:pb-[66px] h-full">
                 <div className="relative h-full w-full mb-20">
                   <Image
                     src={card.logo}
                     alt={card.title}
                     width={245}
                     height={123}
-                    className="object-contain object-left h-[100px] 3xl:h-[123px]"
+                    className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px]"
                   />
                 </div>
-                <span className="block w-full h-px bg-border-color mb-80" />
+                <span className="block w-full h-px bg-border-color mb-[50px] md:mb-80" />
                 <h3 className="text-secondary text-subtitle-2 mb-20">
                   {card.title}
                 </h3>
-                <p className="text-description-2 text-description-color mb-40 flex-1">
+                <p className="text-description-2 text-description-color mb-5 md:mb-40 flex-1">
                   {card.description}
                 </p>
                 <CustomButton className="w-fit" target="_blank" text={card.buttonText} href={card.href} />

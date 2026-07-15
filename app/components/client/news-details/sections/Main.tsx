@@ -9,7 +9,7 @@ export default function Main() {
     <section className="container pt-300 pb-[60px] md:pb-120 3xl:pb-150">
       <div className="flex flex-col xl:flex-row gap-40 xl:gap-0">
         {/* Sidebar */}
-        <aside className="w-full xl:max-w-[30%] 3xl:max-w-[435px] self-start xl:sticky xl:top-30 xl:mt-30 xl:pr-5 relative">
+        <aside className="w-full xl:max-w-[30%] 3xl:max-w-[435px] self-start xl:sticky xl:top-60 xl:mt-30 xl:pr-5 relative">
           <div className="hidden xl:block w-px absolute top-0 right-0 bottom-0 h-full bg-gradient-to-b from-[#CCCCCC] to-transparent" />
           <div className="flex items-center justify-between pb-5">
             <span className="text-subtitle-3 uppercase">
