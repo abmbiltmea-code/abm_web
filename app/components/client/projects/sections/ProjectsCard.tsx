@@ -4,9 +4,10 @@ import Link from "next/link";
 
 interface ProjectCardProps {
   project: Project;
+  contentBg?: string;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, contentBg = "bg-cream-background" }: ProjectCardProps) {
   return (
     <Link href={`/projects/${project.title.toLowerCase().replace(/ /g, "-")}`}>
       <div className="group flex w-full flex-col">
@@ -19,7 +20,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           />
         </div>
 
-        <div className="flex justify-between bg-cream-background px-30 py-5 text-description-2 text-description-color pr-[22.5%]">
+        <div className={`flex justify-between ${contentBg} px-30 py-5 text-description-2 text-description-color pr-[22.5%]`}>
           <span>{project.location}</span>
           <span>{project.sector}</span>
         </div>
