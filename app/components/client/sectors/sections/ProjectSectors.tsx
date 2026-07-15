@@ -1,16 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import { projectSectorsData } from "../data";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 const ProjectSectors = () => {
   return (
-    <section className="container">
-      <div className="hidden lg:flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
+    <section className="overflow-hidden">
+      <div className="hidden lg:flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150 container">
         {projectSectorsData.map((item, index) => {
           const isEven = index % 2 === 1;
 
@@ -52,8 +55,49 @@ const ProjectSectors = () => {
           );
         })}
       </div>
-      <div className="lg:hidden flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150">
-
+      <div className="container">
+        <div className="lg:hidden border-t border-border-color pt-[30px] pb-[60px] md:pb-120 3xl:pb-150">
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={1.1766}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            speed={800}
+            spaceBetween={15}
+            className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+            breakpoints={{
+              640: { slidesPerView: 1.6, spaceBetween: 15 },
+              768: { slidesPerView: 2, spaceBetween: 15 },
+            }}
+          >
+            {projectSectorsData.map((item) => (
+              <SwiperSlide key={item.title}>
+                <div className="flex flex-col rounded-[10px] overflow-hidden border border-border-color h-full">
+                  {/* Image */}
+                  <div className="relative w-full h-[180px]">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  {/* Content */}
+                  <div className="flex flex-col px-[15px] py-[20px] sm:p-30">
+                    <h3 className="mb-[10px] sm:mb-20 text-subtitle-2 uppercase leading-none">{item.title}</h3>
+                    <p className="text-description-color text-description-2 mb-[15px] sm:mb-30">
+                      {item.description}
+                    </p>
+                    <CustomButton text={item.btnText} href={item.btnLink} />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );

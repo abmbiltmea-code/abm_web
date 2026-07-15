@@ -10,6 +10,7 @@
   --breakpoint-3xl: 1601px;
 }
 
+
 @font-face {
   font-family: "Parabolica Test";
   src: url("/assets/fonts/Parabolica-Regular.woff2") format("opentype"),
@@ -96,8 +97,8 @@ input:-webkit-autofill:active {
 /* 60px → 26px at 420px, 60px at 1920px */
 --text-60: clamp(26px, 2.8vw + 6.2px, 60px);
 
-/* 30px → 20px at 420px, 30px at 1500px */
---text-30: clamp(20px, 0.926vw + 16.111px, 30px);
+/* 30px → 20px at 400px, 30px at 1750px */
+--text-30: clamp(20px, 0.741vw + 17.037px, 30px);
 
 --text-20: clamp(12px, 0.8163vw + 8.5714px, 20px);
 
@@ -305,7 +306,7 @@ body {
 }
 
 @utility section-content-spacing {
-  @apply lg:ml-[0%] xl:ml-[8%] 3xl:w-[1285px];
+  @apply lg:ml-[0%] xl:ml-[6%] 2xl:ml-[8%] 3xl:w-[1285px];
 }
 
 @utility section-content-spacing-2 {
