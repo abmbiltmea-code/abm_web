@@ -34,8 +34,8 @@ export default function LetsConnectForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="w-full">
-      <div className="flex flex-col gap-40">
-        <div className="grid sm:grid-cols-2 gap-x-80 3xl:gap-x-[88px]">
+      <div className="flex flex-col gap-[30px] lg:gap-40">
+        <div className="grid sm:grid-cols-2 gap-y-[30px] lg:gap-x-80 3xl:gap-x-[88px]">
           <FormInput
             label="First Name"
             required
@@ -50,7 +50,7 @@ export default function LetsConnectForm() {
           />
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-x-80 3xl:gap-x-[88px]">
+        <div className="grid sm:grid-cols-2 gap-y-[30px] lg:gap-x-80 3xl:gap-x-[88px]">
           <FormInput
             label="Email"
             type="email"

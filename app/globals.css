@@ -443,4 +443,8 @@ body {
   .news-detail-content li::before {
       top: 4px;
   }
+
+  .work-methodology-content ul li::before {
+    top: 4px;
+  }
 }
