@@ -290,7 +290,7 @@ body {
 }
 
 @utility text-subtitle-2 {
-  @apply text-30 leading-none sm:leading-[1.5] font-tasa font-bold;
+  @apply text-30 leading-none sm:leading-[1.3] xl:leading-[1.5] font-tasa font-bold;
 }
 
 @utility text-subtitle-3 {
@@ -442,5 +442,9 @@ body {
 @media (max-width: 640px) {
   .news-detail-content li::before {
       top: 4px;
+  }
+
+  .work-methodology-content li::before {
+    top: 4px;
   }
 }

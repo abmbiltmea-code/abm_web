@@ -45,7 +45,7 @@ export default function OpenPositions() {
             {jobs.map((job) => (
               <div
                 key={job.title}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-[15px] sm:px-0 py-5 sm:py-50 border rounded-[10px] sm:rounded-none sm:border-0 sm:border-b border-border-color"
+                className="bg-cream-background sm:bg-transparent flex flex-col sm:flex-row sm:items-center sm:justify-between px-[15px] sm:px-0 py-5 sm:py-50 border rounded-[10px] sm:rounded-none sm:border-0 sm:border-b border-border-color"
               >
                 <div>
                   <span className="block text-description-color text-description-2 mb-[15px] sm:mb-[10px]">

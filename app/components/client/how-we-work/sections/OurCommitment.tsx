@@ -6,23 +6,25 @@ import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { ourCommitmentData } from "../data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 export default function OurCommitment() {
   const { sectionLabel, title, description, items } = ourCommitmentData;
   const [active, setActive] = useState(1);
 
   return (
-    <section className="bg-cream-background py-120 3xl:py-140">
+    <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
       <div className="container">
-        <div className="mb-40">
+        <div className="mb-5 sm:mb-40">
           <SectionLabel title={sectionLabel} />
         </div>
-        <SectionTitle title={title} className="mb-5" />
+        <SectionTitle title={title} className="mb-2.5 sm:mb-5" />
         <SectionDescription
           text={description}
-          className="max-w-[75ch] mb-30 text-description-2 text-description-color"
+          className="max-w-[75ch] mb-40 lg:mb-30 text-description-2 text-description-color"
         />
-        <div className="flex flex-col lg:flex-row gap-60 3xl:gap-100">
+        <div className="hidden lg:flex flex-col lg:flex-row gap-60 3xl:gap-100">
           {/* Left side */}
           <div className="w-full lg:w-[55%] 3xl:w-[1055px] shrink-0">
             <div className="relative w-full h-full 3xl:w-[1055px] 3xl:h-[680px] rounded-[10px] overflow-hidden">
@@ -74,6 +76,47 @@ export default function OurCommitment() {
               </p>
             </div>
           </div>
+        </div>
+        <div className="lg:hidden w-full">
+          <Swiper
+            modules={[Autoplay]}
+            speed={700}
+            spaceBetween={15}
+            slidesPerView={1.1838}
+            breakpoints={{
+              640: { slidesPerView: 1.6, spaceBetween: 15 },
+              768: { slidesPerView: 2, spaceBetween: 15 },
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+          >
+            {items.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="rounded-[10px] overflow-hidden h-full flex flex-col bg-white">
+                  <div className="relative w-full h-[161px] shrink-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+
+                  <div className="py-5 px-[15px]">
+                    <h3 className="text-subtitle-2 uppercase mb-2.5 sm:mb-5">
+                      {item.title}
+                    </h3>
+                    <p className="text-description-color text-description-2">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>

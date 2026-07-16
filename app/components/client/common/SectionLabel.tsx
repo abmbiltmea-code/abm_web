@@ -57,7 +57,7 @@ export default function SectionLabel({
       />
       <span
         ref={textRef}
-        className={`text-[10px] sm:text-15 leading-none sm:leading-[1.3333] font-tasa font-bold uppercase pt-px ${textColor}`}
+        className={`text-[10px] sm:text-15 leading-none sm:leading-[1.3333] font-tasa font-bold uppercase pt-px lg:max-w-[230px] xl:max-w-none ${textColor}`}
         style={{ clipPath: "inset(0 100% 0 0)" }}
       >
         {title}
