@@ -407,12 +407,13 @@ import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 
-const YEAR_GAP = 20; // matches gap-5
-const YEAR_GAP_MOBILE = 30; // matches gap-30, tune to taste
+const YEAR_GAP = 20;
+const YEAR_GAP_MOBILE = 30;
 const TRANSITION_MS = 500;
-const BLOCK_COPIES = 5; // buffer either side for the infinite-loop illusion
+const BLOCK_COPIES = 5;
 const MID_BLOCK = Math.floor(BLOCK_COPIES / 2);
-const DRAG_THRESHOLD = 5; // px before pointer-down counts as a drag, not a click
+const DRAG_THRESHOLD = 5;
+const AUTOPLAY_MS = 4000;
 
 type Axis = "x" | "y";
 
@@ -439,6 +440,33 @@ export default function Evolution() {
     pointerId: null as number | null,
     axis: "y" as Axis,
   });
+  const displayIndexRef = useRef(displayIndex);
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pausedRef = useRef(false);
+
+  useEffect(() => {
+    displayIndexRef.current = displayIndex;
+  }, [displayIndex]);
+
+  const stopAutoplay = useCallback(() => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  }, []);
+
+  const startAutoplay = useCallback(() => {
+    stopAutoplay();
+    autoplayRef.current = setInterval(() => {
+      if (pausedRef.current) return;
+      goTo(displayIndexRef.current + 1);
+    }, AUTOPLAY_MS);
+  }, [stopAutoplay]);
+
+  useEffect(() => {
+    startAutoplay();
+    return stopAutoplay;
+  }, [startAutoplay, stopAutoplay]);
 
   const realIndex = ((displayIndex % BLOCK) + BLOCK) % BLOCK;
   const active = items[realIndex];
@@ -495,6 +523,7 @@ export default function Evolution() {
     axis === "x" ? e.clientX : e.clientY;
 
   const onPointerDown = (axis: Axis) => (e: React.PointerEvent) => {
+    pausedRef.current = true;
     if (recenterRef.current) clearTimeout(recenterRef.current);
     dragState.current = {
       dragging: true,
@@ -529,6 +558,7 @@ export default function Evolution() {
         dragState.current.pointerId,
       );
     }
+    pausedRef.current = false;
   };
 
   // Vertical (desktop) transform
@@ -591,7 +621,11 @@ export default function Evolution() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col lg:flex-row items-stretch">
+        <div
+          className="w-full flex flex-col lg:flex-row items-stretch"
+          // onMouseEnter={() => { pausedRef.current = true; }}
+          // onMouseLeave={() => { pausedRef.current = false; }}
+        >
           {/* Active image — manual crossfade */}
           <div className="relative w-full aspect-849/559 3xl:w-[849px] h-[217px] sm:h-auto max-lg:max-h-[350px] lg:h-auto 3xl:h-[559px] mr-50 xl:mr-70 3xl:mr-[76px] order-2 lg:order-1">
             {items.map((item, i) => (

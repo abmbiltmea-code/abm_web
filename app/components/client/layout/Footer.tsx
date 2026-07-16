@@ -136,12 +136,12 @@ export default function Footer() {
           {/* Right — Nav grid */}
           <div ref={navRef} className="flex-1 pt-40 lg:pt-100 pb-50">
             <nav className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 min-[1800px]:grid-cols-[234px_210px_190px] gap-x-[35px] gap-y-[30px] lg:gap-y-30">
-              {navLinks.map((link) => {
+              {navLinks.map((link, i) => {
                 const isActive = pathname === link.href;
 
                 return (
                   <Link
-                    key={link.label}
+                    key={i}
                     href={link.href}
                     className={`text-subtitle transition-colors duration-300 whitespace-nowrap flex group gap-20 3xl:gap-[23px] ${
                       isActive
@@ -188,9 +188,9 @@ export default function Footer() {
               className="absolute inset-0 bg-primary origin-left"
             />
           </div>
-          {socials.map((social) => (
+          {socials.map((social, i) => (
             <Link
-              key={social.label}
+              key={i}
               href={social.href}
               // target="_blank"
               className="flex items-center gap-[5px] md:gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
@@ -213,9 +213,9 @@ export default function Footer() {
         <div className="flex items-center justify-between pt-[30px] lg:pt-30 pb-100">
           {/* Legal */}
           <div className="flex items-center gap-[15px] sm:gap-30 3xl:gap-[28px]">
-            {legal.map((item) => (
+            {legal.map((item, i) => (
               <Link
-                key={item.label}
+                key={i}
                 href={item.href}
                 className="text-description-2 text-secondary/80 hover:text-primary transition-colors duration-300"
                 dangerouslySetInnerHTML={{ __html: item.label }}
@@ -228,9 +228,9 @@ export default function Footer() {
             className="hidden lg:flex absolute items-center gap-30"
             style={{ left: socialsOffset ? `${socialsOffset}px` : undefined }}
           >
-            {socials.map((social) => (
+            {socials.map((social, i) => (
               <Link
-                key={social.label}
+                key={i}
                 href={social.href}
                 // target="_blank"
                 className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
