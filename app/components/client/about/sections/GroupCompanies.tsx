@@ -73,9 +73,9 @@ export default function GroupCompanies() {
             return (
               <div
                 key={index}
-                className={`flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pt-20 pb-60 3xl:pb-[66px] h-full ${
-                  isInLastPartialRow ? "col-span-3" : "col-span-2"
-                }`}
+                className={`flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pb-60 3xl:pb-[66px] h-full ${
+                  card.logo ? "pt-20" : "pt-60 3xl:pt-[66px]"
+                } ${isInLastPartialRow ? "col-span-3" : "col-span-2"}`}
               >
                 {card.logo && (
                   <>
