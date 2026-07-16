@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useCallback, useEffect, useRef } from "react";
+import { useMemo, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { PROJECTS } from "../data";
 import FilterBar, { type Filters } from "./FilterBar";
@@ -8,7 +8,8 @@ import ProjectsGrid from "./ProjectsGrid";
 import Pagination from "../../common/Pagination";
 import { useLenis } from "../../layout/LenisProvider";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE_DESKTOP = 10;
+const ITEMS_PER_PAGE_MOBILE = 6;
 
 export default function ProjectsMain() {
   const router = useRouter();
@@ -16,6 +17,21 @@ export default function ProjectsMain() {
   const searchParams = useSearchParams();
   const { scrollTo, resize } = useLenis();
   const hasAutoScrolled = useRef(false);
+
+  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE_DESKTOP);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 1023px)");
+
+    const update = () =>
+      setItemsPerPage(
+        mql.matches ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE_DESKTOP,
+      );
+
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
 
   const filters: Filters = {
     division: searchParams.get("division"),
@@ -93,13 +109,13 @@ export default function ProjectsMain() {
 
   const totalPages = Math.max(
     1,
-    Math.ceil(filteredProjects.length / ITEMS_PER_PAGE),
+    Math.ceil(filteredProjects.length / itemsPerPage),
   );
 
   const paginatedProjects = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredProjects.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredProjects, currentPage]);
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredProjects.slice(start, start + itemsPerPage);
+  }, [filteredProjects, currentPage, itemsPerPage]);
 
   return (
     <section
@@ -113,7 +129,7 @@ export default function ProjectsMain() {
       </div>
 
       {totalPages > 1 && (
-        <div className="mt-[60px] md:mt-50 flex justify-center">
+        <div className="mt-[60px] lg:mt-50 flex justify-center">
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

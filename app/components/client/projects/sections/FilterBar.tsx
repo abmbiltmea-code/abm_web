@@ -174,9 +174,9 @@ export default function FilterBar({ filters, onChange }: FilterBarProps) {
         </AnimatePresence>
       </div>
 
-      {/* DESKTOP — sm and up (unchanged) */}
-      <div className="hidden sm:flex flex-wrap xl:flex-nowrap items-end gap-y-20">
-        <div className="grid w-full xl:w-auto xl:flex-1 grid-cols-2 xl:grid-cols-4 gap-6 self-end pb-[7px]">
+      {/* DESKTOP — sm and up */}
+      <div className="hidden sm:flex flex-wrap xl:flex-nowrap items-end gap-y-20 gap-50">
+        <div className="grid w-full xl:w-auto xl:flex-1 min-[1900px]:flex-none grid-cols-2 xl:grid-cols-4 gap-6 self-end pb-[7px]">
           <FilterSelectDropDown
             label="Division"
             options={DIVISIONS}

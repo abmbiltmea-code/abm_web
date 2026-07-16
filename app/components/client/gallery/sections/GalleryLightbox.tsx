@@ -172,7 +172,7 @@ export default function GalleryLightbox({
           {images.length > 1 && (
             <div
               ref={thumbsContainerRef}
-              className="mt-30 flex w-full max-w-full justify-center items-center overflow-x-auto gap-[15px]"
+              className="mt-30 flex w-full max-w-full justify-start md:justify-center items-center overflow-x-auto gap-[15px]"
             >
               {images.map((src, i) => {
                 const isActive = i === activeIndex;

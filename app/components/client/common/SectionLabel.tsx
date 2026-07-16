@@ -40,7 +40,7 @@ export default function SectionLabel({
         text,
         { clipPath: "inset(0 100% 0 0)", opacity: 1 },
         { clipPath: "inset(0 0% 0 0)", duration: 0.8 },
-        "-=0.1"
+        "-=0.1",
       );
     });
 
@@ -48,8 +48,13 @@ export default function SectionLabel({
   }, []);
 
   return (
-    <div className={`flex items-center gap-[5px] sm:gap-[10px] min-w-[285px] ${pt}`}>
-      <div ref={dotRef} className="w-[10px] h-[10px] bg-primary shrink-0 rounded-full" />
+    <div
+      className={`flex items-center gap-[5px] sm:gap-[10px] lg:min-w-[285px] ${pt}`}
+    >
+      <div
+        ref={dotRef}
+        className="w-[7px] h-[7px] sm:w-[10px] sm:h-[10px] bg-primary shrink-0 rounded-full"
+      />
       <span
         ref={textRef}
         className={`text-[10px] sm:text-15 leading-none sm:leading-[1.3333] font-tasa font-bold uppercase pt-px ${textColor}`}

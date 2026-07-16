@@ -438,3 +438,9 @@ body {
   height: 7px;
   background-color: var(--color-primary);
 }
+
+@media (max-width: 640px) {
+  .news-detail-content li::before {
+      top: 4px;
+  }
+}

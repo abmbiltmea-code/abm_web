@@ -5,15 +5,61 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { whyJoinUsData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export default function WhyJoinUs() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = whyJoinUsData[activeIndex];
 
   return (
-    <section className="bg-cream-background py-120 3xl:py-140">
+    <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center gap-60">
+        <div className="lg:hidden">
+          <SectionTitle title="Why Join Us" className="mb-50" />
+          <Swiper
+            modules={[Autoplay]}
+            speed={700}
+            spaceBetween={15}
+            slidesPerView={1.1838}
+            breakpoints={{
+              640: { slidesPerView: 1.6, spaceBetween: 15 },
+              768: { slidesPerView: 2, spaceBetween: 15 },
+              1024: { slidesPerView: 2, spaceBetween: 20 },
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+          >
+            {whyJoinUsData.map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="rounded-[10px] overflow-hidden h-full flex flex-col bg-white">
+                  <div className="relative w-full h-[170px] shrink-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="py-5 px-[15px]">
+                    <h3 className="text-subtitle-2 uppercase mb-2.5 sm:mb-5">
+                      {item.title}
+                    </h3>
+                    <p className="text-description-color text-description-2">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="hidden lg:flex flex-col lg:flex-row lg:justify-between items-center gap-60">
           {/* Left: Image */}
           <div className="relative w-full lg:w-[50%] 3xl:w-[866px] h-[320px] sm:h-[420px] lg:h-[500px] 3xl:h-[585px] rounded-[10px] overflow-hidden shrink-0">
             <AnimatePresence mode="wait">
