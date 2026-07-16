@@ -8,8 +8,8 @@ export default function CareerDetails() {
   return (
     <section className="container pb-[60px] md:pb-120 3xl:pb-150">
       <div className="lg:section-content-spacing-2">
-        <SectionTitle title="job description" className="mb-5" />
-        <SectionDescription html={description} className="text-description-color !text-description-2 space-y-[30px]" />
+        <SectionTitle title="job description" className="mb-[10px] sm:mb-5" />
+        <SectionDescription html={description} className="text-description-color !text-description-2 space-y-4 sm:space-y-[30px]" />
       </div>
     </section>
   );

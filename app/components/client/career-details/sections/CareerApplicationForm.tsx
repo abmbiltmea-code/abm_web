@@ -12,6 +12,8 @@ import {
 import FormFileInput from "../../forms/FormFileInput";
 import CustomButton from "../../common/CustomButton";
 import Image from "next/image";
+import { useLenis } from "../../layout/LenisProvider";
+import { useEffect } from "react";
 
 export default function CareerApplicationForm({
   isOpen,
@@ -40,6 +42,14 @@ export default function CareerApplicationForm({
     },
   });
 
+  const { lock, unlock } = useLenis();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    lock();
+    return () => unlock();
+  }, [isOpen, lock, unlock]);
+
   const cvFileList = watch("cv");
   const cvFileName = cvFileList?.[0]?.name;
 
@@ -57,7 +67,7 @@ export default function CareerApplicationForm({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-9999 bg-black/80 flex items-start sm:items-center justify-center overflow-y-auto py-70"
+          className="fixed inset-0 z-9999 bg-black/80 flex items-start sm:items-center justify-center overflow-y-auto py-70 px-[16px] md:px-0"
         >
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
@@ -65,10 +75,11 @@ export default function CareerApplicationForm({
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="container !p-0 bg-white rounded-[10px] w-full min-[1900px]:!max-w-[1720px]"
+            className="container !p-0 bg-white rounded-[10px] w-full min-[1900px]:!max-w-[1720px] max-h-[95vh] overflow-y-auto overscroll-contain"
+            data-lenis-prevent
           >
-            <div className="p-40">
-              <div className="flex items-center justify-between pb-20 mb-40 border-b border-border-color">
+            <div className="py-[30px] px-[20px] sm:p-40">
+              <div className="sticky top-0 bg-white z-10 flex items-center justify-between pb-[30px] md:pb-20 mb-40 border-b border-border-color">
                 <h2 className="text-secondary text-subtitle-2 uppercase">
                   {title}
                 </h2>
@@ -144,7 +155,7 @@ export default function CareerApplicationForm({
                     {...register("message")}
                   />
                 </div>
-                <div className="mt-5">
+                <div className="mt-[10px] sm:mt-5">
                   <CustomButton
                     text={isSubmitting ? "Submitting..." : "Submit Application"}
                     disabled={isSubmitting}

@@ -10,6 +10,7 @@ import NewsCard from "../../news-and-media/sections/NewsCard";
 import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import CustomButton from "../../common/CustomButton";
 
 export default function Main() {
   return (
@@ -93,6 +94,13 @@ export default function Main() {
         <div className="contianer xl:hidden">
           <div className="border-t border-border-color mt-[60px]">
             <div className="mt-[60px]">
+              <div className="flex items-center justify-between pb-[30px]">
+                <SectionTitle title={relatedTopicsData.label} />
+                <CustomButton
+                  text="View All"
+                  href={relatedTopicsData.viewAllHref}
+                />
+              </div>
               <Swiper
                 modules={[Autoplay]}
                 spaceBetween={15}
