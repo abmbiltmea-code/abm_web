@@ -341,7 +341,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
         <div className="relative hidden h-full w-[40%] 3xl:w-[41.93%] shrink-0 xl:block">
           {DropdownMenuItems.map((item, i) => (
             <Image
-              key={item.href}
+              key={i}
               src={item.image}
               alt={item.label}
               fill
@@ -379,7 +379,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
                 const isActive = activeIndex === i;
                 return (
                   <li
-                    key={item.href}
+                    key={i}
                     ref={(node) => {
                       itemsRef.current[i] = node;
                     }}
@@ -431,9 +431,9 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
             <div className="mt-100 3xl:mt-120 ml-60 3xl:ml-80 h-px w-full bg-black/10" />
 
             <div className="mt-5 ml-60 3xl:ml-80 flex items-center gap-30 mb-90 3xl:mb-[93px]">
-              {footerData.socials.map((social) => (
+              {footerData.socials.map((social, i) => (
                 <Link
-                  key={social.label}
+                  key={i}
                   href={social.href}
                   onClick={onClose}
                   className="flex items-center gap-[10px] text-subtitle hover:text-primary transition-colors duration-300 group"
@@ -514,7 +514,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
 
                 return (
                   <li
-                    key={item.href}
+                    key={i}
                     ref={(node) => {
                       mobileItemsRef.current[i] = node;
                     }}
@@ -573,8 +573,8 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
                         >
                           <div className="overflow-hidden">
                             <ul className="flex flex-col gap-[10px] px-[14px] sm:px-30">
-                              {item.subItems!.map((sub) => (
-                                <li key={sub.href}>
+                              {item.subItems!.map((sub, i) => (
+                                <li key={i}>
                                   <Link
                                     href={sub.href}
                                     onClick={onClose}
@@ -600,7 +600,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
             <div className="h-px w-full bg-border-color" />
             <div className="flex items-center gap-[30px] px-[20px] sm:px-30 pt-5 sm:pt-40">
               {footerData.socials.map((social, i) => (
-                <Reveal variants={moveUpV2} key={social.label} delayRange={i * 0.1}>
+                <Reveal variants={moveUpV2} key={i} delayRange={i * 0.1}>
                   <Link
                     href={social.href}
                     onClick={onClose}

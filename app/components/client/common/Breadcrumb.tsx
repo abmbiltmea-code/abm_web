@@ -12,13 +12,28 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
 
   const segments = pathname.split("/").filter(Boolean);
 
- const crumbs = segments.map((seg, i) => ({
-    label: seg
-      .split("-")
-      .map((w) => (w.toLowerCase() === "and" ? "&" : w.charAt(0).toUpperCase() + w.slice(1)))
-      .join(" "),
-    href: "/" + segments.slice(0, i + 1).join("/"),
-  }));
+  //  const crumbs = segments.map((seg, i) => ({
+  //     label: seg
+  //       .split("-")
+  //       .map((w) => (w.toLowerCase() === "and" ? "&" : w.charAt(0).toUpperCase() + w.slice(1)))
+  //       .join(" "),
+  //     href: "/" + segments.slice(0, i + 1).join("/"),
+  //   }));
+
+  const crumbs = [
+    { label: "Home", href: "/" },
+    ...segments.map((seg, i) => ({
+      label: seg
+        .split("-")
+        .map((w) =>
+          w.toLowerCase() === "and"
+            ? "&"
+            : w.charAt(0).toUpperCase() + w.slice(1),
+        )
+        .join(" "),
+      href: "/" + segments.slice(0, i + 1).join("/"),
+    })),
+  ];
 
   const color = variant === "1" ? "text-description-color" : "text-white";
 
@@ -27,6 +42,11 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
       <ol className="flex items-center gap-1">
         {crumbs.map((crumb, i) => {
           const isLast = i === crumbs.length - 1;
+          const label =
+            isLast && crumb.label.length > 30
+              ? crumb.label.slice(0, 30) + "..."
+              : crumb.label;
+
           return (
             <li key={crumb.href} className="flex items-center gap-1">
               {i > 0 && (
@@ -40,14 +60,14 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
                 <span
                   className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
-                  {crumb.label}
+                  {label}
                 </span>
               ) : (
                 <Link
                   href={crumb.href}
                   className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
-                  {crumb.label}
+                  {label}
                 </Link>
               )}
             </li>

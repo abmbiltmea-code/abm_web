@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
-  { label: "ABOUT", href: "/about", subItems: [{ label: "Leadership", href: "/about/leadership" }] },
+  { label: "ABOUT", subItems: [{ label: "Company Overview", href: "/about" }, { label: "Leadership", href: "/about/leadership" }] },
   { label: "OUR SECTORS", href: "/sectors" },
-  { label: "OUR DIVISIONS", href: "/construction-division" },
+  { label: "OUR DIVISIONS", subItems: [{ label: "Construction", href: "/division/construction" }] },
   { label: "PROJECT", href: "/projects" },
   { label: "CLIENTS", href: "/clients" },
   { label: "HOW WE WORK", href: "/how-we-work" },
@@ -41,7 +41,7 @@ export const footerData = {
     { label: "ABOUT", href: "/about" },
     { label: "CLIENTS", href: "/clients" },
     { label: "CAREERS", href: "/careers" },
-    { label: "OUR DIVISIONS", href: "/construction-division" },
+    { label: "OUR DIVISIONS", href: "/division/construction" },
     { label: "NEWS & MEDIA", href: "/news-and-media" },
     { label: "GALLERY", href: "/gallery" },
     { label: "PROJECTS", href: "/projects" },
@@ -85,7 +85,7 @@ export type MobileMenuItem = {
 export const MobileMenuItems: MobileMenuItem[] = [
   {
     label: "About",
-    href: "/about",
+    href: "#",
     subItems: [
       { label: "Company Overview", href: "/about" },
       { label: "Leadership", href: "/about/leadership" },
@@ -97,7 +97,10 @@ export const MobileMenuItems: MobileMenuItem[] = [
   },
   {
     label: "Our Divisions",
-    href: "/construction-division",
+    href: "#",
+    subItems: [
+      { label: "Construction", href: "/division/construction" },
+    ],
   },
   {
     label: "Project",
@@ -116,7 +119,7 @@ export const MobileMenuItems: MobileMenuItem[] = [
     href: "/gallery",
   },
   {
-    label: "Certifications &  Accreditations",
+    label: "Certifications & Accreditations",
     href: "/certifications-and-accreditations",
   },
   {

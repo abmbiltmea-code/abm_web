@@ -94,7 +94,6 @@ export const groupCompaniesSection = {
   title: "GROUP COMPANIES",
   groupCompanies: [
     {
-      id: "bill-middle-east",
       logo: "/assets/images/about/group-companies/1.svg",
       title: "BILL MIDDLE EAST LLC",
       description:
@@ -103,7 +102,6 @@ export const groupCompaniesSection = {
       href: "#",
     },
     {
-      id: "duct-fab",
       logo: "/assets/images/about/group-companies/2.svg",
       title: "DUCT FAB",
       description:
@@ -112,11 +110,30 @@ export const groupCompaniesSection = {
       href: "#",
     },
     {
-      id: "al-basti-ink",
       logo: "/assets/images/about/group-companies/3.svg",
       title: "AL BASTI INK INDUSTRY",
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      buttonText: "VIEW WEBSITE",
+      href: "#",
+    },
+    {
+      logo: "",
+      title: "Al Basti & Muktha LLC (BR.)",
+      description:
+        "Al Basti & Muktha LLC (General Trading), established in 1990, is a subsidiary of the ABM Group, set up to provide dedicated procurement and supply support for the Group's construction operations. The company primarily sources and supplies a range of building and construction materials to meet the operational requirements of ABM's in-house projects, ensuring quality, reliability, and continuity of supply throughout the project lifecycle",
+      buttonText: "VIEW WEBSITE",
+      href: "#",
+    },
+    {
+      logo: "",
+      title: "BILT Middle East LLC (BR.)",
+      description: `BILT Middle East LLC (Building & Construction Materials Trading), 
+established in 1978, is a subsidiary of the ABM Group, established to 
+support the Group's construction activities through the dedicated 
+supply of MEP products including lighting fittings, sanitary ware, etc., 
+sourced to meet the specific requirements of ABM & BILT's in-house 
+projects to the highest standards of quality and compliance.`,
       buttonText: "VIEW WEBSITE",
       href: "#",
     },
@@ -164,8 +181,6 @@ export const ctaData = {
     "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
   image: "/assets/images/about/cta.jpg",
 };
-
-
 
 export const growthJourneyData = {
   label: "Growth Journey",

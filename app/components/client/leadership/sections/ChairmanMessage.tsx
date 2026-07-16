@@ -20,7 +20,7 @@ const ChairmanMessage = () => {
   const inset = useContainerInset();
 
   return (
-    <section className="py-[60px] md:py-120 3xl:py-150">
+    <section className="pt-[60px] md:pt-[135px]">
       <div
         style={{ paddingRight: inset }}
         className="flex flex-col xl:flex-row xl:items-end gap-40 justify-between"
@@ -60,15 +60,15 @@ const ChairmanMessage = () => {
           </div>
         </div>
 
-        <div className="flex-1 min-[1900px]:max-w-[850px] self-start mt-120 3xl:mt-[135px]">
+        <div className="flex-1 min-[1900px]:max-w-[850px] self-start">
           <SectionTitle title={title} className="max-w-[13ch]" />
           <SectionDescription
             text={description}
             className="mt-20 text-description-color text-description-2"
           />
-          <div className="mt-40 pt-20 border-t border-border-color">
-            <p className="text-heading font-bold">{name}</p>
-            <p className="text-description-color">{designation}</p>
+          <div className="mt-120 pt-30 border-t border-border-color max-w-[796px]">
+            <p className="text-subtitle-3 mb-[10px]">{name}</p>
+            <p className="text-description-color text-description-2">{designation}</p>
           </div>
         </div>
       </div>

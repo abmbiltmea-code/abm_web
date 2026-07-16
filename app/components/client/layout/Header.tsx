@@ -14,6 +14,8 @@ import { NAV_ITEMS } from "./data";
 import { usePathname } from "next/navigation";
 import { useHeaderLocked } from "@/app/lib/headerLock";
 import DropdownMenu from "./DropDownMenu";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const SCROLL_THRESHOLD = 100;
 const INTRO_ENABLED = process.env.NEXT_PUBLIC_ENABLE_INTRO !== "false";
@@ -35,6 +37,49 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isDetail = isDetailPage(pathname);
+
+  const [openLabel, setOpenLabel] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const navItemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [triggerRect, setTriggerRect] = useState<{
+    left: number;
+    width: number;
+  } | null>(null);
+
+  const handleEnter = useCallback((label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+
+    const itemEl = navItemRefs.current[label];
+    const containerEl = headerRef.current;
+    if (itemEl && containerEl) {
+      const itemBox = itemEl.getBoundingClientRect();
+      const containerBox = containerEl.getBoundingClientRect();
+      setTriggerRect({
+        left: itemBox.left - containerBox.left,
+        width: itemBox.width,
+      });
+    }
+
+    setOpenLabel(label);
+  }, []);
+
+  const handleLeave = useCallback(() => {
+    closeTimer.current = setTimeout(() => setOpenLabel(null), 120);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
+
+  const openItem = NAV_ITEMS.find((i) => i.label === openLabel);
+
+  const surfaceBg = isDetail ? "bg-cream-background" : "bg-white/75";
+  const surfaceShadow = isScrolled
+    ? "shadow-[0px_4px_28.9px_0px_rgba(0,0,0,0.09)]"
+    : "";
 
   const update = useCallback(() => {
     const current = window.scrollY;
@@ -113,6 +158,7 @@ export default function Header() {
   return (
     <div
       ref={headerRef}
+      onMouseLeave={handleLeave}
       className={`fixed top-0 left-0 right-0 z-999 container transition-[transform,margin-top] duration-500 ease-in-out will-change-transform ${
         isScrolled ? "" : "mt-5 lg:mt-50 3xl:mt-[55px]"
       }`}
@@ -120,11 +166,9 @@ export default function Header() {
       <header className="relative px-3 md:px-5 lg:px-6 2xl:px-40 py-5 2xl:py-[30px]">
         <div
           aria-hidden
-          className={`absolute inset-y-0 left-1/2 -translate-x-1/2 ${
-            isDetail ? "bg-cream-background" : "bg-white/75"
-          } backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
+          className={`absolute inset-y-0 left-1/2 -translate-x-1/2 ${surfaceBg} backdrop-blur-[30px] transition-[width,border-radius,box-shadow] duration-500 ease-in-out -z-10 ${
             isScrolled
-              ? "w-screen rounded-none shadow-[0px_4px_28.9px_0px_rgba(0,0,0,0.09)]"
+              ? `w-screen rounded-none ${surfaceShadow}`
               : "w-full rounded-[10px]"
           }`}
         />
@@ -148,20 +192,32 @@ export default function Header() {
             </Link>
           </div>
           <nav className="hidden xl:flex items-center gap-8 3xl:gap-70 pt-[2px]">
-            {NAV_ITEMS.map((item) => {
+            {NAV_ITEMS.map((item, index) => {
               const isActive = pathname === item.href;
+              const hasSubItems = !!item.subItems?.length;
+              const isOpen = openLabel === item.label;
+
               return (
                 <Link
-                  key={item.label}
-                  href={item.href}
-                  data-header-anim
-                  className={`text-15 font-tasa font-bold leading-[1.33333] uppercase whitespace-nowrap transition-colors duration-300 ease-in-out ${
+  key={index}
+  ref={(el) => { navItemRefs.current[item.label] = el; }}
+  href={item.href || "#"}
+  data-header-anim
+  onMouseEnter={() => hasSubItems && handleEnter(item.label)}
+                  className={`flex items-center gap-2 text-15 font-tasa font-bold leading-[1.33333] uppercase whitespace-nowrap transition-colors duration-300 ease-in-out ${
                     isActive
                       ? "text-primary"
                       : "text-secondary hover:text-primary"
                   }`}
                 >
                   {item.label}
+                  {hasSubItems && (
+                    <ChevronDown
+                      size={24}
+                      strokeWidth={2}
+                      className={`transition-transform duration-300 -mt-[3px] ease-in-out ${openLabel === item.label ? "rotate-180" : ""}`}
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -181,8 +237,44 @@ export default function Header() {
           </button>
         </div>
       </header>
-      <DropdownMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
+      <AnimatePresence>
+        {openItem?.subItems?.length && triggerRect && (
+          <motion.div
+            onMouseEnter={() => handleEnter(openItem.label)}
+            initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
+            exit={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+            style={{
+              originY: 0,
+              left: triggerRect.left,
+              minWidth: triggerRect.width,
+            }}
+            className={`absolute top-full z-20 overflow-hidden rounded-b-[10px] ${surfaceBg} backdrop-blur-[30px] ${surfaceShadow} max-w-[400px] w-max`}
+          >
+            <ul
+              role="listbox"
+              data-lenis-prevent
+              onClick={(e) => e.stopPropagation()}
+              className="flex flex-col max-h-64 overflow-y-auto overscroll-contain"
+            >
+              {openItem.subItems.map((sub, index) => (
+                <li key={index} role="option">
+                  <Link
+                    href={sub.href}
+                    onClick={() => setOpenLabel(null)}
+                    className="block whitespace-nowrap text-15 font-tasa text-secondary hover:text-primary hover:bg-primary/10 transition-colors duration-200 p-4 rounded-b-[10px]"
+                  >
+                    {sub.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <DropdownMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
   );
 }

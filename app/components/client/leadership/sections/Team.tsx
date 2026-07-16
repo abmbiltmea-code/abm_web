@@ -20,17 +20,17 @@ const Team = () => {
         />
       </div>
       <div>
-        <Swiper 
-        modules={[Autoplay]}
-        slidesPerView={1.1759} 
-        spaceBetween={40}
-        speed={700}
-        breakpoints={{
-          640: { slidesPerView: 2, spaceBetween: 15 },
-          768: { slidesPerView: 3, spaceBetween: 20 },
-          1440: { slidesPerView: 4, spaceBetween: 30 },
-          1820: { slidesPerView: 4, spaceBetween: 40 },
-        }}
+        <Swiper
+          modules={[Autoplay]}
+          slidesPerView={1.1759}
+          spaceBetween={40}
+          speed={700}
+          breakpoints={{
+            640: { slidesPerView: 2, spaceBetween: 15 },
+            768: { slidesPerView: 3, spaceBetween: 20 },
+            1440: { slidesPerView: 4, spaceBetween: 30 },
+            1820: { slidesPerView: 4, spaceBetween: 40 },
+          }}
         >
           {items.map((item, index) => (
             <SwiperSlide key={index}>
@@ -44,7 +44,9 @@ const Team = () => {
                 />
               </div>
               <div className="mt-5">
-                <p className="text-subtitle font-bold mb-[5px] uppercase">{item.name}</p>
+                <p className="text-subtitle font-bold mb-[5px] uppercase">
+                  {item.name}
+                </p>
                 <p className="text-description-color text-description-2">
                   {item.designation}
                 </p>

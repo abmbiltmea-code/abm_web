@@ -10,6 +10,12 @@ export const ctaData = {
   image: "/assets/images/about/cta.jpg",
 };
 
+export const teamHeaderData = {
+  title: "Guided by Experience ",
+  description:
+    "Our leadership team brings decades of industry expertise, guiding every decision with insight, innovation, and a deep understanding of evolving market needs. Their strategic vision and hands-on approach ensure consistent growth, operational excellenc",
+};
+
 export const teamManagementData = {
   title: "MANAGEMENT & OPERATIONAL STRUCTURE",
   description:
