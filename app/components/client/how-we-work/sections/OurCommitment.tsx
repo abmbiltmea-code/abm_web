@@ -101,7 +101,7 @@ export default function OurCommitment() {
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                   </div>
 

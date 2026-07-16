@@ -90,6 +90,7 @@ export default function SustainablePractices() {
               breakpoints={{
                 640: { slidesPerView: 1.6, spaceBetween: 15 },
                 768: { slidesPerView: 2, spaceBetween: 15 },
+                1024: { slidesPerView: 2.3, spaceBetween: 20 },
               }}
               autoplay={{
                 delay: 4000,
@@ -105,7 +106,7 @@ export default function SustainablePractices() {
                         src={item.image}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-cover object-top"
                       />
                     </div>
 

@@ -68,3 +68,67 @@ export const DropdownMenuItems = [
   { label: "News & Media", href: "/news-and-media", image: "/assets/images/header/news-and-media.jpg" },
   { label: "Contact Us", href: "/contact-us", image: "/assets/images/header/contact-us.jpg" },
 ];
+
+
+
+export type MobileSubItem = {
+  label: string;
+  href: string;
+};
+
+export type MobileMenuItem = {
+  label: string;
+  href: string;
+  subItems?: MobileSubItem[];
+};
+
+export const MobileMenuItems: MobileMenuItem[] = [
+  {
+    label: "About",
+    href: "/about",
+    subItems: [
+      { label: "Company Overview", href: "/about" },
+      { label: "Leadership", href: "/about/leadership" },
+    ],
+  },
+  {
+    label: "Our Sectors",
+    href: "/sectors",
+  },
+  {
+    label: "Our Divisions",
+    href: "/construction-division",
+  },
+  {
+    label: "Project",
+    href: "/projects",
+  },
+  {
+    label: "Clients",
+    href: "/clients",
+  },
+  {
+    label: "How We Work",
+    href: "/how-we-work",
+  },
+  {
+    label: "Gallery",
+    href: "/gallery",
+  },
+  {
+    label: "Certifications &  Accreditations",
+    href: "/certifications-and-accreditations",
+  },
+  {
+    label: "Careers",
+    href: "/careers",
+  },
+  {
+    label: "News & Media",
+    href: "/news-and-media",
+  },
+  {
+    label: "Contact Us",
+    href: "/contact-us",
+  },
+];
