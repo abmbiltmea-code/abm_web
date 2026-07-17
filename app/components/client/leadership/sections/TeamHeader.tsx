@@ -1,5 +1,6 @@
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
+import AnimatedDivider from "../../animations/AnimatedDivider";
 
 const TeamHeader = ({title, description}: {title: string, description: string}) => {
   return (
@@ -12,7 +13,7 @@ const TeamHeader = ({title, description}: {title: string, description: string}) 
         />
       </div>
       <div className="lg:hidden relative h-px mt-[30px]">
-        <div className="absolute bottom-0 left-0 w-full h-px bg-border-color" />
+        <AnimatedDivider className="absolute bottom-0 left-0 w-full h-px border-border-color" />
       </div>
     </section>
   );

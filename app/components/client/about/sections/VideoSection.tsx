@@ -25,7 +25,7 @@ export default function VideoSection() {
             alt="Play"
             width={14}
             height={19}
-            className="group-hover:scale-130 transition-transform duration-500 h-[10px] md:h-[19px] w-auto"
+            className="play-icon-pulse h-[10px] md:h-[19px] w-auto pointer-events-none"
           />
         </button>
       </div>

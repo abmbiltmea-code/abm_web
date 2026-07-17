@@ -15,7 +15,7 @@ export default function Overview() {
             src={image.src}
             alt={image.alt}
             fill
-            className="object-cover"
+            className="object-cover pointer-events-none select-none"
           />
         </div>
 

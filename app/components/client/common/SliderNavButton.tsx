@@ -25,7 +25,7 @@ export default function SliderNavButton({
         alt=""
         width={23}
         height={17}
-        className={`w-[16px] h-auto md:w-[23px] md:h-[17px] ${direction === "prev" ? "rotate-180" : ""}`}
+        className={`w-[16px] h-auto md:w-[23px] md:h-[17px] pointer-events-none ${direction === "prev" ? "rotate-180" : ""}`}
       />
     </button>
   );

@@ -85,3 +85,13 @@ export const moveRight = (delay: number = 0) => ({
     },
   },
 });
+
+export const clipReveal = (fromLeft: boolean, delay = 0): Variants => ({
+  hidden: {
+    clipPath: fromLeft ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
+  },
+  show: {
+    clipPath: "inset(0 0% 0 0%)",
+    transition: { duration: 1, delay, ease: [0.65, 0, 0.35, 1] },
+  },
+});

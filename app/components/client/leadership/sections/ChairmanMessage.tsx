@@ -6,6 +6,8 @@ import SectionTitle from "../../animations/SectionTitle";
 import { chairmanMessageData } from "../data";
 import { useContainerInset } from "@/app/hooks/useContainerInset";
 import { useEffect, useState } from "react";
+import SectionReveal from "../../animations/SectionReveal";
+import { moveUp } from "../../animations/motionVariants";
 
 const ChairmanMessage = () => {
   const {
@@ -43,7 +45,10 @@ const ChairmanMessage = () => {
         className="flex flex-col lg:flex-row xl:items-end gap-[30px] lg:gap-60 xl:gap-80 justify-between"
       >
         {/* frame: aspect-locked, % of container, 3xl reverts to exact spec px */}
-        <div className="mt-[60px] md:mt-[100px] lg:mt-0 order-2 lg:order-1 relative w-full lg:max-w-[500px] min-[1200px]:max-w-[580px]  xl:max-w-[650px] 2xl:max-w-[720px] 3xl:w-[825px] 3xl:max-w-none aspect-[825/725] bg-cream-background shrink-0">
+        <SectionReveal
+          variants={moveUp(0.1)}
+          className="mt-[60px] md:mt-[100px] lg:mt-0 order-2 lg:order-1 relative w-full lg:max-w-[500px] min-[1200px]:max-w-[580px]  xl:max-w-[650px] 2xl:max-w-[720px] 3xl:w-[825px] 3xl:max-w-none aspect-[825/725] bg-cream-background shrink-0"
+        >
           <div
             style={{ left: isMobile ? 0 : inset }}
             className="absolute top-0 z-10 w-[32.7%] h-[74.07%] 3xl:w-[270px] 3xl:h-[537px]"
@@ -52,7 +57,7 @@ const ChairmanMessage = () => {
               src={leftQuoteImage}
               alt=""
               fill
-              className="object-contain pointer-events-none"
+              className="object-contain pointer-events-none select-none"
             />
           </div>
 
@@ -64,7 +69,7 @@ const ChairmanMessage = () => {
               src={chairmanImage}
               alt={name}
               fill
-              className="object-cover pointer-events-none"
+              className="object-cover pointer-events-none select-none"
             />
           </div>
 
@@ -73,10 +78,10 @@ const ChairmanMessage = () => {
               src={rightQuoteImage}
               alt=""
               fill
-              className="object-contain pointer-events-none"
+              className="object-contain pointer-events-none select-none"
             />
           </div>
-        </div>
+        </SectionReveal>
 
         <div className="order-1 lg:order-2 flex-1 min-[1900px]:max-w-[850px] self-start">
           <SectionTitle title={title} className="lg:max-w-[13ch]" />
@@ -92,12 +97,12 @@ const ChairmanMessage = () => {
           </div>
         </div>
       </div>
-                <div className="pt-5 lg:hidden">
-            <p className="text-subtitle-3 mb-[5px] lg:mb-[10px]">{name}</p>
-            <p className="text-description-color text-description-2">
-              {designation}
-            </p>
-          </div>
+      <div className="pt-5 lg:hidden">
+        <p className="text-subtitle-3 mb-[5px] lg:mb-[10px]">{name}</p>
+        <p className="text-description-color text-description-2">
+          {designation}
+        </p>
+      </div>
     </section>
   );
 };

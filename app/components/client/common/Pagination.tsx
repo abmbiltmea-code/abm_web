@@ -85,7 +85,7 @@ const Pagination = ({
         aria-label="Previous page"
         className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
       >
-        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Previous page" width={14} height={14} />
+        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Previous page" width={14} height={14} className="pointer-events-none" />
       </button>
 
       {pages.map((page, i) => {
@@ -124,7 +124,7 @@ const Pagination = ({
         aria-label="Next page"
         className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
       >
-        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Next page" width={14} height={14} className="rotate-180" />
+        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Next page" width={14} height={14} className="rotate-180 pointer-events-none" />
       </button>
     </div>
   );

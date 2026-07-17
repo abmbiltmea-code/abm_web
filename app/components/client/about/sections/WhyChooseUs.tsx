@@ -10,12 +10,14 @@ import { whyChooseUsSection } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import { Autoplay } from "swiper/modules";
+import { AnimatePresence, motion } from "framer-motion";
 
 const AUTOPLAY_DELAY = 4000;
 
 export default function WhyChooseUs() {
   const { label, title } = whyChooseUsSection;
   const slides = whyChooseUsSection.slides;
+  const [baseImage, setBaseImage] = useState(slides[0].image);
 
   const swiperRef = useRef<SwiperClass | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -181,22 +183,58 @@ export default function WhyChooseUs() {
           {/* Image */}
           <div className="relative w-full md:max-w-[50%] 3xl:max-w-[849px] rounded-[10px] overflow-hidden max-h-[560px] aspect-15/10 shrink-0">
             <Image
-              key={activeIndex}
-              src={activeSlide.image}
-              alt={activeSlide.title}
+              src={baseImage}
+              alt=""
               fill
               className="object-cover pointer-events-none"
             />
+
+            <motion.div
+              key={activeIndex}
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+              onAnimationComplete={() => setBaseImage(activeSlide.image)}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeSlide.image}
+                alt={activeSlide.title}
+                fill
+                className="object-cover pointer-events-none"
+              />
+            </motion.div>
           </div>
 
           {/* Text */}
           <div className="flex flex-col gap-20">
-            <h3 className="text-subtitle-2 text-secondary">
-              {activeSlide.title}
-            </h3>
-            <p className="text-description-2 text-description-color md:max-w-[42ch] 3xl:max-w-[600px]">
-              {activeSlide.description}
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.div key={activeIndex}>
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+                  className="text-subtitle-2 text-secondary"
+                >
+                  {activeSlide.title}
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.1,
+                    ease: [0.65, 0, 0.35, 1],
+                  }}
+                  className="text-description-2 text-description-color md:max-w-[42ch] 3xl:max-w-[600px]"
+                >
+                  {activeSlide.description}
+                </motion.p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

@@ -8,6 +8,9 @@ import { groupCompaniesSection } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
+import { moveUp } from "../../animations/motionVariants";
+import SectionReveal from "../../animations/SectionReveal";
+import AnimatedDivider from "../../animations/AnimatedDivider";
 
 export default function GroupCompanies() {
   const { label, title } = groupCompaniesSection;
@@ -63,7 +66,10 @@ export default function GroupCompanies() {
             ))}
           </Swiper>
         </div>
-        <div className="hidden 2xl:grid grid-cols-6 gap-5">
+        <SectionReveal
+          variants={moveUp(0.1)}
+          className="hidden 2xl:grid grid-cols-6 gap-5"
+        >
           {groupCompaniesSection.groupCompanies.map((card, index) => {
             const total = groupCompaniesSection.groupCompanies.length;
             const remainder = total % 3;
@@ -85,10 +91,10 @@ export default function GroupCompanies() {
                         alt={card.title}
                         width={245}
                         height={123}
-                        className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px]"
+                        className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px] pointer-events-none"
                       />
                     </div>
-                    <span className="block w-full h-px bg-border-color mb-[50px] md:mb-80" />
+                    <AnimatedDivider className="mb-[50px] md:mb-80 border-border-color" />
                   </>
                 )}
                 <h3 className="text-secondary text-subtitle-2 mb-20">
@@ -107,7 +113,7 @@ export default function GroupCompanies() {
               </div>
             );
           })}
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );

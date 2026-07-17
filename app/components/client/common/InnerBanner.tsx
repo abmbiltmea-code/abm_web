@@ -1,4 +1,8 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 import Breadcrumb from "./Breadcrumb";
 
 interface PageBannerProps {
@@ -12,15 +16,50 @@ export default function InnerBanner({
   bannerImage,
   imageAlt = "",
 }: PageBannerProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useLayoutEffect(() => {
+    const img = imageRef.current;
+    if (!img) return;
+
+    gsap.set(img, { scale: 1.5, transformOrigin: "center center" });
+
+    const play = () => {
+      gsap.to(img, {
+        scale: 1,
+        duration: 1.4,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap
+            .timeline({
+              repeat: -1,
+              defaults: { ease: "sine.inOut" },
+            })
+            .to(img, { scale: 1.15, duration: 12 })
+            .to(img, { scale: 1, duration: 12 });
+        },
+      });
+    };
+
+    if (window.__introComplete) {
+      const id = requestAnimationFrame(play);
+      return () => cancelAnimationFrame(id);
+    }
+
+    window.addEventListener("introComplete", play, { once: true });
+    return () => window.removeEventListener("introComplete", play);
+  }, []);
+
   return (
     <section className="relative w-full h-[308px] sm:h-[450px] lg:h-[600px] 3xl:h-[690px] overflow-hidden">
       {/* Background image */}
       <Image
+        ref={imageRef}
         src={bannerImage}
         alt={imageAlt}
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover object-center will-change-transform"
       />
 
       {/* Overlay */}

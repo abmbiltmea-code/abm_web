@@ -9,11 +9,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import AnimatedDivider from "../../animations/AnimatedDivider";
+import SectionReveal from "../../animations/SectionReveal";
+import { clipReveal } from "../../animations/motionVariants";
 
 const ProjectSectors = () => {
   return (
     <section className="overflow-hidden">
-      <div className="hidden lg:flex flex-col border-t border-border-color pb-[60px] md:pb-120 3xl:pb-150 container">
+      <div className="hidden lg:flex flex-col pb-[60px] md:pb-120 3xl:pb-150 container">
+        <AnimatedDivider className="border-border-color" />
         {projectSectorsData.map((item, index) => {
           const isEven = index % 2 === 1;
 
@@ -39,7 +43,8 @@ const ProjectSectors = () => {
               </div>
 
               {/* Image */}
-              <div
+              <SectionReveal
+                variants={clipReveal(!isEven)}
                 className={`relative w-full lg:w-[52%] h-[280px] lg:h-[350px] xl:h-[400px] rounded-[10px] overflow-hidden 3xl:shrink-0 3xl:w-[850px] 3xl:h-[520px] ${
                   isEven ? "lg:order-1" : "lg:order-2"
                 }`}
@@ -50,7 +55,7 @@ const ProjectSectors = () => {
                   fill
                   className="object-cover"
                 />
-              </div>
+              </SectionReveal>
             </div>
           );
         })}
@@ -87,7 +92,9 @@ const ProjectSectors = () => {
                   </div>
                   {/* Content */}
                   <div className="flex flex-col px-[15px] py-[20px] sm:p-30">
-                    <h3 className="mb-[10px] sm:mb-20 text-subtitle-2 uppercase leading-none">{item.title}</h3>
+                    <h3 className="mb-[10px] sm:mb-20 text-subtitle-2 uppercase leading-none">
+                      {item.title}
+                    </h3>
                     <p className="text-description-color text-description-2 mb-[15px] sm:mb-30">
                       {item.description}
                     </p>

@@ -27,7 +27,7 @@ function AvatarStack({ images }: { images: string[] }) {
             key={src + i}
             className="relative h-5 w-5 sm:h-6 sm:w-6 overflow-hidden rounded-full border border-white"
           >
-            <Image src={src} alt="" fill className="object-cover" />
+            <Image src={src} alt="" fill className="object-cover pointer-events-none select-none" />
           </div>
         ))}
       </div>
@@ -62,7 +62,7 @@ function GalleryCard({
         src={images[0]}
         alt={title}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        className="object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
       />
       <div className="absolute inset-0 bg-[linear-gradient(220.14deg,rgba(0,0,0,0)_50%,#000000_100%)]" />
 
@@ -73,7 +73,7 @@ function GalleryCard({
             alt={"arrow"}
             width={15}
             height={15}
-            className="pointer-events-none h-[12px] xl:h-[16px] w-auto invert brightness-0"
+            className="pointer-events-none h-[12px] xl:h-[16px] w-auto invert brightness-0 select-none"
           />
         </div>
       )}

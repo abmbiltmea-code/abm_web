@@ -29,7 +29,7 @@ export default function SafetySection() {
           src={image.src}
           alt={image.alt}
           fill
-          className="object-cover object-top"
+          className="object-cover object-top pointer-events-none select-none"
         />
       </div>
 
@@ -57,7 +57,7 @@ export default function SafetySection() {
               <div
                 key={item.title}
                 data-aos="fade-up"
-                className="flex flex-col lg:flex-row lg:items-center pb-[10px] lg:pb-0 border-b lg:border-b-auto lg:border border-border-color lg:rounded-[10px] gap-[10px] sm:gap-4 3xl:gap-5 lg:px-[16px] lg:py-[15px]"
+                className="flex flex-col lg:flex-row lg:items-center pb-[10px] lg:pb-auto border-b lg:border-b-auto lg:border border-border-color lg:rounded-[10px] gap-[10px] sm:gap-4 3xl:gap-5 lg:px-[16px] lg:py-[15px]"
               >
                 <div className="shrink-0 box-size rounded-[5px] bg-primary flex items-center justify-center">
                   <Image
@@ -65,7 +65,7 @@ export default function SafetySection() {
                     alt="safety icon"
                     width={40}
                     height={40}
-                    className="h-[20px] md:h-[24px] lg:h-[28px] xl:h-[32px] 3xl:h-[40px] w-auto"
+                    className="h-[20px] md:h-[24px] lg:h-[28px] xl:h-[32px] 3xl:h-[40px] w-auto pointer-events-none select-none"
                   />
                 </div>
                 <span className="text-[10px] font-tasa font-bold max-w-[140px] sm:text-subtitle uppercase sm:max-w-[229px]">
@@ -81,7 +81,7 @@ export default function SafetySection() {
             src={image.src}
             alt={image.alt}
             fill
-            className="object-cover"
+            className="object-cover pointer-events-none select-none"
           />
         </div>
       </div>

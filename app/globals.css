@@ -448,3 +448,17 @@ body {
     top: 4px;
   }
 }
+
+@keyframes play-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+.play-icon-pulse {
+  animation: play-icon-pulse 1.8s ease-in-out infinite;
+}

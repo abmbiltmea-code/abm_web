@@ -20,7 +20,7 @@ export default function NewsCard({
     <Link href={`/news-and-media/${title.toLowerCase().replace(/ /g, "-")}`}>
       <div className="group relative flex h-[349px] sm:h-[400px] w-full flex-col overflow-hidden rounded-[10px] bg-cream-background lg:h-[420px] xl:h-[460px] 2xl:h-[480px]  3xl:h-[617px]">
         <div className="relative min-h-0 flex-1 overflow-hidden">
-          <Image src={image} alt={title} fill className="object-cover" />
+          <Image src={image} alt={title} fill className="object-cover pointer-events-none" />
         </div>
 
         <div className="absolute top-30 3xl:top-40 right-30 3xl:right-40 box-size bg-primary rounded-[5px] flex items-center justify-center scale-50 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100">

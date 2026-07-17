@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { coreValuesData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { moveUp, moveUpV2 } from "../../animations/motionVariants";
+import SectionReveal from "../../animations/SectionReveal";
 
 export default function CoreValuesSection() {
   const { sectionLabel, title, items } = coreValuesData;
   const [activeIndex, setActiveIndex] = useState(1);
+  const [baseImage, setBaseImage] = useState(items[1].image);
 
   const activeItem = items[activeIndex];
 
@@ -30,62 +35,91 @@ export default function CoreValuesSection() {
             {items.map((item, i) => {
               const isActive = i === activeIndex;
               return (
-                <li key={i}>
-                  <button
-                    onClick={() => setActiveIndex(i)}
-                    onMouseEnter={() => setActiveIndex(i)}
-                    className={`w-fit min-w-[315px] flex items-center justify-between ${
-                      i < items.length - 1 ? "border-b border-[#CCCCCC]" : ""
-                    }`}
-                  >
-                    <span
-                      className={`uppercase font-tasa text-20 leading-[2.5] ${
-                        isActive
-                          ? "font-bold text-secondary"
-                          : "text-description-color"
+                <Reveal key={i} variants={moveUpV2} delayRange={i * 0.12}>
+                  <li>
+                    <button
+                      onClick={() => setActiveIndex(i)}
+                      onMouseEnter={() => setActiveIndex(i)}
+                      className={`w-fit min-w-[315px] flex items-center justify-between ${
+                        i < items.length - 1 ? "border-b border-[#CCCCCC]" : ""
                       }`}
                     >
-                      {item.tab}
-                    </span>
-                    <Image
-                      src="/assets/icons/arrow-right-primary.svg"
-                      alt=""
-                      width={22}
-                      height={22}
-                      className={`shrink-0 transition-all duration-300 ease-in-out h-[16px] w-auto ${
-                        isActive
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 -translate-x-3"
-                      }`}
-                    />
-                  </button>
-                </li>
+                      <span
+                        className={`uppercase font-tasa text-20 leading-[2.5] ${
+                          isActive
+                            ? "font-bold text-secondary"
+                            : "text-description-color"
+                        }`}
+                      >
+                        {item.tab}
+                      </span>
+                      <Image
+                        src="/assets/icons/arrow-right-primary.svg"
+                        alt=""
+                        width={22}
+                        height={22}
+                        className={`shrink-0 transition-all duration-300 ease-in-out h-[16px] w-auto pointer-events-none ${
+                          isActive
+                            ? "opacity-100 translate-x-0"
+                            : "opacity-0 -translate-x-3"
+                        }`}
+                      />
+                    </button>
+                  </li>
+                </Reveal>
               );
             })}
           </ul>
         </div>
 
         {/* Right */}
-        <div className="hidden lg:flex flex-col gap-40 max-w-[55%] 3xl:max-w-[935px]">
+        <SectionReveal
+          variants={moveUp(0.1)}
+          className="hidden lg:flex flex-col gap-40 max-w-[55%] 3xl:max-w-[935px]"
+        >
           <div className="relative w-full h-[450px] 3xl:h-[545px] overflow-hidden rounded-[10px]">
             <Image
-              key={activeIndex}
-              src={activeItem.image}
-              alt={activeItem.tab}
+              src={baseImage}
+              alt=""
               fill
               className="object-cover object-center pointer-events-none"
             />
+
+            <motion.div
+              key={activeIndex}
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+              onAnimationComplete={() => setBaseImage(activeItem.image)}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeItem.image}
+                alt={activeItem.tab}
+                fill
+                className="object-cover object-center pointer-events-none"
+              />
+            </motion.div>
           </div>
 
-          <p className="text-description-2 text-description-color">
-            {activeItem.description}
-          </p>
-        </div>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={activeIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+              className="text-description-2 text-description-color"
+            >
+              {activeItem.description}
+            </motion.p>
+          </AnimatePresence>
+        </SectionReveal>
 
         {/* Mobile / below-lg slider */}
         <div className="lg:hidden">
           <Swiper
-          modules={[Autoplay]}
+            modules={[Autoplay]}
             slidesPerView={1.184}
             spaceBetween={15}
             speed={700}
@@ -115,9 +149,7 @@ export default function CoreValuesSection() {
                     />
                   </div>
                   <div className="flex flex-col gap-[10px] py-5 px-[15px]">
-                    <h3 className="uppercase text-subtitle-2">
-                      {item.tab}
-                    </h3>
+                    <h3 className="uppercase text-subtitle-2">{item.tab}</h3>
                     <p className="text-description-2 text-description-color">
                       {item.description}
                     </p>
