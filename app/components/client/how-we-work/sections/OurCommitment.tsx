@@ -32,7 +32,7 @@ export default function OurCommitment() {
                 src={items[active].image}
                 alt={items[active].title}
                 fill
-                className="object-cover"
+                className="object-cover pointer-events-none"
               />
             </div>
           </div>
@@ -59,10 +59,10 @@ export default function OurCommitment() {
                     alt=""
                     width={24}
                     height={17}
-                    className={`shrink-0 transition-all duration-400 ${
+                    className={`shrink-0 transition-all duration-400 pointer-events-none ${
                       active === index
                         ? "opacity-100 translate-x-0"
-                        : "opacity-0 -translate-x-3 pointer-events-none"
+                        : "opacity-0 -translate-x-3"
                     }`}
                   />
                 </button>

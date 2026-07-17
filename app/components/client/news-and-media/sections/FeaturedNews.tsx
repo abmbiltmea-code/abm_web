@@ -25,7 +25,7 @@ export default function FeaturedNews({
               src={image}
               alt={title}
               fill
-              className="object-cover object-top"
+              className="object-cover object-top pointer-events-none"
             />
           </div>
           {/* Right: content */}

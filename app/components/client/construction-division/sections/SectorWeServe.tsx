@@ -95,6 +95,7 @@ export default function SectorWeServe() {
                         alt="icon"
                         width={29}
                         height={29}
+                        className="pointer-events-none"
                       />
                     </span>
                     <p className="text-30 leading-[1.1666666667] font-tasa font-bold uppercase text-white max-w-[280px]">

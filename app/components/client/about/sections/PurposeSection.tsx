@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { purposeData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
+import AnimatedDivider from "../../animations/AnimatedDivider";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
+import SectionReveal from "../../animations/SectionReveal";
 
 export default function PurposeSection() {
   const { sectionLabel, title, items } = purposeData;
@@ -15,10 +21,10 @@ export default function PurposeSection() {
           <SectionTitle title={title} className="max-w-[16ch]" />
         </div>
 
-        <hr className="border-black/20 mt-50" />
+        <AnimatedDivider className="mt-50 border-black/20" />
 
         {/* Vision */}
-        <div>
+        <SectionReveal variants={moveUp(0)}>
           <div className="flex py-5 md:py-50 gap-50 xl:gap-70 3xl:gap-[69px]">
             <div className="shrink-0">
               <Image
@@ -36,11 +42,11 @@ export default function PurposeSection() {
               </p>
             </div>
           </div>
-          <hr className="border-black/20" />
-        </div>
+          <AnimatedDivider className="border-black/20" />
+        </SectionReveal>
 
         {/* Mission */}
-        <div>
+        <SectionReveal variants={moveUp(0.1)}>
           <div className="flex py-5 md:py-50 gap-50">
             <div className="shrink-0">
               <Image
@@ -58,8 +64,8 @@ export default function PurposeSection() {
               </p>
             </div>
           </div>
-          <hr className="border-black/20" />
-        </div>
+          <AnimatedDivider className="border-black/20" />
+        </SectionReveal>
       </div>
     </section>
   );

@@ -41,7 +41,7 @@ export default function SustainablePractices() {
             src={items[active].image}
             alt={items[active].title}
             fill
-            className="object-cover"
+            className="object-cover pointer-events-none select-none"
           />
         </div>
 

@@ -4,6 +4,10 @@ import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionSubtitle from "../../animations/SectonSubtitle";
 import AnimatedCounter from "../../animations/AnimatedCounter";
+import SectionDescription from "../../animations/SectionDescription";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { moveUpV2 } from "../../animations/motionVariants";
+import AnimatedDivider from "../../animations/AnimatedDivider";
 
 export default function AboutSection() {
   const { sectionLabel, title, subtitle, description, stats } = aboutData;
@@ -20,15 +24,16 @@ export default function AboutSection() {
 
         {/* Right */}
         <div className="lg:max-w-[54%] flex flex-col">
-          <SectionSubtitle text={subtitle} className="uppercase text-secondary lg:max-w-[47ch]" />
+          <SectionSubtitle
+            text={subtitle}
+            className="uppercase text-secondary lg:max-w-[47ch]"
+          />
 
-          <hr className="border-black/20 mt-[15px] lg:mt-30 mb-5 lg:mb-70" />
+          <AnimatedDivider className="border-black/20 mt-[15px] lg:mt-30 mb-5 lg:mb-70" />
 
-          <p
+          <SectionDescription
+            html={description}
             className="text-description-2 text-description-color lg:max-w-[850px]"
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
           />
         </div>
       </div>
@@ -37,29 +42,35 @@ export default function AboutSection() {
       <div className="container mt-[30px] lg:mt-100">
         <div className="grid grid-cols-2 xl:grid-cols-[auto_auto_auto_auto] 3xl:grid-cols-[400px_400px_400px_400px] gap-x-[14px] md:gap-x-40 gap-y-[40px] xl:gap-y-0">
           {stats.map((stat, i) => (
-            <div key={i} className="flex flex-col">
-              <div className="flex items-center gap-2.5 md:gap-4">
-                <div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] xl:w-11 xl:h-11 bg-primary rounded-[5px] flex justify-center items-center">
-                  <Image
-                    src={stat.icon}
-                    alt={stat.label}
-                    width={29.33}
-                    height={29.33}
-                    className="pointer-events-none w-[20px] h-[20px] md:w-auto md:h-[29.33px]"
-                  />
+            <Reveal key={i} variants={moveUpV2} delayRange={i * 0.15}>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2.5 md:gap-4">
+                  <div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] xl:w-11 xl:h-11 bg-primary rounded-[5px] flex justify-center items-center">
+                    <Image
+                      src={stat.icon}
+                      alt={stat.label}
+                      width={29.33}
+                      height={29.33}
+                      className="pointer-events-none w-[20px] h-[20px] md:w-auto md:h-[29.33px]"
+                    />
+                  </div>
+                  <span className="section-heading text-secondary">
+                    <AnimatedCounter
+                      from={Number(stat.value) - 8}
+                      to={stat.value}
+                      duration={1.6}
+                    />
+                    <span className="section-heading text-primary">+</span>
+                  </span>
                 </div>
-                <span className="section-heading text-secondary">
-                  <AnimatedCounter from={Number(stat.value) - 8} to={stat.value} duration={1.6} />
-                  <span className="section-heading text-primary">+</span>
-                </span>
+
+                <hr className="border-black/20 mb-[10px] md:mb-3 mt-[15px] md:mt-20" />
+
+                <p className="text-[10px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
+                  {stat.label}
+                </p>
               </div>
-
-              <hr className="border-black/20 mb-[10px] md:mb-3 mt-[15px] md:mt-20" />
-
-              <p className="text-[10px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
-                {stat.label}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

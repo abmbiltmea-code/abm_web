@@ -191,7 +191,7 @@ export default function GalleryLightbox({
                       isActive ? "border border-white" : "border-0"
                     }`}
                   >
-                    <Image src={src} alt="" fill className="object-cover" />
+                    <Image src={src} alt="" fill className="object-cover pointer-events-none" />
                     <div
                       className={`absolute inset-0 ${
                         isActive ? "bg-black/20" : "bg-black/35"

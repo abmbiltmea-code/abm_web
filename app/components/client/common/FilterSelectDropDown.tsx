@@ -82,7 +82,7 @@ export default function FilterSelectDropDown({
           <Image
             src="/assets/icons/down-arrow.svg"
             alt="chevron-down"
-            className="w-auto sm:h-[10px] h-[9px] mr-[2px] sm:mr-0"
+            className="w-auto sm:h-[10px] h-[9px] mr-[2px] sm:mr-0 pointer-events-none"
             width={30}
             height={30}
           />

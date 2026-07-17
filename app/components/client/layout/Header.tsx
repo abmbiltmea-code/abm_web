@@ -26,6 +26,17 @@ function isDetailPage(pathname: string) {
   return DETAIL_PAGE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
+function isNavItemActive(
+  pathname: string,
+  item: { href?: string; subItems?: { href: string }[] },
+) {
+  if (item.href && pathname === item.href) return true;
+
+  return !!item.subItems?.some(
+    (sub) => pathname === sub.href || pathname.startsWith(sub.href + "/"),
+  );
+}
+
 export default function Header() {
   const headerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
@@ -193,17 +204,19 @@ export default function Header() {
           </div>
           <nav className="hidden xl:flex items-center gap-8 3xl:gap-70 pt-[2px]">
             {NAV_ITEMS.map((item, index) => {
-              const isActive = pathname === item.href;
+              const isActive = isNavItemActive(pathname, item);
               const hasSubItems = !!item.subItems?.length;
               const isOpen = openLabel === item.label;
 
               return (
                 <Link
-  key={index}
-  ref={(el) => { navItemRefs.current[item.label] = el; }}
-  href={item.href || "#"}
-  data-header-anim
-  onMouseEnter={() => hasSubItems && handleEnter(item.label)}
+                  key={index}
+                  ref={(el) => {
+                    navItemRefs.current[item.label] = el;
+                  }}
+                  href={item.href || "#"}
+                  data-header-anim
+                  onMouseEnter={() => hasSubItems && handleEnter(item.label)}
                   className={`flex items-center gap-2 text-15 font-tasa font-bold leading-[1.33333] uppercase whitespace-nowrap transition-colors duration-300 ease-in-out ${
                     isActive
                       ? "text-primary"

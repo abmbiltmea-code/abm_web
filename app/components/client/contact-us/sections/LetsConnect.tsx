@@ -26,7 +26,7 @@ export default function LetsConnect() {
                 src={CONNECT_INFO.image.src}
                 alt={CONNECT_INFO.image.alt}
                 fill
-                className="object-cover object-top"
+                className="object-cover object-top pointer-events-none"
               />
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function LetsConnect() {
                   alt={address.label}
                   width={32}
                   height={32}
-                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5"
+                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5 pointer-events-none"
                 />
                 <div>
                   <p className="text-subtitle-2 mb-[7px] sm:mb-[10px]">
@@ -62,7 +62,7 @@ export default function LetsConnect() {
                   alt={phone.label}
                   width={32}
                   height={32}
-                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5"
+                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5 pointer-events-none"
                 />
                 <div>
                   <p className="text-subtitle-2 mb-[7px] sm:mb-[10px]">
@@ -86,7 +86,7 @@ export default function LetsConnect() {
                   alt={email.label}
                   width={32}
                   height={32}
-                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5"
+                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5 pointer-events-none"
                 />
                 <div>
                   <p className="text-subtitle-2 mb-[7px] sm:mb-[10px]">
@@ -107,7 +107,7 @@ export default function LetsConnect() {
                   alt={fax.label}
                   width={32}
                   height={32}
-                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5"
+                  className="shrink-0 h-5 xl:h-7 3xl:h-[32px] w-auto sm:mt-[7px] mr-[5px] sm:mr-2 xl:mr-5 pointer-events-none"
                 />
                 <div>
                   <p className="text-subtitle-2 mb-[7px] sm:mb-[10px]">
@@ -129,7 +129,7 @@ export default function LetsConnect() {
               src={CONNECT_INFO.image.src}
               alt={CONNECT_INFO.image.alt}
               fill
-              className="object-cover object-top"
+              className="object-cover object-top pointer-events-none"
             />
           </div>
         </div>
