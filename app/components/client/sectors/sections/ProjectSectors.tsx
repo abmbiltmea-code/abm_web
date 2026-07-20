@@ -39,7 +39,7 @@ const ProjectSectors = () => {
                   text={item.description}
                   className="text-description-color mb-40"
                 />
-                <CustomButton text={item.btnText} href={item.btnLink} />
+                <CustomButton text={item.btnText} href={item.btnLink} className="w-fit" />
               </div>
 
               {/* Image */}

@@ -12,7 +12,7 @@ import {
 import { gsap } from "gsap";
 import { NAV_ITEMS } from "./data";
 import { usePathname } from "next/navigation";
-import { useHeaderLocked } from "@/app/lib/headerLock";
+import { useHeaderLocked } from "@/lib/headerLock";
 import DropdownMenu from "./DropDownMenu";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";

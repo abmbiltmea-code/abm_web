@@ -1,0 +1,108 @@
+import mongoose from "mongoose";
+
+const howWeWorkSchema = new mongoose.Schema({
+  seo: {
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+    script: { type: String },
+  },
+  bannerSection: {
+    isHidden: {
+      type: Boolean,
+      default: false,
+    },
+    image: { type: String },
+    imageAlt: { type: String },
+    title: { type: String },
+  },
+  firstSection: {
+    isHidden: { type: Boolean, default: false },
+    sectionLabel: { type: String },
+    title: { type: String },
+    description: { type: String },
+  },
+  secondSection: {
+    isHidden: { type: Boolean, default: false },
+    image: { type: String },
+    imageAlt: { type: String },
+    title: { type: String },
+    description: { type: String },
+  },
+  thirdSection: {
+    isHidden: { type: Boolean, default: false },
+    sectionLabel: { type: String },
+    title: { type: String },
+    items: {
+      type: [
+        {
+          title: { type: String },
+          content: { type: String },
+        },
+      ],
+      default: [],
+    },
+  },
+  fourthSection: {
+    isHidden: { type: Boolean, default: false },
+    sectionLabel: { type: String },
+    title: { type: String },
+    description: { type: String },
+    image: { type: String },
+    imageAlt: { type: String },
+    items: {
+      type: [
+        {
+          icon: { type: String },
+          iconAlt: { type: String },
+          title: { type: String },
+        },
+      ],
+      default: [],
+    },
+  },
+  fifthSection: {
+    isHidden: { type: Boolean, default: false },
+    sectionLabel: { type: String },
+    title: { type: String },
+    description: { type: String },
+    items: {
+      type: [
+        {
+          image: { type: String },
+          imageAlt: { type: String },
+          title: { type: String },
+          description: { type: String },
+        },
+      ],
+      default: [],
+    },
+  },
+  sixthSection: {
+    isHidden: { type: Boolean, default: false },
+    sectionLabel: { type: String },
+    title: { type: String },
+    description: { type: String },
+    items: {
+      type: [
+        {
+          image: { type: String },
+          imageAlt: { type: String },
+          title: { type: String },
+          description: { type: String },
+        },
+      ],
+      default: [],
+    },
+  },
+  seventhSection: {
+    isHidden: { type: Boolean, default: false },
+    title: { type: String },
+    description: { type: String },
+    button: {
+      text: { type: String },
+      link: { type: String },
+    },
+  },
+});
+
+export default mongoose.models.HowWeWork || mongoose.model("howWeWork", howWeWorkSchema);

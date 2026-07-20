@@ -7,7 +7,7 @@ import FormTextArea from "@/app/components/client/forms/FormTextArea";
 import {
   letsConnectFormSchema,
   LetsConnectFormValues,
-} from "@/app/lib/validations/LetsConnectForm";
+} from "@/lib/validations/LetsConnectForm";
 import CustomButton from "../../common/CustomButton";
 
 export default function LetsConnectForm() {

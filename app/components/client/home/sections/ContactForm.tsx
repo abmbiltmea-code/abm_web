@@ -9,7 +9,7 @@ import CustomButton from "@/app/components/client/common/CustomButton";
 import {
   homeEnquiryFormSchema,
   HomeEnquiryFormValues,
-} from "@/app/lib/validations/homeEnquiryForm";
+} from "@/lib/validations/homeEnquiryForm";
 
 const subjectOptions = [
   { label: "General Inquiry", value: "general" },

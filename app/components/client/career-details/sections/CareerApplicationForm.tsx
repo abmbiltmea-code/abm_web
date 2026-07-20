@@ -8,7 +8,7 @@ import FormTextArea from "@/app/components/client/forms/FormTextArea";
 import {
   careerApplicationFormSchema,
   CareerApplicationFormValues,
-} from "@/app/lib/validations/careerApplicationForm";
+} from "@/lib/validations/careerApplicationForm";
 import FormFileInput from "../../forms/FormFileInput";
 import CustomButton from "../../common/CustomButton";
 import Image from "next/image";
