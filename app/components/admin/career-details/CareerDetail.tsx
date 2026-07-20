@@ -8,7 +8,6 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { RiArrowLeftLine } from "react-icons/ri";
 import TinyEditor from "../common/TinyMceEditor";
 
 interface JobForm {
