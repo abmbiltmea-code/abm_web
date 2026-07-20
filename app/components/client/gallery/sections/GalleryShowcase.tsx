@@ -8,6 +8,8 @@ import GalleryLightbox from "./GalleryLightbox";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 import AnimatedCounter from "../../animations/AnimatedCounter";
+import AnimatedDivider from "../../animations/AnimatedDivider";
+import { AnimatePresence } from "framer-motion";
 
 const MAX_AVATARS = 3;
 
@@ -27,7 +29,12 @@ function AvatarStack({ images }: { images: string[] }) {
             key={src + i}
             className="relative h-5 w-5 sm:h-6 sm:w-6 overflow-hidden rounded-full border border-white"
           >
-            <Image src={src} alt="" fill className="object-cover pointer-events-none select-none" />
+            <Image
+              src={src}
+              alt=""
+              fill
+              className="object-cover pointer-events-none select-none"
+            />
           </div>
         ))}
       </div>
@@ -79,7 +86,9 @@ function GalleryCard({
       )}
 
       <div className="absolute bottom-5 sm:bottom-30 left-5 sm:left-30 right-5 sm:right-30 w-fit">
-        <p className="text-subtitle-3 md:text-subtitle text-white mb-5 uppercase">{title}</p>
+        <p className="text-subtitle-3 md:text-subtitle text-white mb-5 uppercase">
+          {title}
+        </p>
         <AvatarStack images={images} />
       </div>
     </div>
@@ -98,7 +107,8 @@ export default function GalleryShowcase() {
       <div className="relative w-full flex flex-col lg:flex-row gap-[40px] mb-[30px] sm:mb-90 3xl:mb-[94px]">
         <SectionLabel title="Gallery Showcase" />
 
-        <div className="lg:absolute lg:left-[33.8%] lg:translate-x-[-10] flex items-center gap-[30px] sm:gap-80 border-b border-border-color">
+        <div className="lg:absolute lg:left-[33.8%] lg:translate-x-[-10] flex items-center gap-[30px] sm:gap-80 relative">
+          <AnimatedDivider className="border-border-color absolute bottom-0 left-0 w-full" />
           {galleryCategories.map((cat) => (
             <button
               key={cat.label}
@@ -138,15 +148,17 @@ export default function GalleryShowcase() {
         ))}
       </div>
 
-      {lightboxImages && (
-        <GalleryLightbox
-          images={lightboxImages}
-          title={activeCategory?.items[activeIndex].title}
-          activeIndex={activeIndex}
-          onClose={() => setLightboxImages(null)}
-          onChangeIndex={setActiveIndex}
-        />
-      )}
+      <AnimatePresence>
+        {lightboxImages && (
+          <GalleryLightbox
+            images={lightboxImages}
+            title={activeCategory?.items[activeIndex].title}
+            activeIndex={activeIndex}
+            onClose={() => setLightboxImages(null)}
+            onChangeIndex={setActiveIndex}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

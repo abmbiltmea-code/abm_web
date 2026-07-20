@@ -44,7 +44,7 @@ export default function SectorWeServe() {
               breakpoints={{
                 640: {
                   slidesPerView: 1.8,
-                }
+                },
               }}
               className="!overflow-visible !px-container-px"
             >
@@ -79,7 +79,7 @@ export default function SectorWeServe() {
                 <Reveal
                   key={item.title}
                   variants={moveUpV2}
-                  delayRange={i * 0.1}
+                  delayRange={i * 0.14}
                   className="h-full"
                 >
                   <div

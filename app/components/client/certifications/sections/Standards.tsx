@@ -1,6 +1,8 @@
 import SectionTitle from "../../animations/SectionTitle";
 import Image from "next/image";
 import InnerCtaSecondary from "../../common/InnerCtaSecondary";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { moveUpV2 } from "../../animations/motionVariants";
 
 const Standards = ({
   standards,
@@ -17,8 +19,9 @@ const Standards = ({
           <SectionTitle title="Compliance & Standards" className="mb-50" />
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-x-[14px] gap-y-[30px] sm:gap-20">
             {standards.map((standard, index) => (
-              <div
+              <Reveal
                 key={index}
+                variants={moveUpV2}
                 className="flex flex-col sm:flex-row sm:items-center gap-[10px] sm:gap-20 border-b sm:border-b-auto pb-[10px] sm:pb-auto sm:border border-border-color sm:rounded-[10px] sm:px-5 lg:px-40 sm:py-40 3xl:py-[38px] w-full md:w-[calc(50%-10px)] min-[1200px]:w-[calc(33.3333%-13.3333px)]"
               >
                 <div className="box-size bg-primary rounded-[5px] flex items-center justify-center">
@@ -31,7 +34,7 @@ const Standards = ({
                   />
                 </div>
                 <h3 className="text-subtitle-3">{standard.title}</h3>
-              </div>
+              </Reveal>
             ))}
           </div>
 

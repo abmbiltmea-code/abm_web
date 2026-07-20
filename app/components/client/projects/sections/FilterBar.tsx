@@ -69,9 +69,6 @@
 //   );
 // }
 
-
-
-
 "use client";
 
 import { useState } from "react";
@@ -79,6 +76,8 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { DIVISIONS, LOCATIONS, SECTORS, STATUSES } from "../data";
 import FilterSelectDropDown from "../../common/FilterSelectDropDown";
+import SectionReveal from "../../animations/SectionReveal";
+import { moveUp, moveUpV2 } from "../../animations/motionVariants";
 
 export interface Filters {
   division: string | null;
@@ -140,7 +139,7 @@ export default function FilterBar({ filters, onChange }: FilterBarProps) {
                   value={filters.division}
                   onChange={(division) => onChange({ ...filters, division })}
                 />
-                <FilterSelectDropDown 
+                <FilterSelectDropDown
                   label="Sector"
                   options={SECTORS}
                   value={filters.sector}
@@ -175,48 +174,50 @@ export default function FilterBar({ filters, onChange }: FilterBarProps) {
       </div>
 
       {/* DESKTOP — sm and up */}
-      <div className="hidden sm:flex flex-wrap xl:flex-nowrap items-end gap-y-20 gap-50">
-        <div className="grid w-full xl:w-auto xl:flex-1 min-[1900px]:flex-none grid-cols-2 xl:grid-cols-4 gap-6 self-end pb-[7px]">
-          <FilterSelectDropDown
-            label="Division"
-            options={DIVISIONS}
-            value={filters.division}
-            onChange={(division) => onChange({ ...filters, division })}
-            className="3xl:max-w-[340px]"
-          />
-          <FilterSelectDropDown
-            label="Sector"
-            options={SECTORS}
-            value={filters.sector}
-            onChange={(sector) => onChange({ ...filters, sector })}
-            className="3xl:max-w-[340px]"
-          />
-          <FilterSelectDropDown
-            label="Location"
-            options={LOCATIONS}
-            value={filters.location}
-            onChange={(location) => onChange({ ...filters, location })}
-            className="3xl:max-w-[340px]"
-          />
-          <FilterSelectDropDown
-            label="Status"
-            options={STATUSES}
-            value={filters.status}
-            onChange={(status) => onChange({ ...filters, status })}
-            className="3xl:max-w-[340px]"
-          />
-        </div>
+      <SectionReveal variants={moveUp(0.2)}>
+        <div className="hidden sm:flex flex-wrap xl:flex-nowrap items-end gap-y-20 gap-50">
+          <div className="grid w-full xl:w-auto xl:flex-1 min-[1900px]:flex-none grid-cols-2 xl:grid-cols-4 gap-6 self-end pb-[7px]">
+            <FilterSelectDropDown
+              label="Division"
+              options={DIVISIONS}
+              value={filters.division}
+              onChange={(division) => onChange({ ...filters, division })}
+              className="3xl:max-w-[340px]"
+            />
+            <FilterSelectDropDown
+              label="Sector"
+              options={SECTORS}
+              value={filters.sector}
+              onChange={(sector) => onChange({ ...filters, sector })}
+              className="3xl:max-w-[340px]"
+            />
+            <FilterSelectDropDown
+              label="Location"
+              options={LOCATIONS}
+              value={filters.location}
+              onChange={(location) => onChange({ ...filters, location })}
+              className="3xl:max-w-[340px]"
+            />
+            <FilterSelectDropDown
+              label="Status"
+              options={STATUSES}
+              value={filters.status}
+              onChange={(status) => onChange({ ...filters, status })}
+              className="3xl:max-w-[340px]"
+            />
+          </div>
 
-        <button
-          type="button"
-          onClick={() => onChange(EMPTY_FILTERS)}
-          className="shrink-0 ml-auto self-end bg-primary px-5 py-3 xl:p-5 text-15 font-bold font-tasa rounded-[5px] leading-[1.3333333] uppercase text-white cursor-pointer group"
-        >
-          <p className="group-hover:scale-[1.06] transition-transform duration-400 ease-in-out">
-            Reset
-          </p>
-        </button>
-      </div>
+          <button
+            type="button"
+            onClick={() => onChange(EMPTY_FILTERS)}
+            className="shrink-0 ml-auto self-end bg-primary px-5 py-3 xl:p-5 text-15 font-bold font-tasa rounded-[5px] leading-[1.3333333] uppercase text-white cursor-pointer group"
+          >
+            <p className="group-hover:scale-[1.06] transition-transform duration-400 ease-in-out">
+              Reset
+            </p>
+          </button>
+        </div>
+      </SectionReveal>
     </div>
   );
 }

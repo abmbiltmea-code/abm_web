@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { AnimatePresence } from "framer-motion";
 
 interface CertificateItem {
   src: string;
@@ -115,7 +116,6 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
           breakpoints={{
             640: { slidesPerView: 2 },
             768: { slidesPerView: 2.6 },
-
           }}
           speed={700}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
@@ -137,13 +137,15 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
           ))}
         </Swiper>
       </div>
-
-      <CertificateLightbox
-        items={items}
-        activeIndex={activeIndex}
-        onClose={() => setActiveIndex(null)}
-        onNavigate={setActiveIndex}
-      />
+      
+      <AnimatePresence>
+        <CertificateLightbox
+          items={items}
+          activeIndex={activeIndex}
+          onClose={() => setActiveIndex(null)}
+          onNavigate={setActiveIndex}
+        />
+      </AnimatePresence>
     </section>
   );
 }

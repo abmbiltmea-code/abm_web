@@ -8,6 +8,8 @@ import ServiceCard from "./ServiceCard";
 
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { moveUpV2 } from "../../animations/motionVariants";
 
 export default function WhatWeDo() {
   return (
@@ -33,7 +35,7 @@ export default function WhatWeDo() {
             delay: 4000,
             disableOnInteraction: false,
           }}
-           className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
+          className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
           breakpoints={{
             640: { slidesPerView: 1.6, spaceBetween: 15 },
             768: { slidesPerView: 2, spaceBetween: 15 },
@@ -42,13 +44,15 @@ export default function WhatWeDo() {
             1600: { slidesPerView: 4, spaceBetween: 20 },
           }}
         >
-          {servicesGridData.items.map((item) => (
+          {servicesGridData.items.map((item, i) => (
             <SwiperSlide key={item.title}>
-              <ServiceCard
-                image={item.image}
-                title={item.title}
-                description={item.description}
-              />
+              <Reveal variants={moveUpV2} delayRange={i * 0.14}>
+                <ServiceCard
+                  image={item.image}
+                  title={item.title}
+                  description={item.description}
+                />
+              </Reveal>
             </SwiperSlide>
           ))}
         </Swiper>

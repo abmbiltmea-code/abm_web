@@ -95,19 +95,19 @@ export const strengthsData = {
       title: "Skilled Engineering Teams",
       description:
         "Experienced professionals ensuring technical accuracy and quality at every stage.",
-      image: "/assets/images/construction-division/strength/1.jpg",
+      image: "/assets/images/construction-division/strength/2.jpg",
     },
     {
       title: "Strict HSE Compliance",
       description:
         "Rigorous health, safety, and environmental standards enforced across every site.",
-      image: "/assets/images/construction-division/strength/2.jpg",
+      image: "/assets/images/construction-division/strength/3.jpg",
     },
     {
       title: "Multi-Project Handling Capability",
       description:
         "Proven ability to manage multiple concurrent projects without compromising quality or timelines.",
-      image: "/assets/images/construction-division/strength/3.jpg",
+      image: "/assets/images/construction-division/strength/4.jpg",
     },
   ],
 };

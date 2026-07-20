@@ -8,10 +8,12 @@ import SectionDescription from "../../animations/SectionDescription";
 import { ourCommitmentData } from "../data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function OurCommitment() {
   const { sectionLabel, title, description, items } = ourCommitmentData;
   const [active, setActive] = useState(1);
+  const [baseImage, setBaseImage] = useState(items[1].image);
 
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
@@ -29,11 +31,27 @@ export default function OurCommitment() {
           <div className="w-full lg:w-[55%] 3xl:w-[1055px] shrink-0">
             <div className="relative w-full h-full 3xl:w-[1055px] 3xl:h-[680px] rounded-[10px] overflow-hidden">
               <Image
-                src={items[active].image}
-                alt={items[active].title}
+                src={baseImage}
+                alt=""
                 fill
                 className="object-cover pointer-events-none"
               />
+
+              <motion.div
+                key={active}
+                initial={{ clipPath: "inset(0 100% 0 0)" }}
+                animate={{ clipPath: "inset(0 0% 0 0)" }}
+                transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+                onAnimationComplete={() => setBaseImage(items[active].image)}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={items[active].image}
+                  alt={items[active].title}
+                  fill
+                  className="object-cover pointer-events-none"
+                />
+              </motion.div>
             </div>
           </div>
 
@@ -70,10 +88,33 @@ export default function OurCommitment() {
             </div>
 
             <div className="lg:mt-80 3xl:mt-40">
-              <h3 className="text-subtitle-3 mb-5">{items[active].title}</h3>
-              <p className="text-description-color text-description-2 lg:max-w-[514px]">
-                {items[active].description}
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.div key={active}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+                    className="text-subtitle-3 mb-5"
+                  >
+                    {items[active].title}
+                  </motion.h3>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.1,
+                      ease: [0.65, 0, 0.35, 1],
+                    }}
+                    className="text-description-color text-description-2 lg:max-w-[514px]"
+                  >
+                    {items[active].description}
+                  </motion.p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

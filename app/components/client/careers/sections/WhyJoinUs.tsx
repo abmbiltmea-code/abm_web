@@ -8,9 +8,12 @@ import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { moveUpV2 } from "../../animations/motionVariants";
 
 export default function WhyJoinUs() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [baseImage, setBaseImage] = useState(whyJoinUsData[0].image);
   const active = whyJoinUsData[activeIndex];
 
   return (
@@ -62,24 +65,29 @@ export default function WhyJoinUs() {
         <div className="hidden lg:flex flex-col lg:flex-row lg:justify-between items-center gap-60">
           {/* Left: Image */}
           <div className="relative w-full lg:w-[50%] 3xl:w-[866px] h-[320px] sm:h-[420px] lg:h-[500px] 3xl:h-[585px] rounded-[10px] overflow-hidden shrink-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.image}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={active.image}
-                  alt={active.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
+            <Image
+              src={baseImage}
+              alt=""
+              fill
+              className="object-cover"
+              priority
+            />
+
+            <motion.div
+              key={activeIndex}
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+              onAnimationComplete={() => setBaseImage(active.image)}
+              className="absolute inset-0"
+            >
+              <Image
+                src={active.image}
+                alt={active.title}
+                fill
+                className="object-cover"
+              />
+            </motion.div>
           </div>
           {/* Right: Accordion */}
           <div className="w-full lg:w-[50%]">
@@ -88,7 +96,8 @@ export default function WhyJoinUs() {
               {whyJoinUsData.map((item, index) => {
                 const isActive = index === activeIndex;
                 return (
-                  <div
+                  <Reveal
+                    variants={moveUpV2}
                     key={item.title}
                     className="border-t border-border-color"
                   >
@@ -133,8 +142,8 @@ export default function WhyJoinUs() {
                           )}
                         </AnimatePresence>
                       </div>
-                    </button>
-                  </div>
+                    </button>{" "}
+                  </Reveal>
                 );
               })}
             </div>
