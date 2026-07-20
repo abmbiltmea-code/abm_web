@@ -2,11 +2,8 @@
 
 import { useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import {
-  RiCloseLine,
-  RiArrowLeftSLine,
-  RiArrowRightSLine,
-} from "react-icons/ri";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 interface GalleryLightboxProps {
   images: string[];
@@ -102,12 +99,22 @@ export default function GalleryLightbox({
   );
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed inset-0 z-999 overflow-y-auto bg-black/80"
       onClick={onClose}
     >
       <div className="flex min-h-full items-center justify-center py-100 3xl:py-[105px]">
-        <div className="container mx-auto flex flex-col items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
+          className="container mx-auto flex flex-col items-center"
+        >
           {/* Main image row (with lg+ side arrows) */}
           <div className="relative flex w-full items-center justify-center gap-15">
             {images.length > 1 && (
@@ -191,7 +198,12 @@ export default function GalleryLightbox({
                       isActive ? "border border-white" : "border-0"
                     }`}
                   >
-                    <Image src={src} alt="" fill className="object-cover pointer-events-none" />
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      className="object-cover pointer-events-none"
+                    />
                     <div
                       className={`absolute inset-0 ${
                         isActive ? "bg-black/20" : "bg-black/35"
@@ -202,8 +214,8 @@ export default function GalleryLightbox({
               })}
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

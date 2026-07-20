@@ -92,6 +92,7 @@ import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionSubtitle from "../../animations/SectonSubtitle";
 import { moveUpV2 } from "../../animations/motionVariants";
+import SectionDescription from "../../animations/SectionDescription";
 
 const specLabels = {
   client: "CLIENT",
@@ -200,9 +201,9 @@ export default function ProjectSpecsOverview({
       <div className="w-full flex-1">
         <SectionTitle title="Project Overview" className="mb-2.5 sm:mb-5" />
 
-        <div
+        <SectionDescription
           className="space-y-4 md:space-y-6 3xl:space-y-7 text-description-2 text-description-color"
-          dangerouslySetInnerHTML={{ __html: projectOverview }}
+          html={projectOverview}
         />
 
         <SectionSubtitle

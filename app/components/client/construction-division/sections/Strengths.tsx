@@ -9,10 +9,12 @@ import { strengthsData } from "../data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
 
 export default function Strengths() {
   const { label, title, description, items } = strengthsData;
   const [active, setActive] = useState(1);
+  const [baseImage, setBaseImage] = useState(items[1].image);
 
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
@@ -31,15 +33,15 @@ export default function Strengths() {
 
       {/* Below xl - Card Slider */}
       <div className="xl:hidden container">
-      <Swiper
-        modules={[Autoplay]}
-        speed={700}
+        <Swiper
+          modules={[Autoplay]}
+          speed={700}
           spaceBetween={15}
           slidesPerView={1.1759}
           breakpoints={{
             640: { slidesPerView: 1.6, spaceBetween: 15 },
             768: { slidesPerView: 2, spaceBetween: 15 },
-            1024: { slidesPerView: 2, spaceBetween: 20 }, 
+            1024: { slidesPerView: 2, spaceBetween: 20 },
           }}
           autoplay={{
             delay: 4000,
@@ -121,12 +123,23 @@ export default function Strengths() {
 
         {/* Right - Image */}
         <div className="relative w-full lg:w-[48%] 3xl:w-[870px] min-[1900px]:h-[660px] shrink-0 rounded-[10px] overflow-hidden">
-          <Image
-            src={items[active].image}
-            alt={items[active].title}
-            fill
-            className="object-cover"
-          />
+          <Image src={baseImage} alt="" fill className="object-cover" />
+
+          <motion.div
+            key={active}
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={{ clipPath: "inset(0 0% 0 0)" }}
+            transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+            onAnimationComplete={() => setBaseImage(items[active].image)}
+            className="absolute inset-0"
+          >
+            <Image
+              src={items[active].image}
+              alt={items[active].title}
+              fill
+              className="object-cover"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

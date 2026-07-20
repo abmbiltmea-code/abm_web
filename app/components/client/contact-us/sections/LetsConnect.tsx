@@ -4,12 +4,45 @@ import Image from "next/image";
 import { CONNECT_INFO } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import AnimatedDivider from "../../animations/AnimatedDivider";
+import AnimatedCounter from "../../animations/AnimatedCounter";
 
 export default function LetsConnect() {
   const [address, phone, email, fax] = CONNECT_INFO.details;
+  const imageRef = useRef<HTMLImageElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!sectionRef.current || !imageRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        imageRef.current,
+        { yPercent: -10, scale: 1 },
+        {
+          yPercent: 10,
+          scale: 1.12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="container pt-[29px] md:pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150">
+    <section
+      ref={sectionRef}
+      className="container pt-[29px] md:pt-70 3xl:pt-[73px] pb-[60px] md:pb-120 3xl:pb-150"
+    >
       <div className="flex flex-col xl:flex-row gap-5 sm:gap-40 2xl:gap-80 3xl:gap-[97px] justify-between">
         {/* Left */}
         <div className="flex flex-col justify-center w-full">
@@ -23,6 +56,7 @@ export default function LetsConnect() {
           <div className="xl:hidden w-full mb-5 rounded-[10px] overflow-hidden">
             <div className="relative w-full h-[251px] sm:h-[320px] md:h-[400px] lg:h-[500px]rounded-[10px] overflow-hidden">
               <Image
+                ref={imageRef}
                 src={CONNECT_INFO.image.src}
                 alt={CONNECT_INFO.image.alt}
                 fill
@@ -53,7 +87,7 @@ export default function LetsConnect() {
                 </div>
               </div>
 
-              <div className="hidden xl:block 2xl:hidden w-full h-px bg-border-color" />
+              <AnimatedDivider className="hidden xl:block 2xl:hidden w-full h-px border-border-color" />
 
               {/* Phone */}
               <div className="flex items-start min-[1900px]:min-w-[350px]">
@@ -76,7 +110,7 @@ export default function LetsConnect() {
             </div>
 
             {/* Divider */}
-            <div className="w-full h-px bg-border-color my-[15px] sm:my-5 md:my-30" />
+            <AnimatedDivider className="w-full h-px border-border-color my-[15px] sm:my-5 md:my-30" />
 
             <div className="flex justify-between sm:justify-start xl:grid xl:grid-cols-1 2xl:grid-cols-2 gap-30 md:gap-100 xl:gap-30 2xl:gap-50 3xl:gap-120 min-[1900px]:gap-[172px]">
               {/* Email */}
@@ -98,7 +132,7 @@ export default function LetsConnect() {
                 </div>
               </div>
 
-              <div className="hidden xl:block 2xl:hidden w-full h-px bg-border-color" />
+              <AnimatedDivider className="hidden xl:block 2xl:hidden w-full h-px border-border-color" />
 
               {/* Fax */}
               <div className="flex items-start min-[1900px]:min-w-[350px]">
@@ -126,6 +160,7 @@ export default function LetsConnect() {
         <div className="hidden xl:block w-full xl:w-auto shrink-0 xl:self-stretch">
           <div className="relative w-full h-[280px] md:h-[400px] lg:h-[500px] xl:w-[600px] xl:h-full 3xl:w-[850px] rounded-[10px] overflow-hidden">
             <Image
+              ref={imageRef}
               src={CONNECT_INFO.image.src}
               alt={CONNECT_INFO.image.alt}
               fill

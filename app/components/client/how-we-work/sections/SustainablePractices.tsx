@@ -9,10 +9,14 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
+import { moveUpV2 } from "../../animations/motionVariants";
+import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 
 export default function SustainablePractices() {
   const { sectionLabel, title, description, items } = sustainablePracticesData;
   const [active, setActive] = useState(0);
+  const [baseImage, setBaseImage] = useState(items[0].image);
 
   const handleSetActive = (index: number) => {
     setActive(index);
@@ -38,32 +42,50 @@ export default function SustainablePractices() {
         {/* Row 2, Col 1 — image */}
         <div className="relative h-[400px] lg:h-full 3xl:min-h-[655px] rounded-[10px] overflow-hidden">
           <Image
-            src={items[active].image}
-            alt={items[active].title}
+            src={baseImage}
+            alt=""
             fill
             className="object-cover pointer-events-none select-none"
           />
+
+          <motion.div
+            key={active}
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={{ clipPath: "inset(0 0% 0 0)" }}
+            transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+            onAnimationComplete={() => setBaseImage(items[active].image)}
+            className="absolute inset-0"
+          >
+            <Image
+              src={items[active].image}
+              alt={items[active].title}
+              fill
+              className="object-cover pointer-events-none select-none"
+            />
+          </motion.div>
         </div>
 
         {/* Row 2, Col 2 — items grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr">
           {items.map((item, index) => (
-            <div
-              key={item.title}
-              onMouseEnter={() => handleSetActive(index)}
+            <Reveal
+              key={index}
+              variants={moveUpV2}
               className={`rounded-[10px] px-30 3xl:px-40 pt-50 pb-30 transition-colors -mr-px -mb-px ${
                 active === index
                   ? "bg-primary/10 border border-primary/10 z-10"
                   : "border border-border-color z-0"
               }`}
             >
-              <h3 className="text-subtitle-3 mb-5 max-w-[329px]">
-                {item.title}
-              </h3>
-              <p className="text-description-color text-description-2">
-                {item.description}
-              </p>
-            </div>
+              <div key={item.title} onMouseEnter={() => handleSetActive(index)}>
+                <h3 className="text-subtitle-3 mb-5 max-w-[329px]">
+                  {item.title}
+                </h3>
+                <p className="text-description-color text-description-2">
+                  {item.description}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -6,6 +6,8 @@ import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
+import { moveUp } from "../../animations/motionVariants";
 
 export default function Methodology() {
   const { pageLabel, title, items } = workMethodologyData;
@@ -22,8 +24,12 @@ export default function Methodology() {
           <SectionTitle title={title} className="max-w-[20ch] mb-50" />
           <div className="flex flex-col max-w-[92%] 3xl:max-w-[1140px]">
             {items.map((item, index) => (
-              <div
-                key={item.title}
+              <motion.div
+                variants={moveUp(0.04 * index)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                key={index}
                 className={`flex items-start gap-40 pt-50 first:pt-0 ${
                   index !== items.length - 1
                     ? "border-b border-border-color pb-50"
@@ -46,7 +52,7 @@ export default function Methodology() {
                     dangerouslySetInnerHTML={{ __html: item.content }}
                   />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
