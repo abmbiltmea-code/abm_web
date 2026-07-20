@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useLenis } from "../layout/LenisProvider";
-import { useLockHeader } from "@/app/lib/headerLock";
+import { useLockHeader } from "@/lib/headerLock";
 
 interface PaginationProps {
   totalPages: number;
@@ -85,7 +85,13 @@ const Pagination = ({
         aria-label="Previous page"
         className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
       >
-        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Previous page" width={14} height={14} className="pointer-events-none" />
+        <Image
+          src={"/assets/icons/double-arrow-black.svg"}
+          alt="Previous page"
+          width={14}
+          height={14}
+          className="pointer-events-none"
+        />
       </button>
 
       {pages.map((page, i) => {
@@ -124,11 +130,16 @@ const Pagination = ({
         aria-label="Next page"
         className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
       >
-        <Image src={"/assets/icons/double-arrow-black.svg"} alt="Next page" width={14} height={14} className="rotate-180 pointer-events-none" />
+        <Image
+          src={"/assets/icons/double-arrow-black.svg"}
+          alt="Next page"
+          width={14}
+          height={14}
+          className="rotate-180 pointer-events-none"
+        />
       </button>
     </div>
   );
 };
 
 export default Pagination;
-
