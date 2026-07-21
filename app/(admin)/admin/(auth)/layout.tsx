@@ -2,6 +2,7 @@ import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import ClientSideLink from "../client-side-link";
 import AdminNavbar from "@/app/components/admin/AdminNavbar/Index";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AdminLayout({
   children,
@@ -13,16 +14,18 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto border-r border-border-color">
         <div className="flex-1">
-          <div className="mb-6 px-4 flex flex-col gap-2 bg-cream-bg py-30 border-b border-border-color">
-            <div className="flex items-center justify-center">
-              <Image
-                src="/assets/images/logos/header-logo.png"
-                alt="Logo"
-                width={180}
-                height={180}
-              />
+          <Link href="/admin" className="cursor-pointer">
+            <div className="mb-6 px-4 flex flex-col gap-2 bg-cream-bg py-30 border-b border-border-color">
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/assets/images/logos/header-logo.png"
+                  alt="Logo"
+                  width={180}
+                  height={180}
+                />
+              </div>
             </div>
-          </div>
+          </Link>
 
           <nav className="space-y-1">
             <AdminNavbar />
@@ -43,7 +46,9 @@ export default function AdminLayout({
       {/* Main Content */}
       <main className="flex-1 overflow-hidden">
         {/* Scrollable Content */}
-        <div className="h-full overflow-y-auto px-8 pb-8 pt-15 bg-gray-200">{children}</div>
+        <div className="h-full overflow-y-auto px-8 pb-8 pt-15 bg-gray-200">
+          {children}
+        </div>
       </main>
     </div>
   );

@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
@@ -11,21 +11,23 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { RiDeleteBinLine, RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import Image from "next/image";
 
-interface Job {
+interface SectorItem {
   _id: string;
   isHidden: boolean;
   title: string;
-  category: string;
-  slug: string;
-  specs: {
-    location: string;
-    experience: string;
-    type: string;
-  };
+  thumbnail: string;
 }
 
-interface CareersForm {
+interface SectorsForm {
   seo: { metaTitle: string; metaDescription: string; script: string };
   bannerSection: {
     isHidden: boolean;
@@ -41,42 +43,40 @@ interface CareersForm {
   };
   secondSection: {
     isHidden: boolean;
-    title: string;
-    items: {
-      title: string;
-      description: string;
-      image: string;
-      imageAlt: string;
-    }[];
   };
   thirdSection: {
     isHidden: boolean;
+    sectionLabel: string;
     title: string;
-    subTitle: string;
+    items: { title: string }[];
+  };
+  fourthSection: {
+    isHidden: boolean;
+    title: string;
+    button: { text: string; link: string };
+  };
+  fifthSection: {
+    isHidden: boolean;
+    title: string;
     description: string;
-    mail: string;
+    button: { text: string; link: string };
   };
 }
 
-export default function CareersPage() {
+export default function SectorsPage() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
-    useForm<CareersForm>();
-  const [jobs, setJobs] = useState<Job[]>([]);
-
-  const {
-    fields: secondItems,
-    append: appendSecond,
-    remove: removeSecond,
-    replace: replaceSecond,
-  } = useFieldArray({ control, name: "secondSection.items" });
+    useForm<SectorsForm>();
+  const [sectors, setSectors] = useState<SectorItem[]>([]);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [selectedSector, setSelectedSector] = useState<SectorItem | null>(null);
 
   const fetchData = async () => {
     try {
-      const res = await fetch("/api/admin/careers");
+      const res = await fetch("/api/admin/sector");
       const contentType = res.headers.get("content-type");
       if (!res.ok || !contentType?.includes("application/json")) {
-        toast.error("Failed to load careers data");
+        toast.error("Failed to load sectors data");
         return;
       }
 
@@ -85,33 +85,28 @@ export default function CareersPage() {
       setValue("bannerSection", data.bannerSection);
       setValue("firstSection", data.firstSection);
       setValue("secondSection.isHidden", data.secondSection?.isHidden);
-      setValue("secondSection.title", data.secondSection?.title);
-      setValue("thirdSection.isHidden", data.thirdSection?.isHidden);
-      setValue("thirdSection.title", data.thirdSection?.title);
-      setValue("thirdSection.subTitle", data.thirdSection?.subTitle);
-      setValue("thirdSection.description", data.thirdSection?.description);
-      setValue("thirdSection.mail", data.thirdSection?.mail);
+      setValue("thirdSection", data.thirdSection);
+      setValue("fourthSection", data.fourthSection);
+      setValue("fifthSection", data.fifthSection);
 
-      replaceSecond(data.secondSection?.items || []);
-      setJobs(data.thirdSection?.jobs || []);
+      setSectors(data.secondSection?.sectors || []);
     } catch (e) {
       console.error(e);
-      toast.error("Failed to load careers data");
+      toast.error("Failed to load sectors data");
     }
   };
 
-  const onSubmit = async (data: CareersForm) => {
+  const onSubmit = async (data: SectorsForm) => {
     try {
-      const res = await fetch("/api/admin/careers", {
+      const res = await fetch("/api/admin/sector", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      const { message } = await res.json();
       if (res.ok) {
-        const { message } = await res.json();
         toast.success(message);
       } else {
-        const { message } = await res.json();
         toast.error(message);
       }
     } catch (e) {
@@ -120,15 +115,17 @@ export default function CareersPage() {
     }
   };
 
-  const deleteJob = async (e: React.MouseEvent, id: string) => {
-    e.stopPropagation();
+  const deleteSector = async (id: string) => {
     try {
-      const res = await fetch(`/api/admin/careers/jobs/${id}`, {
+      const res = await fetch(`/api/admin/sector/items/${id}`, {
         method: "DELETE",
       });
+
       if (res.ok) {
-        setJobs((prev) => prev.filter((j) => j._id !== id));
-        toast.success("Job deleted");
+        setSectors((prev) => prev.filter((s) => s._id !== id));
+        toast.success("Sector deleted");
+        setDeleteDialogOpen(false);
+        setSelectedSector(null);
       } else {
         const { message } = await res.json();
         toast.error(message);
@@ -138,20 +135,24 @@ export default function CareersPage() {
     }
   };
 
-  const toggleJobHidden = async (e: React.MouseEvent, job: Job) => {
+  const toggleSectorHidden = async (
+    e: React.MouseEvent,
+    sector: SectorItem,
+  ) => {
     e.stopPropagation();
     try {
-      const res = await fetch(`/api/admin/careers/jobs/${job._id}`, {
+      const res = await fetch(`/api/admin/sector/items/${sector._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isHidden: !job.isHidden }),
+        body: JSON.stringify({ isHidden: !sector.isHidden }),
       });
       if (res.ok) {
-        setJobs((prev) =>
-          prev.map((j) =>
-            j._id === job._id ? { ...j, isHidden: !j.isHidden } : j,
+        setSectors((prev) =>
+          prev.map((s) =>
+            s._id === sector._id ? { ...s, isHidden: !s.isHidden } : s,
           ),
         );
+        toast.success(sector.isHidden ? "Sector shown" : "Sector hidden");
       } else {
         const { message } = await res.json();
         toast.error(message);
@@ -229,7 +230,7 @@ export default function CareersPage() {
           </div>
         </AdminItemContainer>
 
-        {/* Second Section */}
+        {/* Second Section — settings only, sectors handled below */}
         <AdminItemContainer>
           <Label
             main
@@ -241,81 +242,11 @@ export default function CareersPage() {
               )
             }
           >
-            Second Section
+            Second Section — Sectors List
           </Label>
-          <div className="p-5 flex flex-col gap-4">
-            <Label className="font-bold">Title</Label>
-            <Input {...register("secondSection.title")} placeholder="Title" />
-            <div className="flex items-center justify-between mt-2">
-              <Label className="font-bold">Items</Label>
-              <Button
-                type="button"
-                addItem
-                onClick={() =>
-                  appendSecond({
-                    title: "",
-                    description: "",
-                    image: "",
-                    imageAlt: "",
-                  })
-                }
-              >
-                + Add Item
-              </Button>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {secondItems.map((field, index) => (
-                <div
-                  key={field.id}
-                  className="border border-black/10 rounded-lg p-4 flex flex-col gap-3"
-                >
-                  <div className="flex items-center justify-between">
-                    <Label className="font-bold">Item {index + 1}</Label>
-                    <Button type="button" onClick={() => removeSecond(index)}>
-                      <RiDeleteBinLine size={16} />
-                    </Button>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-2">
-                      <Label className="font-bold">Image</Label>
-                      <Controller
-                        name={`secondSection.items.${index}.image`}
-                        control={control}
-                        render={({ field }) => (
-                          <ImageUploader
-                            value={field.value}
-                            onChange={field.onChange}
-                          />
-                        )}
-                      />
-                      <Label className="font-bold">Image Alt</Label>
-                      <Input
-                        {...register(`secondSection.items.${index}.imageAlt`)}
-                        placeholder="Image Alt"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <Label className="font-bold">Title</Label>
-                      <Input
-                        {...register(`secondSection.items.${index}.title`)}
-                        placeholder="Title"
-                      />
-                      <Label className="font-bold">Description</Label>
-                      <Textarea
-                        {...register(
-                          `secondSection.items.${index}.description`,
-                        )}
-                        placeholder="Description"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </AdminItemContainer>
 
-        {/* Third Section — settings only, jobs handled below */}
+        {/* Third Section */}
         <AdminItemContainer>
           <Label
             main
@@ -324,26 +255,90 @@ export default function CareersPage() {
               setValue("thirdSection.isHidden", !watch("thirdSection.isHidden"))
             }
           >
-            Third Section — Open Positions
+            Third Section
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Section Label</Label>
+            <Input
+              {...register("thirdSection.sectionLabel")}
+              placeholder="Section Label"
+            />
+            <Label className="font-bold">Title</Label>
+            <Input {...register("thirdSection.title")} placeholder="Title" />
+          </div>
+        </AdminItemContainer>
+
+        {/* Fourth Section */}
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("fourthSection.isHidden")}
+            onToggleHidden={() =>
+              setValue(
+                "fourthSection.isHidden",
+                !watch("fourthSection.isHidden"),
+              )
+            }
+          >
+            Fourth Section
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Title</Label>
-            <Input {...register("thirdSection.title")} placeholder="Title" />
-            <Label className="font-bold">Sub Title</Label>
-            <Input
-              {...register("thirdSection.subTitle")}
-              placeholder="Sub Title"
-            />
+            <Input {...register("fourthSection.title")} placeholder="Title" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Text</Label>
+                <Input
+                  {...register("fourthSection.button.text")}
+                  placeholder="Button Text"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Link</Label>
+                <Input
+                  {...register("fourthSection.button.link")}
+                  placeholder="/link"
+                />
+              </div>
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        {/* Fifth Section */}
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("fifthSection.isHidden")}
+            onToggleHidden={() =>
+              setValue("fifthSection.isHidden", !watch("fifthSection.isHidden"))
+            }
+          >
+            Fifth Section
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("fifthSection.title")} placeholder="Title" />
             <Label className="font-bold">Description</Label>
             <Textarea
-              {...register("thirdSection.description")}
+              {...register("fifthSection.description")}
               placeholder="Description"
             />
-            <Label className="font-bold">Contact Mail</Label>
-            <Input
-              {...register("thirdSection.mail")}
-              placeholder="info@example.com"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Text</Label>
+                <Input
+                  {...register("fifthSection.button.text")}
+                  placeholder="Button Text"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Link</Label>
+                <Input
+                  {...register("fifthSection.button.link")}
+                  placeholder="/link"
+                />
+              </div>
+            </div>
           </div>
         </AdminItemContainer>
 
@@ -373,62 +368,111 @@ export default function CareersPage() {
         </div>
       </form>
 
-      {/* Jobs list — separate from page form */}
+      {/* Sectors list — separate from page form */}
       <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
         <div className="flex items-center justify-between border-b border-black/20 pb-3">
-          <Label className="text-base font-bold">Jobs</Label>
+          <Label className="text-base font-bold">Sectors</Label>
           <Button
             type="button"
             addItem
-            onClick={() => router.push("/admin/careers/jobs/new")}
+            onClick={() => router.push("/admin/sectors/sector/new")}
           >
-            + Add Job
+            + Add Sector
           </Button>
         </div>
         <div className="grid gap-5">
-          {jobs.length === 0 && (
-            <p className="text-sm text-black/40">No jobs added yet.</p>
+          {sectors.length === 0 && (
+            <p className="text-sm text-black/40">No sectors added yet.</p>
           )}
-          {jobs.map((job) => (
+          {sectors.map((sector) => (
             <div
-              key={job._id}
+              key={sector._id}
               className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-              onClick={() => router.push(`/admin/careers/jobs/${job._id}`)}
+              onClick={() => router.push(`/admin/sectors/sector/${sector._id}`)}
             >
-              <div className="flex flex-col">
+              <div className="flex gap-3">
+                <Image
+                  width={100}
+                  height={100}
+                  src={sector.thumbnail}
+                  alt={sector.title || ""}
+                  className="w-8 h-8 object-cover rounded"
+                />
                 <span className="text-sm font-medium flex items-center gap-2">
-                  {job.title || "Untitled Position"}
-                  {job.isHidden && (
+                  {sector.title || "Untitled Sector"}
+                  {sector.isHidden && (
                     <span className="text-[10px] uppercase font-semibold text-red-500 border border-red-300 rounded px-1.5 py-0.5">
                       Hidden
                     </span>
                   )}
                 </span>
-                <span className="text-xs text-black/40">
-                  {[job.category, job.specs?.location, job.specs?.type]
-                    .filter(Boolean)
-                    .join(" • ")}
-                </span>
               </div>
               <div className="flex items-center gap-3">
-                <button onClick={(e) => toggleJobHidden(e, job)} type="button" className="cursor-pointer">
-                  {job.isHidden ? (
+                <button
+                  onClick={(e) => toggleSectorHidden(e, sector)}
+                  type="button"
+                  className="cursor-pointer"
+                >
+                  {sector.isHidden ? (
                     <RiEyeOffLine className="text-gray-500" size={22} />
                   ) : (
                     <RiEyeLine className="text-green-600" size={22} />
                   )}
                 </button>
-                <div onClick={(e) => deleteJob(e, job._id)}>
+                <button
+                  type="button"
+                  className="cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedSector(sector);
+                    setDeleteDialogOpen(true);
+                  }}
+                >
                   <RiDeleteBinLine
                     className="text-red-400 hover:text-red-600 hover:scale-110 transition-all"
                     size={22}
                   />
-                </div>
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Category Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Sector</DialogTitle>
+          </DialogHeader>
+
+          <p className="text-sm text-black/60">
+            Are you sure you want to delete{" "}
+            <span className="font-semibold font-tasa text-secondary">{selectedSector?.title}</span>? This
+            cannot be undone.
+          </p>
+
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setDeleteDialogOpen(false);
+                setSelectedSector(null);
+              }}
+            >
+              No
+            </Button>
+
+            <Button
+              type="button"
+              onClick={() => selectedSector && deleteSector(selectedSector._id)}
+            >
+              Yes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

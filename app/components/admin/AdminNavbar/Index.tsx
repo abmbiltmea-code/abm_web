@@ -15,6 +15,7 @@ import {
   Workflow,
   Map,
   Settings,
+  GalleryVerticalIcon,
   Phone,
 } from "lucide-react";
 
@@ -37,16 +38,12 @@ const AdminNavbar = () => {
       name: "Team",
       href: "/admin/team",
       icon: Users,
-      hasChild: true,
-      children: [{ name: "Main Page", href: "/admin/team" }],
     },
 
     {
       name: "Sectors",
       href: "/admin/sectors",
       icon: Building2,
-      hasChild: true,
-      children: [{ name: "Main Page", href: "/admin/sectors" }],
     },
 
     {
@@ -85,6 +82,12 @@ const AdminNavbar = () => {
     },
 
     {
+      name: "Gallery",
+      href: "/admin/gallery",
+      icon: GalleryVerticalIcon,
+    },
+
+    {
       name: "Certifications",
       href: "/admin/certifications",
       icon: ShieldCheck,
@@ -102,11 +105,11 @@ const AdminNavbar = () => {
       icon: Workflow,
     },
 
-    {
-      name: "Navigation",
-      href: "/admin/navigation",
-      icon: Map,
-    },
+    // {
+    //   name: "Navigation",
+    //   href: "/admin/navigation",
+    //   icon: Map,
+    // },
 
     {
       name: "Settings",
