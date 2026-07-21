@@ -76,7 +76,7 @@ const AdminNavbar = () => {
     },
 
     {
-      name: "Divisions (Service)",
+      name: "Divisions (Services)",
       href: "/admin/divisions",
       icon: Workflow,
     },
