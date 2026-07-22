@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "CERTIFICATIONS & ACCREDITATIONS",
-  bannerImage: "/assets/images/certifications/banner.jpg",
+  data: {
+    title: "CERTIFICATIONS & ACCREDITATIONS",
+    bannerImage: "/assets/images/certifications/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const sectionHeaderData = {
@@ -110,5 +121,5 @@ export const standards = [
   {
     icon: "/assets/images/certifications/standards/3.svg",
     title: "Sustainability",
-  }
+  },
 ];

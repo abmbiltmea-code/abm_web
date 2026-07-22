@@ -14,23 +14,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface Button {
+  text: string;
+  link: string;
+}
+
 interface InnerCtaProps {
-  title: string;
-  description: string;
-  image: string;
+  data: {
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    button: Button;
+  };
   email?: boolean;
 }
 
-export default function InnerCta({
-  title,
-  description,
-  image,
-  email,
-}: InnerCtaProps) {
+export default function InnerCta({ data, email }: InnerCtaProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
-   useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current || !imageRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -60,7 +64,13 @@ export default function InnerCta({
       className="relative w-full h-[288px] sm:h-[350px] md:h-[400px] lg:h-[550px] 3xl:h-[708px] overflow-hidden"
     >
       <div ref={imageRef} className="absolute inset-0">
-        <Image src={image} alt={title} fill className="object-cover" priority />
+        <Image
+          src={data.image}
+          alt={data.imageAlt}
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
 
       <div className="absolute inset-0 bg-black/60" />
@@ -69,7 +79,7 @@ export default function InnerCta({
         <div className="flex flex-col w-full">
           <SectionTitle
             className="text-white section-heading mb-20"
-            title={title}
+            title={data.title}
           />
 
           <motion.div
@@ -86,7 +96,7 @@ export default function InnerCta({
 
           <SectionDescription
             className="text-white/80 text-description max-w-[50ch] mb-[15px] md:mb-20"
-            html={description}
+            html={data.description}
           />
 
           <SectionReveal
@@ -97,7 +107,10 @@ export default function InnerCta({
             {email ? (
               <NewsletterForm />
             ) : (
-              <CustomButton text={"CONTACT US"} href={"/contact-us"} />
+              <CustomButton
+                text={data.button.text || "CONTACT US"}
+                href={data.button.link || "/contact-us"}
+              />
             )}
           </SectionReveal>
         </div>

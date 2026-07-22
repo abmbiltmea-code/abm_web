@@ -3,23 +3,22 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
-import { groupCompaniesSection } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import CustomButton from "../../common/CustomButton";
 import { moveUp } from "../../animations/motionVariants";
 import SectionReveal from "../../animations/SectionReveal";
 import AnimatedDivider from "../../animations/AnimatedDivider";
+import { SixthSection } from "@/app/types/about";
 
-export default function GroupCompanies() {
-  const { label, title } = groupCompaniesSection;
+export default function GroupCompanies({ data }: { data: SixthSection }) {
+  const { sectionLabel, title, items } = data;
 
   return (
     <section className="w-full overflow-hidden">
       <div className="container py-[60px] md:py-120 3xl:py-150">
         <div className="flex flex-col gap-5 md:gap-40 mb-50">
-          <SectionLabel title={label} />
+          <SectionLabel title={sectionLabel} />
           <SectionTitle title={title} />
         </div>
         <div className="2xl:hidden">
@@ -32,7 +31,7 @@ export default function GroupCompanies() {
             }}
             className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
           >
-            {groupCompaniesSection.groupCompanies.map((card, index) => (
+            {items.map((card, index) => (
               <SwiperSlide key={index}>
                 <div
                   key={index}
@@ -40,8 +39,8 @@ export default function GroupCompanies() {
                 >
                   <div className="relative w-full mb-20">
                     <Image
-                      src={card.logo || "/assets/images/placeholder.png"}
-                      alt={card.title}
+                      src={card.icon || "/assets/images/placeholder.png"}
+                      alt={card.iconAlt}
                       width={245}
                       height={123}
                       className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px]"
@@ -58,8 +57,8 @@ export default function GroupCompanies() {
                   <CustomButton
                     className="w-fit"
                     target="_blank"
-                    text={card.buttonText}
-                    href={card.href}
+                    text={card.button.text}
+                    href={card.button.link}
                   />
                 </div>
               </SwiperSlide>
@@ -70,8 +69,8 @@ export default function GroupCompanies() {
           variants={moveUp(0.1)}
           className="hidden 2xl:grid grid-cols-6 gap-5"
         >
-          {groupCompaniesSection.groupCompanies.map((card, index) => {
-            const total = groupCompaniesSection.groupCompanies.length;
+          {items.map((card, index) => {
+            const total = items.length;
             const remainder = total % 3;
             const isInLastPartialRow =
               remainder !== 0 && index >= total - remainder;
@@ -80,15 +79,15 @@ export default function GroupCompanies() {
               <div
                 key={index}
                 className={`flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pb-60 3xl:pb-[66px] h-full ${
-                  card.logo ? "pt-20" : "pt-60 3xl:pt-[66px]"
+                  card.icon ? "pt-20" : "pt-60 3xl:pt-[66px]"
                 } ${isInLastPartialRow ? "col-span-3" : "col-span-2"}`}
               >
-                {card.logo && (
+                {card.icon && (
                   <>
                     <div className="relative w-full mb-20">
                       <Image
-                        src={card.logo}
-                        alt={card.title}
+                        src={card.icon}
+                        alt={card.iconAlt}
                         width={245}
                         height={123}
                         className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px] pointer-events-none"
@@ -107,8 +106,8 @@ export default function GroupCompanies() {
                 <CustomButton
                   className="w-fit"
                   target="_blank"
-                  text={card.buttonText}
-                  href={card.href}
+                  text={card.button.text}
+                  href={card.button.link}
                 />
               </div>
             );

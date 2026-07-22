@@ -1,8 +1,11 @@
 export const bannerData = {
-  title: "Gallery",
-  bannerImage: "/assets/images/gallery/banner.jpg",
+  data: {
+    title: "Gallery",
+    bannerImage: "/assets/images/gallery/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
-
 
 export const galleryCategories = [
   {

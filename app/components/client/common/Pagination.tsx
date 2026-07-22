@@ -83,14 +83,14 @@ const Pagination = ({
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="Previous page"
-        className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
+        className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:opacity-50`}
       >
         <Image
           src={"/assets/icons/double-arrow-black.svg"}
           alt="Previous page"
           width={14}
           height={14}
-          className="pointer-events-none"
+          className="pointer-events-none h-[8px] md:h-[14px] w-auto"
         />
       </button>
 
@@ -128,14 +128,14 @@ const Pagination = ({
         onClick={() => handleClick(currentPage + 1)}
         disabled={currentPage === totalPages}
         aria-label="Next page"
-        className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent`}
+        className={`${boxBase} border-[#F1F1F1] disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:opacity-50`}
       >
         <Image
           src={"/assets/icons/double-arrow-black.svg"}
           alt="Next page"
           width={14}
           height={14}
-          className="rotate-180 pointer-events-none"
+          className="rotate-180 pointer-events-none h-[8px] md:h-[14px] w-auto"
         />
       </button>
     </div>

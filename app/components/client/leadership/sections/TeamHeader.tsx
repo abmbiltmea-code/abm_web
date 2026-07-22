@@ -9,7 +9,7 @@ const TeamHeader = ({title, description}: {title: string, description: string}) 
         <SectionTitle title={title} />
         <SectionDescription
           text={description}
-          className="text-description-color text-description-2 max-w-[90%] 3xl:max-w-[1283px]"
+          className="text-description-color text-description-2 md:max-w-[90%] 3xl:max-w-[1283px]"
         />
       </div>
       <div className="lg:hidden relative h-px mt-[30px]">

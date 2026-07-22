@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "HOW WE WORK",
-  bannerImage: "/assets/images/how-we-work/banner.jpg",
+  data: {
+    title: "HOW WE WORK",
+    bannerImage: "/assets/images/how-we-work/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const sectionHeaderData = {
@@ -67,7 +78,6 @@ export const workMethodologyData = {
   ],
 };
 
-
 export const safetySectionData = {
   label: "Health, Safety & Environment",
   title: "Safety at the Core of Everything We Do",
@@ -101,8 +111,6 @@ export const safetySectionData = {
   ],
 };
 
-
-
 export const sustainablePracticesData = {
   sectionLabel: "Sustainable Practices",
   title: "Building Responsibly for a Better Future",
@@ -135,7 +143,6 @@ export const sustainablePracticesData = {
     },
   ],
 };
-
 
 export const ourCommitmentData = {
   sectionLabel: "Our Commitment",

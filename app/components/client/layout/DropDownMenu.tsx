@@ -8,8 +8,8 @@ import { gsap } from "gsap";
 import { DropdownMenuItems, MobileMenuItems, footerData } from "./data";
 import { useContainerInset } from "@/app/hooks/useContainerInset";
 import { useLenis } from "./LenisProvider";
-import Reveal from "../animations/RevealItemsOneByOneAnimation";
-import { moveUpV2 } from "../animations/motionVariants";
+import { motion } from "framer-motion";
+import { moveUpV4 } from "../animations/motionVariants";
 
 type Props = {
   isOpen: boolean;
@@ -387,11 +387,16 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
           </nav>
 
           {/* bottom: full width divider + socials */}
-          <div className="shrink-0 mt-[60px]">
+          <div className="shrink-0 mt-[60px] mb-[50px]">
             <div className="h-px w-full bg-border-color" />
             <div className="flex items-center gap-[30px] px-[20px] sm:px-30 pt-5 sm:pt-40">
               {footerData.socials.map((social, i) => (
-                <Reveal variants={moveUpV2} key={i} delayRange={i * 0.1}>
+                <motion.div
+                  key={i}
+                  variants={moveUpV4(0.1 * i)}
+                  initial="hidden"
+                  whileInView="show"
+                >
                   <Link
                     href={social.href}
                     onClick={onClose}
@@ -426,7 +431,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
                       </svg>
                     </div>
                   </Link>
-                </Reveal>
+                </motion.div>
               ))}
             </div>
           </div>

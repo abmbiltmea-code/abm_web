@@ -1,6 +1,10 @@
 export const bannerData = {
-  title: "CONTACT US",
-  bannerImage: "/assets/images/contact-us/banner.jpg",
+  data: {
+    title: "CONTACT US",
+    bannerImage: "/assets/images/contact-us/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const CONNECT_INFO = {
@@ -15,7 +19,8 @@ export const CONNECT_INFO = {
     {
       icon: "/assets/icons/contact-us/location.svg",
       label: "ADDRESS",
-      lines: "<p>P.O. Box 2393, Al Addiyar Building, Ground Floor, Sheikh Zayed Road, Dubai, U.A.E.</p>",
+      lines:
+        "<p>P.O. Box 2393, Al Addiyar Building, Ground Floor, Sheikh Zayed Road, Dubai, U.A.E.</p>",
     },
     {
       icon: "/assets/icons/contact-us/phone.svg",

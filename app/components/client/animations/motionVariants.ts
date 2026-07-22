@@ -23,6 +23,29 @@ export const moveUp = (delay = 0): Variants => ({
   reset: { opacity: 0, y: 50 },
 });
 
+
+export const moveUpV4 = (delay = 0): Variants => ({
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay,
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -16,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+  reset: { opacity: 0, y: 16 },
+});
+
 export const moveUpV2 = {
   hidden: { opacity: 0, y: 50 },
   show: {
