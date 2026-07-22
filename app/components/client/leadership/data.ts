@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "Leadership",
-  bannerImage: "/assets/images/leadership/banner.jpg",
+  data: {
+    title: "Leadership",
+    image: "",
+    imageAlt: "",
+    bannerImage: "/assets/images/leadership/banner.jpg",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const teamHeaderData = {
@@ -43,7 +54,6 @@ export const teamManagementData = {
     },
   ],
 };
-
 
 export const chairmanMessageData = {
   title: "Message from Chairman",

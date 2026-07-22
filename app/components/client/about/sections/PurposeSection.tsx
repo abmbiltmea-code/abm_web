@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { purposeData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import AnimatedDivider from "../../animations/AnimatedDivider";
-import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
 import SectionReveal from "../../animations/SectionReveal";
+import { ThirdSection } from "@/app/types/about";
 
-export default function PurposeSection() {
-  const { sectionLabel, title, items } = purposeData;
+export default function PurposeSection({ data }: { data: ThirdSection }) {
+  const { sectionLabel, title, items } = data;
   const [vision, mission] = items;
 
   return (

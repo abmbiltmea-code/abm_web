@@ -98,6 +98,8 @@ interface AboutForm {
     isHidden: boolean;
     title: string;
     description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -156,7 +158,10 @@ export default function AboutPage() {
         setValue("thirdSection.sectionLabel", data.thirdSection?.sectionLabel);
         setValue("thirdSection.title", data.thirdSection?.title);
         setValue("fourthSection.isHidden", data.fourthSection?.isHidden);
-        setValue("fourthSection.sectionLabel", data.fourthSection?.sectionLabel);
+        setValue(
+          "fourthSection.sectionLabel",
+          data.fourthSection?.sectionLabel,
+        );
         setValue("fourthSection.title", data.fourthSection?.title);
         setValue("fifthSection.isHidden", data.fifthSection?.isHidden);
         setValue("fifthSection.sectionLabel", data.fifthSection?.sectionLabel);
@@ -166,7 +171,10 @@ export default function AboutPage() {
         setValue("sixthSection.sectionLabel", data.sixthSection?.sectionLabel);
         setValue("sixthSection.title", data.sixthSection?.title);
         setValue("seventhSection.isHidden", data.seventhSection?.isHidden);
-        setValue("seventhSection.sectionLabel", data.seventhSection?.sectionLabel);
+        setValue(
+          "seventhSection.sectionLabel",
+          data.seventhSection?.sectionLabel,
+        );
         setValue("seventhSection.title", data.seventhSection?.title);
         setValue("eighthSection", data.eighthSection);
 
@@ -222,15 +230,24 @@ export default function AboutPage() {
                   name="bannerSection.image"
                   control={control}
                   render={({ field }) => (
-                    <ImageUploader value={field.value} onChange={field.onChange} />
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
                 <Label className="font-bold">Alt Tag</Label>
-                <Input {...register("bannerSection.imageAlt")} placeholder="Alt Tag" />
+                <Input
+                  {...register("bannerSection.imageAlt")}
+                  placeholder="Alt Tag"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Title</Label>
-                <Input {...register("bannerSection.title")} placeholder="Title" />
+                <Input
+                  {...register("bannerSection.title")}
+                  placeholder="Title"
+                />
               </div>
             </div>
           </div>
@@ -249,17 +266,26 @@ export default function AboutPage() {
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("firstSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("firstSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("firstSection.title")} placeholder="Title" />
             <Label className="font-bold">Sub Title</Label>
-            <Input {...register("firstSection.subTitle")} placeholder="Sub Title" />
+            <Input
+              {...register("firstSection.subTitle")}
+              placeholder="Sub Title"
+            />
             <Label className="font-bold">Description</Label>
             <Controller
               name="firstSection.description"
               control={control}
               render={({ field }) => (
-                <TinyEditor setNewsContent={field.onChange} newsContent={field.value} />
+                <TinyEditor
+                  setNewsContent={field.onChange}
+                  newsContent={field.value}
+                />
               )}
             />
             <div className="flex items-center justify-between mt-2">
@@ -267,7 +293,9 @@ export default function AboutPage() {
               <Button
                 type="button"
                 addItem
-                onClick={() => appendFirst({ icon: "", iconAlt: "", value: "", label: "" })}
+                onClick={() =>
+                  appendFirst({ icon: "", iconAlt: "", value: "", label: "" })
+                }
               >
                 + Add Item
               </Button>
@@ -291,7 +319,10 @@ export default function AboutPage() {
                         name={`firstSection.items.${index}.icon`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Icon Alt</Label>
@@ -325,7 +356,10 @@ export default function AboutPage() {
             main
             isHidden={watch("secondSection.isHidden")}
             onToggleHidden={() =>
-              setValue("secondSection.isHidden", !watch("secondSection.isHidden"))
+              setValue(
+                "secondSection.isHidden",
+                !watch("secondSection.isHidden"),
+              )
             }
           >
             Second Section
@@ -338,11 +372,17 @@ export default function AboutPage() {
                   name="secondSection.video"
                   control={control}
                   render={({ field }) => (
-                    <VideoUploader value={field.value} onChange={field.onChange} />
+                    <VideoUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
                 <Label className="font-bold">Video Alt</Label>
-                <Input {...register("secondSection.videoAlt")} placeholder="Video Alt" />
+                <Input
+                  {...register("secondSection.videoAlt")}
+                  placeholder="Video Alt"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Poster</Label>
@@ -350,11 +390,17 @@ export default function AboutPage() {
                   name="secondSection.poster"
                   control={control}
                   render={({ field }) => (
-                    <ImageUploader value={field.value} onChange={field.onChange} />
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
                 <Label className="font-bold">Poster Alt</Label>
-                <Input {...register("secondSection.posterAlt")} placeholder="Poster Alt" />
+                <Input
+                  {...register("secondSection.posterAlt")}
+                  placeholder="Poster Alt"
+                />
               </div>
             </div>
           </div>
@@ -373,7 +419,10 @@ export default function AboutPage() {
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("thirdSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("thirdSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("thirdSection.title")} placeholder="Title" />
             <div className="flex items-center justify-between mt-2">
@@ -382,7 +431,12 @@ export default function AboutPage() {
                 type="button"
                 addItem
                 onClick={() =>
-                  appendThird({ icon: "", iconAlt: "", title: "", description: "" })
+                  appendThird({
+                    icon: "",
+                    iconAlt: "",
+                    title: "",
+                    description: "",
+                  })
                 }
               >
                 + Add Item
@@ -407,7 +461,10 @@ export default function AboutPage() {
                         name={`thirdSection.items.${index}.icon`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Icon Alt</Label>
@@ -441,14 +498,20 @@ export default function AboutPage() {
             main
             isHidden={watch("fourthSection.isHidden")}
             onToggleHidden={() =>
-              setValue("fourthSection.isHidden", !watch("fourthSection.isHidden"))
+              setValue(
+                "fourthSection.isHidden",
+                !watch("fourthSection.isHidden"),
+              )
             }
           >
             Fourth Section
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("fourthSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("fourthSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("fourthSection.title")} placeholder="Title" />
             <div className="flex items-center justify-between mt-2">
@@ -457,7 +520,12 @@ export default function AboutPage() {
                 type="button"
                 addItem
                 onClick={() =>
-                  appendFourth({ image: "", imageAlt: "", title: "", description: "" })
+                  appendFourth({
+                    image: "",
+                    imageAlt: "",
+                    title: "",
+                    description: "",
+                  })
                 }
               >
                 + Add Item
@@ -482,7 +550,10 @@ export default function AboutPage() {
                         name={`fourthSection.items.${index}.image`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Image Alt</Label>
@@ -499,7 +570,9 @@ export default function AboutPage() {
                       />
                       <Label className="font-bold">Description</Label>
                       <Textarea
-                        {...register(`fourthSection.items.${index}.description`)}
+                        {...register(
+                          `fourthSection.items.${index}.description`,
+                        )}
                         placeholder="Description"
                       />
                     </div>
@@ -523,11 +596,17 @@ export default function AboutPage() {
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("fifthSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("fifthSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("fifthSection.title")} placeholder="Title" />
             <Label className="font-bold">Description</Label>
-            <Textarea {...register("fifthSection.description")} placeholder="Description" />
+            <Textarea
+              {...register("fifthSection.description")}
+              placeholder="Description"
+            />
             <div className="flex items-center justify-between mt-2">
               <Label className="font-bold">Items</Label>
               <Button
@@ -565,7 +644,10 @@ export default function AboutPage() {
                         name={`fifthSection.items.${index}.image`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Image Alt</Label>
@@ -611,7 +693,10 @@ export default function AboutPage() {
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("sixthSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("sixthSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("sixthSection.title")} placeholder="Title" />
             <div className="flex items-center justify-between mt-2">
@@ -651,7 +736,10 @@ export default function AboutPage() {
                         name={`sixthSection.items.${index}.icon`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Icon Alt</Label>
@@ -701,14 +789,20 @@ export default function AboutPage() {
             main
             isHidden={watch("seventhSection.isHidden")}
             onToggleHidden={() =>
-              setValue("seventhSection.isHidden", !watch("seventhSection.isHidden"))
+              setValue(
+                "seventhSection.isHidden",
+                !watch("seventhSection.isHidden"),
+              )
             }
           >
             Seventh Section
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("seventhSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("seventhSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("seventhSection.title")} placeholder="Title" />
             <div className="flex items-center justify-between mt-2">
@@ -717,7 +811,12 @@ export default function AboutPage() {
                 type="button"
                 addItem
                 onClick={() =>
-                  appendSeventh({ image: "", imageAlt: "", title: "", description: "" })
+                  appendSeventh({
+                    image: "",
+                    imageAlt: "",
+                    title: "",
+                    description: "",
+                  })
                 }
               >
                 + Add Item
@@ -742,7 +841,10 @@ export default function AboutPage() {
                         name={`seventhSection.items.${index}.image`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Image Alt</Label>
@@ -759,7 +861,9 @@ export default function AboutPage() {
                       />
                       <Label className="font-bold">Description</Label>
                       <Textarea
-                        {...register(`seventhSection.items.${index}.description`)}
+                        {...register(
+                          `seventhSection.items.${index}.description`,
+                        )}
                         placeholder="Description"
                       />
                     </div>
@@ -776,7 +880,10 @@ export default function AboutPage() {
             main
             isHidden={watch("eighthSection.isHidden")}
             onToggleHidden={() =>
-              setValue("eighthSection.isHidden", !watch("eighthSection.isHidden"))
+              setValue(
+                "eighthSection.isHidden",
+                !watch("eighthSection.isHidden"),
+              )
             }
           >
             Eighth Section
@@ -785,15 +892,44 @@ export default function AboutPage() {
             <Label className="font-bold">Title</Label>
             <Input {...register("eighthSection.title")} placeholder="Title" />
             <Label className="font-bold">Description</Label>
-            <Textarea {...register("eighthSection.description")} placeholder="Description" />
+            <Textarea
+              {...register("eighthSection.description")}
+              placeholder="Description"
+            />
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Text</Label>
-                <Input {...register("eighthSection.button.text")} placeholder="Button Text" />
+                <Input
+                  {...register("eighthSection.button.text")}
+                  placeholder="Button Text"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Link</Label>
-                <Input {...register("eighthSection.button.link")} placeholder="Button Link" />
+                <Input
+                  {...register("eighthSection.button.link")}
+                  placeholder="Button Link"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name={`eighthSection.image`}
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Label className="font-bold">Image Alt</Label>
+                <Input
+                  {...register(`eighthSection.imageAlt`)}
+                  placeholder="Image Alt"
+                />
               </div>
             </div>
           </div>
@@ -806,7 +942,10 @@ export default function AboutPage() {
             <Label className="font-bold">Meta Title</Label>
             <Input {...register("seo.metaTitle")} placeholder="Meta Title" />
             <Label className="font-bold">Meta Description</Label>
-            <Input {...register("seo.metaDescription")} placeholder="Meta Description" />
+            <Input
+              {...register("seo.metaDescription")}
+              placeholder="Meta Description"
+            />
             <Label className="font-bold">Script</Label>
             <Textarea {...register("seo.script")} placeholder="Script" />
           </div>

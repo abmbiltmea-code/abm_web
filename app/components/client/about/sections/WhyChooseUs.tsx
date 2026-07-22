@@ -5,18 +5,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
 import { useRef, useState, useEffect } from "react";
 import "swiper/css";
-
-import { whyChooseUsSection } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import { Autoplay } from "swiper/modules";
 import { AnimatePresence, motion } from "framer-motion";
+import { SeventhSection } from "@/app/types/about";
 
 const AUTOPLAY_DELAY = 4000;
 
-export default function WhyChooseUs() {
-  const { label, title } = whyChooseUsSection;
-  const slides = whyChooseUsSection.slides;
+export default function WhyChooseUs({ data }: { data: SeventhSection }) {
+  const { sectionLabel, title, items } = data;
+  const slides = items;
   const [baseImage, setBaseImage] = useState(slides[0].image);
 
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -66,7 +65,7 @@ export default function WhyChooseUs() {
       <div className="container">
         {/* HEADER */}
         <div className="flex flex-col gap-5 md:gap-40 mb-50">
-          <SectionLabel title={label} />
+          <SectionLabel title={sectionLabel} />
           <SectionTitle title={title} />
         </div>
 
@@ -83,7 +82,7 @@ export default function WhyChooseUs() {
             className="!overflow-visible"
           >
             {slides.map((slide, index) => (
-              <SwiperSlide key={slide.id}>
+              <SwiperSlide key={index}>
                 <div className="flex flex-col rounded-[10px] overflow-hidden">
                   <div className="relative w-full min-h-[170px] sm:h-[50.148%]">
                     <Image
@@ -129,7 +128,7 @@ export default function WhyChooseUs() {
             {slides.map((slide, index) => {
               const isActive = index === activeIndex;
               return (
-                <SwiperSlide key={slide.id}>
+                <SwiperSlide key={index}>
                   <button
                     type="button"
                     onClick={() => {
@@ -207,7 +206,7 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Text */}
-          <div className="flex flex-col gap-20">
+          <div className="flex flex-col">
             <AnimatePresence mode="wait">
               <motion.div key={activeIndex}>
                 <motion.h3
@@ -215,7 +214,7 @@ export default function WhyChooseUs() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
-                  className="text-subtitle-2 text-secondary"
+                  className="text-subtitle-2 text-secondary mb-5"
                 >
                   {activeSlide.title}
                 </motion.h3>

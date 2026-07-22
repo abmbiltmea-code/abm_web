@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { growthJourneyData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { AnimatePresence, motion } from "framer-motion";
+import { FifthSection } from "@/app/types/about";
 
 const YEAR_GAP = 20;
 const YEAR_GAP_MOBILE = 30;
@@ -18,8 +18,8 @@ const AUTOPLAY_MS = 4000;
 
 type Axis = "x" | "y";
 
-export default function Evolution() {
-  const { label, title, description, items } = growthJourneyData;
+export default function Evolution({ data }: { data: FifthSection }) {
+  const { sectionLabel, title, description, items } = data;
 
   const BLOCK = items.length;
   const MID = MID_BLOCK * BLOCK;
@@ -179,7 +179,7 @@ export default function Evolution() {
       <div className="container">
         <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-50">
           <div className="pt-[10px]">
-            <SectionLabel title={label} textColor="text-white" />
+            <SectionLabel title={sectionLabel} textColor="text-white" />
           </div>
           <div className="flex flex-col lg:section-content-spacing">
             <SectionTitle
@@ -232,13 +232,13 @@ export default function Evolution() {
           <div className="relative w-full aspect-849/559 3xl:w-[849px] h-[217px] sm:h-auto max-lg:max-h-[350px] lg:h-auto 3xl:h-[559px] mr-50 xl:mr-70 3xl:mr-[76px] order-2 lg:order-1">
             {items.map((item, i) => (
               <div
-                key={item.id}
+                key={i}
                 className="absolute inset-0 transition-opacity duration-700 ease-in-out rounded-[10px] overflow-hidden"
                 style={{ opacity: i === realIndex ? 1 : 0 }}
               >
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.imageAlt}
                   fill
                   priority={i === 0}
                   className="object-cover pointer-events-none"
@@ -271,7 +271,7 @@ export default function Evolution() {
                 const isActive = i === displayIndex;
                 return (
                   <button
-                    key={`${item.id}-mobile-${i}`}
+                    key={`${i}-mobile-${i}`}
                     type="button"
                     onClick={() => {
                       if (dragState.current.moved) return;
@@ -311,7 +311,7 @@ export default function Evolution() {
             >
               {loopedItems.map((item, i) => (
                 <button
-                  key={`${item.id}-${i}`}
+                  key={`${i}-${i}`}
                   type="button"
                   onClick={() => {
                     if (dragState.current.moved) return;

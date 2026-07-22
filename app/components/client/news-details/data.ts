@@ -62,8 +62,15 @@ export const newsDetailData = {
 };
 
 export const ctaData = {
+  data:{
   title: "Explore Our Work ",
   description:
     `Ready to start your next project<span class="font-tasa">?</span> Get in touch with our team of experts for a consultation or quote.`,
   image: "/assets/images/about/cta.jpg",
+  imageAlt: "CTA Image",
+  button: {
+    text: "CONTACT US",
+    link: "/contact-us",
+  },
+  }
 };

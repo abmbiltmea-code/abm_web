@@ -8,9 +8,10 @@ import SectionDescription from "../../animations/SectionDescription";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 import AnimatedDivider from "../../animations/AnimatedDivider";
+import { FirstSection } from "@/app/types/about";
 
-export default function AboutSection() {
-  const { sectionLabel, title, subtitle, description, stats } = aboutData;
+export default function AboutSection({ data }: { data: FirstSection }) {
+  const { sectionLabel, title, subTitle, description, items } = data;
 
   return (
     <section className="pt-[29px] md:pt-80 3xl:pt-[83px] pb-[30px] md:pb-120 3xl:pb-150">
@@ -25,7 +26,7 @@ export default function AboutSection() {
         {/* Right */}
         <div className="lg:max-w-[54%] flex flex-col">
           <SectionSubtitle
-            text={subtitle}
+            text={subTitle}
             className="uppercase text-secondary lg:max-w-[47ch]"
           />
 
@@ -41,14 +42,14 @@ export default function AboutSection() {
       {/* Stats row */}
       <div className="container mt-[30px] lg:mt-100">
         <div className="grid grid-cols-2 xl:grid-cols-[auto_auto_auto_auto] 3xl:grid-cols-[400px_400px_400px_400px] gap-x-[14px] md:gap-x-40 gap-y-[40px] xl:gap-y-0">
-          {stats.map((stat, i) => (
+          {items.map((stat, i) => (
             <Reveal key={i} variants={moveUpV2} delayRange={i * 0.15}>
               <div className="flex flex-col">
                 <div className="flex items-center gap-2.5 md:gap-4">
                   <div className="w-[30px] h-[30px] md:w-[35px] md:h-[35px] xl:w-11 xl:h-11 bg-primary rounded-[5px] flex justify-center items-center">
                     <Image
                       src={stat.icon}
-                      alt={stat.label}
+                      alt={stat.iconAlt}
                       width={29.33}
                       height={29.33}
                       className="pointer-events-none w-[20px] h-[20px] md:w-auto md:h-[29.33px]"

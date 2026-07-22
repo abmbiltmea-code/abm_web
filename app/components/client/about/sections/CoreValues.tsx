@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { coreValuesData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,9 +11,10 @@ import { Autoplay } from "swiper/modules";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUp, moveUpV2 } from "../../animations/motionVariants";
 import SectionReveal from "../../animations/SectionReveal";
+import { FourthSection } from "@/app/types/about";
 
-export default function CoreValuesSection() {
-  const { sectionLabel, title, items } = coreValuesData;
+export default function CoreValuesSection({ data }: { data: FourthSection }) {
+  const { sectionLabel, title, items } = data;
   const [activeIndex, setActiveIndex] = useState(1);
   const [baseImage, setBaseImage] = useState(items[1].image);
 
@@ -51,7 +51,7 @@ export default function CoreValuesSection() {
                             : "text-description-color"
                         }`}
                       >
-                        {item.tab}
+                        {item.title}
                       </span>
                       <Image
                         src="/assets/icons/arrow-right-primary.svg"
@@ -95,7 +95,7 @@ export default function CoreValuesSection() {
             >
               <Image
                 src={activeItem.image}
-                alt={activeItem.tab}
+                alt={activeItem.imageAlt}
                 fill
                 className="object-cover object-center pointer-events-none"
               />
@@ -143,13 +143,13 @@ export default function CoreValuesSection() {
                   <div className="relative w-full h-[52.418%]">
                     <Image
                       src={item.image}
-                      alt={item.tab}
+                      alt={item.imageAlt}
                       fill
                       className="object-cover object-top"
                     />
                   </div>
                   <div className="flex flex-col gap-[10px] py-5 px-[15px]">
-                    <h3 className="uppercase text-subtitle-2">{item.tab}</h3>
+                    <h3 className="uppercase text-subtitle-2">{item.title}</h3>
                     <p className="text-description-2 text-description-color">
                       {item.description}
                     </p>

@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "OUR SECTORS",
-  bannerImage: "/assets/images/sectors/banner.jpg",
+  data: {
+    title: "OUR SECTORS",
+    bannerImage: "/assets/images/sectors/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const sectionHeaderData = {

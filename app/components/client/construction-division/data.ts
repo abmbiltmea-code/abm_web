@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "CONSTRUCTION DIVISION",
-  bannerImage: "/assets/images/construction-division/banner.jpg",
+  data: {
+    title: "CONSTRUCTION DIVISION",
+    bannerImage: "/assets/images/construction-division/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const sectionHeaderData = {
@@ -64,20 +75,28 @@ export const sectorData = {
   label: "Sector",
   sectionTitle: "We serve multiple industries",
   items: [
-    { title: "Commercial developments", icon: "/assets/images/construction-division/sectors/1.svg" },
+    {
+      title: "Commercial developments",
+      icon: "/assets/images/construction-division/sectors/1.svg",
+    },
     {
       title: "Residential communities",
-      icon: "/assets/images/construction-division/sectors/2.svg"
+      icon: "/assets/images/construction-division/sectors/2.svg",
     },
-    { title: "Institutional buildings", icon: "/assets/images/construction-division/sectors/3.svg" },
-    { title: "Hospitality projects", icon: "/assets/images/construction-division/sectors/4.svg" },
+    {
+      title: "Institutional buildings",
+      icon: "/assets/images/construction-division/sectors/3.svg",
+    },
+    {
+      title: "Hospitality projects",
+      icon: "/assets/images/construction-division/sectors/4.svg",
+    },
     {
       title: "Large-scale infrastructure",
-      icon: "/assets/images/construction-division/sectors/5.svg"
+      icon: "/assets/images/construction-division/sectors/5.svg",
     },
   ],
 };
-
 
 export const strengthsData = {
   label: "Strengths",

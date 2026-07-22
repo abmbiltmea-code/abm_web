@@ -1,13 +1,24 @@
 export const bannerData = {
-  title: "Our Partners",
-  bannerImage: "/assets/images/partners/banner.jpg",
+  data: {
+    title: "Our Partners",
+    bannerImage: "/assets/images/partners/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const ctaData = {
-  title: "Connect With Our Team ",
-  description:
-    "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
-  image: "/assets/images/about/cta.jpg",
+  data: {
+    title: "Connect With Our Team ",
+    description:
+      "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
+    image: "/assets/images/about/cta.jpg",
+    imageAlt: "CTA Image",
+    button: {
+      text: "CONTACT US",
+      link: "/contact-us",
+    },
+  },
 };
 
 export const sectionHeaderData = {
@@ -16,7 +27,6 @@ export const sectionHeaderData = {
   description:
     "Trusted by leading organizations, we deliver solutions that meet the highest standards. Our client relationships are built on reliability, transparency, and long-term value.",
 };
-
 
 export const clientLogos = [
   {
@@ -101,7 +111,6 @@ export const clientLogos = [
   },
 ];
 
-
 export const sectionHeaderData2 = {
   label: "Our Partners",
   title: "Project Managers, Engineers and Consultants",
@@ -109,10 +118,8 @@ export const sectionHeaderData2 = {
     "Trusted by leading organizations, we deliver solutions that meet the highest standards. Our client relationships are built on reliability, transparency, and long-term value.",
 };
 
-
 export const ctaData2 = {
   ctaTitle: "Partner with Us to Build Lasting Success Together",
-  ctaBtnText:
-    "Become Our Partner",
+  ctaBtnText: "Become Our Partner",
   ctaBtnLink: "/contact-us#join-us",
 };

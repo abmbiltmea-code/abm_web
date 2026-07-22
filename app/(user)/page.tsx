@@ -4,7 +4,7 @@ import { GetHomeResult } from "@/app/types/home";
 
 const page = async () => {
   const data: GetHomeResult = await getHome();
-  console.log(data, "home");
+  
   return (
     <>
       <Index />

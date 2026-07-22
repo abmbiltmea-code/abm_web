@@ -1,6 +1,10 @@
 export const bannerData = {
-  title: "Careers",
-  bannerImage: "/assets/images/careers/banner.jpg",
+  data: {
+    title: "Careers",
+    bannerImage: "/assets/images/careers/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const sectionHeaderData = {

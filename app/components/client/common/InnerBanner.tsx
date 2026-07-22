@@ -6,16 +6,15 @@ import gsap from "gsap";
 import Breadcrumb from "./Breadcrumb";
 
 interface PageBannerProps {
-  title: string;
-  bannerImage: string;
-  imageAlt?: string;
+  data: {
+    title: string;
+    image: string;
+    imageAlt: string;
+    bannerImage?: string;
+  };
 }
 
-export default function InnerBanner({
-  title,
-  bannerImage,
-  imageAlt = "",
-}: PageBannerProps) {
+export default function InnerBanner({ data }: PageBannerProps) {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
@@ -55,8 +54,8 @@ export default function InnerBanner({
       {/* Background image */}
       <Image
         ref={imageRef}
-        src={bannerImage}
-        alt={imageAlt}
+        src={data.bannerImage || data.image || "/assets/images/placeholder.png"}
+        alt={data.imageAlt}
         fill
         priority
         className="object-cover object-center will-change-transform"
@@ -74,7 +73,7 @@ linear-gradient(249.19deg, rgba(0, 0, 0, 0) 28.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
       {/* Title */}
       <div className="absolute inset-x-0 top-[157px] md:top-0 md:bottom-[67px] flex items-center justify-center">
         <div className="container mt-px">
-          <h1 className="text-white hero-title">{title}</h1>
+          <h1 className="text-white hero-title">{data.title}</h1>
         </div>
       </div>
 

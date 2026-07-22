@@ -5,6 +5,7 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionReveal from "../../animations/SectionReveal";
 import { moveUp, moveUpV2 } from "../../animations/motionVariants";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import Image from "next/image";
 
 export default function OpenPositions() {
   const { title, talentNetwork, jobs } = openPositionsData;
@@ -35,9 +36,18 @@ export default function OpenPositions() {
 
                 <Link
                   href={`mailto:${talentNetwork.email}`}
-                  className="relative z-10 text-primary text-20 font-medium leading-[1.416666] md:leading-normal font-tasa pb-px border-b border-primary"
+                  className="relative z-10 text-primary text-20 font-medium leading-[1.416666] md:leading-normal font-tasa pb-px border-b border-primary group"
                 >
-                  {talentNetwork.email}
+                  <div className="flex gap-2 md:gap-[15px] items-center">
+                  {talentNetwork.email} 
+                    <Image
+                      src="/assets/icons/arrow-right-primary.svg"
+                      alt="double arrow"
+                      width={22}
+                      height={22}
+                      className="pointer-events-none select-none -rotate-45 group-hover:rotate-0 transition-all duration-300 ease-in-out w-auto h-[10px] md:h-[16px]"
+                    />
+                  </div>
                 </Link>
               </div>
             </div>

@@ -1,6 +1,10 @@
 export const bannerData = {
-  title: "About ABM Group",
-  bannerImage: "/assets/images/about/banner.jpg",
+  data: {
+    title: "About ABM Group",
+    bannerImage: "/assets/images/about/banner.jpg",
+    image: "",
+    imageAlt: "",
+  },
 };
 
 export const aboutData = {
@@ -176,10 +180,17 @@ export const whyChooseUsSection = {
 };
 
 export const ctaData = {
+  data:{
   title: "Let’s Build Together",
   description:
     "Ready to start your next project? Get in touch with our team of experts for a consultation or quote.",
   image: "/assets/images/about/cta.jpg",
+  imageAlt: "CTA Image",
+  button: {
+    text: "CONTACT US",
+    link: "/contact-us",
+  },
+  }
 };
 
 export const growthJourneyData = {

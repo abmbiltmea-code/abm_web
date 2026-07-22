@@ -75,7 +75,7 @@ export default function CareerApplicationForm({
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="container !p-0 bg-white rounded-[10px] w-full min-[1900px]:!max-w-[1720px] max-h-[95vh] overflow-y-auto overscroll-contain"
+            className="container !p-0 bg-white rounded-[10px] w-full min-[1900px]:!max-w-[1720px] max-h-[95svh] overflow-y-auto overscroll-contain"
             data-lenis-prevent
           >
             <div className="py-[30px] px-[20px] sm:p-40">
