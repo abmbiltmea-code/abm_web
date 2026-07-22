@@ -10,6 +10,13 @@ const divisionSchema = new mongoose.Schema(
       metaDescription: { type: String },
       script: { type: String },
     },
+    homePageSection: {
+      title: { type: String },
+      description: { type: String },
+      image: { type: String },
+      imageAlt: { type: String },
+      buttonLink: { type: String },
+    },
     bannerSection: {
       isHidden: { type: Boolean, default: false },
       image: { type: String },

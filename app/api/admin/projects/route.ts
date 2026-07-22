@@ -49,6 +49,7 @@ export async function PATCH(request: NextRequest) {
     );
 
     revalidateTag("Project", "default");
+    revalidateTag("Home", "default");
 
     return NextResponse.json(
       { data: updated, message: "Projects page updated successfully" },

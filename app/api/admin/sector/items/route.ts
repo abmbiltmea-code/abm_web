@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     );
 
     revalidateTag("Sector", "default");
+    revalidateTag("Home", "default");
 
     const sector =
       updated.secondSection.sectors[updated.secondSection.sectors.length - 1];

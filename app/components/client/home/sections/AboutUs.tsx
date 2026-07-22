@@ -61,7 +61,7 @@ export default function AboutSection() {
                     <AnimatedCounter from={Number(stat.value) - 8} to={stat.value} duration={1.6} />
                   </span>
                   <span className="font-semibold text-100 text-primary leading-[1.2]">
-                    {stat.suffix}
+                    +
                   </span>
                 </div>
                 <span className="text-[10px] font-tasa font-bold leading-none sm:text-subtitle text-secondary uppercase">

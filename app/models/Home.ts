@@ -43,12 +43,20 @@ const homeSchema = new mongoose.Schema({
     sectionLabel: { type: String },
     title: { type: String },
     description: { type: String },
+    divisionIds: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "division" }],
+      default: [],
+    },
   },
   fourthSection: {
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
     description: { type: String },
+    sectorIds: {
+      type: [mongoose.Schema.Types.ObjectId],
+      default: [],
+    },
   },
   fifthSection: {
     isHidden: { type: Boolean, default: false },

@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     );
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     const location = updated.locations[updated.locations.length - 1];
 

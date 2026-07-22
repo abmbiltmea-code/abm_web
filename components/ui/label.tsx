@@ -21,7 +21,7 @@ const Label = React.forwardRef<
     className={cn(
       labelVariants(),
       className,
-      main ? "pl-5 border-b border-black/20 py-5 text-lg font-semibold flex items-center justify-between pr-5" : "text-[16px] font-light",
+      main ? "pl-5 border-b border-black py-5 text-lg font-tasa font-semibold flex items-center justify-between pr-5" : "text-[16px] font-light",
       oneInput ? "font-semibold text-md" : ""
     )}
     {...props}

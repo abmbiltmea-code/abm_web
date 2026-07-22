@@ -9,7 +9,7 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { RiArrowLeftLine, RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 import TinyEditor from "../common/TinyMceEditor";
 
 interface Entry {
@@ -21,6 +21,7 @@ interface ProjectItemForm {
   isHidden: boolean;
   title: string;
   slug: string;
+  featured: boolean;
   status: string;
   location: string;
   division: string;
@@ -48,6 +49,7 @@ export default function ProjectItemDetail() {
         images: [],
         scopeOfWorks: { items: [] },
         isHidden: false,
+        featured: false,
       },
     });
 
@@ -123,6 +125,7 @@ export default function ProjectItemDetail() {
       setValue("isHidden", data.isHidden ?? false);
       setValue("title", data.title);
       setValue("slug", data.slug);
+      setValue("featured", data.featured ?? false);
       setValue("status", data.status || "");
       setValue("location", data.location || "");
       setValue("division", data.division || "");
@@ -210,6 +213,24 @@ export default function ProjectItemDetail() {
                     Generate
                   </Button>
                 </div>
+              </div>
+              <div className="flex gap-2">
+                <Label className="font-bold">Featured(Show in Home Page)</Label>
+                <Controller
+                  name="featured"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="checkbox"
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      onBlur={field.onBlur}
+                      name={field.name}
+                      ref={field.ref}
+                      className="w-5 h-5"
+                    />
+                  )}
+                />
               </div>
             </div>
 

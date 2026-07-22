@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     );
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     const status = updated.statuses[updated.statuses.length - 1];
 

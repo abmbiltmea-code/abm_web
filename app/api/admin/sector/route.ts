@@ -53,6 +53,7 @@ export async function PATCH(request: NextRequest) {
     );
 
     revalidateTag("Sector", "default");
+    revalidateTag("Home", "default");
 
     return NextResponse.json(
       { data: updated, message: "Sectors page updated successfully" },

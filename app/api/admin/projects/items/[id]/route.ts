@@ -61,6 +61,7 @@ export async function PATCH(
     }
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     const item = updated.items.find(
       (i: { _id: { toString: () => string } }) => i._id.toString() === id,
@@ -99,6 +100,7 @@ export async function DELETE(
     );
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     return NextResponse.json(
       { data: updated, message: "Project deleted successfully" },
