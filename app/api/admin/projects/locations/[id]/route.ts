@@ -29,6 +29,7 @@ export async function PATCH(
     }
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     const location = updated.locations.find(
       (l: { _id: { toString: () => string } }) => l._id.toString() === id,
@@ -73,6 +74,7 @@ export async function DELETE(
     );
 
     revalidateTag("Project", "default");
+        revalidateTag("Home", "default");
 
     return NextResponse.json(
       { data: updated, message: "Location deleted successfully" },

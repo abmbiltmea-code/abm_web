@@ -10,7 +10,7 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { RiArrowLeftLine, RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 interface DivisionForm {
   name: string;
@@ -18,6 +18,13 @@ interface DivisionForm {
   slug: string;
 
   seo: { metaTitle: string; metaDescription: string; script: string };
+  homePageSection: {
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    buttonLink: string;
+  };
   bannerSection: {
     isHidden: boolean;
     image: string;
@@ -121,6 +128,7 @@ export default function DivisionDetail() {
       setValue("isHidden", data.isHidden ?? false);
       setValue("slug", data.slug);
       setValue("seo", data.seo);
+      setValue("homePageSection", data.homePageSection);
       setValue("bannerSection", data.bannerSection);
       setValue("firstSection", data.firstSection);
       setValue("secondSection", data.secondSection);
@@ -191,22 +199,65 @@ export default function DivisionDetail() {
           <div className="p-5 flex flex-col gap-2">
             <Label className="font-bold">Slug</Label>
             <div className="flex gap-2">
-                <Input
-                  {...register("slug")}
-                  placeholder="e.g. real-estate-division"
+              <Input
+                {...register("slug")}
+                placeholder="e.g. real-estate-division"
+              />
+              <Button
+                addItem
+                onClick={() =>
+                  setValue(
+                    "slug",
+                    watch("name").toLowerCase().replace(/\s+/g, "-"),
+                  )
+                }
+                type="button"
+              >
+                Generate
+              </Button>
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        <AdminItemContainer>
+          <Label main>Home Page Section</Label>
+          <div className="p-5 flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name="homePageSection.image"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
                 />
-                <Button
-                  addItem
-                  onClick={() =>
-                    setValue(
-                      "slug",
-                      watch("name").toLowerCase().replace(/\s+/g, "-"),
-                    )
-                  }
-                  type="button"
-                >
-                  Generate
-                </Button>
+                <Label className="font-bold">Alt Tag</Label>
+                <Input
+                  {...register("homePageSection.imageAlt")}
+                  placeholder="e.g. Banner Image"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Title</Label>
+                <Input
+                  {...register("homePageSection.title")}
+                  placeholder="e.g. Construction"
+                />
+                <Label className="font-bold">Description</Label>
+                <Input
+                  {...register("homePageSection.description")}
+                  placeholder="e.g. We provide comprehensive construction services"
+                />
+                <Label className="font-bold">Button Link</Label>
+                <Input
+                  {...register("homePageSection.buttonLink")}
+                  placeholder="e.g. /divison/construction"
+                />
+              </div>
             </div>
           </div>
         </AdminItemContainer>

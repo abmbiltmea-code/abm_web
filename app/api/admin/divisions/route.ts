@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
     const created = await Division.create(body);
 
     revalidateTag("Division", "default");
+    revalidateTag("Home", "default");
 
     return NextResponse.json(
       { data: created, message: "Division created successfully" },

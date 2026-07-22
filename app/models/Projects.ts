@@ -40,6 +40,7 @@ const projectSchema = new mongoose.Schema({
         isHidden: { type: Boolean, default: false },
         title: { type: String },
         slug: { type: String },
+        featured: { type: Boolean, default: false },
         status: { type: mongoose.Schema.Types.ObjectId },
         location: { type: mongoose.Schema.Types.ObjectId },
         division: { type: mongoose.Schema.Types.ObjectId },
