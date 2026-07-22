@@ -6,32 +6,32 @@ export interface Seo {
 
 export interface BannerSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
 }
 
 export interface FirstSection {
   isHidden: boolean;
-  title?: string;
-  description?: string;
-  image?: string;
-  imageAlt?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-  fax?: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  address: string;
+  phone: string;
+  email: string;
+  fax: string;
 }
 
 export interface SecondSection {
   isHidden: boolean;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
 }
 
 export interface ThirdSection {
   isHidden: boolean;
-  map?: string;
+  map: string;
 }
 
 export interface ContactDoc {

@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
@@ -59,6 +59,8 @@ interface SectorsForm {
     isHidden: boolean;
     title: string;
     description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -70,6 +72,16 @@ export default function SectorsPage() {
   const [sectors, setSectors] = useState<SectorItem[]>([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedSector, setSelectedSector] = useState<SectorItem | null>(null);
+
+  const {
+    fields: thirdItems,
+    append: appendThird,
+    remove: removeThird,
+    replace: replaceThird,
+  } = useFieldArray({
+    control,
+    name: "thirdSection.items",
+  });
 
   const fetchData = async () => {
     try {
@@ -86,9 +98,11 @@ export default function SectorsPage() {
       setValue("firstSection", data.firstSection);
       setValue("secondSection.isHidden", data.secondSection?.isHidden);
       setValue("thirdSection", data.thirdSection);
+      setValue("thirdSection.items", data.thirdSection.items);
       setValue("fourthSection", data.fourthSection);
       setValue("fifthSection", data.fifthSection);
 
+      replaceThird(data.thirdSection.items || []);
       setSectors(data.secondSection?.sectors || []);
     } catch (e) {
       console.error(e);
@@ -265,6 +279,36 @@ export default function SectorsPage() {
             />
             <Label className="font-bold">Title</Label>
             <Input {...register("thirdSection.title")} placeholder="Title" />
+            <div className="flex items-center justify-between">
+              <Label className="font-bold">Items</Label>
+              <Button
+                type="button"
+                addItem
+                onClick={() => appendThird({ title: "" })}
+              >
+                + Add Item
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {thirdItems.map((field, index) => (
+                <div
+                  key={field.id}
+                  className="border border-black/10 rounded-lg p-4 flex flex-col gap-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <Label className="font-bold">Item {index + 1}</Label>
+                    <Button type="button" onClick={() => removeThird(index)}>
+                      <RiDeleteBinLine size={16} />
+                    </Button>
+                  </div>
+                  <Label className="font-bold">Title</Label>
+                  <Input
+                    {...register(`thirdSection.items.${index}.title`)}
+                    placeholder="Title"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </AdminItemContainer>
 
@@ -338,6 +382,24 @@ export default function SectorsPage() {
                   placeholder="/link"
                 />
               </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label className="font-bold">Image</Label>
+              <Controller
+                name="fifthSection.image"
+                control={control}
+                render={({ field }) => (
+                  <ImageUploader
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+              <Label className="font-bold">Alt Tag</Label>
+              <Input
+                {...register("fifthSection.imageAlt")}
+                placeholder="Alt Tag"
+              />
             </div>
           </div>
         </AdminItemContainer>
@@ -448,8 +510,10 @@ export default function SectorsPage() {
 
           <p className="text-sm text-black/60">
             Are you sure you want to delete{" "}
-            <span className="font-semibold font-tasa text-secondary">{selectedSector?.title}</span>? This
-            cannot be undone.
+            <span className="font-semibold font-tasa text-secondary">
+              {selectedSector?.title}
+            </span>
+            ? This cannot be undone.
           </p>
 
           <DialogFooter>
