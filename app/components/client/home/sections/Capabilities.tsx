@@ -108,18 +108,11 @@ const CoreCapabilities = () => {
                   }
                 `}
               >
-                {/* <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    background:
-                      "linear-gradient(216.16deg, rgba(0, 0, 0, 0.45) 15.45%, rgba(0, 0, 0, 0.9) 100%)",
-                  }}
-                /> */}
                 <div
                   className="absolute inset-0 z-10"
                   style={{
                     background:
-                      "linear-gradient(195.35deg, rgba(0, 0, 0, 0) 28.72%, rgba(0, 0, 0, 0.7) 66.06%, #000000 88.88%)",
+                      "linear-gradient(195.35deg, rgba(0, 0, 0, 0.3) 20.72%, rgba(0, 0, 0, 0.7) 66.06%, #000000 88.88%)",
                   }}
                 />
 

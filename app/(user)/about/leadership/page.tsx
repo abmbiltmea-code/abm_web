@@ -1,9 +1,12 @@
 import Index from "@/app/components/client/leadership/Index";
+import { GetTeamResult } from "@/app/types/team";
+import { getTeam } from "@/lib/services/team.service";
 
-const page = () => {
+const page = async () => {
+  const data: GetTeamResult = await getTeam();
   return (
     <>
-      <Index />
+      <Index data={data.team} />
     </>
   );
 };

@@ -1,14 +1,15 @@
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import AnimatedDivider from "../../animations/AnimatedDivider";
+import { FirstSection } from "@/app/types/team";
 
-const TeamHeader = ({title, description}: {title: string, description: string}) => {
+const TeamHeader = ({data}: {data: FirstSection}) => {
   return (
     <section className="container pt-[29px] md:pt-90 pb-40">
       <div className="flex flex-col gap-[10px] md:gap-5">
-        <SectionTitle title={title} />
+        <SectionTitle title={data.title} />
         <SectionDescription
-          text={description}
+          text={data.description}
           className="text-description-color text-description-2 md:max-w-[90%] 3xl:max-w-[1283px]"
         />
       </div>

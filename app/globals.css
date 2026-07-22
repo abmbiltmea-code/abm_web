@@ -100,7 +100,7 @@ input:-webkit-autofill:active {
 /* 30px → 20px at 400px, 30px at 1750px */
 --text-30: clamp(20px, 0.741vw + 17.037px, 30px);
 
---text-20: clamp(12px, 0.8163vw + 8.5714px, 20px);
+--text-20: clamp(12px, calc(0.5714vw + 9.714px), 20px);
 
 /* 15px → 12px at 420px, 15px at 1400px */
 --text-15: clamp(12px, 0.31vw + 10.7px, 15px);
