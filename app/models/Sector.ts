@@ -81,4 +81,4 @@ const sectorSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Sector || mongoose.model("sector", sectorSchema);
+export default mongoose.models.sector || mongoose.model("sector", sectorSchema);

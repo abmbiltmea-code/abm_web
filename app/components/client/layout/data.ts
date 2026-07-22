@@ -2,7 +2,7 @@ export const NAV_ITEMS = [
   { label: "ABOUT", subItems: [{ label: "Company Overview", href: "/about" }, { label: "Leadership", href: "/about/leadership" }] },
   { label: "OUR SECTORS", href: "/sectors" },
   { label: "OUR DIVISIONS", subItems: [{ label: "Construction", href: "/division/construction" }] },
-  { label: "PROJECT", href: "/projects" },
+  { label: "PROJECTS", href: "/projects" },
   { label: "CLIENTS", href: "/clients" },
   { label: "HOW WE WORK", href: "/how-we-work" },
   { label: "GALLERY", href: "/gallery" },
@@ -103,7 +103,7 @@ export const MobileMenuItems: MobileMenuItem[] = [
     ],
   },
   {
-    label: "Project",
+    label: "Projects",
     href: "/projects",
   },
   {

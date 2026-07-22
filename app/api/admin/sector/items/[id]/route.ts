@@ -68,6 +68,7 @@ export async function PATCH(
 
     revalidateTag("Sector", "default");
     revalidateTag("Home", "default");
+    revalidateTag("Project", "default");
 
     const sector = updated.secondSection.sectors.find(
       (s: { _id: { toString: () => string } }) => s._id.toString() === id,
@@ -107,6 +108,7 @@ export async function DELETE(
 
     revalidateTag("Sector", "default");
     revalidateTag("Home", "default");
+    revalidateTag("Project", "default");
 
     return NextResponse.json(
       { data: updated, message: "Sector deleted successfully" },

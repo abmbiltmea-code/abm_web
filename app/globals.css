@@ -402,6 +402,7 @@ body {
 .news-detail-content img {
   width: 100%;
   max-height: 510px;
+  min-height: 223px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -427,6 +428,11 @@ body {
   font-size: var(--text-20);
   line-height: 1.5;
   color: var(--color-description-color);
+  margin-bottom: 10px;
+}
+
+.news-detail-content li:last-child {
+  margin-bottom: 0;
 }
 
 .news-detail-content li::before {
@@ -441,11 +447,15 @@ body {
 
 @media (max-width: 640px) {
   .news-detail-content li::before {
-      top: 4px;
+      top: 5px;
+  }
+
+  .news-detail-content li {
+      line-height: 1.4166666667;
   }
 
   .work-methodology-content li::before {
-    top: 4px;
+    top: 5px;
   }
 }
 

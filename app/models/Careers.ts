@@ -62,5 +62,5 @@ const careersSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Careers ||
+export default mongoose.models.careers ||
   mongoose.model("careers", careersSchema);

@@ -61,5 +61,5 @@ const clientsSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Clients ||
+export default mongoose.models.clients ||
   mongoose.model("clients", clientsSchema);

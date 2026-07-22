@@ -69,5 +69,5 @@ const certificationsSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Certifications ||
+export default mongoose.models.certifications ||
   mongoose.model("certifications", certificationsSchema);

@@ -77,5 +77,5 @@ const projectSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Project ||
+export default mongoose.models.project ||
   mongoose.model("project", projectSchema);

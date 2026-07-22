@@ -104,5 +104,5 @@ const divisionSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.models.Division ||
+export default mongoose.models.division ||
   mongoose.model("division", divisionSchema);
