@@ -83,6 +83,7 @@ export default function Main() {
               variants={moveLeft(0.2)}
               initial="hidden"
               whileInView="show"
+              viewport={{ once: true }}
               className="text-description-2 text-description-color"
             >
               Publish Date: {newsDetailData.publishDate}

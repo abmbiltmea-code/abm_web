@@ -69,7 +69,7 @@ export default function FeaturedNews({
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="rounded-[10px] border border-border-color px-5 py-1 bg-cream-background text-description-2 text-description-color mb-5 md:mb-40 min-h-[38px] leading-0 flex justify-between items-center"
+              className="rounded-[5px] md:rounded-[10px] border border-border-color px-2.5 sm:px-5 py-1 bg-cream-background text-description-2 text-description-color mb-5 md:mb-40 md:min-h-[38px] md:leading-0 flex justify-between items-center"
             >
               Featured News
             </motion.div>

@@ -55,6 +55,7 @@ export async function PATCH(
 
     revalidateTag("Division", "default");
     revalidateTag("Home", "default");
+    revalidateTag("Project", "default");
 
     return NextResponse.json(
       { data: updated, message: "Division updated successfully" },
@@ -90,6 +91,7 @@ export async function DELETE(
 
     revalidateTag("Division", "default");
     revalidateTag("Home", "default");
+    revalidateTag("Project", "default");
 
     return NextResponse.json(
       { message: "Division deleted successfully" },

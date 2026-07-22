@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
 
     revalidateTag("Division", "default");
     revalidateTag("Home", "default");
+    revalidateTag("Project", "default");
 
     return NextResponse.json(
       { data: created, message: "Division created successfully" },

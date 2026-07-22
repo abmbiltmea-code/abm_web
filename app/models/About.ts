@@ -44,11 +44,6 @@ const aboutSchema = new mongoose.Schema({
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
-    description: { type: String },
-  },
-  fourthSection: {
-    isHidden: { type: Boolean, default: false },
-    sectionLabel: { type: String },
     items: {
       type: [
         {
@@ -61,7 +56,7 @@ const aboutSchema = new mongoose.Schema({
       default: [],
     },
   },
-  fifthSection: {
+  fourthSection: {
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
@@ -77,7 +72,7 @@ const aboutSchema = new mongoose.Schema({
       default: [],
     },
   },
-  sixthSection: {
+  fifthSection: {
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
@@ -95,7 +90,7 @@ const aboutSchema = new mongoose.Schema({
       default: [],
     },
   },
-  seventhSection: {
+  sixthSection: {
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
@@ -115,7 +110,7 @@ const aboutSchema = new mongoose.Schema({
       default: [],
     },
   },
-  eighthSection: {
+  seventhSection: {
     isHidden: { type: Boolean, default: false },
     sectionLabel: { type: String },
     title: { type: String },
@@ -131,7 +126,7 @@ const aboutSchema = new mongoose.Schema({
       default: [],
     },
   },
-  ninthSection: {
+  eighthSection: {
     isHidden: { type: Boolean, default: false },
     title: { type: String },
     description: { type: String },
@@ -142,4 +137,4 @@ const aboutSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.About || mongoose.model("about", aboutSchema);
+export default mongoose.models.about || mongoose.model("about", aboutSchema);

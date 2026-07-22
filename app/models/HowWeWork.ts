@@ -105,4 +105,4 @@ const howWeWorkSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.HowWeWork || mongoose.model("howWeWork", howWeWorkSchema);
+export default mongoose.models.howWeWork || mongoose.model("howWeWork", howWeWorkSchema);

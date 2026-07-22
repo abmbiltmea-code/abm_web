@@ -41,22 +41,22 @@ export default function InfoWithSlider({
         <SectionReveal variants={moveUp(0.2)}>
           <div className="flex flex-col md:flex-row md:gap-100 bg-secondary rounded-t-[10px] rounded-b-[10px] mb-5 md:mb-0 md:rounded-b-none w-full md:w-fit px-[15px] md:px-40 py-5 3xl:pt-[22px] 3xl:pb-[19px] pr-[10%] min-[1800px]:min-w-[725px]">
             <div className="3xl:min-w-[100px] shrink-0 border-b border-border-color pb-5 md:pb-0 md:border-none">
-              <p className="text-white text-15 leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
+              <p className="text-white text-15 leading-[1.4166666] sm:leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
                 Status
               </p>
-              <p className="text-white text-subtitle">{status}</p>
+              <p className="text-white text-subtitle max-[400px]:leading-none">{status}</p>
             </div>
             <div className="3xl:min-w-[100px] shrink-0 border-b border-border-color py-5 md:py-0 md:border-none">
-              <p className="text-white text-15 leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
+              <p className="text-white text-15 leading-[1.4166666] sm:leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
                 Location
               </p>
-              <p className="text-white text-subtitle">{location}</p>
+              <p className="text-white text-subtitle max-[400px]:leading-none">{location}</p>
             </div>
             <div className="3xl:min-w-[100px] shrink-0 pt-5 md:pt-0">
-              <p className="text-white text-15 leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
+              <p className="text-white text-15 leading-[1.4166666] sm:leading-[1.6666667] mb-2.5 md:mb-1 uppercase">
                 Sector
               </p>
-              <p className="text-white text-subtitle">{sector}</p>
+              <p className="text-white text-subtitle max-[400px]:leading-none">{sector}</p>
             </div>
           </div>
         </SectionReveal>
