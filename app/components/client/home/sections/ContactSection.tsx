@@ -81,7 +81,7 @@ export default function ContactSection() {
                         !info.href.startsWith("mailto:")
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="text-white/80 text-[12px] leading-none sm:text-description hover:text-white transition-colors"
+                        className="text-white/80 text-description hover:text-white transition-colors"
                         dangerouslySetInnerHTML={{ __html: info.value }}
                       />
                     ) : (
