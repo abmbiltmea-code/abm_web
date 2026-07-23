@@ -5,15 +5,16 @@ import { useState } from "react";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
-import { ourCommitmentData } from "../data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
+import { SixthSection } from "@/app/types/how-we-work";
 
-export default function OurCommitment() {
-  const { sectionLabel, title, description, items } = ourCommitmentData;
+export default function OurCommitment({ data }: { data: SixthSection }) {
+  const { sectionLabel, title, description, items } = data;
   const [active, setActive] = useState(1);
   const [baseImage, setBaseImage] = useState(items[1].image);
+  const [baseImageAlt, setBaseImageAlt] = useState(items[1].imageAlt);
 
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
@@ -32,7 +33,7 @@ export default function OurCommitment() {
             <div className="relative w-full h-full 3xl:w-[1055px] 3xl:h-[680px] rounded-[10px] overflow-hidden">
               <Image
                 src={baseImage}
-                alt=""
+                alt={baseImageAlt}
                 fill
                 className="object-cover pointer-events-none"
               />
@@ -42,12 +43,15 @@ export default function OurCommitment() {
                 initial={{ clipPath: "inset(0 100% 0 0)" }}
                 animate={{ clipPath: "inset(0 0% 0 0)" }}
                 transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
-                onAnimationComplete={() => setBaseImage(items[active].image)}
+                onAnimationComplete={() => {
+                  setBaseImage(items[active].image);
+                  setBaseImageAlt(items[active].imageAlt);
+                }}
                 className="absolute inset-0"
               >
                 <Image
                   src={items[active].image}
-                  alt={items[active].title}
+                  alt={items[active].imageAlt}
                   fill
                   className="object-cover pointer-events-none"
                 />
@@ -140,7 +144,7 @@ export default function OurCommitment() {
                   <div className="relative w-full h-[161px] shrink-0">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={item.imageAlt}
                       fill
                       className="object-cover object-top"
                     />

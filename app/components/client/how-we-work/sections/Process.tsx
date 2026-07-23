@@ -5,21 +5,17 @@ import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
+import { SecondSection } from "@/app/types/how-we-work";
 
 interface ProcessProps {
-  image: string;
-  title: string;
-  description: string;
+  data: SecondSection;
 }
 
-
-
-export default function Process({ image, title, description }: ProcessProps) {
-
-    const imageRef = useRef<HTMLImageElement>(null);
+export default function Process({ data }: ProcessProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-   useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current || !imageRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -49,13 +45,19 @@ export default function Process({ image, title, description }: ProcessProps) {
         <div className="flex flex-col items-center justify-between gap-5 sm:gap-40 md:gap-80 lg:flex-row">
           {/* Left: image */}
           <div className="relative aspect-4/3 max-sm:max-h-[221px] w-full overflow-hidden rounded-[10px] 3xl:h-[600px] 3xl:w-[995px] 3xl:shrink-0">
-            <Image ref={imageRef} src={image} alt={title} fill className="object-cover pointer-events-none select-none" />
+            <Image
+              ref={imageRef}
+              src={data.image}
+              alt={data.imageAlt}
+              fill
+              className="object-cover pointer-events-none select-none"
+            />
           </div>
           {/* Right: content */}
           <div className="flex w-full lg:w-[90%] flex-col gap-[10px] sm:gap-5">
-            <SectionTitle title={title} />
+            <SectionTitle title={data.title} />
             <SectionDescription
-              text={description}
+              text={data.description}
               className="text-description-2 text-description-color"
             />
           </div>

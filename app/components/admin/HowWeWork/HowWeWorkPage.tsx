@@ -10,6 +10,7 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import TinyEditor from "../common/TinyMceEditor";
 
 interface HowWeWorkForm {
   seo: { metaTitle: string; metaDescription: string; script: string };
@@ -75,6 +76,8 @@ interface HowWeWorkForm {
     isHidden: boolean;
     title: string;
     description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -320,7 +323,7 @@ export default function HowWeWorkDetail() {
                 + Add Item
               </Button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               {thirdItems.map((field, index) => (
                 <div
                   key={field.id}
@@ -338,9 +341,15 @@ export default function HowWeWorkDetail() {
                     placeholder="Title"
                   />
                   <Label className="font-bold">Content</Label>
-                  <Textarea
-                    {...register(`thirdSection.items.${index}.content`)}
-                    placeholder="Content"
+                  <Controller
+                    name={`thirdSection.items.${index}.content`}
+                    control={control}
+                    render={({ field }) => (
+                      <TinyEditor
+                        setNewsContent={field.onChange}
+                        newsContent={field.value}
+                      />
+                    )}
                   />
                 </div>
               ))}
@@ -667,6 +676,26 @@ export default function HowWeWorkDetail() {
                 <Input
                   {...register("seventhSection.button.link")}
                   placeholder="/link"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name="seventhSection.image"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Label className="font-bold">Alt Tag</Label>
+                <Input
+                  {...register("seventhSection.imageAlt")}
+                  placeholder="Alt Tag"
                 />
               </div>
             </div>

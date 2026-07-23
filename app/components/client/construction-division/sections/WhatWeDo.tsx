@@ -46,7 +46,11 @@ export default function WhatWeDo() {
         >
           {servicesGridData.items.map((item, i) => (
             <SwiperSlide key={item.title}>
-              <Reveal variants={moveUpV2} delayRange={i * 0.14}>
+              <Reveal
+                variants={moveUpV2}
+                delayRange={i * 0.14}
+                className="h-full"
+              >
                 <ServiceCard
                   image={item.image}
                   title={item.title}

@@ -5,88 +5,90 @@ export interface Seo {
 }
 
 export interface Button {
-  text?: string;
-  link?: string;
+  text: string;
+  link: string;
 }
 
 export interface BannerSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
 }
 
 export interface FirstSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
 }
 
 export interface SecondSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
-  description?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  description: string;
 }
 
 export interface ThirdSectionItem {
-  title?: string;
-  content?: string;
+  title: string;
+  content: string;
 }
 
 export interface ThirdSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
+  sectionLabel: string;
+  title: string;
   items: ThirdSectionItem[];
 }
 
 export interface FourthSectionItem {
-  icon?: string;
-  iconAlt?: string;
-  title?: string;
+  icon: string;
+  iconAlt: string;
+  title: string;
 }
 
 export interface FourthSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
-  image?: string;
-  imageAlt?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
   items: FourthSectionItem[];
 }
 
 export interface ImageTextItem {
-  image?: string;
-  imageAlt?: string;
-  title?: string;
-  description?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  description: string;
 }
 
 export interface FifthSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
   items: ImageTextItem[];
 }
 
 export interface SixthSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
   items: ImageTextItem[];
 }
 
 export interface SeventhSection {
   isHidden: boolean;
-  title?: string;
-  description?: string;
-  button?: Button;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  button: Button;
 }
 
 export interface HowWeWorkDoc {
