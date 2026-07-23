@@ -8,12 +8,12 @@ import { gsap } from "gsap";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import { heroSlides } from "../data";
 import Image from "next/image";
 import AnimatedTitle from "../../animations/HeroTitleAnimation";
 import { useLenis } from "../../layout/LenisProvider";
+import { FirstSection } from "@/app/types/home";
 
-export default function HeroSlider() {
+export default function HeroSlider({data} : {data : FirstSection} ) {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
     const { scrollTo } = useLenis();
@@ -94,9 +94,9 @@ export default function HeroSlider() {
         onSlideChange={handleSlideChange}
         className="h-full w-full"
       >
-        {heroSlides.map((slide) => (
+        {data.items.map((slide, i) => (
           <SwiperSlide
-            key={slide.id}
+            key={i}
             className="relative h-full w-full overflow-hidden"
           >
             <div
@@ -118,7 +118,7 @@ export default function HeroSlider() {
       <div className="absolute inset-0 z-10 flex flex-col lg:flex-row justify-between pointer-events-none container">
         <div className="pt-300 h-full relative flex flex-col justify-between">
           <AnimatedTitle
-            text={heroSlides[activeIndex].title}
+            text={data.items[activeIndex].title}
             className="text-white hero-title max-w-[26ch] hidden sm:block"
           />
           <div
@@ -151,7 +151,7 @@ export default function HeroSlider() {
 
         <div className="sm:hidden">
           <AnimatedTitle
-            text={heroSlides[activeIndex].title}
+            text={data.items[activeIndex].title}
             className="text-white hero-title max-w-[26ch]"
           />
         </div>
@@ -173,10 +173,10 @@ export default function HeroSlider() {
           <div className="bg-black/10 backdrop-blur-2xl p-[15px] lg:p-5 w-[358px] 2xl:w-[390px] 3xl:w-[438px] rounded-[10px]">
             <div className="flex flex-col gap-[10px]">
               <p className="text-white text-[14px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
-                {heroSlides[activeIndex].subtitle}
+                {data.items[activeIndex].subTitle}
               </p>
               <p className="text-white text-15 leading-none sm:leading-[1.333] max-w-[398px] line-clamp-1">
-                {heroSlides[activeIndex].description}
+                {data.items[activeIndex].subDescription}
               </p>
             </div>
 
@@ -184,7 +184,7 @@ export default function HeroSlider() {
               <span className="text-white font-medium shrink-0 text-15 leading-1 lg:leading-[1.666667]">
                 {String(activeIndex + 1).padStart(2, "0")}/
                 <span className="text-white/30">
-                  {String(heroSlides.length).padStart(2, "0")}
+                  {String(data.items.length).padStart(2, "0")}
                 </span>
               </span>
               <div className="flex items-center gap-5">

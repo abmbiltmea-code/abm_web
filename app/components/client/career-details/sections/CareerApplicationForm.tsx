@@ -54,7 +54,6 @@ export default function CareerApplicationForm({
   const cvFileName = cvFileList?.[0]?.name;
 
   const onSubmit = async (data: CareerApplicationFormValues) => {
-    console.log(data);
     reset();
   };
 

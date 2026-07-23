@@ -8,7 +8,6 @@ import SimilarProjects from "./sections/SimilarProjects";
 import { ProjectDetail } from "@/app/types/project";
 
 const Index = ({data}: {data: ProjectDetail}) => {
-  console.log(data, "his")
   return (
     <>
       <ProjectBanner title={data.title} />

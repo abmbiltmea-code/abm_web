@@ -4,10 +4,9 @@ import { GetHomeResult } from "@/app/types/home";
 
 const page = async () => {
   const data: GetHomeResult = await getHome();
-  
   return (
     <>
-      <Index />
+      <Index data={data} />
     </>
   );
 };
