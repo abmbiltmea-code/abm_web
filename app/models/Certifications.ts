@@ -62,6 +62,9 @@ const certificationsSchema = new mongoose.Schema({
   fifthSection: {
     isHidden: { type: Boolean, default: false },
     title: { type: String },
+    description: { type: String },
+    image: { type: String },
+    imageAlt: { type: String }, 
     button: {
       text: { type: String },
       link: { type: String },

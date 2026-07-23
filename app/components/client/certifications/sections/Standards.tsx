@@ -3,13 +3,14 @@ import Image from "next/image";
 import InnerCtaSecondary from "../../common/InnerCtaSecondary";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
+import { FourthSection, ThirdSection } from "@/app/types/certifications";
 
 const Standards = ({
   standards,
   ctaData2,
 }: {
-  standards: any[];
-  ctaData2: any;
+  standards: ThirdSection;
+  ctaData2: FourthSection;
 }) => {
   return (
     <>
@@ -18,7 +19,7 @@ const Standards = ({
         <div className="relative container">
           <SectionTitle title="Compliance & Standards" className="mb-50" />
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-x-[14px] gap-y-[30px] sm:gap-20">
-            {standards.map((standard, index) => (
+            {standards.items.map((standard, index) => (
               <Reveal
                 key={index}
                 variants={moveUpV2}
@@ -40,20 +41,20 @@ const Standards = ({
 
           <div className="hidden lg:block mt-100">
             <InnerCtaSecondary
-              title={ctaData2.ctaTitle}
+              title={ctaData2.title}
               maxTitleWidth="max-w-[30ch]"
-              btnText={ctaData2.ctaBtnText}
-              btnLink={ctaData2.ctaBtnLink}
+              btnText={ctaData2.button.text}
+              btnLink={ctaData2.button.link}
             />
           </div>
         </div>
       </section>
       <div className="lg:hidden container py-[60px]">
         <InnerCtaSecondary
-          title={ctaData2.ctaTitle}
+          title={ctaData2.title}
           maxTitleWidth="max-w-[35ch]"
-          btnText={ctaData2.ctaBtnText}
-          btnLink={ctaData2.ctaBtnLink}
+          btnText={ctaData2.button.text}
+          btnLink={ctaData2.button.link}
         />
       </div>
     </>

@@ -51,6 +51,9 @@ interface CertificationsForm {
   fifthSection: {
     isHidden: boolean;
     title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -137,15 +140,24 @@ export default function CertificationsDetail() {
                   name="bannerSection.image"
                   control={control}
                   render={({ field }) => (
-                    <ImageUploader value={field.value} onChange={field.onChange} />
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
                 <Label className="font-bold">Alt Tag</Label>
-                <Input {...register("bannerSection.imageAlt")} placeholder="Alt Tag" />
+                <Input
+                  {...register("bannerSection.imageAlt")}
+                  placeholder="Alt Tag"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Title</Label>
-                <Input {...register("bannerSection.title")} placeholder="Title" />
+                <Input
+                  {...register("bannerSection.title")}
+                  placeholder="Title"
+                />
               </div>
             </div>
           </div>
@@ -164,11 +176,17 @@ export default function CertificationsDetail() {
           </Label>
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Section Label</Label>
-            <Input {...register("firstSection.sectionLabel")} placeholder="Section Label" />
+            <Input
+              {...register("firstSection.sectionLabel")}
+              placeholder="Section Label"
+            />
             <Label className="font-bold">Title</Label>
             <Input {...register("firstSection.title")} placeholder="Title" />
             <Label className="font-bold">Description</Label>
-            <Textarea {...register("firstSection.description")} placeholder="Description" />
+            <Textarea
+              {...register("firstSection.description")}
+              placeholder="Description"
+            />
           </div>
         </AdminItemContainer>
 
@@ -178,7 +196,10 @@ export default function CertificationsDetail() {
             main
             isHidden={watch("secondSection.isHidden")}
             onToggleHidden={() =>
-              setValue("secondSection.isHidden", !watch("secondSection.isHidden"))
+              setValue(
+                "secondSection.isHidden",
+                !watch("secondSection.isHidden"),
+              )
             }
           >
             Second Section
@@ -190,7 +211,12 @@ export default function CertificationsDetail() {
                 type="button"
                 addItem
                 onClick={() =>
-                  appendSecond({ image: "", imageAlt: "", title: "", label: "" })
+                  appendSecond({
+                    image: "",
+                    imageAlt: "",
+                    title: "",
+                    label: "",
+                  })
                 }
               >
                 + Add Item
@@ -215,7 +241,10 @@ export default function CertificationsDetail() {
                         name={`secondSection.items.${index}.image`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader value={field.value} onChange={field.onChange} />
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         )}
                       />
                       <Label className="font-bold">Image Alt</Label>
@@ -262,7 +291,9 @@ export default function CertificationsDetail() {
               <Button
                 type="button"
                 addItem
-                onClick={() => appendThird({ icon: "", iconAlt: "", title: "" })}
+                onClick={() =>
+                  appendThird({ icon: "", iconAlt: "", title: "" })
+                }
               >
                 + Add Item
               </Button>
@@ -284,7 +315,10 @@ export default function CertificationsDetail() {
                     name={`thirdSection.items.${index}.icon`}
                     control={control}
                     render={({ field }) => (
-                      <ImageUploader value={field.value} onChange={field.onChange} />
+                      <ImageUploader
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
                     )}
                   />
                   <Label className="font-bold">Icon Alt</Label>
@@ -309,7 +343,10 @@ export default function CertificationsDetail() {
             main
             isHidden={watch("fourthSection.isHidden")}
             onToggleHidden={() =>
-              setValue("fourthSection.isHidden", !watch("fourthSection.isHidden"))
+              setValue(
+                "fourthSection.isHidden",
+                !watch("fourthSection.isHidden"),
+              )
             }
           >
             Fourth Section
@@ -320,11 +357,17 @@ export default function CertificationsDetail() {
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Text</Label>
-                <Input {...register("fourthSection.button.text")} placeholder="Button Text" />
+                <Input
+                  {...register("fourthSection.button.text")}
+                  placeholder="Button Text"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Link</Label>
-                <Input {...register("fourthSection.button.link")} placeholder="/link" />
+                <Input
+                  {...register("fourthSection.button.link")}
+                  placeholder="/link"
+                />
               </div>
             </div>
           </div>
@@ -344,15 +387,44 @@ export default function CertificationsDetail() {
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Title</Label>
             <Input {...register("fifthSection.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("fifthSection.description")}
+              placeholder="Description"
+            />
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Text</Label>
-                <Input {...register("fifthSection.button.text")} placeholder="Button Text" />
+                <Input
+                  {...register("fifthSection.button.text")}
+                  placeholder="Button Text"
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Link</Label>
-                <Input {...register("fifthSection.button.link")} placeholder="/link" />
+                <Input
+                  {...register("fifthSection.button.link")}
+                  placeholder="/link"
+                />
               </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label className="font-bold">Image</Label>
+              <Controller
+                name="fifthSection.image"
+                control={control}
+                render={({ field }) => (
+                  <ImageUploader
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+              <Label className="font-bold">Alt Tag</Label>
+              <Input
+                {...register("fifthSection.imageAlt")}
+                placeholder="Alt Tag"
+              />
             </div>
           </div>
         </AdminItemContainer>
@@ -364,7 +436,10 @@ export default function CertificationsDetail() {
             <Label className="font-bold">Meta Title</Label>
             <Input {...register("seo.metaTitle")} placeholder="Meta Title" />
             <Label className="font-bold">Meta Description</Label>
-            <Input {...register("seo.metaDescription")} placeholder="Meta Description" />
+            <Input
+              {...register("seo.metaDescription")}
+              placeholder="Meta Description"
+            />
             <Label className="font-bold">Script</Label>
             <Textarea {...register("seo.script")} placeholder="Script" />
           </div>

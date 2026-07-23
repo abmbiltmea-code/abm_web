@@ -5,29 +5,29 @@ export interface Seo {
 }
 
 export interface Button {
-  text?: string;
-  link?: string;
+  text: string;
+  link: string;
 }
 
 export interface BannerSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
 }
 
 export interface FirstSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
 }
 
 export interface SecondSectionItem {
-  image?: string;
-  imageAlt?: string;
-  title?: string;
-  label?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  label: string;
 }
 
 export interface SecondSection {
@@ -36,27 +36,30 @@ export interface SecondSection {
 }
 
 export interface ThirdSectionItem {
-  icon?: string;
-  iconAlt?: string;
-  title?: string;
+  icon: string;
+  iconAlt: string;
+  title: string;
 }
 
 export interface ThirdSection {
   isHidden: boolean;
-  title?: string;
+  title: string;
   items: ThirdSectionItem[];
 }
 
 export interface FourthSection {
   isHidden: boolean;
-  title?: string;
-  button?: Button;
+  title: string;
+  button: Button;
 }
 
 export interface FifthSection {
   isHidden: boolean;
-  title?: string;
-  button?: Button;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  button: Button;
 }
 
 export interface CertificationsDoc {
