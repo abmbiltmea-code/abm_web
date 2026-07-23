@@ -13,7 +13,7 @@ export default function ProjectCard({ project, contentBg = "bg-cream-background"
       <div className="group flex w-full flex-col">
         <div className="relative aspect-square max-h-[294px] sm:max-h-full w-full overflow-hidden rounded-t-[10px]">
           <Image
-            src={project.image}
+            src={project.image || "/assets/images/placeholder.png"}
             alt={project.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"

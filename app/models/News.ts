@@ -41,6 +41,12 @@ const newsSchema = new mongoose.Schema({
         thumbImage: { type: String },
         thumbImageAlt: { type: String },
         content: { type: String },
+        cta: {
+          title: { type: String },
+          image: { type: String },
+          imageAlt: { type: String },
+          description: { type: String },
+        },
       },
     ],
     default: [],

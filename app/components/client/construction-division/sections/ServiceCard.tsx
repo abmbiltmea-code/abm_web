@@ -19,7 +19,7 @@ export default function ServiceCard({
     <div className="flex flex-col h-full rounded-[10px] overflow-hidden group min-[1900px]:max-h-[598px]">
       <div className="relative aspect-4/3 max-h-[161px] sm:max-h-[266px] shrink-0 overflow-hidden">
         <Image
-          src={image}
+          src={image || "/assets/images/placeholder.png"}
           alt={imageAlt}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"

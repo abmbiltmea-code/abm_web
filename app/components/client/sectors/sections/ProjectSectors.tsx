@@ -51,7 +51,7 @@ const ProjectSectors = ({ data }: { data: SecondSection }) => {
                 }`}
               >
                 <Image
-                  src={item.thumbnail}
+                  src={item.thumbnail || "/assets/images/placeholder.png"}
                   alt={item.thumbnailAlt}
                   fill
                   className="object-cover"

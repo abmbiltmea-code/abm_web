@@ -43,6 +43,10 @@ export const getNews = unstable_cache(
 
     return JSON.parse(
       JSON.stringify({
+        seo: newsDoc.seo,
+        bannerSection: newsDoc.bannerSection,
+        firstSection: newsDoc.firstSection,
+        secondSection: newsDoc.secondSection,
         categories: allCategories.map((c: any) => ({
           _id: String(c._id),
           title: c.title,
@@ -65,9 +69,28 @@ export const getNewsBySlug = (slug: string) =>
       if (!newsDoc) throw new Error("News page not found");
 
       const allCategories = newsDoc.categories ?? [];
-      const item = newsDoc.items?.find((i: any) => i.slug === slug);
+      const allItems = newsDoc.items ?? [];
+      const item = allItems.find((i: any) => i.slug === slug);
 
       if (!item) throw new Error(`News item not found: ${slug}`);
+
+      const relatedNews: NewsListItem[] = allItems
+        .filter(
+          (i: any) =>
+            !i.isHidden &&
+            String(i._id) !== String(item._id) &&
+            String(i.category) === String(item.category),
+        )
+        .slice(0, 2)
+        .map((i: any) => ({
+          _id: String(i._id),
+          title: i.title,
+          slug: i.slug,
+          date: i.date,
+          thumbImage: i.thumbImage,
+          thumbImageAlt: i.thumbImageAlt,
+          category: resolveCategory(i.category, allCategories),
+        }));
 
       return JSON.parse(
         JSON.stringify({
@@ -79,7 +102,9 @@ export const getNewsBySlug = (slug: string) =>
           thumbImage: item.thumbImage,
           thumbImageAlt: item.thumbImageAlt,
           content: item.content,
+          cta: item.cta,
           category: resolveCategory(item.category, allCategories),
+          relatedNews,
         }),
       );
     },

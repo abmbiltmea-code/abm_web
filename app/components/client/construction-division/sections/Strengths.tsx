@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 import { FifthSection } from "@/app/types/division";
 
 export default function Strengths({ data }: { data: FifthSection }) {
-  console.log(data, "his");
   const { sectionLabel, title, description, items } = data;
   const [active, setActive] = useState(1);
   const [baseImage, setBaseImage] = useState(items[1].image);
