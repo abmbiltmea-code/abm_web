@@ -6,29 +6,29 @@ export interface Seo {
 
 export interface BannerSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
 }
 
 export interface FirstSection {
   isHidden: boolean;
-  sectionLabel?: string;
+  sectionLabel: string;
 }
 
 export interface GalleryCategory {
   _id: string;
-  title?: string;
+  title: string;
 }
 
 export interface GalleryImage {
-  url?: string;
-  alt?: string;
+  url: string;
+  alt: string;
 }
 
 export interface GalleryItem {
   _id: string;
-  title?: string;
+  title: string;
   images: GalleryImage[];
   category: GalleryCategory | null;
 }
@@ -38,11 +38,11 @@ export interface GalleryDoc {
   seo?: Seo;
   bannerSection: BannerSection;
   firstSection: FirstSection;
-  categories: { _id: string; title?: string }[];
+  categories: { _id: string; title: string }[];
   items: {
     _id: string;
     isHidden: boolean;
-    title?: string;
+    title: string;
     images: GalleryImage[];
     category?: string;
   }[];

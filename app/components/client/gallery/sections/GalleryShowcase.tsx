@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
-import { galleryCategories } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import GalleryLightbox from "./GalleryLightbox";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 import AnimatedCounter from "../../animations/AnimatedCounter";
 import AnimatedDivider from "../../animations/AnimatedDivider";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { GetGalleryResult } from "@/app/types/gallery";
 
 const MAX_AVATARS = 3;
 
@@ -95,12 +95,31 @@ function GalleryCard({
   );
 }
 
-export default function GalleryShowcase() {
-  const [activeTab, setActiveTab] = useState(galleryCategories[0].label);
+export default function GalleryShowcase({ data }: { data: GetGalleryResult }) {
+  const [activeTab, setActiveTab] = useState(data.categories[0]?.title ?? "");
   const [lightboxImages, setLightboxImages] = useState<string[] | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCardTitle, setActiveCardTitle] = useState<string | null>(null);
 
-  const activeCategory = galleryCategories.find((c) => c.label === activeTab);
+  const groupedByCategory = useMemo(() => {
+    const map = new Map<string, { title: string; images: string[] }[]>();
+
+    for (const item of data.items) {
+      const categoryTitle = item.category?.title;
+      if (!categoryTitle) continue;
+
+      const urls = item.images
+        .map((img) => img.url)
+        .filter(Boolean) as string[];
+
+      if (!map.has(categoryTitle)) map.set(categoryTitle, []);
+      map.get(categoryTitle)!.push({ title: item.title ?? "", images: urls });
+    }
+
+    return map;
+  }, [data.items]);
+
+  const activeItems = groupedByCategory.get(activeTab) ?? [];
 
   return (
     <section className="container pt-[29px] md:pt-80 3xl:pt-[83px] pb-[60px] md:pb-120 3xl:pb-150">
@@ -109,19 +128,25 @@ export default function GalleryShowcase() {
 
         <div className="lg:absolute lg:left-[33.8%] lg:translate-x-[-10] flex items-center gap-[30px] sm:gap-80 relative">
           <AnimatedDivider className="border-border-color absolute bottom-0 left-0 w-full" />
-          {galleryCategories.map((cat) => (
+          {data.categories.map((cat) => (
             <button
-              key={cat.label}
-              onClick={() => setActiveTab(cat.label)}
-              className={`relative pb-[10px] sm:pb-[15px] text-[12px] font-bold font-tasa sm:text-subtitle transition-colors duration-300 cursor-pointer ${
-                activeTab === cat.label
+              key={cat.title}
+              onClick={() => setActiveTab(cat.title ?? "")}
+              className={`relative pb-[10px] sm:pb-[15px] text-[12px] font-bold font-tasa sm:text-subtitle transition-colors duration-300 uppercase cursor-pointer ${
+                activeTab === cat.title
                   ? "text-primary"
                   : "text-secondary hover:text-primary"
               }`}
             >
-              {cat.label}
-              {activeTab === cat.label && (
-                <span className="absolute -bottom-[1px] left-0 h-[2px] sm:h-[3px] w-full bg-red-600" />
+              {cat.title}
+              {activeTab === cat.title && (
+                <motion.span
+                  key={cat.title}
+                  className="absolute -bottom-[1px] left-0 h-[2px] sm:h-[3px] w-full bg-red-600 origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
               )}
             </button>
           ))}
@@ -129,18 +154,18 @@ export default function GalleryShowcase() {
       </div>
 
       <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
-        {activeCategory?.items.map((item, index) => (
+        {activeItems.map((item, index) => (
           <Reveal
             variants={moveUpV2}
-            delayRange={0.03 * index}
-            key={activeCategory?.label + index}
+            delayRange={0.05 * index}
+            key={item.title + index}
           >
             <GalleryCard
-              key={item.title}
               title={item.title}
               images={item.images}
               onOpen={() => {
                 setLightboxImages(item.images);
+                setActiveCardTitle(item.title);
                 setActiveIndex(0);
               }}
             />
@@ -152,7 +177,7 @@ export default function GalleryShowcase() {
         {lightboxImages && (
           <GalleryLightbox
             images={lightboxImages}
-            title={activeCategory?.items[activeIndex].title}
+            title={activeCardTitle ?? undefined}
             activeIndex={activeIndex}
             onClose={() => setLightboxImages(null)}
             onChangeIndex={setActiveIndex}
