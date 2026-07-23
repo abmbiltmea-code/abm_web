@@ -13,7 +13,6 @@ const ITEMS_PER_PAGE_DESKTOP = 9;
 const ITEMS_PER_PAGE_MOBILE = 6;
 
 export default function NewsList({ news }: { news: GetNewsResult }) {
-  console.log(news);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

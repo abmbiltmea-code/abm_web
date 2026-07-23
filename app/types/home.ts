@@ -12,11 +12,11 @@ export interface Button {
 // ---------- Home doc sections ----------
 
 export interface HeroSlide {
-  image?: string;
-  imageAlt?: string;
-  title?: string;
-  subTitle?: string;
-  subDescription?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  subTitle: string;
+  subDescription: string;
 }
 
 export interface FirstSection {
@@ -25,81 +25,81 @@ export interface FirstSection {
 }
 
 export interface StatItem {
-  value?: string;
-  label?: string;
+  value: string;
+  label: string;
 }
 
 export interface SecondSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
-  icon?: string;
-  iconAlt?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
+  icon: string;
+  iconAlt: string;
   items: StatItem[];
 }
 
 export interface ThirdSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
   divisionIds: string[];
 }
 
 export interface FourthSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
   sectorIds: string[];
 }
 
 export interface FifthSectionItem {
-  icon?: string;
-  iconAlt?: string;
-  title?: string;
+  icon: string;
+  iconAlt: string;
+  title: string;
 }
 
 export interface FifthSection {
   isHidden: boolean;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   items: FifthSectionItem[];
 }
 
 export interface SixthSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
-  button?: Button;
+  sectionLabel: string;
+  title: string;
+  description: string;
+  button: Button;
 }
 
 export interface SeventhSectionItem {
-  image?: string;
-  imageAlt?: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface SeventhSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
   items: SeventhSectionItem[];
 }
 
 export interface EighthSectionItem {
-  icon?: string;
-  iconAlt?: string;
-  title?: string;
-  description?: string;
+  icon: string;
+  iconAlt: string;
+  title: string;
+  description: string;
 }
 
 export interface EighthSection {
   isHidden: boolean;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   items: EighthSectionItem[];
 }
 
@@ -123,11 +123,11 @@ export interface HomeDivisionCard {
   name: string;
   slug: string;
   homePageSection?: {
-    title?: string;
-    description?: string;
-    image?: string;
-    imageAlt?: string;
-    buttonLink?: string;
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    buttonLink: string;
   };
 }
 

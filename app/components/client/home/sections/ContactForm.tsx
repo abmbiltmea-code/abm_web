@@ -38,7 +38,7 @@ export default function ContactForm() {
   });
 
   const onSubmit = (data: HomeEnquiryFormValues) => {
-    console.log(data);
+
   };
 
   return (

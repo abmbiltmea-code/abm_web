@@ -28,7 +28,6 @@ export default function LetsConnectForm() {
   });
 
   const onSubmit = async (data: LetsConnectFormValues) => {
-    console.log(data);
     reset();
   };
 

@@ -2,22 +2,19 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { whyAbmData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { moveUp } from "../../animations/motionVariants";
+import { FifthSection } from "@/app/types/home";
 
-export default function WhyAbm() {
+export default function WhyAbm({ data }: { data: FifthSection }) {
   return (
     <section className="w-full bg-cream-background py-120 3xl:py-140">
       <div className="container">
         <div className="sm:text-center mx-auto mb-40">
-          <SectionTitle
-            title={whyAbmData.title}
-            className="section-heading mb-20"
-          />
+          <SectionTitle title={data.title} className="section-heading mb-20" />
           <SectionDescription
-            text={whyAbmData.description}
+            text={data.description}
             className="text-description text-description-color max-w-[87ch] mx-auto"
           />
         </div>
@@ -31,12 +28,12 @@ export default function WhyAbm() {
               className="absolute bottom-0 left-0 h-full bg-primary"
             />
           </div>
-          {whyAbmData.items.map((item, index) => (
+          {data.items.map((item, index) => (
             <motion.div
-            variants={moveUp(0.11 * index)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+              variants={moveUp(0.11 * index)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
               key={index}
               className="relative sm:py-[27px] flex flex-col sm:items-center gap-y-20"
             >
@@ -54,7 +51,7 @@ export default function WhyAbm() {
 
               <Image
                 src={item.icon}
-                alt={item.title}
+                alt={item.iconAlt}
                 width={50}
                 height={50}
                 className="w-[30px] h-[30px] sm:w-10 sm:h-10 md:w-12.5 md:h-12.5 pointer-events-none"
