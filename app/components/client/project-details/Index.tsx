@@ -5,19 +5,24 @@ import ProjectBanner from "./sections/ProjectBanner";
 import InfoWithSlider from "./sections/InfoWithSlider";
 import ProjectSpecsOverview from "./sections/ProjectSpecsOverview";
 import SimilarProjects from "./sections/SimilarProjects";
+import { ProjectDetail } from "@/app/types/project";
 
-const Index = () => {
+const Index = ({data}: {data: ProjectDetail}) => {
+  console.log(data, "his")
   return (
     <>
-      <ProjectBanner title={projectDetails.title} />
-      <InfoWithSlider images={projectDetails.images} location={projectDetails.location} status={projectDetails.status} sector={projectDetails.sector} />
+      <ProjectBanner title={data.title} />
+      <InfoWithSlider images={data.images} location={data.location?.title || ""} status={data.status?.title || ""} sector={data.sector?.title || ""} />
       <ProjectSpecsOverview
-        specifications={projectDetails.specifications}
-        projectOverview={projectDetails.projectOverview}
-        scopeOfWork={projectDetails.scopeOfWork}
+        client={data.client}
+        consultant={data.consultant}
+        duration={data.duration}
+        projectValue={data.projectValue}
+        projectOverview={data.content}
+        scopeOfWork={data.scopeOfWorks.items.map((item: {title: string}) => item.title)}
       />
       <SimilarProjects projects={PROJECTS} />
-      <InnerCta {...ctaData} />
+      <InnerCta data={data.cta} />
     </>
   );
 };

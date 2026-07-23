@@ -52,6 +52,17 @@ interface ProjectsForm {
     title: string;
     description: string;
   };
+  secondSection: {
+    isHidden: boolean;
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    button: {
+      text: string;
+      link: string;
+    };
+  };
 }
 
 type EntryKind = "locations" | "statuses";
@@ -91,6 +102,7 @@ export default function ProjectsDetail() {
       setValue("seo", data.seo);
       setValue("bannerSection", data.bannerSection);
       setValue("firstSection", data.firstSection);
+      setValue("secondSection", data.secondSection);
 
       setLocations(data.locations || []);
       setStatuses(data.statuses || []);
@@ -326,6 +338,54 @@ export default function ProjectsDetail() {
           </div>
         </AdminItemContainer>
 
+        {/* Second Section */}
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("secondSection.isHidden")}
+            onToggleHidden={() =>
+              setValue(
+                "secondSection.isHidden",
+                !watch("secondSection.isHidden"),
+              )
+            }
+          >
+            Second Section
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("secondSection.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("secondSection.description")}
+              placeholder="Description"
+            />
+            <Label className="font-bold">Image</Label>
+            <Controller
+              name="secondSection.image"
+              control={control}
+              render={({ field }) => (
+                <ImageUploader value={field.value} onChange={field.onChange} />
+              )}
+            />
+            <Label className="font-bold">Alt Tag</Label>
+            <Input
+              {...register("secondSection.imageAlt")}
+              placeholder="Alt Tag"
+            />
+            <Label className="font-bold">Button Text</Label>
+            <Input
+              {...register("secondSection.button.text")}
+              placeholder="Button Text"
+            />
+            <Label className="font-bold">Button Link</Label>
+            <Input
+              {...register("secondSection.button.link")}
+              placeholder="Button Link"
+            />
+          </div>
+        </AdminItemContainer>
+
         {/* SEO */}
         <AdminItemContainer>
           <Label main>SEO</Label>
@@ -457,7 +517,12 @@ export default function ProjectsDetail() {
       {/* Projects — full width */}
       <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
         <div className="flex items-center justify-between border-b border-black/20 pb-3">
-          <Label className="text-base font-bold">Projects <div className="inline text-secondary px-2 py-1 border border-primary rounded-[5px]">Count: {filteredItems.length}</div></Label>
+          <Label className="text-base font-bold">
+            Projects{" "}
+            <div className="inline text-secondary px-2 py-1 border border-primary rounded-[5px]">
+              Count: {filteredItems.length}
+            </div>
+          </Label>
           <div className="flex items-center gap-3">
             <Input
               value={searchQuery}

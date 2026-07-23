@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { RiDeleteBinLine } from "react-icons/ri";
 import TinyEditor from "../common/TinyMceEditor";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Entry {
   _id: string;
@@ -34,7 +35,15 @@ interface ProjectItemForm {
   duration: string;
   projectValue: string;
   scopeOfWorks: {
-    items: { title: string; description: string }[];
+    items: { title: string }[];
+  };
+  cta: {
+    isHidden: boolean;
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    button: { text: string; link: string };
   };
 }
 
@@ -138,6 +147,8 @@ export default function ProjectItemDetail() {
       setValue("duration", data.duration);
       setValue("projectValue", data.projectValue);
       setValue("scopeOfWorks", data.scopeOfWorks || { items: [] });
+      setValue("cta", data.cta || { isHidden: false, title: "", description: "", image: "", imageAlt: "", button: { text: "", link: "" } });
+      
       setContent(data.content || "");
     } catch (e) {
       console.error(e);
@@ -384,7 +395,7 @@ export default function ProjectItemDetail() {
               <Button
                 type="button"
                 addItem
-                onClick={() => appendScope({ title: "", description: "" })}
+                onClick={() => appendScope({ title: "" })}
               >
                 + Add Item
               </Button>
@@ -406,11 +417,6 @@ export default function ProjectItemDetail() {
                     {...register(`scopeOfWorks.items.${index}.title`)}
                     placeholder="Title"
                   />
-                  <Label className="font-bold">Description</Label>
-                  <Input
-                    {...register(`scopeOfWorks.items.${index}.description`)}
-                    placeholder="Description"
-                  />
                 </div>
               ))}
             </div>
@@ -425,6 +431,66 @@ export default function ProjectItemDetail() {
               setNewsContent={setContent}
               isLoading={isLoading}
             />
+          </div>
+        </AdminItemContainer>
+
+                <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("cta.isHidden")}
+            onToggleHidden={() =>
+              setValue(
+                "cta.isHidden",
+                !watch("cta.isHidden"),
+              )
+            }
+          >
+            CTA
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("cta.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("cta.description")}
+              placeholder="Description"
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Text</Label>
+                <Input
+                  {...register("cta.button.text")}
+                  placeholder="Button Text"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Link</Label>
+                <Input
+                  {...register("cta.button.link")}
+                  placeholder="Button Link"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name={`cta.image`}
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Label className="font-bold">Image Alt</Label>
+                <Input
+                  {...register(`cta.imageAlt`)}
+                  placeholder="Image Alt"
+                />
+              </div>
+            </div>
           </div>
         </AdminItemContainer>
 

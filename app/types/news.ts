@@ -54,6 +54,7 @@ export interface NewsDetail {
   content: string;
   category: NewsCategory;
   cta: {
+    isHidden: boolean;
     title: string;
     image: string;
     imageAlt: string;

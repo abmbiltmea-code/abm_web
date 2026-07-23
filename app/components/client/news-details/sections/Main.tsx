@@ -73,7 +73,7 @@ export default function Main({ data }: { data: NewsDetail }) {
 
         {/* Detail content */}
         <div className="w-full xl:ml-[6%] 3xl:ml-[8.4%]">
-          <div className="mb-[30px]">
+          <div className="mb-[30px] md:mb-60">
             <Breadcrumb variant="1" />
           </div>
           <div className="flex items-center justify-between mb-60">
