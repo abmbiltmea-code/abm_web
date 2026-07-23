@@ -5,27 +5,27 @@ export interface Seo {
 }
 
 export interface Button {
-  text?: string;
-  link?: string;
+  text: string;
+  link: string;
 }
 
 export interface BannerSection {
   isHidden: boolean;
-  image?: string;
-  imageAlt?: string;
-  title?: string;
+  image: string;
+  imageAlt: string;
+  title: string;
 }
 
 export interface FirstSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
 }
 
 export interface IconItem {
-  icon?: string;
-  iconAlt?: string;
+  icon: string;
+  iconAlt: string;
 }
 
 export interface SecondSection {
@@ -35,9 +35,9 @@ export interface SecondSection {
 
 export interface ThirdSection {
   isHidden: boolean;
-  sectionLabel?: string;
-  title?: string;
-  description?: string;
+  sectionLabel: string;
+  title: string;
+  description: string;
 }
 
 export interface FourthSection {
@@ -47,8 +47,17 @@ export interface FourthSection {
 
 export interface FifthSection {
   isHidden: boolean;
-  title?: string;
-  button?: Button;
+  title: string;
+  button: Button;
+}
+
+export interface SixthSection {
+  isHidden: boolean;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  button: Button;
 }
 
 export interface ClientsDoc {
@@ -60,6 +69,7 @@ export interface ClientsDoc {
   thirdSection: ThirdSection;
   fourthSection: FourthSection;
   fifthSection: FifthSection;
+  sixthSection: SixthSection;
 }
 
 export interface GetClientsResult {
