@@ -4,6 +4,7 @@ import Image from "next/image";
 
 interface ServiceCardProps {
   image: string;
+  imageAlt: string;
   title: string;
   description: string;
 }
@@ -11,6 +12,7 @@ interface ServiceCardProps {
 export default function ServiceCard({
   image,
   title,
+  imageAlt,
   description,
 }: ServiceCardProps) {
   return (
@@ -18,7 +20,7 @@ export default function ServiceCard({
       <div className="relative aspect-4/3 max-h-[161px] sm:max-h-[266px] shrink-0 overflow-hidden">
         <Image
           src={image}
-          alt={title}
+          alt={imageAlt}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />

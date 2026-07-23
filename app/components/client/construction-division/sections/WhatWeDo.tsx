@@ -3,24 +3,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionLabel from "@/app/components/client/common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
-import { servicesGridData } from "../data";
 import ServiceCard from "./ServiceCard";
 
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
+import { ThirdSection } from "@/app/types/division";
 
-export default function WhatWeDo() {
+export default function WhatWeDo({ data }: { data: ThirdSection }) {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-50">
         <div className="shrink-0">
-          <SectionLabel title={servicesGridData.label} pt="lg:pt-[10px]" />
+          <SectionLabel title={data.sectionLabel} pt="lg:pt-[10px]" />
         </div>
 
         <div className="flex flex-col lg:section-content-spacing">
-          <SectionTitle title={servicesGridData.title} />
+          <SectionTitle title={data.title} />
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export default function WhatWeDo() {
             1600: { slidesPerView: 4, spaceBetween: 20 },
           }}
         >
-          {servicesGridData.items.map((item, i) => (
+          {data.items.map((item, i) => (
             <SwiperSlide key={item.title}>
               <Reveal
                 variants={moveUpV2}
@@ -54,6 +54,7 @@ export default function WhatWeDo() {
                 <ServiceCard
                   image={item.image}
                   title={item.title}
+                  imageAlt={item.imageAlt}
                   description={item.description}
                 />
               </Reveal>
