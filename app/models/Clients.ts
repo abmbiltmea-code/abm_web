@@ -59,6 +59,17 @@ const clientsSchema = new mongoose.Schema({
       link: { type: String },
     },
   },
+  sixthSection: {
+    isHidden: { type: Boolean, default: false },
+    title: { type: String },
+    description: { type: String },
+    image: { type: String },
+    imageAlt: { type: String },
+    button: {
+      text: { type: String },
+      link: { type: String },
+    },
+  },
 });
 
 export default mongoose.models.clients ||

@@ -24,7 +24,7 @@ const InnerCtaSecondary = ({
       <div className="flex flex-col gap-5 md:gap-40 px-[15px] sm:px-30 md:px-100">
         <SectionTitle title={title} className={`${maxTitleWidth} text-white`} />
         <SectionReveal variants={moveUp(0.15)}>
-          <CustomButton text={btnText} href={btnLink} />
+          <CustomButton text={btnText || "Contact Us"} href={btnLink || "/contact-us"} />
         </SectionReveal>
       </div>
 

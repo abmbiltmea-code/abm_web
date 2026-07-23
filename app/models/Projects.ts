@@ -18,6 +18,17 @@ const projectSchema = new mongoose.Schema({
     title: { type: String },
     description: { type: String },
   },
+  secondSection: {
+    isHidden: { type: Boolean, default: false },
+    title: { type: String },
+    description: { type: String },
+    image: { type: String },
+    imageAlt: { type: String },
+    button: {
+      text: { type: String },
+      link: { type: String },
+    },
+  },
   locations: {
     type: [
       {
@@ -43,7 +54,7 @@ const projectSchema = new mongoose.Schema({
         featured: { type: Boolean, default: false },
         status: { type: mongoose.Schema.Types.ObjectId },
         location: { type: mongoose.Schema.Types.ObjectId },
-        division: { type: mongoose.Schema.Types.ObjectId },
+        division: { type: mongoose.Schema.Types.ObjectId, ref: "division" },
         sector: { type: mongoose.Schema.Types.ObjectId },
         thumbImage: { type: String },
         thumbImageAlt: { type: String },
@@ -69,6 +80,17 @@ const projectSchema = new mongoose.Schema({
               },
             ],
             default: [],
+          },
+        },
+        cta: {
+          isHidden: { type: Boolean, default: false },
+          title: { type: String },
+          description: { type: String },
+          image: { type: String },
+          imageAlt: { type: String },
+          button: {
+            text: { type: String },
+            link: { type: String },
           },
         },
       },

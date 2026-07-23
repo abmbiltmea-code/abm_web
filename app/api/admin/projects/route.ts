@@ -43,6 +43,7 @@ export async function PATCH(request: NextRequest) {
           seo: body.seo,
           bannerSection: body.bannerSection,
           firstSection: body.firstSection,
+          secondSection: body.secondSection,
         },
       },
       { upsert: true, new: true },

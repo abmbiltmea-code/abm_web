@@ -53,6 +53,7 @@ function resolveProjects(
             slug: division.slug,
           }
         : null,
+      cta: p.cta ?? {},
     };
   });
 }
@@ -79,16 +80,12 @@ export const getProjects = unstable_cache(
     const sectorsById = new Map<string, any>(
       allSectors.map((s: any) => [String(s._id), s]),
     );
-    // division is already populated per-item, so build a division map from
-    // whatever came back on the items themselves instead of a second query
     const divisionsById = new Map<string, any>();
     allItems.forEach((p: any) => {
       if (p.division && typeof p.division === "object") {
         divisionsById.set(String(p.division._id), p.division);
       }
     });
-    // normalize populated division back to a raw id so resolveProjects'
-    // generic lookup-by-id logic still works uniformly
     const normalizedItems = allItems.map((p: any) => ({
       ...p,
       division:
@@ -120,6 +117,10 @@ export const getProjects = unstable_cache(
 
     return JSON.parse(
       JSON.stringify({
+        seo: doc.seo,
+        bannerSection: doc.bannerSection,
+        firstSection: doc.firstSection,
+        secondSection: doc.secondSection,
         locations: allLocations.map((l: any) => ({
           _id: String(l._id),
           title: l.title,
@@ -127,6 +128,15 @@ export const getProjects = unstable_cache(
         statuses: allStatuses.map((s: any) => ({
           _id: String(s._id),
           title: s.title,
+        })),
+        sectors: allSectors.map((s: any) => ({
+          _id: String(s._id),
+          title: s.title,
+        })),
+        divisions: Array.from(divisionsById.values()).map((d: any) => ({
+          _id: String(d._id),
+          name: d.name,
+          slug: d.slug,
         })),
         projects,
       }),

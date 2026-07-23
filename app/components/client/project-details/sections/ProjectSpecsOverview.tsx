@@ -37,7 +37,10 @@ function ScopeMarquee({ scopeOfWork }: { scopeOfWork: string[] }) {
 
     const tick = () => {
       offsetRef.current -= MARQUEE_SPEED;
-      if (setWidthRef.current && Math.abs(offsetRef.current) >= setWidthRef.current) {
+      if (
+        setWidthRef.current &&
+        Math.abs(offsetRef.current) >= setWidthRef.current
+      ) {
         offsetRef.current += setWidthRef.current;
       }
       track.style.transform = `translateX(${offsetRef.current}px)`;
@@ -52,7 +55,10 @@ function ScopeMarquee({ scopeOfWork }: { scopeOfWork: string[] }) {
     };
   }, []);
 
-  const looped = Array.from({ length: MARQUEE_COPIES }, () => scopeOfWork).flat();
+  const looped = Array.from(
+    { length: MARQUEE_COPIES },
+    () => scopeOfWork,
+  ).flat();
 
   return (
     <div className="md:hidden relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
@@ -73,23 +79,26 @@ function ScopeMarquee({ scopeOfWork }: { scopeOfWork: string[] }) {
 }
 
 export default function ProjectSpecsOverview({
-  specifications,
+  client,
+  consultant,
+  duration,
+  projectValue,
   projectOverview,
   scopeOfWork,
 }: {
-  specifications: {
-    client: string;
-    consultant: string;
-    duration: string;
-    projectValue: string;
-  };
+  client: string;
+  consultant: string;
+  duration: string;
+  projectValue: string;
   projectOverview: string;
   scopeOfWork: string[];
 }) {
-  const specEntries = Object.entries(specifications) as [
-    keyof typeof specifications,
-    string,
-  ][];
+  const specEntries = Object.entries({
+    client,
+    consultant,
+    duration,
+    projectValue,
+  }) as [keyof typeof specLabels, string][];
 
   return (
     <div className="container flex flex-col gap-5 sm:gap-10 lg:flex-row lg:gap-80 pt-5 sm:pt-80 pb-[60px] md:pb-120 3xl:pb-150">
@@ -129,7 +138,9 @@ export default function ProjectSpecsOverview({
           {scopeOfWork.map((item, i) => (
             <Reveal key={i} variants={moveUpV2} delayRange={i * 0.06}>
               <div className="rounded-[10px] bg-primary/20 border border-primary/20 px-30 py-[25px] max-h-[80px]">
-                <p className="text-subtitle leading-none uppercase text-description-color">{item}</p>
+                <p className="text-subtitle leading-none uppercase text-description-color">
+                  {item}
+                </p>
               </div>
             </Reveal>
           ))}

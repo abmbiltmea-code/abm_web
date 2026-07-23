@@ -1,30 +1,30 @@
 import InnerBanner from "../common/InnerBanner";
 import InnerCta from "../common/InnerCta";
-import { bannerData, ctaData, sectionHeaderData, processData } from "./data";
 import SectionHeader from "../common/SectionHeader";
 import Process from "./sections/Process";
 import Methodology from "./sections/Methodology";
 import SafetySection from "./sections/SafetySecton";
 import SustainablePractices from "./sections/SustainablePractices";
 import OurCommitment from "./sections/OurCommitment";
+import { GetHowWeWorkResult } from "@/app/types/how-we-work";
 
-const Index = () => {
+const Index = ({ data }: { data: GetHowWeWorkResult["howWeWork"] }) => {
   return (
     <>
-      <InnerBanner {...bannerData} />
+      <InnerBanner data={data.bannerSection} />
       <SectionHeader
-        labelTitle={sectionHeaderData.label}
-        sectionTitle={sectionHeaderData.title}
-        sectionDescription={sectionHeaderData.description}
+        labelTitle={data.firstSection.sectionLabel}
+        sectionTitle={data.firstSection.title}
+        sectionDescription={data.firstSection.description}
         titleClassName="max-w-[25ch]"
         descriptionClassName="max-w-[65ch] 3xl:max-w-[80ch]"
       />
-      <Process {...processData} />
-      <Methodology />
-      <SafetySection />
-      <SustainablePractices />
-      <OurCommitment />
-      <InnerCta {...ctaData} />
+      <Process data={data.secondSection} />
+      <Methodology data={data.thirdSection} />
+      <SafetySection data={data.fourthSection} />
+      <SustainablePractices data={data.fifthSection} />
+      <OurCommitment data={data.sixthSection} />
+      <InnerCta data={data.seventhSection} />
     </>
   );
 };

@@ -15,7 +15,7 @@ export default function AdminLayout({
       <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto border-r border-border-color">
         <div className="flex-1">
           <Link href="/admin" className="cursor-pointer">
-            <div className="mb-6 px-4 flex flex-col gap-2 bg-cream-bg py-30 border-b border-border-color">
+            <div className="px-4 flex flex-col gap-2 bg-cream-bg py-30 border-b border-border-color">
               <div className="flex items-center justify-center">
                 <Image
                   src="/assets/images/logos/header-logo.png"

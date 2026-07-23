@@ -10,7 +10,6 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { Editor } from "tinymce";
 import TinyEditor from "../common/TinyMceEditor";
 
 interface TeamForm {
@@ -50,6 +49,8 @@ interface TeamForm {
     isHidden: boolean;
     title: string;
     description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -352,6 +353,26 @@ export default function TeamPage() {
                 <Input
                   {...register("fourthSection.button.link")}
                   placeholder="Button Link"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name="fourthSection.image"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Label className="font-bold">Alt Tag</Label>
+                <Input
+                  {...register("fourthSection.imageAlt")}
+                  placeholder="Alt Tag"
                 />
               </div>
             </div>

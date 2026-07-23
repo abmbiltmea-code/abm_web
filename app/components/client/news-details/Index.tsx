@@ -1,12 +1,12 @@
 import InnerCta from "../common/InnerCta";
 import Main from "./sections/Main";
-import { ctaData } from "./data";
+import { GetNewsResult } from "@/app/types/news";
 
-const Index = () => {
+const Index = ({ data }: { data: GetNewsResult["detail"] }) => {
   return (
     <>
-      <Main />
-      <InnerCta {...ctaData} email />
+      <Main data={data} />
+      <InnerCta data={data.cta} email />
     </>
   );
 };

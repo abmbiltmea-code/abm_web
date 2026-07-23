@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
   { label: "ABOUT", subItems: [{ label: "Company Overview", href: "/about" }, { label: "Leadership", href: "/about/leadership" }] },
   { label: "OUR SECTORS", href: "/sectors" },
-  { label: "OUR DIVISIONS", subItems: [{ label: "Construction", href: "/division/construction" }] },
+  { label: "OUR DIVISIONS", subItems: [{ label: "Construction", href: "/division/construction-division" }] },
   { label: "PROJECTS", href: "/projects" },
   { label: "CLIENTS", href: "/clients" },
   { label: "HOW WE WORK", href: "/how-we-work" },
@@ -41,7 +41,7 @@ export const footerData = {
     { label: "ABOUT", href: "/about" },
     { label: "CLIENTS", href: "/clients" },
     { label: "CAREERS", href: "/careers" },
-    { label: "OUR DIVISIONS", href: "/division/construction" },
+    { label: "OUR DIVISIONS", href: "/division/construction-division" },
     { label: "NEWS & MEDIA", href: "/news-and-media" },
     { label: "GALLERY", href: "/gallery" },
     { label: "PROJECTS", href: "/projects" },
@@ -99,7 +99,7 @@ export const MobileMenuItems: MobileMenuItem[] = [
     label: "Our Divisions",
     href: "#",
     subItems: [
-      { label: "Construction", href: "/division/construction" },
+      { label: "Construction", href: "/division/construction-division" },
     ],
   },
   {

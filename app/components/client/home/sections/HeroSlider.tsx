@@ -73,7 +73,7 @@ export default function HeroSlider() {
     <section className="relative h-svh w-full overflow-hidden">
       <div className="absolute inset-0 z-10">
         <Image
-          src="/assets/images/logos/abm-watermark.svg"
+          src="/assets/images/logos/abm-watermark-hero.svg"
           alt="ABM Watermark"
           width={1288}
           height={379}

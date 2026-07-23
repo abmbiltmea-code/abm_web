@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { RiArrowLeftLine } from "react-icons/ri";
 import TinyEditor from "../common/TinyMceEditor";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Category {
   _id: string;
@@ -24,6 +25,13 @@ interface NewsItemForm {
   date: string;
   thumbImage: string;
   thumbImageAlt: string;
+  cta: {
+    isHidden: boolean;
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+  };
 }
 
 export default function NewsItemDetail() {
@@ -69,6 +77,10 @@ export default function NewsItemDetail() {
       setValue("thumbImage", data.thumbImage);
       setValue("thumbImageAlt", data.thumbImageAlt);
       setContent(data.content || "");
+      setValue("cta.title", data.cta?.title || "");
+      setValue("cta.description", data.cta?.description || "");
+      setValue("cta.image", data.cta?.image || "");
+      setValue("cta.imageAlt", data.cta?.imageAlt || "");
     } catch (e) {
       console.error(e);
       toast.error("Failed to load news item");
@@ -189,6 +201,44 @@ export default function NewsItemDetail() {
               setNewsContent={setContent}
               isLoading={isLoading}
             />
+          </div>
+        </AdminItemContainer>
+
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("cta.isHidden")}
+            onToggleHidden={() =>
+              setValue("cta.isHidden", !watch("cta.isHidden"))
+            }
+          >
+            CTA Section
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("cta.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("cta.description")}
+              placeholder="Description"
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <Controller
+                  name={`cta.image`}
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Label className="font-bold">Image Alt</Label>
+                <Input {...register(`cta.imageAlt`)} placeholder="Image Alt" />
+              </div>
+            </div>
           </div>
         </AdminItemContainer>
 

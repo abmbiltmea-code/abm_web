@@ -44,6 +44,14 @@ interface ClientsForm {
     title: string;
     button: { text: string; link: string };
   };
+  sixthSection: {
+    isHidden: boolean;
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    button: { text: string; link: string };
+  };
 }
 
 export default function ClientsPage() {
@@ -81,6 +89,7 @@ export default function ClientsPage() {
       setValue("thirdSection", data.thirdSection);
       setValue("fourthSection.isHidden", data.fourthSection?.isHidden);
       setValue("fifthSection", data.fifthSection);
+      setValue("sixthSection", data.sixthSection);
 
       replaceSecond(data.secondSection?.items || []);
       replaceFourth(data.fourthSection?.items || []);
@@ -349,6 +358,62 @@ export default function ClientsPage() {
                   placeholder="/link"
                 />
               </div>
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        {/* Sixth Section */}
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("sixthSection.isHidden")}
+            onToggleHidden={() =>
+              setValue("sixthSection.isHidden", !watch("sixthSection.isHidden"))
+            }
+          >
+            Sixth Section
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("sixthSection.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("sixthSection.description")}
+              placeholder="Description"
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Text</Label>
+                <Input
+                  {...register("sixthSection.button.text")}
+                  placeholder="Button Text"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Button Link</Label>
+                <Input
+                  {...register("sixthSection.button.link")}
+                  placeholder="/link"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label className="font-bold">Image</Label>
+              <Controller
+                name="sixthSection.image"
+                control={control}
+                render={({ field }) => (
+                  <ImageUploader
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+              <Label className="font-bold">Alt Tag</Label>
+              <Input
+                {...register("sixthSection.imageAlt")}
+                placeholder="Alt Tag"
+              />
             </div>
           </div>
         </AdminItemContainer>

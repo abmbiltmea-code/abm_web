@@ -5,13 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionTitle from "../../animations/SectionTitle";
-import { teamManagementData } from "../data";
 import { Autoplay } from "swiper/modules";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
+import { ThirdSection } from "@/app/types/team";
 
-const Team = () => {
-  const { title, description, items } = teamManagementData;
+const Team = ({ data }: { data: ThirdSection }) => {
+  const { title, description, items } = data;
   return (
     <section className="container py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="grid grid-cols-1 xl:grid-cols-2 3xl:grid-cols-[1fr_850px] gap-2.5 sm:gap-5 xl:gap-40 mb-40">
@@ -44,7 +44,7 @@ const Team = () => {
                   <div className="absolute inset-x-0 bottom-0 h-[93.16%] bg-cream-background" />
                   <Image
                     src={item.image}
-                    alt={item.name}
+                    alt={item.imageAlt}
                     fill
                     className="object-cover object-top"
                   />

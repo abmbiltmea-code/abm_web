@@ -12,13 +12,14 @@ import { Autoplay } from "swiper/modules";
 import AnimatedDivider from "../../animations/AnimatedDivider";
 import SectionReveal from "../../animations/SectionReveal";
 import { clipReveal } from "../../animations/motionVariants";
+import { SecondSection } from "@/app/types/sector";
 
-const ProjectSectors = () => {
+const ProjectSectors = ({ data }: { data: SecondSection }) => {
   return (
     <section className="overflow-hidden">
       <div className="hidden lg:flex flex-col pb-[60px] md:pb-120 3xl:pb-150 container">
         <AnimatedDivider className="border-border-color" />
-        {projectSectorsData.map((item, index) => {
+        {data.sectors.filter((item) => !item.isHidden).map((item, index) => {
           const isEven = index % 2 === 1;
 
           return (
@@ -39,7 +40,7 @@ const ProjectSectors = () => {
                   text={item.description}
                   className="text-description-color mb-40"
                 />
-                <CustomButton text={item.btnText} href={item.btnLink} className="w-fit" />
+                <CustomButton text={item.button.text || `View ${item.title} Projects`} href={item.button.link || "/projects?sector=" + item.title} className="w-fit" />
               </div>
 
               {/* Image */}
@@ -50,8 +51,8 @@ const ProjectSectors = () => {
                 }`}
               >
                 <Image
-                  src={item.image}
-                  alt={item.title}
+                  src={item.thumbnail || "/assets/images/placeholder.png"}
+                  alt={item.thumbnailAlt}
                   fill
                   className="object-cover"
                 />

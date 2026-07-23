@@ -1,12 +1,12 @@
 import InnerBanner from "../common/InnerBanner";
-import { bannerData } from "./data";
 import GalleryShowcase from "./sections/GalleryShowcase";
+import { GetGalleryResult } from "@/app/types/gallery";
 
-const Index = () => {
+const Index = ({ data }: { data: GetGalleryResult }) => {
   return (
     <>
-      <InnerBanner {...bannerData} />
-      <GalleryShowcase />
+      <InnerBanner data={data.gallery.bannerSection} />
+      <GalleryShowcase data={data} />
     </>
   );
 };

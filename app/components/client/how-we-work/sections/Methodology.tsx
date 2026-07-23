@@ -1,22 +1,22 @@
 "use client";
 
 import SectionLabel from "@/app/components/client/common/SectionLabel";
-import { workMethodologyData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
+import { ThirdSection } from "@/app/types/how-we-work";
 
-export default function Methodology() {
-  const { pageLabel, title, items } = workMethodologyData;
+export default function Methodology({ data }: { data: ThirdSection }) {
+  const { sectionLabel, title, items } = data;
   return (
     <section className="w-full py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px]">
         {/* Left: label */}
         <div className="shrink-0">
-          <SectionLabel title={pageLabel} pt="lg:pt-[10px]" />
+          <SectionLabel title={sectionLabel} pt="lg:pt-[10px]" />
         </div>
 
         {/* Right: content */}

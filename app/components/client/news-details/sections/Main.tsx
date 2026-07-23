@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { newsDetailData, relatedTopicsData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionLabel from "../../common/SectionLabel";
 import Breadcrumb from "../../common/Breadcrumb";
@@ -15,45 +14,45 @@ import SectionReveal from "../../animations/SectionReveal";
 import { moveLeft, moveUp } from "../../animations/motionVariants";
 import AnimatedDivider from "../../animations/AnimatedDivider";
 import { motion } from "framer-motion";
+import { NewsDetail } from "@/app/types/news";
+import { formatDate } from "@/lib/utils/formatDate";
 
-export default function Main() {
+export default function Main({ data }: { data: NewsDetail }) {
   return (
     <section className="container pt-[157px] md:pt-300 pb-[60px] md:pb-120 3xl:pb-150 overflow-hidden xl:overflow-visible">
       <div className="flex flex-col xl:flex-row">
         {/* Sidebar */}
         <SectionReveal variants={moveUp(0)}>
-          <aside className="hidden xl:block w-full xl:max-w-[30%] 3xl:max-w-[435px] self-start xl:sticky xl:top-60 xl:mt-30 xl:pr-5 relative">
+          <aside className="hidden xl:block w-full 3xl:max-w-[435px]  min-[1900px]:min-w-[435px] self-start xl:sticky xl:top-60 xl:mt-30 xl:pr-5 relative">
             <div className="hidden xl:block w-px absolute top-0 right-0 bottom-0 h-full bg-gradient-to-b from-[#CCCCCC] to-transparent" />
-            <div className="flex items-center justify-between pb-5">
-              <span className="text-subtitle-3 uppercase">
-                {relatedTopicsData.label}
-              </span>
+            <div className="flex items-center justify-between pb-5 shrink-0 gap-100">
+              <span className="text-subtitle-3 uppercase text-nowrap">RELATED TOPICS</span>
               <Link
-                href={relatedTopicsData.viewAllHref}
-                className="text-15 leading-[1.3333333333] text-primary uppercase underline font-tasa font-bold"
+                href="/news-and-media"
+                className="text-15 leading-[1.3333333333] text-primary uppercase underline font-tasa font-bold text-nowrap"
               >
                 View All
               </Link>
             </div>
 
             <div className="flex flex-col gap-y-30 3xl:gap-y-[33px] shrink-0">
-              {relatedTopicsData.items.map((item) => (
+              {data.relatedNews.map((item, i) => (
                 <Link
-                  key={item.id}
-                  href={item.href}
+                  key={i}
+                  href={`/news-and-media/${item.slug}`}
                   className="group flex items-center gap-5 p-20 bg-cream-background rounded-[10px]"
                 >
                   <div className="relative w-[126px] h-[129px] shrink-0 rounded-[10px] overflow-hidden">
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={item.thumbImage || "/assets/images/placeholder.png"}
+                      alt={item.thumbImageAlt}
                       fill
                       className="object-cover"
                     />
                   </div>
                   <div className="flex flex-col gap-[5px]">
                     <span className="text-description-2 text-description-color">
-                      {item.category}
+                      {item.category.title}
                     </span>
                     <h3 className="text-subtitle uppercase line-clamp-2">
                       {item.title}
@@ -74,11 +73,11 @@ export default function Main() {
 
         {/* Detail content */}
         <div className="w-full xl:ml-[6%] 3xl:ml-[8.4%]">
-          <div className="mb-[30px]">
+          <div className="mb-[30px] md:mb-60">
             <Breadcrumb variant="1" />
           </div>
           <div className="flex items-center justify-between mb-60">
-            <SectionLabel title={newsDetailData.category} />
+            <SectionLabel title={data.category.title} />
             <motion.span
               variants={moveLeft(0.2)}
               initial="hidden"
@@ -86,12 +85,12 @@ export default function Main() {
               viewport={{ once: true }}
               className="text-description-2 text-description-color"
             >
-              Publish Date: {newsDetailData.publishDate}
+              Publish Date: {formatDate(data.date)}
             </motion.span>
           </div>
 
           <SectionTitle
-            title={newsDetailData.title}
+            title={data.title}
             className="mb-5 sm:mb-7 md:mb-80 3xl:mb-[84px] text-70 leading-[1.2142857143]"
           />
 
@@ -99,7 +98,7 @@ export default function Main() {
           <SectionReveal variants={moveUp(0.2)}>
             <div
               className="news-detail-content mt-60"
-              dangerouslySetInnerHTML={{ __html: newsDetailData.contentHtml }}
+              dangerouslySetInnerHTML={{ __html: data.content }}
             />
           </SectionReveal>
         </div>
@@ -108,10 +107,10 @@ export default function Main() {
           <div className="border-t border-border-color mt-[60px]">
             <div className="mt-[60px]">
               <div className="flex items-center justify-between pb-[30px]">
-                <SectionTitle title={relatedTopicsData.label} />
+                <SectionTitle title={"Related Topics"} />
                 <CustomButton
                   text="View All"
-                  href={relatedTopicsData.viewAllHref}
+                  href={"/news-and-media"}
                 />
               </div>
               <Swiper
@@ -133,9 +132,9 @@ export default function Main() {
                 }}
                 className="w-full !overflow-visible"
               >
-                {relatedTopicsData.items.map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <NewsCard {...item} />
+                {data.relatedNews.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <NewsCard item={item} />
                   </SwiperSlide>
                 ))}
               </Swiper>

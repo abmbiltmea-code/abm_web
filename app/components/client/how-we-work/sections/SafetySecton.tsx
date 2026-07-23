@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { safetySectionData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import SectionLabel from "../../common/SectionLabel";
@@ -10,9 +9,10 @@ import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 import gsap from "gsap";
+import { FourthSection } from "@/app/types/how-we-work";
 
-export default function SafetySection() {
-  const { label, title, description, image, items } = safetySectionData;
+export default function SafetySection({data}: {data: FourthSection}) {
+  const { sectionLabel, title, description, image, imageAlt, items } = data;
   const inset = useContainerInset();
   const [isBelowLg, setIsBelowLg] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -55,8 +55,8 @@ export default function SafetySection() {
     <section ref={sectionRef} className="bg-cream-background">
       <div className="lg:hidden relative w-full h-[266px] sm:h-[300px] md:h-[400px] lg:h-[450px]">
         <Image
-          src={image.src}
-          alt={image.alt}
+          src={image}
+          alt={imageAlt}
           fill
           className="object-cover object-top pointer-events-none select-none"
         />
@@ -71,7 +71,7 @@ export default function SafetySection() {
           }}
         >
           <div className="mb-5 sm:mb-40">
-            <SectionLabel title={label} />
+            <SectionLabel title={sectionLabel} />
           </div>
 
           <SectionTitle title={title} className="mb-20" />
@@ -109,8 +109,8 @@ export default function SafetySection() {
         <div className="relative w-full lg:w-[60%] 3xl:w-[969px] 3xl:shrink-0 lg:self-stretch overflow-hidden">
           <Image
             ref={imageRef}
-            src={image.src}
-            alt={image.alt}
+            src={image}
+            alt={imageAlt}
             fill
             className="object-cover pointer-events-none select-none"
           />

@@ -1,18 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { overviewData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { SecondSection } from "@/app/types/division";
 
-export default function Overview() {
-  const { title, image, content } = overviewData;
+export default function Overview({ data }: { data: SecondSection }) {
+  const { title, image, imageAlt, content } = data;
   const imageRef = useRef<HTMLImageElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-   useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current || !imageRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -42,8 +42,8 @@ export default function Overview() {
         <div className="relative w-full lg:w-[45%] 3xl:w-[850px] h-[221px] sm:h-[360px] md:h-[450px] 3xl:h-[500px] rounded-[10px] overflow-hidden shrink-0">
           <Image
             ref={imageRef}
-            src={image.src}
-            alt={image.alt}
+            src={image}
+            alt={imageAlt}
             fill
             className="object-cover pointer-events-none select-none"
           />

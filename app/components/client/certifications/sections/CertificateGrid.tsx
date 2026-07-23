@@ -10,16 +10,10 @@ import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { AnimatePresence } from "framer-motion";
-
-interface CertificateItem {
-  src: string;
-  alt: string;
-  name: string;
-  label: string;
-}
+import { SecondSection, SecondSectionItem } from "@/app/types/certifications";
 
 interface CertificateCardProps {
-  item: CertificateItem;
+  item: SecondSectionItem;
   onClick: () => void;
   isActive?: boolean;
 }
@@ -59,8 +53,8 @@ function CertificateCard({
 
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] h-[90%] 3xl:w-[380px] 3xl:h-[420px]">
           <Image
-            src={item.src}
-            alt={item.alt}
+            src={item.image}
+            alt={item.imageAlt}
             fill
             className="object-contain object-bottom pointer-events-none"
           />
@@ -68,7 +62,7 @@ function CertificateCard({
       </div>
 
       <div className="hidden lg:block">
-        <p className="text-subtitle-3 mb-[5px]">{item.name}</p>
+        <p className="text-subtitle-3 mb-[5px]">{item.title}</p>
         <p className="text-description-2 text-description-color">
           Authority: {item.label.toUpperCase()}
         </p>
@@ -78,10 +72,10 @@ function CertificateCard({
 }
 
 interface CertificateGridProps {
-  items: CertificateItem[];
+  data: SecondSection;
 }
 
-export default function CertificateGrid({ items }: CertificateGridProps) {
+export default function CertificateGrid({ data }: CertificateGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -100,7 +94,7 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
   return (
     <section className="overflow-hidden">
       <div className="container hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-80 lg:pb-120 3xl:pb-150">
-        {items.map((item, i) => (
+        {data.items.map((item, i) => (
           <Reveal key={i} variants={moveUpV2} delayRange={i * 0.08}>
             <CertificateCard item={item} onClick={() => setActiveIndex(i)} />
           </Reveal>
@@ -112,7 +106,7 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
           modules={[Autoplay]}
           spaceBetween={15}
           slidesPerView={1.4}
-          loop={items.length > 3}
+          loop={data.items.length > 3}
           breakpoints={{
             640: { slidesPerView: 2 },
             768: { slidesPerView: 2.6 },
@@ -126,7 +120,7 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
           }}
           onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
         >
-          {items.map((item, i) => (
+          {data.items.map((item, i) => (
             <SwiperSlide key={i}>
               <CertificateCard
                 item={item}
@@ -137,10 +131,10 @@ export default function CertificateGrid({ items }: CertificateGridProps) {
           ))}
         </Swiper>
       </div>
-      
+
       <AnimatePresence>
         <CertificateLightbox
-          items={items}
+          items={data.items}
           activeIndex={activeIndex}
           onClose={() => setActiveIndex(null)}
           onNavigate={setActiveIndex}

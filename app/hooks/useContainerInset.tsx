@@ -1,4 +1,3 @@
-// useContainerInset.ts — measure via a temp element, no ref needed
 import { useEffect, useState } from "react";
 
 export function useContainerInset() {

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { sustainablePracticesData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
@@ -12,9 +11,10 @@ import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import { moveUpV2 } from "../../animations/motionVariants";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
+import { FifthSection } from "@/app/types/how-we-work";
 
-export default function SustainablePractices() {
-  const { sectionLabel, title, description, items } = sustainablePracticesData;
+export default function SustainablePractices({ data }: { data: FifthSection }) {
+  const { sectionLabel, title, description, items } = data;
   const [active, setActive] = useState(0);
   const [baseImage, setBaseImage] = useState(items[0].image);
 
@@ -58,7 +58,7 @@ export default function SustainablePractices() {
           >
             <Image
               src={items[active].image}
-              alt={items[active].title}
+              alt={items[active].imageAlt}
               fill
               className="object-cover pointer-events-none select-none"
             />
@@ -126,7 +126,7 @@ export default function SustainablePractices() {
                     <div className="relative w-full h-[190px] shrink-0">
                       <Image
                         src={item.image}
-                        alt={item.title}
+                        alt={item.imageAlt}
                         fill
                         className="object-cover object-top"
                       />

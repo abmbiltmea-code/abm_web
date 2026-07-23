@@ -11,9 +11,10 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import SectionReveal from "../../animations/SectionReveal";
 import { moveUp } from "../../animations/motionVariants";
+import { ProjectImage } from "@/app/types/project";
 
 interface ProjectImageSliderProps {
-  images: string[];
+  images: ProjectImage[];
   location: string;
   status: string;
   sector: string;
@@ -83,8 +84,8 @@ export default function InfoWithSlider({
             <SwiperSlide key={index}>
               <div className="relative h-[296px] sm:h-[40.625vw] min-[1900px]:h-[780px] max-h-[780px] md:min-h-[430px] w-full md:rounded-b-[10px] md:rounded-tr-[10px] overflow-hidden">
                 <Image
-                  src={src}
-                  alt=""
+                  src={src.url}
+                  alt={src.alt}
                   fill
                   priority={index === 0}
                   className="object-cover"

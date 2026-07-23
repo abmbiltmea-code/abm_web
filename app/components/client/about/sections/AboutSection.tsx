@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { aboutData } from "../data";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionSubtitle from "../../animations/SectonSubtitle";

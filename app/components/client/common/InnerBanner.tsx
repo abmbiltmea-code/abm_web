@@ -87,7 +87,7 @@ linear-gradient(249.19deg, rgba(0, 0, 0, 0) 28.77%, rgba(0, 0, 0, 0.8) 95.01%)`,
       {/* Watermark */}
       <div className="absolute bottom-[31px] lg:bottom-[40px] xl:bottom-[50px] 3xl:bottom-[67px] left-[18px] pointer-events-none">
         <Image
-          src="/assets/images/logos/abm-watermark-banner.svg"
+          src="/assets/images/logos/abm-watermark-banner-animated.svg"
           alt="ABM Watermark"
           width={853}
           height={225}

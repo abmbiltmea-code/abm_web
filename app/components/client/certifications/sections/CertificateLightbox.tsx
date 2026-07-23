@@ -8,16 +8,11 @@ import {
   RiArrowRightSLine,
 } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
+import { SecondSectionItem } from "@/app/types/certifications";
 
-interface CertificateItem {
-  src: string;
-  alt: string;
-  name: string;
-  label: string;
-}
 
 interface CertificateLightboxProps {
-  items: CertificateItem[];
+  items: SecondSectionItem[];
   activeIndex: number | null;
   onClose: () => void;
   onNavigate: (index: number) => void;
@@ -127,8 +122,8 @@ export default function CertificateLightbox({
             >
               <div className="relative w-full h-[70vh] sm:h-[75vh]">
                 <Image
-                  src={activeItem.src}
-                  alt={activeItem.alt}
+                  src={activeItem.image}
+                  alt={activeItem.imageAlt}
                   fill
                   className="object-contain"
                 />
@@ -164,7 +159,7 @@ export default function CertificateLightbox({
 
               <div className="text-center">
                 <h3 className="text-subtitle-3 mb-2 text-white">
-                  {activeItem.name}
+                  {activeItem.title}
                 </h3>
                 <p className="text-subtitle text-white/70">
                   Authority: {activeItem.label.toUpperCase()}

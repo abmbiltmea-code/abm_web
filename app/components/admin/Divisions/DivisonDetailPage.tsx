@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { RiDeleteBinLine } from "react-icons/ri";
+import TinyEditor from "../common/TinyMceEditor";
 
 interface DivisionForm {
   name: string;
@@ -81,6 +82,9 @@ interface DivisionForm {
   seventhSection: {
     isHidden: boolean;
     title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
     button: { text: string; link: string };
   };
 }
@@ -375,9 +379,15 @@ export default function DivisionDetail() {
                   placeholder="Title"
                 />
                 <Label className="font-bold">Content</Label>
-                <Textarea
-                  {...register("secondSection.content")}
-                  placeholder="Content"
+                <Controller
+                  name="secondSection.content"
+                  control={control}
+                  render={({ field }) => (
+                    <TinyEditor
+                      setNewsContent={field.onChange}
+                      newsContent={field.value}
+                    />
+                  )}
                 />
               </div>
             </div>
@@ -683,6 +693,11 @@ export default function DivisionDetail() {
           <div className="p-5 flex flex-col gap-4">
             <Label className="font-bold">Title</Label>
             <Input {...register("seventhSection.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("seventhSection.description")}
+              placeholder="Description"
+            />
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Button Text</Label>
@@ -696,6 +711,22 @@ export default function DivisionDetail() {
                 <Input
                   {...register("seventhSection.button.link")}
                   placeholder="/link"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image</Label>
+                <ImageUploader
+                  value={watch("seventhSection.image")}
+                  onChange={(value) => setValue("seventhSection.image", value)}
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="font-bold">Image Alt</Label>
+                <Input
+                  {...register("seventhSection.imageAlt")}
+                  placeholder="Image Alt"
                 />
               </div>
             </div>

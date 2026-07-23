@@ -5,14 +5,14 @@ import { useState } from "react";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
-import { strengthsData } from "../data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import { FifthSection } from "@/app/types/division";
 
-export default function Strengths() {
-  const { label, title, description, items } = strengthsData;
+export default function Strengths({ data }: { data: FifthSection }) {
+  const { sectionLabel, title, description, items } = data;
   const [active, setActive] = useState(1);
   const [baseImage, setBaseImage] = useState(items[1].image);
 
@@ -20,7 +20,7 @@ export default function Strengths() {
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
         <div className="mb-5 md:mb-[30px]">
-          <SectionLabel title={label} />
+          <SectionLabel title={sectionLabel} />
         </div>
         <div className="flex flex-col xl:flex-row xl:justify-between gap-2.5 md:gap-40 mb-50">
           <SectionTitle title={title} className="max-w-[20ch]" />
@@ -55,7 +55,7 @@ export default function Strengths() {
                 <div className="relative w-full h-[170px] shrink-0">
                   <Image
                     src={item.image}
-                    alt={item.title}
+                    alt={item.imageAlt}
                     fill
                     className="object-cover"
                   />
@@ -135,7 +135,7 @@ export default function Strengths() {
           >
             <Image
               src={items[active].image}
-              alt={items[active].title}
+              alt={items[active].imageAlt}
               fill
               className="object-cover"
             />

@@ -1,9 +1,12 @@
 import Index from "@/app/components/client/certifications/Index";
+import { getCertifications } from "@/lib/services/certifications.service";
+import { GetCertificationsResult } from "@/app/types/certifications";
 
-const page = () => {
+const page = async () => {
+  const data: GetCertificationsResult = await getCertifications();
   return (
     <>
-      <Index />
+      <Index data={data.certifications} />
     </>
   );
 };

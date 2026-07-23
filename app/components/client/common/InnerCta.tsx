@@ -65,7 +65,7 @@ export default function InnerCta({ data, email }: InnerCtaProps) {
     >
       <div ref={imageRef} className="absolute inset-0">
         <Image
-          src={data.image}
+          src={data.image || "/assets/images/about/cta.jpg"}
           alt={data.imageAlt}
           fill
           className="object-cover"

@@ -4,9 +4,12 @@ export interface Seo {
   script?: string;
 }
 
-export interface Button {
-  text: string;
-  link: string;
+export interface HomePageSection {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  buttonLink: string;
 }
 
 export interface BannerSection {
@@ -25,25 +28,27 @@ export interface FirstSection {
 
 export interface SecondSection {
   isHidden: boolean;
+  title: string;
   image: string;
   imageAlt: string;
-  title: string;
-  description: string;
+  content: string;
 }
 
-export interface ThirdSectionItem {
+export interface SectionItem {
   title: string;
-  content: string;
+  description: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface ThirdSection {
   isHidden: boolean;
   sectionLabel: string;
   title: string;
-  items: ThirdSectionItem[];
+  items: SectionItem[];
 }
 
-export interface FourthSectionItem {
+export interface IconItem {
   icon: string;
   iconAlt: string;
   title: string;
@@ -53,17 +58,7 @@ export interface FourthSection {
   isHidden: boolean;
   sectionLabel: string;
   title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  items: FourthSectionItem[];
-}
-
-export interface ImageTextItem {
-  image: string;
-  imageAlt: string;
-  title: string;
-  description: string;
+  items: IconItem[];
 }
 
 export interface FifthSection {
@@ -71,15 +66,18 @@ export interface FifthSection {
   sectionLabel: string;
   title: string;
   description: string;
-  items: ImageTextItem[];
+  items: SectionItem[];
+}
+
+export interface ButtonLink {
+  text: string;
+  link: string;
 }
 
 export interface SixthSection {
   isHidden: boolean;
-  sectionLabel: string;
   title: string;
-  description: string;
-  items: ImageTextItem[];
+  button: ButtonLink;
 }
 
 export interface SeventhSection {
@@ -88,12 +86,16 @@ export interface SeventhSection {
   description: string;
   image: string;
   imageAlt: string;
-  button: Button;
+  button: ButtonLink;
 }
 
-export interface HowWeWorkDoc {
+export interface DivisionDetail {
   _id: string;
+  name: string;
+  slug: string;
+  isHidden: boolean;
   seo?: Seo;
+  homePageSection: HomePageSection;
   bannerSection: BannerSection;
   firstSection: FirstSection;
   secondSection: SecondSection;
@@ -102,8 +104,10 @@ export interface HowWeWorkDoc {
   fifthSection: FifthSection;
   sixthSection: SixthSection;
   seventhSection: SeventhSection;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface GetHowWeWorkResult {
-  howWeWork: HowWeWorkDoc;
+export interface DivisionDetailProps {
+  data: DivisionDetail;
 }
