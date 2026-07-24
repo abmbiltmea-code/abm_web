@@ -450,7 +450,7 @@ export default function SectorsPage() {
             <div
               key={sector._id}
               className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-              onClick={() => router.push(`/admin/sectors/sector/${sector._id}`)}
+              onClick={() => router.push(`/4bm-4dm1n/sectors/sector/${sector._id}`)}
             >
               <div className="flex gap-3">
                 <Image

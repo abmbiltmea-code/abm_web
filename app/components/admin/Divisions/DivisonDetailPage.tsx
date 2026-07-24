@@ -172,7 +172,7 @@ export default function DivisionDetail() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "Division saved");
-        router.push("/admin/divisions");
+        router.push("/4bm-4dm1n/divisions");
       } else {
         toast.error(message || "Failed to save division");
       }

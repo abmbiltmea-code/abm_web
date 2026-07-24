@@ -57,7 +57,7 @@ export default function SustainablePractices({ data }: { data: FifthSection }) {
             className="absolute inset-0"
           >
             <Image
-              src={items[active].image}
+              src={items[active].image || "/assets/images/placeholder.png"}
               alt={items[active].imageAlt}
               fill
               className="object-cover pointer-events-none select-none"
@@ -71,7 +71,7 @@ export default function SustainablePractices({ data }: { data: FifthSection }) {
             <Reveal
               key={index}
               variants={moveUpV2}
-              className={`rounded-[10px] px-30 3xl:px-40 pt-50 pb-30 transition-colors -mr-px -mb-px ${
+              className={`rounded-[10px] px-30 3xl:px-40 pt-50 pb-30 transition-colors duration-800 ease-out -mr-px -mb-px ${
                 active === index
                   ? "bg-primary/10 border border-primary/10 z-10"
                   : "border border-border-color z-0"
@@ -125,7 +125,7 @@ export default function SustainablePractices({ data }: { data: FifthSection }) {
                   <div className="rounded-[10px] overflow-hidden h-full flex flex-col bg-white">
                     <div className="relative w-full h-[190px] shrink-0">
                       <Image
-                        src={item.image}
+                        src={item.image || "/assets/images/placeholder.png"}
                         alt={item.imageAlt}
                         fill
                         className="object-cover object-top"

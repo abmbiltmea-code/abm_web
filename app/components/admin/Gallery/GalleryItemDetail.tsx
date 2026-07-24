@@ -89,7 +89,7 @@ export default function GalleryItemDetail() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "Item saved");
-        router.push("/admin/gallery");
+        router.push("/4bm-4dm1n/gallery");
       } else {
         toast.error(message || "Failed to save item");
       }

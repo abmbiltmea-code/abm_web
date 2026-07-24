@@ -57,8 +57,8 @@ export default function GroupCompanies({ data }: { data: SixthSection }) {
                   <CustomButton
                     className="w-fit"
                     target="_blank"
-                    text={card.button.text}
-                    href={card.button.link}
+                    text={card.button.text || "Visit Website"}
+                    href={card.button.link || "#"}
                   />
                 </div>
               </SwiperSlide>
@@ -106,8 +106,8 @@ export default function GroupCompanies({ data }: { data: SixthSection }) {
                 <CustomButton
                   className="w-fit"
                   target="_blank"
-                  text={card.button.text}
-                  href={card.button.link}
+                  text={card.button.text || "Visit Website"}
+                  href={card.button.link || "#"}
                 />
               </div>
             );

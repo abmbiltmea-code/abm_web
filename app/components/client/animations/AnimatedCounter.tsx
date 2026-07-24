@@ -9,32 +9,52 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
+function parseValue(value: number | string) {
+  const str = String(value);
+  const match = str.match(/-?\d+(\.\d+)?/);
+
+  if (!match || match.index === undefined) {
+    return { prefix: str, number: 0, suffix: "", decimals: 0, hasNumber: false };
+  }
+
+  const numStr = match[0];
+  const prefix = str.slice(0, match.index);
+  const suffix = str.slice(match.index + numStr.length);
+  const dot = numStr.indexOf(".");
+  const decimals = dot === -1 ? 0 : numStr.length - dot - 1;
+
+  return {
+    prefix,
+    number: parseFloat(numStr),
+    suffix,
+    decimals,
+    hasNumber: true,
+  };
+}
+
 export default function AnimatedCounter({
   from = 0,
   to,
   duration = 2,
 }: AnimatedCounterProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const numberRef = useRef<HTMLSpanElement>(null);
+  const wrapperRef = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(wrapperRef, { once: true, amount: 0.5 });
   const [introReady, setIntroReady] = useState(false);
 
-  const start = useMemo(
-    () => (typeof from === "string" ? parseFloat(from) || 0 : from),
-    [from],
-  );
-  const end = useMemo(
-    () => (typeof to === "string" ? parseFloat(to) || 0 : to),
+  const { prefix, number: end, suffix, decimals, hasNumber } = useMemo(
+    () => parseValue(to),
     [to],
   );
 
-  // Determine decimal places from the target value
-  const decimals = useMemo(() => {
-    const s = String(to);
-    const dot = s.indexOf(".");
-    return dot === -1 ? 0 : s.length - dot - 1;
-  }, [to]);
+  const start = useMemo(() => {
+    if (typeof from === "string") {
+      const match = from.match(/-?\d+(\.\d+)?/);
+      return match ? parseFloat(match[0]) : 0;
+    }
+    return from;
+  }, [from]);
 
-  // Wait for intro animation to complete
   useEffect(() => {
     if (window.__introComplete) {
       setIntroReady(true);
@@ -46,18 +66,16 @@ export default function AnimatedCounter({
     return () => window.removeEventListener("introComplete", onReady);
   }, []);
 
-  // Set initial text content
   useEffect(() => {
-    if (ref.current) {
-      ref.current.textContent = start.toFixed(decimals);
+    if (numberRef.current && hasNumber) {
+      numberRef.current.textContent = start.toFixed(decimals);
     }
-  }, [start, decimals]);
+  }, [start, decimals, hasNumber]);
 
-  // Animate via direct DOM mutation — zero React re-renders
   useEffect(() => {
-    if (!isInView || !introReady) return;
+    if (!isInView || !introReady || !hasNumber) return;
 
-    const el = ref.current;
+    const el = numberRef.current;
     if (!el) return;
 
     const durationMs = duration * 1000;
@@ -67,8 +85,6 @@ export default function AnimatedCounter({
     const step = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / durationMs, 1);
-
-      // Ease-out cubic for butter-smooth deceleration
       const eased = 1 - Math.pow(1 - progress, 3);
 
       el.textContent = (start + (end - start) * eased).toFixed(decimals);
@@ -80,7 +96,22 @@ export default function AnimatedCounter({
 
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [isInView, introReady, start, end, duration, decimals]);
+  }, [isInView, introReady, start, end, duration, decimals, hasNumber]);
 
-  return <span ref={ref} />;
+  if (!hasNumber) {
+    return <span ref={wrapperRef}>{prefix}</span>;
+  }
+  return (
+    <span ref={wrapperRef}>
+      {prefix}
+      <span ref={numberRef} />
+      {suffix}
+    </span>
+  );
 }
+
+
+export  const extractNumber = (value: number | string) => {
+  const match = String(value).match(/-?\d+(\.\d+)?/);
+  return match ? parseFloat(match[0]) : 0;
+};

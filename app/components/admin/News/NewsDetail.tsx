@@ -457,7 +457,7 @@ export default function NewsDetail() {
               <div
                 key={item._id}
                 className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-                onClick={() => router.push(`/admin/news/items/${item._id}`)}
+                onClick={() => router.push(`/4bm-4dm1n/news/items/${item._id}`)}
               >
                 <div className="flex items-center gap-3">
                   {item.thumbImage && (

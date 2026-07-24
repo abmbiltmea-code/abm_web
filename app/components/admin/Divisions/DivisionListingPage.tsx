@@ -116,7 +116,7 @@ export default function DivisionsListPage() {
             <div
               key={division._id}
               className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-              onClick={() => router.push(`/admin/divisions/${division._id}`)}
+              onClick={() => router.push(`/4bm-4dm1n/divisions/${division._id}`)}
             >
               <span className="text-sm font-medium flex flex-col items-start gap-2">
                 {division.name || "Untitled Division"}

@@ -175,7 +175,7 @@ export default function ProjectItemDetail() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "Project saved");
-        router.push("/admin/projects");
+        router.push("/4bm-4dm1n/projects");
       } else {
         toast.error(message || "Failed to save project");
       }

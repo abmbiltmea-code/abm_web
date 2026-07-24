@@ -39,7 +39,7 @@ function ClientSideLink({
       const res = await fetch("/api/admin/logout", { method: "POST" });
       const data = await res.json();
       if (data.success) {
-        window.location.href = "/admin/login";
+        window.location.href = "/4bm-4dm1n/login";
       }
     } catch (error) {
       console.log(error);

@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none" style="overflow:visible">
 
   <!-- base arrows, fixed at 0.5 opacity, no pulsing -->
-  <path d="M7.88744 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88744 1"
-        stroke="#E31E26" stroke-opacity="0.5" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.88745 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88745 1"
+        stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M1 11L5.11616 6.88384C5.60227 6.39773 5.60227 5.60227 5.11616 5.11616L1 1"
-        stroke="#E31E26" stroke-opacity="0.5" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- bright overlay, only visible where the moving highlight band currently sits -->
   <g mask="url(#sweepMask)">
-    <path d="M7.88744 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88744 1"
-          stroke="#E31E26" stroke-opacity="1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7.88745 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88745 1"
+          stroke="white" stroke-opacity="1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M1 11L5.11616 6.88384C5.60227 6.39773 5.60227 5.60227 5.11616 5.11616L1 1"
-          stroke="#E31E26" stroke-opacity="1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="white" stroke-opacity="1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <defs>
@@ -21,7 +21,6 @@
       <stop offset="1" stop-color="white" stop-opacity="0"/>
     </linearGradient>
     <mask id="sweepMask" maskUnits="userSpaceOnUse" x="-14" y="0" width="42" height="12">
-      <!-- two bands, offset by half a cycle, so the next pass enters as the previous one exits -->
       <rect y="0" width="8" height="12" fill="url(#sweepGradient)">
         <animate attributeName="x" values="-8;20" dur="1.8s" repeatCount="indefinite"/>
       </rect>

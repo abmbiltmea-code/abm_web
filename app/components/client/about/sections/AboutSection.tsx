@@ -1,8 +1,12 @@
+"use client"
+
 import Image from "next/image";
 import SectionLabel from "../../common/SectionLabel";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionSubtitle from "../../animations/SectonSubtitle";
-import AnimatedCounter from "../../animations/AnimatedCounter";
+import AnimatedCounter, {
+  extractNumber,
+} from "../../animations/AnimatedCounter";
 import SectionDescription from "../../animations/SectionDescription";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
@@ -56,7 +60,7 @@ export default function AboutSection({ data }: { data: FirstSection }) {
                   </div>
                   <span className="section-heading text-secondary">
                     <AnimatedCounter
-                      from={Number(stat.value) - 8}
+                      from={extractNumber(stat.value) - 8}
                       to={stat.value}
                       duration={1.6}
                     />
