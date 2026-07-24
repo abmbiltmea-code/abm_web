@@ -6,8 +6,9 @@ import SectionTitle from "../../animations/SectionTitle";
 import { moveUpV2 } from "../../animations/motionVariants";
 import ProjectCard from "../../projects/sections/ProjectsCard";
 import { Autoplay } from "swiper/modules";
+import { ProjectListItem } from "@/app/types/project";
 
-const SimilarProjects = ({ projects }: { projects: any[] }) => {
+const SimilarProjects = ({ projects }: { projects: ProjectListItem[] }) => {
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
       <div className="container">

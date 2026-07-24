@@ -53,6 +53,7 @@ export interface ProjectDetail extends ProjectListItem {
     imageAlt: string;
     button: Button;
   };
+  relatedProjects: ProjectListItem[];
 }
 
 export interface Seo {
