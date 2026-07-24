@@ -15,7 +15,6 @@ import connectDB from "../../mongodb";
 
 export async function sendContactEnquiryAction(data: LetsConnectFormValues) {
   try {
-    // Re-validate on the server since RHF/Zod validation on the client can be bypassed
     const parsed = letsConnectFormSchema.safeParse(data);
     if (!parsed.success) {
       return {
@@ -34,7 +33,7 @@ export async function sendContactEnquiryAction(data: LetsConnectFormValues) {
       to: toEmail,
       subject: `New Contact Enquiry from ${validData.firstName} ${validData.secondName}`,
       template: ContactEnquiryEmail,
-      props: validData, // matches ContactEnquiryEmailProps exactly now
+      props: validData,
     });
 
     return {

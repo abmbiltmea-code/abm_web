@@ -70,6 +70,7 @@ export default function CareerApplicationForm({
     formData.append("phoneNumber", data.phoneNumber);
     formData.append("email", data.email);
     formData.append("currentLocation", data.currentLocation);
+    formData.append("appliedFor", title);
     formData.append("message", data.message ?? "");
     formData.append("cv", data.cv?.[0] as File);
 

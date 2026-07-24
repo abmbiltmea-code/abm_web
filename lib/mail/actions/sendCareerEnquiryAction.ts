@@ -17,10 +17,11 @@ export async function sendCareerApplicationAction(formData: FormData) {
     const phoneNumber = formData.get("phoneNumber") as string;
     const email = formData.get("email") as string;
     const currentLocation = formData.get("currentLocation") as string;
+    const appliedFor = formData.get("appliedFor") as string;
     const message = (formData.get("message") as string) || "";
     const cv = formData.get("cv") as File | null;
 
-    if (!firstName || !secondName || !email || !phoneNumber || !currentLocation || !cv) {
+    if (!firstName || !secondName || !email || !phoneNumber || !currentLocation || !appliedFor || !cv) {
       return { success: false, message: "Missing required fields" };
     }
 
@@ -44,6 +45,7 @@ export async function sendCareerApplicationAction(formData: FormData) {
       phoneNumber,
       email,
       currentLocation,
+      appliedFor,
       message,
       cvUrl,
       cvFileName: cv.name,
@@ -55,6 +57,7 @@ export async function sendCareerApplicationAction(formData: FormData) {
       phoneNumber,
       email,
       currentLocation,
+      appliedFor,
       message,
     };
 

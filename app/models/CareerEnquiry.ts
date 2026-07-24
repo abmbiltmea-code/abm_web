@@ -7,6 +7,7 @@ const careerEnquirySchema = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     email: { type: String, required: true },
     currentLocation: { type: String, required: true },
+    appliedFor: { type: String, required: true },
     message: { type: String, default: "" },
     cvUrl: { type: String, required: true },
     cvFileName: { type: String, required: true },

@@ -18,6 +18,7 @@ export type CareerEnquiryEmailProps = {
   phoneNumber: string;
   email: string;
   currentLocation: string;
+  appliedFor: string;
   message?: string;
 };
 
@@ -27,6 +28,7 @@ export function CareerEnquiryEmail({
   phoneNumber,
   email,
   currentLocation,
+  appliedFor,
   message,
 }: CareerEnquiryEmailProps): ReactElement {
   return (
@@ -45,6 +47,7 @@ export function CareerEnquiryEmail({
             <Field label="Phone" value={phoneNumber} />
             <Field label="Email" value={email} />
             <Field label="Current Location" value={currentLocation} />
+            <Field label="Applied For" value={appliedFor} />
             {message && <Field label="Message" value={message} last />}
           </Section>
 

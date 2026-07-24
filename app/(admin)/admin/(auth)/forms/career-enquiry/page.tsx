@@ -12,6 +12,7 @@ import {
   MapPin,
   Calendar,
   MessageSquare,
+  Briefcase,
 } from "lucide-react";
 import {
   Dialog,
@@ -20,7 +21,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-// Shape matches CareerEnquiry model
 interface Application {
   _id: string;
   firstName: string;
@@ -28,16 +28,15 @@ interface Application {
   phoneNumber: string;
   email: string;
   currentLocation: string;
+  appliedFor: string;
   message: string;
   cvUrl: string;
   cvFileName: string;
   createdAt: string;
 }
 
-const MESSAGE_PREVIEW_LIMIT = 60;
+const MESSAGE_PREVIEW_LIMIT = 20;
 
-// Dropbox share links use ?dl=0 for inline view, ?dl=1 to force download.
-// This swaps the flag rather than assuming which one is already in cvUrl.
 function getViewUrl(url: string) {
   if (url.includes("dl=1")) return url.replace("dl=1", "dl=0");
   if (url.includes("dl=0")) return url;
@@ -191,6 +190,7 @@ export default function CareerApplicationPage() {
                   <th className="p-3">Email</th>
                   <th className="p-3">Phone</th>
                   <th className="p-3">Location</th>
+                  <th className="p-3">Applied For</th>
                   <th className="p-3">Message</th>
                   <th className="p-3">Date</th>
                   <th className="p-3">Action</th>
@@ -212,6 +212,7 @@ export default function CareerApplicationPage() {
                     <td className="p-3">{app.email}</td>
                     <td className="p-3">{app.phoneNumber}</td>
                     <td className="p-3">{app.currentLocation}</td>
+                    <td className="p-3">{app.appliedFor}</td>
                     <td className="p-3 max-w-[240px]">
                       {truncateMessage(app.message)}
                     </td>
@@ -296,6 +297,17 @@ export default function CareerApplicationPage() {
               </p>
               <p className="text-14 text-secondary">
                 {viewApplication.currentLocation}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2 col-span-2">
+            <Briefcase size={15} className="text-secondary mt-0.5" />
+            <div>
+              <p className="text-16 font-bold text-secondary uppercase tracking-wide">
+                Applied For
+              </p>
+              <p className="text-14 text-secondary">
+                {viewApplication.appliedFor}
               </p>
             </div>
           </div>

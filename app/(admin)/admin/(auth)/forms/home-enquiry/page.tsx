@@ -21,7 +21,7 @@ interface Enquiry {
   createdAt: string;
 }
 
-const MESSAGE_PREVIEW_LIMIT = 60;
+const MESSAGE_PREVIEW_LIMIT = 20;
 
 export default function HomeEnquiryPage() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
