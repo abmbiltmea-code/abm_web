@@ -13,7 +13,10 @@ import FormFileInput from "../../forms/FormFileInput";
 import CustomButton from "../../common/CustomButton";
 import Image from "next/image";
 import { useLenis } from "../../layout/LenisProvider";
-import { useEffect } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef, useEffect } from "react";
+import { toast } from "sonner";
+import { sendCareerApplicationAction } from "@/lib/mail/actions/sendCareerEnquiryAction";
 
 export default function CareerApplicationForm({
   isOpen,
@@ -42,6 +45,8 @@ export default function CareerApplicationForm({
     },
   });
 
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
   const { lock, unlock } = useLenis();
 
   useEffect(() => {
@@ -54,7 +59,31 @@ export default function CareerApplicationForm({
   const cvFileName = cvFileList?.[0]?.name;
 
   const onSubmit = async (data: CareerApplicationFormValues) => {
-    reset();
+    if (!recaptchaRef.current?.getValue()) {
+      toast.error("Please complete the captcha verification");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("firstName", data.firstName);
+    formData.append("secondName", data.secondName);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("email", data.email);
+    formData.append("currentLocation", data.currentLocation);
+    formData.append("message", data.message ?? "");
+    formData.append("cv", data.cv?.[0] as File);
+
+    const res = await sendCareerApplicationAction(formData);
+
+    if (res.success) {
+      toast.success(res.message);
+      reset();
+      recaptchaRef.current?.reset();
+      onClose();
+    } else {
+      toast.error(res.message);
+      recaptchaRef.current?.reset(); 
+    }
   };
 
   return (
@@ -152,6 +181,12 @@ export default function CareerApplicationForm({
                     label="Message"
                     error={errors.message?.message}
                     {...register("message")}
+                  />
+                </div>
+                <div className="mt-5">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                   />
                 </div>
                 <div className="mt-[10px] sm:mt-5">

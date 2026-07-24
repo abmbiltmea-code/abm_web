@@ -15,9 +15,9 @@ interface ClientSideLinkProps {
   isOpen?: boolean;
   setOpenLink?: (href: string | null) => void;
   hasChild?: boolean;
+  isActiveOverride?: boolean;
 }
 
-// Client component for handling active states
 function ClientSideLink({
   href,
   name,
@@ -27,15 +27,16 @@ function ClientSideLink({
   isOpen = false,
   setOpenLink,
   hasChild = false,
+  isActiveOverride,
 }: ClientSideLinkProps) {
   const pathname = usePathname();
-  const isActive = pathname === `${href}` || pathname?.startsWith(`${href}/`);
+
+  const isActive =
+    isActiveOverride ?? (pathname === href || pathname?.startsWith(`${href}/`));
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("/api/admin/logout", {
-        method: "POST",
-      });
+      const res = await fetch("/api/admin/logout", { method: "POST" });
       const data = await res.json();
       if (data.success) {
         window.location.href = "/admin/login";
@@ -50,7 +51,6 @@ function ClientSideLink({
       <Link
         href={href == "/admin/logout" ? "#" : href}
         onClick={() => {
-          // Prevent navigation on click
           setOpenLink?.(isOpen ? null : href);
           if (href === "/admin/logout") {
             handleLogout();
