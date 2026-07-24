@@ -11,28 +11,29 @@ import CustomButton from "@/app/components/client/common/CustomButton";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { moveUp } from "../../animations/motionVariants";
+import { HomeFeaturedProject, SixthSection } from "@/app/types/home";
 
-export default function OurProjects() {
+export default function OurProjects({ data, projects }: { data: SixthSection, projects: HomeFeaturedProject[] }) {
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
         <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
           <div>
-            <SectionLabel title={ourProjectsData.label} />
+            <SectionLabel title={data.sectionLabel} />
           </div>
           <div className="flex flex-col lg:section-content-spacing">
             <SectionTitle
-              title={ourProjectsData.title}
+              title={data.title}
               className="text-secondary mb-20"
             />
             <SectionDescription
-              text={ourProjectsData.description}
+              text={data.description}
               className="text-description-color mb-5 xl:mb-40 max-w-[70ch] 3xl:max-w-none"
             />
             <div>
               <CustomButton
-                text={ourProjectsData.buttonText}
-                href={ourProjectsData.href}
+                text={data.button.text}
+                href={data.button.link}
               />
             </div>
           </div>
@@ -55,7 +56,7 @@ export default function OurProjects() {
           }}
           className="!overflow-visible"
         >
-          {ourProjectsData.projects.map((project, index) => {
+          {projects.map((project, index) => {
             // const isOdd = index % 2 === 0;
             return (
               <SwiperSlide className="group" key={index}>
@@ -65,7 +66,7 @@ export default function OurProjects() {
                 whileInView="show"
                 viewport={{ once: true }}
                 >
-                  <Link href={project.href}>
+                  <Link href={project.slug}>
                     <div
                       className={`relative w-full rounded-[10px] overflow-hidden h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]`}
                       //    ${
@@ -75,8 +76,8 @@ export default function OurProjects() {
                       // }`}
                     >
                       <Image
-                        src={project.image}
-                        alt={project.title}
+                        src={project.thumbImage || "/assets/images/placeholder.png"}
+                        alt={project.thumbImageAlt}
                         fill
                         className="object-cover object-top group-hover:scale-105 transition-all duration-700"
                       />

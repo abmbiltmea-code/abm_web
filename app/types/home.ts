@@ -5,8 +5,8 @@ export interface Seo {
 }
 
 export interface Button {
-  text?: string;
-  link?: string;
+  text: string;
+  link: string;
 }
 
 // ---------- Home doc sections ----------
@@ -94,6 +94,7 @@ export interface EighthSectionItem {
   iconAlt: string;
   title: string;
   description: string;
+  href: string;
 }
 
 export interface EighthSection {
@@ -101,6 +102,10 @@ export interface EighthSection {
   title: string;
   description: string;
   items: EighthSectionItem[];
+  image: string;
+  imageAlt: string;
+  mobileImage: string;
+  mobileImageAlt: string;
 }
 
 export interface HomeDoc {
@@ -122,7 +127,7 @@ export interface HomeDivisionCard {
   _id: string;
   name: string;
   slug: string;
-  homePageSection?: {
+  homePageSection: {
     title: string;
     description: string;
     image: string;
@@ -133,24 +138,24 @@ export interface HomeDivisionCard {
 
 export interface HomeSectorCard {
   _id: string;
-  title?: string;
-  thumbnail?: string;
-  thumbnailAlt?: string;
-  homePageImage?: string;
-  homePageImageAlt?: string;
-  homePageIcon?: string;
-  homePageIconAlt?: string;
-  homePageButton?: Button;
-  homePageDescription?: string;
+  title: string;
+  thumbnail: string;
+  thumbnailAlt: string;
+  homePageImage: string;
+  homePageImageAlt: string;
+  homePageIcon: string;
+  homePageIconAlt: string;
+  homePageButton: Button;
+  homePageDescription: string;
 }
 
 export interface HomeFeaturedProject {
   _id: string;
-  title?: string;
-  slug?: string;
-  thumbImage?: string;
-  thumbImageAlt?: string;
-  location?: string;
+  title: string;
+  slug: string;
+  thumbImage: string;
+  thumbImageAlt: string;
+  location: string;
 }
 
 // ---------- Final shape returned by getHome() ----------

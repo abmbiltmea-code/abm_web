@@ -102,6 +102,10 @@ const homeSchema = new mongoose.Schema({
     isHidden: { type: Boolean, default: false },
     title: { type: String },
     description: { type: String },
+    image: { type: String },
+    imageAlt: { type: String },
+    mobileImage: { type: String },
+    mobileImageAlt: { type: String },
     items: {
       type: [
         {
@@ -109,6 +113,7 @@ const homeSchema = new mongoose.Schema({
           iconAlt: { type: String },
           title: { type: String },
           description: { type: String },
+          href: { type: String },
         },
       ],
       default: [],

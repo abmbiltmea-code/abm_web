@@ -50,7 +50,7 @@ export default function WhyAbm({ data }: { data: FifthSection }) {
               )}
 
               <Image
-                src={item.icon}
+                src={item.icon || "/assets/images/placeholder.png"}
                 alt={item.iconAlt}
                 width={50}
                 height={50}

@@ -82,11 +82,16 @@ interface HomeForm {
     isHidden: boolean;
     title: string;
     description: string;
+    image: string;
+    imageAlt: string;
+    mobileImage: string;
+    mobileImageAlt: string;
     items: {
       icon: string;
       iconAlt: string;
       title: string;
       description: string;
+      href: string;
     }[];
   };
 }
@@ -227,6 +232,10 @@ export default function HomeDetail() {
       setValue("eighthSection.isHidden", data.eighthSection?.isHidden);
       setValue("eighthSection.title", data.eighthSection?.title);
       setValue("eighthSection.description", data.eighthSection?.description);
+      setValue("eighthSection.image", data.eighthSection?.image);
+      setValue("eighthSection.imageAlt", data.eighthSection?.imageAlt);
+      setValue("eighthSection.mobileImage", data.eighthSection?.mobileImage);
+      setValue("eighthSection.mobileImageAlt", data.eighthSection?.mobileImageAlt);
 
       replaceFirst(data.firstSection?.items || []);
       replaceSecond(data.secondSection?.items || []);
@@ -808,6 +817,32 @@ export default function HomeDetail() {
               {...register("eighthSection.description")}
               placeholder="Description"
             />
+            <Label className="font-bold">Image</Label>
+            <Controller
+              name="eighthSection.image"
+              control={control}
+              render={({ field }) => (
+                <ImageUploader value={field.value} onChange={field.onChange} />
+              )}
+            />
+            <Label className="font-bold">Image Alt</Label>
+            <Input
+              {...register("eighthSection.imageAlt")}
+              placeholder="Image Alt"
+            />
+            <Label className="font-bold">Mobile Image</Label>
+            <Controller
+              name="eighthSection.mobileImage"
+              control={control}
+              render={({ field }) => (
+                <ImageUploader value={field.value} onChange={field.onChange} />
+              )}
+            />
+            <Label className="font-bold">Mobile Image Alt</Label>
+            <Input
+              {...register("eighthSection.mobileImageAlt")}
+              placeholder="Mobile Image Alt"
+            />
             <div className="flex items-center justify-between">
               <Label className="font-bold">Items</Label>
               <Button
@@ -819,6 +854,7 @@ export default function HomeDetail() {
                     iconAlt: "",
                     title: "",
                     description: "",
+                    href: "",
                   })
                 }
               >
@@ -861,6 +897,11 @@ export default function HomeDetail() {
                   <Textarea
                     {...register(`eighthSection.items.${index}.description`)}
                     placeholder="Description"
+                  />
+                  <Label className="font-bold">Href</Label>
+                  <Input
+                    {...register(`eighthSection.items.${index}.href`)}
+                    placeholder="Href"
                   />
                 </div>
               ))}

@@ -13,12 +13,12 @@ const Index = ({ data }: { data: GetHomeResult }) => {
     <>
       <HeroSlider data={data.home.firstSection} />
       <AboutSection data={data.home.secondSection} />
-      <CoreCapabilities />
-      <Sectors />
+      <CoreCapabilities data={data.home.thirdSection} divisions={data.divisions} />
+      <Sectors data={data.home.fourthSection} sectors={data.sectors} />
       <WhyAbm data={data.home.fifthSection} />
-      <OurProjects />
-      <Clients />
-      <ContactSection />
+      <OurProjects data={data.home.sixthSection} projects={data.featuredProjects} />
+      <Clients data={data.home.seventhSection} />
+      <ContactSection data={data.home.eighthSection} />
     </>
   );
 };

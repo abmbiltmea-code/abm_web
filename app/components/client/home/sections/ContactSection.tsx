@@ -1,37 +1,29 @@
 "use client"
 
 import Image from "next/image";
-import { contactSectionData } from "../data";
 import SectionTitle from "@/app/components/client/animations/SectionTitle";
 import SectionDescription from "@/app/components/client/animations/SectionDescription";
 import ContactForm from "./ContactForm";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
+import { EighthSection } from "@/app/types/home";
 
-export default function ContactSection() {
-  const {
-    backgroundImage,
-    backgroundImageMobile,
-    title,
-    description,
-    contactInfo,
-  } = contactSectionData;
-
+export default function ContactSection({ data }: { data: EighthSection }) {
   return (
     <section>
       <div className="relative py-120 3xl:py-140 overflow-hidden">
         {/* Background Image */}
         <Image
-          src={backgroundImage}
-          alt="Contact background"
+          src={data.image || "/assets/images/placeholder.png"}
+          alt={data.imageAlt}
           fill
           className="object-cover object-center z-0 hidden md:block"
           priority
         />
         <Image
-          src={backgroundImageMobile}
-          alt="Contact background"
+          src={data.mobileImage || "/assets/images/placeholder.png"}
+          alt={data.mobileImageAlt}
           fill
           className="object-cover object-center z-0 md:hidden"
           priority
@@ -44,15 +36,15 @@ export default function ContactSection() {
           {/* Left */}
           <div className="flex flex-col lg:max-w-[45%] 3xl:max-w-[711px]">
             <div className="flex flex-col gap-[10px] sm:gap-20 mb-5 sm:mb-40 lg:mb-80">
-              <SectionTitle title={title} className="text-white max-w-[20ch]" />
+              <SectionTitle title={data.title} className="text-white max-w-[20ch]" />
               <SectionDescription
-                text={description}
+                text={data.description}
                 className="text-white/80 max-w-[50ch]"
               />
             </div>
 
             <div className="flex flex-col gap-5 sm:gap-30">
-              {contactInfo.map((info, index) => (
+              {data.items.map((info, index) => (
                 <motion.div
                   key={info.title}
                   variants={moveUp(0.11 * index)}
@@ -63,8 +55,8 @@ export default function ContactSection() {
                 <div className="flex items-start gap-20">
                   <div className="box-size rounded-[5px] bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0">
                     <Image
-                      src={info.icon}
-                      alt={info.title}
+                      src={info.icon || "/assets/images/placeholder.png"}
+                      alt={info.iconAlt}
                       width={25}
                       height={25}
                       className="pointer-events-none w-3 h-3 md:w-4 md:h-4 lg:w-6 lg:h-6"
@@ -82,12 +74,12 @@ export default function ContactSection() {
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
                         className="text-white/80 text-description hover:text-white transition-colors"
-                        dangerouslySetInnerHTML={{ __html: info.value }}
+                        dangerouslySetInnerHTML={{ __html: info.description }}
                       />
                     ) : (
                       <p
                         className="text-white/80 text-[12px] leading-none sm:text-description"
-                        dangerouslySetInnerHTML={{ __html: info.value }}
+                        dangerouslySetInnerHTML={{ __html: info.description }}
                       />
                     )}
                   </div>
