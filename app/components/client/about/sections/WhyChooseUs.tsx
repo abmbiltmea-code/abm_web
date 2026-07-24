@@ -86,7 +86,7 @@ export default function WhyChooseUs({ data }: { data: SeventhSection }) {
                 <div className="flex flex-col rounded-[10px] overflow-hidden">
                   <div className="relative w-full min-h-[170px] sm:h-[50.148%]">
                     <Image
-                      src={slide.image}
+                      src={slide.image || "/assets/images/placeholder.png"}
                       alt={slide.title}
                       fill
                       className="object-cover pointer-events-none"
@@ -197,7 +197,7 @@ export default function WhyChooseUs({ data }: { data: SeventhSection }) {
               className="absolute inset-0"
             >
               <Image
-                src={activeSlide.image}
+                src={activeSlide.image || "/assets/images/placeholder.png"}
                 alt={activeSlide.title}
                 fill
                 className="object-cover pointer-events-none"

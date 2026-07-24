@@ -104,7 +104,7 @@ export default function NewsItemDetail() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "News item saved");
-        router.push("/admin/news");
+        router.push("/4bm-4dm1n/news");
       } else {
         toast.error(message || "Failed to save news item");
       }

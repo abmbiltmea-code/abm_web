@@ -27,7 +27,7 @@ const Standards = ({
               >
                 <div className="box-size bg-primary rounded-[5px] flex items-center justify-center">
                   <Image
-                    src={standard.icon}
+                    src={standard.icon || "/assets/images/placeholder.png"}
                     alt={standard.title}
                     width={40}
                     height={40}

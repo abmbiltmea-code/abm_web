@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -40,58 +41,20 @@ export default function CustomButton(props: CustomButtonProps) {
 
       <span className="relative min-h-[35px] w-[35px] sm:w-[45px] lg:w-[50px] xl:w-[54px] 3xl:w-[59px] self-stretch rounded-[5px] bg-primary flex items-center justify-center overflow-hidden">
         <div className="relative w-[70%] h-[50%] flex justify-center items-center overflow-hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="12"
-            viewBox="0 0 14 12"
-            fill="none"
-            className="absolute transition-transform duration-500 ease-in-out group-hover:translate-x-[300%]"
-          >
-            <path
-              d="M7.88745 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88745 1"
-              stroke="white"
-              strokeWidth="2"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M1 11L5.11616 6.88384C5.60227 6.39773 5.60227 5.60227 5.11616 5.11616L1 1"
-              stroke="white"
-              strokeOpacity="0.5"
-              strokeWidth="2"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="12"
-            viewBox="0 0 14 12"
-            fill="none"
-            className="absolute translate-x-[-700%] transition-transform duration-500 ease-in-out group-hover:translate-x-0"
-          >
-            <path
-              d="M7.88745 11L12.0036 6.88384C12.4897 6.39773 12.4897 5.60227 12.0036 5.11616L7.88745 1"
-              stroke="white"
-              strokeWidth="2"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M1 11L5.11616 6.88384C5.60227 6.39773 5.60227 5.60227 5.11616 5.11616L1 1"
-              stroke="white"
-              strokeOpacity="0.5"
-              strokeWidth="2"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Image
+            src="/assets/icons/arrow-loop.svg"
+            alt="Arrow Right"
+            width={14}
+            height={12}
+            className="absolute w-auto h-[10px] xl:h-[14px] transition-transform duration-500 ease-in-out group-hover:translate-x-[300%]"
+          />
+          <Image
+            src="/assets/icons/arrow-loop.svg"
+            alt="Arrow Right"
+            width={14}
+            height={12}
+            className="absolute w-auto h-[10px] xl:h-[14px] translate-x-[-700%] transition-transform duration-500 ease-in-out group-hover:translate-x-0"
+          />
         </div>
       </span>
     </>
@@ -103,14 +66,18 @@ export default function CustomButton(props: CustomButtonProps) {
     onAnimationEnd: () => setPulse(false),
   };
 
-if ("href" in props && props.href) {
+  if ("href" in props && props.href) {
     const isRealLink = props.href !== "#";
 
     return (
       <Link
         href={props.href}
         target={isRealLink ? props.target : undefined}
-        rel={isRealLink && props.target === "_blank" ? "noopener noreferrer" : undefined}
+        rel={
+          isRealLink && props.target === "_blank"
+            ? "noopener noreferrer"
+            : undefined
+        }
         className={sharedClassName}
         {...sharedHandlers}
       >

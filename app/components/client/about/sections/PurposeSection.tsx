@@ -10,7 +10,6 @@ import { ThirdSection } from "@/app/types/about";
 
 export default function PurposeSection({ data }: { data: ThirdSection }) {
   const { sectionLabel, title, items } = data;
-  const [vision, mission] = items;
 
   return (
     <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden container">
@@ -22,49 +21,36 @@ export default function PurposeSection({ data }: { data: ThirdSection }) {
 
         <AnimatedDivider className="mt-50 border-black/20" />
 
-        {/* Vision */}
-        <SectionReveal variants={moveUp(0)}>
-          <div className="flex py-5 md:py-50 gap-50 xl:gap-70 3xl:gap-[69px]">
-            <div className="shrink-0">
-              <Image
-                src={vision.icon}
-                alt={vision.title}
-                width={100}
-                height={100}
-                className="h-[60px] xl:h-[100px] w-auto 3xl:h-[100px] pointer-events-none"
-              />
+        {items.map((item, i) => (
+          <SectionReveal key={i} variants={moveUp(i === 0 ? 0 : 0.1)}>
+            <div
+              className={`flex py-5 md:py-50 ${
+                i === 0 ? "gap-50 xl:gap-70 3xl:gap-[69px]" : "gap-50"
+              }`}
+            >
+              <div className="shrink-0">
+                <Image
+                  src={item.icon || "/assets/images/placeholder.png"}
+                  alt={item.title}
+                  width={i === 0 ? 100 : 119}
+                  height={100}
+                  className={
+                    i === 0
+                      ? "h-[60px] xl:h-[100px] w-auto 3xl:h-[100px] pointer-events-none"
+                      : "h-[50px] xl:h-[100px] w-auto 3xl:w-[119px] pointer-events-none"
+                  }
+                />
+              </div>
+              <div className="flex flex-col gap-20">
+                <h3 className="text-subtitle-2 uppercase">{item.title}</h3>
+                <p className="text-description-2 text-description-color max-w-[826px]">
+                  {item.description}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-20">
-              <h3 className="text-subtitle-2 uppercase">{vision.title}</h3>
-              <p className="text-description-2 text-description-color max-w-[826px]">
-                {vision.description}
-              </p>
-            </div>
-          </div>
-          <AnimatedDivider className="border-black/20" />
-        </SectionReveal>
-
-        {/* Mission */}
-        <SectionReveal variants={moveUp(0.1)}>
-          <div className="flex py-5 md:py-50 gap-50">
-            <div className="shrink-0">
-              <Image
-                src={mission.icon}
-                alt={mission.title}
-                width={119}
-                height={100}
-                className="h-[50px] xl:h-[100px] w-auto 3xl:w-[119px] pointer-events-none"
-              />
-            </div>
-            <div className="flex flex-col gap-20">
-              <h3 className="text-subtitle-2 uppercase">{mission.title}</h3>
-              <p className="text-description-2 text-description-color max-w-[826px]">
-                {mission.description}
-              </p>
-            </div>
-          </div>
-          <AnimatedDivider className="border-black/20" />
-        </SectionReveal>
+            <AnimatedDivider className="border-black/20" />
+          </SectionReveal>
+        ))}
       </div>
     </section>
   );

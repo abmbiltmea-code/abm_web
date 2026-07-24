@@ -12,7 +12,7 @@ function LogoCard({ item }: LogoCardProps) {
     <div className="flex flex-col items-center group">
       <div className="relative w-[115px] h-[55px] md:w-[150px] md:h-[70px] xl:w-[210px] xl:h-[100px] 3xl:w-[302px] 3xl:h-[132px] md:mb-40">
         <Image
-          src={item.icon}
+          src={item.icon || "/assets/images/placeholder.png"}
           alt={item.iconAlt}
           fill
           className="object-contain pointer-events-none group-hover:scale-[1.03] transition-transform duration-500"

@@ -47,7 +47,7 @@ export default function Process({ data }: ProcessProps) {
           <div className="relative aspect-4/3 max-sm:max-h-[221px] w-full overflow-hidden rounded-[10px] 3xl:h-[600px] 3xl:w-[995px] 3xl:shrink-0">
             <Image
               ref={imageRef}
-              src={data.image}
+              src={data.image || "/assets/images/placeholder.png"}
               alt={data.imageAlt}
               fill
               className="object-cover pointer-events-none select-none"
@@ -57,7 +57,7 @@ export default function Process({ data }: ProcessProps) {
           <div className="flex w-full lg:w-[90%] flex-col gap-[10px] sm:gap-5">
             <SectionTitle title={data.title} />
             <SectionDescription
-              text={data.description}
+              html={data.description}
               className="text-description-2 text-description-color"
             />
           </div>

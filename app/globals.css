@@ -341,10 +341,10 @@ body {
 
 @keyframes scrollBounce {
   0% {
-    transform: translateY(-4px);
+    transform: translateX(-4px);
   }
   100% {
-    transform: translateY(4px);
+    transform: translateX(4px);
   }
 }
 

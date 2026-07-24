@@ -285,9 +285,15 @@ export default function HowWeWorkDetail() {
                   placeholder="Title"
                 />
                 <Label className="font-bold">Description</Label>
-                <Textarea
-                  {...register("secondSection.description")}
-                  placeholder="Description"
+                <Controller
+                  name={`secondSection.description`}
+                  control={control}
+                  render={({ field }) => (
+                    <TinyEditor
+                      setNewsContent={field.onChange}
+                      newsContent={field.value}
+                    />
+                  )}
                 />
               </div>
             </div>

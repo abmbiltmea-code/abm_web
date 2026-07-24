@@ -85,7 +85,7 @@ export default function SectorItemDetail() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "Sector saved");
-        router.push("/admin/sectors");
+        router.push("/4bm-4dm1n/sectors");
       } else {
         toast.error(message || "Failed to save sector");
       }

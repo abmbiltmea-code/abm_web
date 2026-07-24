@@ -50,7 +50,7 @@ export default function OurCommitment({ data }: { data: SixthSection }) {
                 className="absolute inset-0"
               >
                 <Image
-                  src={items[active].image}
+                  src={items[active].image || "/assets/images/placeholder.png"}
                   alt={items[active].imageAlt}
                   fill
                   className="object-cover pointer-events-none"
@@ -143,7 +143,7 @@ export default function OurCommitment({ data }: { data: SixthSection }) {
                 <div className="rounded-[10px] overflow-hidden h-full flex flex-col bg-white">
                   <div className="relative w-full h-[161px] shrink-0">
                     <Image
-                      src={item.image}
+                      src={item.image || "/assets/images/placeholder.png"}
                       alt={item.imageAlt}
                       fill
                       className="object-cover object-top"

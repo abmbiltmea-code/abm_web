@@ -12,14 +12,6 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
 
   const segments = pathname.split("/").filter(Boolean);
 
-  //  const crumbs = segments.map((seg, i) => ({
-  //     label: seg
-  //       .split("-")
-  //       .map((w) => (w.toLowerCase() === "and" ? "&" : w.charAt(0).toUpperCase() + w.slice(1)))
-  //       .join(" "),
-  //     href: "/" + segments.slice(0, i + 1).join("/"),
-  //   }));
-
   const crumbs = [
     { label: "Home", href: "/" },
     ...segments.map((seg, i) => ({
@@ -42,10 +34,10 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
       <ol className="flex items-center gap-1">
         {crumbs.map((crumb, i) => {
           const isLast = i === crumbs.length - 1;
-          const label =
-            isLast && crumb.label.length > 30
-              ? crumb.label.slice(0, 30) + "..."
-              : crumb.label;
+          const isTruncated = isLast && crumb.label.length > 30;
+          const truncatedLabel = isTruncated
+            ? crumb.label.slice(0, 30) + "..."
+            : crumb.label;
 
           return (
             <li key={crumb.href} className="flex items-center gap-1">
@@ -60,14 +52,23 @@ export default function Breadcrumb({ variant }: BreadcrumbProps) {
                 <span
                   className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
-                  {label}
+                  {isTruncated ? (
+                    <>
+                      {/* Truncated version — shown below lg (1024px) */}
+                      <span className="lg:hidden">{truncatedLabel}</span>
+                      {/* Full label — shown from lg (1024px) up, no truncation */}
+                      <span className="hidden lg:inline">{crumb.label}</span>
+                    </>
+                  ) : (
+                    crumb.label
+                  )}
                 </span>
               ) : (
                 <Link
                   href={crumb.href}
                   className={`${color} text-[10px] sm:text-15 leading-none sm:leading-[1.33333] font-tasa uppercase`}
                 >
-                  {label}
+                  {crumb.label}
                 </Link>
               )}
             </li>

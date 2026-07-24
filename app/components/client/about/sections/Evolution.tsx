@@ -237,7 +237,7 @@ export default function Evolution({ data }: { data: FifthSection }) {
                 style={{ opacity: i === realIndex ? 1 : 0 }}
               >
                 <Image
-                  src={item.image}
+                  src={item.image || "/assets/images/placeholder.png"}
                   alt={item.imageAlt}
                   fill
                   priority={i === 0}
@@ -292,7 +292,7 @@ export default function Evolution({ data }: { data: FifthSection }) {
 
           {/* Desktop (vertical) */}
           <div
-            className="hidden lg:block shrink-0 relative overflow-hidden w-[45px] h-[350px] xl:h-[420px] my-40 3xl:my-[42px] 3xl:h-[475px] cursor-grab active:cursor-grabbing order-1 lg:order-2"
+            className="hidden lg:block shrink-0 relative overflow-hidden w-[50px] h-[350px] xl:h-[420px] my-40 3xl:my-[42px] 3xl:h-[475px] cursor-grab active:cursor-grabbing order-1 lg:order-2"
             style={{ touchAction: "none" }}
             onPointerDown={onPointerDown("y")}
             onPointerMove={onPointerMove("y")}

@@ -95,7 +95,7 @@ export default function InnerCta({ data, email }: InnerCtaProps) {
           />
 
           <SectionDescription
-            className="text-white/80 text-description max-w-[50ch] mb-[15px] md:mb-20"
+            className="text-white/80 text-description max-w-[70ch] mb-[15px] md:mb-20"
             html={data.description}
           />
 

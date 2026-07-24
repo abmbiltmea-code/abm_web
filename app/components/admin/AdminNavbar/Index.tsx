@@ -1,6 +1,6 @@
 "use client";
 
-import ClientSideLink from "@/app/(admin)/admin/client-side-link";
+import ClientSideLink from "@/app/(admin)/4bm-4dm1n/client-side-link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import {
@@ -24,40 +24,40 @@ const AdminNavbar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Home", href: "/admin/home", icon: Home },
-    { name: "About", href: "/admin/about", icon: Info },
-    { name: "Team", href: "/admin/team", icon: Users },
-    { name: "Sectors", href: "/admin/sectors", icon: Building2 },
-    { name: "Projects", href: "/admin/projects", icon: FolderKanban },
-    { name: "Careers", href: "/admin/careers", icon: BriefcaseBusiness },
+    { name: "Home", href: "/4bm-4dm1n/home", icon: Home },
+    { name: "About", href: "/4bm-4dm1n/about", icon: Info },
+    { name: "Team", href: "/4bm-4dm1n/team", icon: Users },
+    { name: "Sectors", href: "/4bm-4dm1n/sectors", icon: Building2 },
+    { name: "Projects", href: "/4bm-4dm1n/projects", icon: FolderKanban },
+    { name: "Careers", href: "/4bm-4dm1n/careers", icon: BriefcaseBusiness },
     {
       name: "Contact",
       href: "/admin/contact",
       icon: Phone,
       hasChild: true,
       children: [
-        { name: "Main Page", href: "/admin/contact" },
-        { name: "Enquiries", href: "/admin/contact/enquiry" },
+        { name: "Main Page", href: "/4bm-4dm1n/contact" },
+        { name: "Enquiries", href: "/4bm-4dm1n/contact/enquiry" },
       ],
     },
-    { name: "News", href: "/admin/news", icon: Newspaper },
-    { name: "Divisions (Services)", href: "/admin/divisions", icon: Workflow },
-    { name: "Gallery", href: "/admin/gallery", icon: GalleryVerticalIcon },
-    { name: "Certifications", href: "/admin/certifications", icon: ShieldCheck },
-    { name: "Clients", href: "/admin/clients", icon: Handshake },
-    { name: "How We Work", href: "/admin/how-we-work", icon: Workflow },
+    { name: "News", href: "/4bm-4dm1n/news", icon: Newspaper },
+    { name: "Divisions (Services)", href: "/4bm-4dm1n/divisions", icon: Workflow },
+    { name: "Gallery", href: "/4bm-4dm1n/gallery", icon: GalleryVerticalIcon },
+    { name: "Certifications", href: "/4bm-4dm1n/certifications", icon: ShieldCheck },
+    { name: "Clients", href: "/4bm-4dm1n/clients", icon: Handshake },
+    { name: "How We Work", href: "/4bm-4dm1n/how-we-work", icon: Workflow },
     {
       name: "Forms",
       href: "/admin/forms/home-enquiry",
       icon: FormIcon,
       hasChild: true,
       children: [
-        { name: "Home Enquiries", href: "/admin/forms/home-enquiry" },
-        { name: "Contact Enquiries", href: "/admin/forms/contact-enquiry" },
-        { name: "Career Enquiries", href: "/admin/forms/career-enquiry" },
+        { name: "Home Enquiries", href: "/4bm-4dm1n/forms/home-enquiry" },
+        { name: "Contact Enquiries", href: "/4bm-4dm1n/forms/contact-enquiry" },
+        { name: "Career Enquiries", href: "/4bm-4dm1n/forms/career-enquiry" },
       ],
     },
-    { name: "Settings", href: "/admin/settings", icon: Settings },
+    { name: "Settings", href: "/4bm-4dm1n/settings", icon: Settings },
   ];
 
   const isItemActive = (item: (typeof navItems)[number]) => {

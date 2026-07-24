@@ -53,7 +53,7 @@ function CertificateCard({
 
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] h-[90%] 3xl:w-[380px] 3xl:h-[420px]">
           <Image
-            src={item.image}
+            src={item.image || "/assets/images/placeholder.png"}
             alt={item.imageAlt}
             fill
             className="object-contain object-bottom pointer-events-none"
@@ -62,7 +62,7 @@ function CertificateCard({
       </div>
 
       <div className="hidden lg:block">
-        <p className="text-subtitle-3 mb-[5px]">{item.title}</p>
+        <p className="text-subtitle-3 mb-[5px] line-clamp-2">{item.title}</p>
         <p className="text-description-2 text-description-color">
           Authority: {item.label.toUpperCase()}
         </p>

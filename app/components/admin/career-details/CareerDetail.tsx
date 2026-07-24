@@ -71,7 +71,7 @@ export default function JobEditPage() {
       const { message } = await res.json();
       if (res.ok) {
         toast.success(message || "Job saved");
-        router.push("/admin/careers");
+        router.push("/4bm-4dm1n/careers");
       } else {
         toast.error(message || "Failed to save job");
       }

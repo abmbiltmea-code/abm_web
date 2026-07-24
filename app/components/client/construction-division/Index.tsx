@@ -1,6 +1,5 @@
 import InnerBanner from "../common/InnerBanner";
 import InnerCta from "../common/InnerCta";
-import { ctaData, cta2Data } from "./data";
 import SectionHeader from "../common/SectionHeader";
 import Overview from "./sections/Overview";
 import WhatWeDo from "./sections/WhatWeDo";
@@ -17,7 +16,7 @@ const Index = ({ data }: DivisionDetailProps) => {
         labelTitle={data.firstSection.sectionLabel}
         sectionTitle={data.firstSection.title}
         sectionDescription={data.firstSection.description}
-        titleClassName="max-w-[25ch]"
+        titleClassName="max-w-[35ch]"
         descriptionClassName="max-w-[65ch] 3xl:max-w-[995px] !text-description"
       />
       <Overview data={data.secondSection} />

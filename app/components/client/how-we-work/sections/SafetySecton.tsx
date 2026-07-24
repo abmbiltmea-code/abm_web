@@ -55,7 +55,7 @@ export default function SafetySection({data}: {data: FourthSection}) {
     <section ref={sectionRef} className="bg-cream-background">
       <div className="lg:hidden relative w-full h-[266px] sm:h-[300px] md:h-[400px] lg:h-[450px]">
         <Image
-          src={image}
+          src={image || "/assets/images/placeholder.png"}
           alt={imageAlt}
           fill
           className="object-cover object-top pointer-events-none select-none"
@@ -90,7 +90,7 @@ export default function SafetySection({data}: {data: FourthSection}) {
                 >
                   <div className="shrink-0 box-size rounded-[5px] bg-primary flex items-center justify-center">
                     <Image
-                      src={item.icon}
+                      src={item.icon || "/assets/images/placeholder.png"}
                       alt="safety icon"
                       width={40}
                       height={40}
@@ -109,7 +109,7 @@ export default function SafetySection({data}: {data: FourthSection}) {
         <div className="relative w-full lg:w-[60%] 3xl:w-[969px] 3xl:shrink-0 lg:self-stretch overflow-hidden">
           <Image
             ref={imageRef}
-            src={image}
+            src={image || "/assets/images/placeholder.png"}
             alt={imageAlt}
             fill
             className="object-cover pointer-events-none select-none"

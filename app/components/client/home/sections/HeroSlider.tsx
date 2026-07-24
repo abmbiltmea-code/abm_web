@@ -130,11 +130,11 @@ export default function HeroSlider({data} : {data : FirstSection} ) {
               Scroll to explore
             </p>
             <Image
-              src="/assets/icons/double-arrow-white.svg"
+              src="/assets/icons/arrow-loop.svg"
               alt="scroll-icon"
-              width={12}
-              height={12}
-              className="animate-scroll-bounce"
+              width={14}
+              height={14}
+              className="animate-scroll-bounce rotate-90"
             />
           </div>
         </div>
@@ -228,11 +228,11 @@ export default function HeroSlider({data} : {data : FirstSection} ) {
             Scroll to explore
           </p>
           <Image
-            src="/assets/icons/double-arrow-white.svg"
+            src="/assets/icons/arrow-loop.svg"
             alt="scroll-icon"
-            width={12}
-            height={12}
-            className="animate-scroll-bounce"
+            width={14}
+            height={14}
+            className="animate-scroll-bounce rotate-90"
           />
         </div>
       </div>
