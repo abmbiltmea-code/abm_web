@@ -53,7 +53,7 @@ export default function SectorWeServe({ data }: { data: FourthSection }) {
                   <div className="flex flex-col gap-2.5 sm:gap-[18px] px-5 py-5 sm:px-40 sm:py-50 border rounded-[5px] border-[#f9f9f9] h-full">
                     <span className="shrink-0 flex items-center justify-center bg-primary text-white text-subtitle w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] lg:w-[40px] lg:h-[40px] rounded-[5px]">
                       <Image
-                        src={item.icon}
+                        src={item.icon || "/assets/images/placeholder.png"}
                         alt={item.iconAlt}
                         width={29}
                         height={29}
@@ -91,7 +91,7 @@ export default function SectorWeServe({ data }: { data: FourthSection }) {
                   >
                     <span className="shrink-0 flex items-center justify-center bg-primary text-white text-subtitle w-[40px] h-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-[5px]">
                       <Image
-                        src={item.icon}
+                        src={item.icon || "/assets/images/placeholder.png"}
                         alt={item.iconAlt}
                         width={29}
                         height={29}

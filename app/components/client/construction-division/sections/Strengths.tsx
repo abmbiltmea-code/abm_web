@@ -54,7 +54,7 @@ export default function Strengths({ data }: { data: FifthSection }) {
               <div className="rounded-[10px] overflow-hidden border border-border-color h-full flex flex-col">
                 <div className="relative w-full h-[170px] shrink-0">
                   <Image
-                    src={item.image}
+                    src={item.image || "/assets/images/placeholder.png"}
                     alt={item.imageAlt}
                     fill
                     className="object-cover"
@@ -134,7 +134,7 @@ export default function Strengths({ data }: { data: FifthSection }) {
             className="absolute inset-0"
           >
             <Image
-              src={items[active].image}
+              src={items[active].image || "/assets/images/placeholder.png"}
               alt={items[active].imageAlt}
               fill
               className="object-cover"

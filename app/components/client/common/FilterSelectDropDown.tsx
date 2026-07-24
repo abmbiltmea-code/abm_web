@@ -119,11 +119,11 @@ export default function FilterSelectDropDown({
                 <button
                   type="button"
                   onClick={() => handleSelect(option)}
-                  className={`block w-full px-4 py-2.5 text-left text-description-2 hover:bg-cream-background cursor-pointer ${
+                  className={`block w-full px-4 py-2.5 text-left text-description-2 hover:bg-cream-background cursor-pointer capitalize ${
                     option === value ? "text-primary" : "text-description-color"
                   }`}
                 >
-                  {option}
+                  {option.toLowerCase()}
                 </button>
               </li>
             ))}
