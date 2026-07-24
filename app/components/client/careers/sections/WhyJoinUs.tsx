@@ -3,18 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { whyJoinUsData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
+import { SecondSection } from "@/app/types/careers";
 
-export default function WhyJoinUs() {
+export default function WhyJoinUs({ data }: { data: SecondSection }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [baseImage, setBaseImage] = useState(whyJoinUsData[0].image);
-  const active = whyJoinUsData[activeIndex];
+  const [baseImage, setBaseImage] = useState(data.items[0].image);
+  const active = data.items[activeIndex];
 
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
@@ -37,13 +37,13 @@ export default function WhyJoinUs() {
             }}
             className="!overflow-visible [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto"
           >
-            {whyJoinUsData.map((item, i) => (
+            {data.items.map((item, i) => (
               <SwiperSlide key={i}>
                 <div className="rounded-[10px] overflow-hidden h-full flex flex-col bg-white">
                   <div className="relative w-full h-[170px] shrink-0">
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={item.image || "/assets/images/placeholder.png"}
+                      alt={item.imageAlt}
                       fill
                       className="object-cover"
                     />
@@ -83,7 +83,7 @@ export default function WhyJoinUs() {
             >
               <Image
                 src={active.image}
-                alt={active.title}
+                alt={active.imageAlt}
                 fill
                 className="object-cover"
               />
@@ -93,7 +93,7 @@ export default function WhyJoinUs() {
           <div className="w-full lg:w-[50%]">
             <SectionTitle title="Why Join Us" className="mb-50" />
             <div className="flex flex-col">
-              {whyJoinUsData.map((item, index) => {
+              {data.items.map((item, index) => {
                 const isActive = index === activeIndex;
                 return (
                   <Reveal
@@ -106,7 +106,7 @@ export default function WhyJoinUs() {
                       onClick={() => setActiveIndex(index)}
                       onMouseEnter={() => setActiveIndex(index)}
                       onFocus={() => setActiveIndex(index)}
-                      className={`w-full flex items-start gap-30 -mt-px text-left ${index === whyJoinUsData.length - 1 ? "pb-0" : "pb-50"}`}
+                      className={`w-full flex items-start gap-30 -mt-px text-left ${index === data.items.length - 1 ? "pb-0" : "pb-50"}`}
                     >
                       <span
                         className={`flex items-center justify-center box-size shrink-0 text-description-2 rounded-[5px] transition-colors duration-400 ${

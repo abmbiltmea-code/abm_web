@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { sectorsData } from "../data";
 import CustomButton from "../../common/CustomButton";
 import { useContainerInset } from "@/app/hooks/useContainerInset";
 import SectionLabel from "../../common/SectionLabel";
@@ -13,10 +12,10 @@ import "swiper/css";
 import { motion } from "framer-motion";
 import { moveUp } from "../../animations/motionVariants";
 import AnimatedIcon from "../../common/AnimatedSvg";
+import { FourthSection, HomeSectorCard } from "@/app/types/home";
 
-export default function Sectors() {
-  const { label, title, description, tabs } = sectorsData;
-  const [active, setActive] = useState(tabs[0]);
+export default function Sectors({data, sectors}: {data: FourthSection, sectors: HomeSectorCard[]}) {
+  const [active, setActive] = useState(sectors[0]);
   const inset = useContainerInset();
 
   return (
@@ -45,33 +44,33 @@ export default function Sectors() {
           />
           {/* Label */}
           <div className="mb-50">
-            <SectionLabel title={label} textColor="text-white" />
+            <SectionLabel title={data.sectionLabel} textColor="text-white" />
           </div>
           {/* Title */}
-          <SectionTitle title={title} className="text-white mb-20" />
+          <SectionTitle title={data.title} className="text-white mb-20" />
           {/* Description */}
           <SectionDescription
-            text={description}
+            text={data.description}
             className="text-white/80 mb-60 max-w-[40ch]"
           />
           {/* Tabs — two column grid matching design */}
           <div className="grid grid-cols-[200px_200px] gap-y-30 gap-x-80 3xl:gap-x-[88px]">
-            {tabs.map((tab, i) => {
-              const isActive = tab.id === active.id;
+            {sectors.map((sector, i) => {
+              const isActive = sector._id === active._id;
               return (
                 <motion.button
                   variants={moveUp(0.1 * i)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  key={tab.id}
-                  onClick={() => setActive(tab)}
+                  key={sector._id}
+                  onClick={() => setActive(sector)}
                   className={[
                     "text-subtitle uppercase transition-colors duration-300 w-[220px] flex items-center gap-20 cursor-pointer",
                     isActive ? "text-[#E63027]" : "text-white",
                   ].join(" ")}
                 >
-                  {tab.title}
+                  {sector.title}
                   {isActive && (
                     <div>
                       <Image
@@ -91,17 +90,17 @@ export default function Sectors() {
         {/* Right — 51.47% */}
         <div className="relative w-[51.67%] shrink-0 overflow-hidden">
           {/* Background image per active tab */}
-          {tabs.map((tab) => (
+          {sectors.map((sector) => (
             <Image
-              key={tab.id}
-              src={tab.image}
-              alt={tab.title}
+              key={sector._id}
+              src={sector.homePageImage || "/assets/images/placeholder.png"}
+              alt={sector.homePageImageAlt}
               fill
               className={[
                 "object-cover transition-opacity duration-500",
-                tab.id === active.id ? "opacity-100" : "opacity-0",
+                sector._id === active._id ? "opacity-100" : "opacity-0",
               ].join(" ")}
-              priority={tab.id === tabs[0].id}
+              priority={sector._id === sectors[0]._id}
             />
           ))}
           {/* Dark gradient overlay */}
@@ -116,8 +115,8 @@ export default function Sectors() {
           <div className="absolute bottom-0 left-0 pl-60 3xl:pl-90 py-120 3xl:py-140 flex flex-col">
             <div className="w-[120px] h-[120px] 3xl:w-[150px] 3xl:h-[150px] mb-40">
               <AnimatedIcon
-                src={active.icon}
-                alt={active.title}
+                src={active.homePageIcon || "/assets/images/placeholder.png"}
+                alt={active.homePageIconAlt}
                 width={150}
                 height={150}
                 className="pointer-events-none invert brightness-0"
@@ -127,10 +126,10 @@ export default function Sectors() {
               {active.title}
             </h3>
             <p className="text-description max-w-[40ch] mb-20 text-white/80">
-              {active.description}
+              {active.homePageDescription}
             </p>
             <div>
-              <CustomButton text={active.buttonText} href={active.href} />
+              <CustomButton text={active.homePageButton.text || "View Projects"} href={active.homePageButton.link || `/projects?sector=${active.title}`} />
             </div>
           </div>
         </div>
@@ -140,11 +139,11 @@ export default function Sectors() {
       <div className="xl:hidden py-120 container">
         <div className="mb-30">
           <div className="mb-5">
-            <SectionLabel title={label} textColor="text-white" />
+            <SectionLabel title={data.sectionLabel} textColor="text-white" />
           </div>
-          <SectionTitle title={title} className="text-white mb-20" />
+          <SectionTitle title={data.title} className="text-white mb-20" />
           <SectionDescription
-            text={description}
+            text={data.description}
             className="text-white/80 max-w-[40ch]"
           />
         </div>
@@ -160,12 +159,12 @@ export default function Sectors() {
           }}
           className="!overflow-visible"
         >
-          {tabs.map((tab) => (
-            <SwiperSlide key={tab.id}>
+          {sectors.map((sector) => (
+            <SwiperSlide key={sector._id}>
               <div className="relative rounded-[10px] overflow-hidden h-[286px] md:h-[380px] lg:h-[410px]">
                 <Image
-                  src={tab.image}
-                  alt={tab.title}
+                  src={sector.homePageImage || "/assets/images/placeholder.png"}
+                  alt={sector.homePageImageAlt}
                   fill
                   className="object-cover"
                 />
@@ -181,8 +180,8 @@ export default function Sectors() {
                 <div className="absolute inset-0 flex flex-col justify-end px-[15px] md:px-30 py-5 md:py-30">
                   <div className="w-[60px] h-[60px] mb-20">
                     <AnimatedIcon
-                      src={tab.icon}
-                      alt={tab.title}
+                      src={sector.homePageIcon || "/assets/images/placeholder.png"}
+                      alt={sector.homePageIconAlt}
                       width={200}
                       height={200}
                       className="pointer-events-none invert brightness-0"
@@ -190,15 +189,15 @@ export default function Sectors() {
                   </div>
 
                   <h3 className="text-white text-subtitle-2 mb-20 uppercase">
-                    {tab.title}
+                    {sector.title}
                   </h3>
 
                   <p className="text-description max-w-[40ch] mb-[15px] sm:mb-20 text-white/80">
-                    {tab.description}
+                    {sector.homePageDescription}
                   </p>
 
                   <div>
-                    <CustomButton text={tab.buttonText} href={tab.href} />
+                    <CustomButton text={sector.homePageButton.text || "View Projects"} href={sector.homePageButton.link || `/projects?sector=${sector.title}`} />
                   </div>
                 </div>
               </div>

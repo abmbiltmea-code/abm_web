@@ -3,18 +3,20 @@ import { bannerData, sectionHeaderData } from "./data";
 import SectionHeader from "../common/SectionHeader";
 import WhyJoinUs from "./sections/WhyJoinUs";
 import OpenPositions from "./sections/OpenPositions";
-const Index = () => {
+import { GetCareersResult } from "@/app/types/careers";
+
+const Index = ({ data }: { data: GetCareersResult }) => {
   return (
     <>
-      <InnerBanner {...bannerData} />
+      <InnerBanner data={data.careers.bannerSection} />
       <SectionHeader
-        labelTitle={sectionHeaderData.label}
-        sectionTitle={sectionHeaderData.title}
-        sectionDescription={sectionHeaderData.description}
+        labelTitle={data.careers.firstSection.sectionLabel}
+        sectionTitle={data.careers.firstSection.title}
+        sectionDescription={data.careers.firstSection.description}
         descriptionClassName="max-w-[65ch] 3xl:max-w-[80ch]"
       />
-      <WhyJoinUs />
-      <OpenPositions />
+      <WhyJoinUs data={data.careers.secondSection} />
+      <OpenPositions data={data.careers.thirdSection} jobs={data.jobs} />
     </>
   );
 };

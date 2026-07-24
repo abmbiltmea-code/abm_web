@@ -1,29 +1,28 @@
 import CustomButton from "@/app/components/client/common/CustomButton";
-import { openPositionsData } from "../data";
 import Link from "next/link";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionReveal from "../../animations/SectionReveal";
 import { moveUp, moveUpV2 } from "../../animations/motionVariants";
 import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import Image from "next/image";
+import { ThirdSection, JobDoc } from "@/app/types/careers";
 
-export default function OpenPositions() {
-  const { title, talentNetwork, jobs } = openPositionsData;
+export default function OpenPositions({ data, jobs }: { data: ThirdSection, jobs: JobDoc[] }) {
 
   return (
     <section className="container py-[60px] md:py-120 3xl:py-150">
       <div className="flex flex-col lg:flex-row gap-40 lg:gap-100 3xl:gap-[125px]">
         {/* Left */}
         <div className="w-full lg:max-w-[40%] 3xl:max-w-[580px] shrink-0">
-          <SectionTitle title={title} className="mb-50" />
+          <SectionTitle title={data.title} className="mb-50" />
 
           <SectionReveal variants={moveUp(0.1)}>
             <div className="bg-cream-background px-[15px] py-5 sm:p-30 rounded-[10px]">
               <h3 className="text-subtitle-2 mb-[10px] uppercase">
-                {talentNetwork.title}
+                {data.subTitle}
               </h3>
               <p className="text-description-color text-description-2 mb-[15px] sm:mb-5 3xl:mb-[23px] max-w-[45ch]">
-                {talentNetwork.description}
+                {data.description}
               </p>
               <div className="relative flex items-center w-full p-[15px] sm:p-20 max-h-[47px] sm:max-h-max">
                 <div
@@ -35,11 +34,11 @@ export default function OpenPositions() {
                 />
 
                 <Link
-                  href={`mailto:${talentNetwork.email}`}
+                  href={`mailto:${data.mail}`}
                   className="relative z-10 text-primary text-20 font-medium leading-[1.416666] md:leading-normal font-tasa pb-px border-b border-primary group"
                 >
                   <div className="flex gap-2 md:gap-[15px] items-center">
-                  {talentNetwork.email} 
+                  {data.mail} 
                     <Image
                       src="/assets/icons/arrow-right-primary.svg"
                       alt="double arrow"
@@ -73,22 +72,22 @@ export default function OpenPositions() {
                   <div className="flex flex-wrap items-center gap-40 3xl:gap-[42px]">
                     <span className="flex items-center gap-[5px] sm:gap-[10px] text-description-color text-description-2">
                       <span className="w-[7px] h-[7px] bg-primary" />
-                      {job.location}
+                      {job.specs.location}
                     </span>
                     <span className="flex items-center gap-[5px] sm:gap-[10px] text-description-color text-description-2">
                       <span className="w-[7px] h-[7px] bg-primary" />
-                      {job.type}
+                      {job.specs.type}
                     </span>
                     <span className="flex items-center gap-[5px] sm:gap-[10px] text-description-color text-description-2">
                       <span className="w-[7px] h-[7px] bg-primary" />
-                      {job.experience}
+                      {job.specs.experience}
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-[30px] sm:mt-0 flex items-stretch gap-10 shrink-0">
                   <CustomButton
-                    href={`/careers/${job.title.toLowerCase().replace(" ", "-")}`}
+                    href={`/careers/${job.slug}`}
                     text="Apply Now"
                   />
                 </div>

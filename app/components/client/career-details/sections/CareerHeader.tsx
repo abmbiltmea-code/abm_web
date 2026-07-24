@@ -1,7 +1,7 @@
 "use client";
 
 import CustomButton from "@/app/components/client/common/CustomButton";
-import { careerDetailData } from "../data";
+// import { careerDetailData } from "../data";
 import Image from "next/image";
 import SectionTitle from "../../animations/SectionTitle";
 import { useState } from "react";
@@ -9,9 +9,10 @@ import CareerApplicationForm from "./CareerApplicationForm";
 import Breadcrumb from "../../common/Breadcrumb";
 import SectionReveal from "../../animations/SectionReveal";
 import { moveUp } from "../../animations/motionVariants";
+import { JobDoc } from "@/app/types/careers";
 
-export default function CareerHeader() {
-  const { category, title, type, location, experience } = careerDetailData;
+export default function CareerHeader({ data }: { data: JobDoc }) {
+  const { category, title, specs } = data;
   const [open, setOpen] = useState(false);
 
   return (
@@ -42,7 +43,7 @@ export default function CareerHeader() {
                 height={32}
                 className="pointer-events-none select-none md:w-[32px] md:h-[32px] sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
               />
-              {type}
+              {specs.type}
             </span>
 
             <span className="hidden sm:block w-px h-[45px] bg-border-color" />
@@ -55,7 +56,7 @@ export default function CareerHeader() {
                 height={32}
                 className="pointer-events-none select-none md:w-[32px] md:h-[32px] sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
               />
-              {location.toUpperCase()}
+              {specs.location}
             </span>
 
             <span className="hidden sm:block w-px h-[45px] bg-border-color" />
@@ -68,7 +69,7 @@ export default function CareerHeader() {
                 height={32}
                 className="pointer-events-none select-none md:w-[32px] md:h-[32px] sm:w-[24px] sm:h-[24px] w-[20px] h-[20px]"
               />
-              {experience.toUpperCase()}
+              {specs.experience}
             </span>
           </div>
 

@@ -3,18 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { clientsConsultantsData } from "../data";
 import SectionLabel from "@/app/components/client/common/SectionLabel";
 import SectionTitle from "@/app/components/client/animations/SectionTitle";
 import SectionDescription from "@/app/components/client/animations/SectionDescription";
+import { SeventhSection } from "@/app/types/home";
 
-function LogoCard({ name, logo }: { name: string; logo: string }) {
+function LogoCard({ imageAlt, image }: { imageAlt: string; image: string }) {
   return (
     <div className="shrink-0 w-[160px] h-[76px] md:w-[200px] md:h-[90px] lg:w-[200px] lg:h-[95px] xl:w-[300px] xl:h-[140px] 3xl:w-[328px] 3xl:h-[156px] bg-white rounded-[5px] flex items-center justify-center">
       <div className="relative w-[130px] h-[60px] md:w-[180px] md:h-[82px] lg:w-[200px] lg:h-[90px] xl:w-[250px] xl:h-[100px] 3xl:w-[288px] 3xl:h-[116px]">
         <Image
-          src={logo}
-          alt={name}
+          src={image}
+          alt={imageAlt}
           fill
           className="object-contain pointer-events-none"
         />
@@ -29,7 +29,7 @@ function InfiniteRow({
   cardWidth = 328,
   gap = 20,
 }: {
-  items: { name: string; logo: string }[];
+  items: { imageAlt: string; image: string }[];
   direction?: 1 | -1;
   cardWidth?: number;
   gap?: number;
@@ -74,14 +74,14 @@ function InfiniteRow({
     <div className="overflow-hidden w-full">
       <div ref={trackRef} className="flex gap-20 w-max will-change-transform">
         {duplicated.map((item, index) => (
-          <LogoCard key={`${item.name}-${index}`} {...item} />
+          <LogoCard key={`${index}-${item.imageAlt}`} {...item} />
         ))}
       </div>
     </div>
   );
 }
 
-export default function Clients() {
+export default function Clients({ data }: { data: SeventhSection }) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -91,27 +91,21 @@ export default function Clients() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const mergedItems = [
-    ...clientsConsultantsData.rowOne,
-    ...clientsConsultantsData.rowTwo,
-  ];
-
   const cardWidth = isMobile ? 160 : 328;
+  const rowOne = data.items.slice(0, Math.ceil(data.items.length / 2));
+  const rowTwo = data.items.slice(Math.ceil(data.items.length / 2));
 
   return (
     <section className="bg-cream-background py-120 3xl:py-140 overflow-hidden">
       <div className="container flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
         <div>
-          <SectionLabel title={clientsConsultantsData.label} />
+          <SectionLabel title={data.sectionLabel} />
         </div>
 
         <div className="flex flex-col lg:section-content-spacing">
-          <SectionTitle
-            title={clientsConsultantsData.title}
-            className="text-secondary mb-20"
-          />
+          <SectionTitle title={data.title} className="text-secondary mb-20" />
           <SectionDescription
-            text={clientsConsultantsData.description}
+            text={data.description}
             className="text-description-color"
           />
         </div>
@@ -119,23 +113,11 @@ export default function Clients() {
 
       <div className="flex flex-col gap-20">
         {isMobile ? (
-          <InfiniteRow
-            items={mergedItems}
-            direction={1}
-            cardWidth={cardWidth}
-          />
+          <InfiniteRow items={data.items} direction={1} cardWidth={cardWidth} />
         ) : (
           <>
-            <InfiniteRow
-              items={clientsConsultantsData.rowOne}
-              direction={1}
-              cardWidth={cardWidth}
-            />
-            <InfiniteRow
-              items={clientsConsultantsData.rowTwo}
-              direction={-1}
-              cardWidth={cardWidth}
-            />
+            <InfiniteRow items={rowOne} direction={1} cardWidth={cardWidth} />
+            <InfiniteRow items={rowTwo} direction={-1} cardWidth={cardWidth} />
           </>
         )}
       </div>

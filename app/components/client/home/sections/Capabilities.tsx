@@ -3,17 +3,17 @@
 import { useState, useRef, useLayoutEffect, useCallback } from "react";
 import Image from "next/image";
 import SectionLabel from "@/app/components/client/common/SectionLabel";
-import { coreCapabilitiesSectionData } from "../data";
 import SectionTitle from "../../animations/SectionTitle";
 import SectionDescription from "../../animations/SectionDescription";
 import { motion } from "framer-motion";
 import CustomButton from "../../common/CustomButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { ThirdSection, HomeDivisionCard } from "@/app/types/home";
 
-const CoreCapabilities = () => {
-  const { capabilityCards } = coreCapabilitiesSectionData;
-  const [activeId, setActiveId] = useState<string>(capabilityCards[1].id);
+const CoreCapabilities = ({data, divisions} : {data: ThirdSection, divisions: HomeDivisionCard[]}) => {
+  console.log(divisions, "his");
+  const [activeId, setActiveId] = useState<string>(divisions[1]._id);
   const containerRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLDivElement>(null);
   const [basis, setBasis] = useState<{
@@ -28,14 +28,14 @@ const CoreCapabilities = () => {
 
     const gap = parseFloat(getComputedStyle(container).columnGap || "0");
     const total = container.offsetWidth;
-    const count = capabilityCards.length;
+    const count = divisions.length;
 
     const activeWidth = measure.offsetWidth;
     const remaining = total - activeWidth - gap * (count - 1);
     const inactiveWidth = Math.max(remaining / (count - 1), 0);
 
     setBasis({ active: activeWidth, inactive: inactiveWidth });
-  }, [capabilityCards.length]);
+  }, [divisions.length]);
 
   useLayoutEffect(() => {
     recalc();
@@ -58,15 +58,15 @@ const CoreCapabilities = () => {
       <div className="container">
         <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
           <div>
-            <SectionLabel title={coreCapabilitiesSectionData.label} />
+            <SectionLabel title={data.sectionLabel} />
           </div>
           <div className="flex flex-col lg:section-content-spacing gap-20">
             <SectionTitle
-              title={coreCapabilitiesSectionData.title}
+              title={data.title}
               className="text-secondary"
             />
             <SectionDescription
-              text={coreCapabilitiesSectionData.description}
+              text={data.description}
               className="text-description-color max-w-[70ch] 3xl:max-w-none"
             />
           </div>
@@ -82,8 +82,8 @@ const CoreCapabilities = () => {
           ref={containerRef}
           className="hidden xl:flex items-center gap-20 overflow-hidden xl:h-[450px] 3xl:h-[633px]"
         >
-          {capabilityCards.map((card) => {
-            const isActive = card.id === activeId;
+          {divisions.map((card) => {
+            const isActive = card._id === activeId;
             const flexBasis = basis
               ? isActive
                 ? basis.active
@@ -92,8 +92,8 @@ const CoreCapabilities = () => {
 
             return (
               <div
-                key={card.id}
-                onMouseEnter={() => setActiveId(card.id)}
+                key={card._id}
+                onMouseEnter={() => setActiveId(card._id)}
                 style={
                   flexBasis !== undefined
                     ? { flexBasis, flexGrow: 0, flexShrink: 0 }
@@ -117,8 +117,8 @@ const CoreCapabilities = () => {
                 />
 
                 <Image
-                  src={card.image}
-                  alt={card.title}
+                  src={card.homePageSection.image || "/assets/images/placeholder.png"}
+                  alt={card.homePageSection.imageAlt}
                   fill
                   className="object-cover"
                 />
@@ -163,7 +163,7 @@ const CoreCapabilities = () => {
 
                   <div className="absolute bottom-40 left-40 right-40">
                     <h3 className="text-white text-subtitle-2 mb-[10px]">
-                      {card.title}
+                      {card.homePageSection.title}
                     </h3>
                     <div
                       className={`overflow-hidden transition-all duration-900 ease-in-out ${
@@ -186,7 +186,7 @@ const CoreCapabilities = () => {
                           delay: isActive ? 0.55 : 0,
                         }}
                       >
-                        {card.description}
+                        {card.homePageSection.description}
                       </motion.p>
                       <motion.div
                         initial={false}
@@ -201,7 +201,7 @@ const CoreCapabilities = () => {
                           delay: isActive ? 0.55 : 0,
                         }}
                       >
-                        <CustomButton text={card.buttonText} href={card.href} />
+                        <CustomButton text={"View More"} href={card.homePageSection.buttonLink} />
                       </motion.div>
                     </div>
                   </div>
@@ -224,8 +224,8 @@ const CoreCapabilities = () => {
             }}
             className="!overflow-visible"
           >
-            {capabilityCards.map((card) => (
-              <SwiperSlide key={card.id}>
+            {divisions.map((card) => (
+              <SwiperSlide key={card._id}>
                 <div className="relative rounded-[10px] overflow-hidden h-[342px] md:h-[380px] lg:h-[410px]">
                   <div
                     className="absolute inset-0 z-10"
@@ -236,8 +236,8 @@ const CoreCapabilities = () => {
                   />
 
                   <Image
-                    src={card.image}
-                    alt={card.title}
+                    src={card.homePageSection.image || "/assets/images/placeholder.png"}
+                    alt={card.homePageSection.imageAlt}
                     fill
                     className="object-cover"
                   />
@@ -245,12 +245,12 @@ const CoreCapabilities = () => {
                   <div className="absolute inset-0 z-20">
                     <div className="absolute bottom-0 right-0 px-[15px] md:px-30 py-5 md:py-30">
                       <h3 className="text-white text-subtitle-2 mb-20">
-                        {card.title}
+                        {card.homePageSection.title}
                       </h3>
                       <p className="text-white/80 text-description max-w-[45ch] mb-[15px] sm:mb-20">
-                        {card.description}
+                        {card.homePageSection.description}
                       </p>
-                      <CustomButton text={card.buttonText} href={card.href} />
+                      <CustomButton text={"View More"} href={card.homePageSection.buttonLink} />
                     </div>
                   </div>
                 </div>
