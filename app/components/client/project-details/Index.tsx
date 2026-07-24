@@ -1,6 +1,4 @@
 import InnerCta from "../common/InnerCta";
-import { ctaData, projectDetails } from "./data";
-import { PROJECTS } from "../projects/data";
 import ProjectBanner from "./sections/ProjectBanner";
 import InfoWithSlider from "./sections/InfoWithSlider";
 import ProjectSpecsOverview from "./sections/ProjectSpecsOverview";
@@ -20,7 +18,7 @@ const Index = ({data}: {data: ProjectDetail}) => {
         projectOverview={data.content}
         scopeOfWork={data.scopeOfWorks.items.map((item: {title: string}) => item.title)}
       />
-      <SimilarProjects projects={PROJECTS} />
+      <SimilarProjects projects={data.relatedProjects} />
       <InnerCta data={data.cta} />
     </>
   );

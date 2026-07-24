@@ -166,33 +166,64 @@ export const getProjectBySlug = (slug: string) =>
       const allStatuses = doc.statuses ?? [];
       const allSectors = (sectorDoc as any)?.secondSection?.sectors ?? [];
 
-      const rawItem = allItems.find((p: any) => p.slug === slug);
-      if (!rawItem) throw new Error(`Project not found: ${slug}`);
-
       const sectorsById = new Map<string, any>(
         allSectors.map((s: any) => [String(s._id), s]),
       );
       const divisionsById = new Map<string, any>();
-      if (rawItem.division && typeof rawItem.division === "object") {
-        divisionsById.set(String(rawItem.division._id), rawItem.division);
-      }
-      const normalizedItem = {
-        ...rawItem,
-        division:
-          rawItem.division && typeof rawItem.division === "object"
-            ? rawItem.division._id
-            : rawItem.division,
-      };
+      allItems.forEach((p: any) => {
+        if (p.division && typeof p.division === "object") {
+          divisionsById.set(String(p.division._id), p.division);
+        }
+      });
 
-      const [resolved] = resolveProjects(
-        [normalizedItem],
+      const normalizedItems = allItems.map((p: any) => ({
+        ...p,
+        division:
+          p.division && typeof p.division === "object"
+            ? p.division._id
+            : p.division,
+      }));
+
+      // Resolve every project (needed to score + pick related ones)
+      const resolvedAll = resolveProjects(
+        normalizedItems,
         allLocations,
         allStatuses,
         sectorsById,
         divisionsById,
       );
 
-      return JSON.parse(JSON.stringify(resolved));
+      const current = resolvedAll.find((p) => p.slug === slug);
+      if (!current) throw new Error(`Project not found: ${slug}`);
+
+      const relatedProjects: ProjectListItem[] = resolvedAll
+        .filter((p) => p._id !== current._id && !p.isHidden)
+        .map((p) => {
+          let score = 0;
+          if (p.sector?._id && p.sector._id === current.sector?._id) score += 1;
+          if (p.division?._id && p.division._id === current.division?._id) score += 1;
+          if (p.location?._id && p.location._id === current.location?._id) score += 1;
+          return { p, score };
+        })
+        .filter(({ score }) => score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map(({ p }) => ({
+          _id: p._id,
+          title: p.title,
+          slug: p.slug,
+          featured: p.featured,
+          thumbImage: p.thumbImage,
+          thumbImageAlt: p.thumbImageAlt,
+          location: p.location,
+          status: p.status,
+          sector: p.sector,
+          division: p.division,
+        }));
+
+      return JSON.parse(
+        JSON.stringify({ ...current, relatedProjects }),
+      );
     },
     ["Project-slug", slug],
     { tags: ["Project"] },
