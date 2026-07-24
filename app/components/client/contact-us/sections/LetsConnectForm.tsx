@@ -9,12 +9,19 @@ import {
   LetsConnectFormValues,
 } from "@/lib/validations/LetsConnectForm";
 import CustomButton from "../../common/CustomButton";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { toast } from "sonner";
+import { sendContactEnquiryAction } from "@/lib/mail/actions/sendContactEnquiryAction";
 
 export default function LetsConnectForm() {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<LetsConnectFormValues>({
     resolver: zodResolver(letsConnectFormSchema),
@@ -28,7 +35,21 @@ export default function LetsConnectForm() {
   });
 
   const onSubmit = async (data: LetsConnectFormValues) => {
-    reset();
+    if (!recaptchaRef.current?.getValue()) {
+      toast.error("Please complete the captcha verification");
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      await sendContactEnquiryAction(data);
+      toast.success("Enquiry sent successfully!");
+      reset();
+      recaptchaRef.current?.reset();
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,9 +95,19 @@ export default function LetsConnectForm() {
         />
       </div>
 
+      <div className="mt-20">
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+        />
+      </div>
+
       {/* Submit */}
       <div className="mt-20">
-        <CustomButton type="submit" text="Submit" />
+        <CustomButton
+          type="submit"
+          text={isSubmitting ? "Submitting..." : "Submit"}
+        />
       </div>
     </form>
   );

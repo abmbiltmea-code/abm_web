@@ -12,7 +12,6 @@ import "swiper/css";
 import { ThirdSection, HomeDivisionCard } from "@/app/types/home";
 
 const CoreCapabilities = ({data, divisions} : {data: ThirdSection, divisions: HomeDivisionCard[]}) => {
-  console.log(divisions, "his");
   const [activeId, setActiveId] = useState<string>(divisions[1]._id);
   const containerRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLDivElement>(null);

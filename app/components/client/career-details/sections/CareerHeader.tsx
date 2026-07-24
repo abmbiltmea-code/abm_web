@@ -1,7 +1,6 @@
 "use client";
 
 import CustomButton from "@/app/components/client/common/CustomButton";
-// import { careerDetailData } from "../data";
 import Image from "next/image";
 import SectionTitle from "../../animations/SectionTitle";
 import { useState } from "react";

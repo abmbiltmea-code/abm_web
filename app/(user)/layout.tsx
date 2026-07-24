@@ -4,6 +4,7 @@ import LenisProvider from "../components/client/layout/LenisProvider";
 import Header from "../components/client/layout/Header";
 import Footer from "../components/client/layout/Footer";
 import IntroAnimation from "../components/client/animations/IntroAnimation";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "ABM",
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html style={{ overflow: "hidden" }} className={`h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <Toaster />
         <LenisProvider>
           <IntroAnimation />
           <Header />

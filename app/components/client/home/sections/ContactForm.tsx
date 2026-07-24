@@ -10,6 +10,10 @@ import {
   homeEnquiryFormSchema,
   HomeEnquiryFormValues,
 } from "@/lib/validations/homeEnquiryForm";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
+import { sendHomeEnquiryAction } from "@/lib/mail/actions/sendHomeEnquiryAction";
 
 const subjectOptions = [
   { label: "General Inquiry", value: "general" },
@@ -20,10 +24,14 @@ const subjectOptions = [
 ];
 
 export default function ContactForm() {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<HomeEnquiryFormValues>({
     resolver: zodResolver(homeEnquiryFormSchema),
@@ -37,8 +45,22 @@ export default function ContactForm() {
     },
   });
 
-  const onSubmit = (data: HomeEnquiryFormValues) => {
-
+  const onSubmit = async (data: HomeEnquiryFormValues) => {
+    if (!recaptchaRef.current?.getValue()) {
+      toast.error("Please complete the captcha verification");
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      await sendHomeEnquiryAction(data);
+      toast.success("Enquiry sent successfully!");
+      reset();
+      recaptchaRef.current?.reset();
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -107,9 +129,19 @@ export default function ContactForm() {
           />
         </div>
 
+        <div className="mt-20">
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+          />
+        </div>
+
         {/* Submit */}
         <div className="mt-20">
-          <CustomButton type="submit" text="Submit Inquiry" />
+          <CustomButton
+            type="submit"
+            text={isSubmitting ? "Submitting..." : "Submit Inquiry"}
+          />
         </div>
       </form>
     </div>
