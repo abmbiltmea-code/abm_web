@@ -14,7 +14,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto border-r border-border-color">
         <div className="flex-1">
-          <Link href="/admin" className="cursor-pointer">
+          <Link href="/4bm-4dm1n" className="cursor-pointer">
             <div className="px-4 flex flex-col gap-2 bg-cream-bg py-30 border-b border-border-color">
               <div className="flex items-center justify-center">
                 <Image
