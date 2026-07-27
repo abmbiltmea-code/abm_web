@@ -10,7 +10,13 @@ import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { RiDeleteBinLine, RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import {
+  RiDeleteBinLine,
+  RiEyeLine,
+  RiEyeOffLine,
+  RiBriefcaseLine,
+  RiBriefcaseFill,
+} from "react-icons/ri";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +29,7 @@ import Image from "next/image";
 interface SectorItem {
   _id: string;
   isHidden: boolean;
+  projectsOnly: boolean;
   title: string;
   thumbnail: string;
 }
@@ -167,6 +174,37 @@ export default function SectorsPage() {
           ),
         );
         toast.success(sector.isHidden ? "Sector shown" : "Sector hidden");
+      } else {
+        const { message } = await res.json();
+        toast.error(message);
+      }
+    } catch {
+      toast.error("Something went wrong");
+    }
+  };
+
+  const toggleSectorProjectsOnly = async (
+    e: React.MouseEvent,
+    sector: SectorItem,
+  ) => {
+    e.stopPropagation();
+    try {
+      const res = await fetch(`/api/admin/sector/items/${sector._id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectsOnly: !sector.projectsOnly }),
+      });
+      if (res.ok) {
+        setSectors((prev) =>
+          prev.map((s) =>
+            s._id === sector._id ? { ...s, projectsOnly: !s.projectsOnly } : s,
+          ),
+        );
+        toast.success(
+          sector.projectsOnly
+            ? "Now visible everywhere"
+            : "Now restricted to Projects only",
+        );
       } else {
         const { message } = await res.json();
         toast.error(message);
@@ -437,7 +475,7 @@ export default function SectorsPage() {
           <Button
             type="button"
             addItem
-            onClick={() => router.push("/admin/sectors/sector/new")}
+            onClick={() => router.push("/4bm-4dm1n/sectors/sector/new")}
           >
             + Add Sector
           </Button>
@@ -450,13 +488,15 @@ export default function SectorsPage() {
             <div
               key={sector._id}
               className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-              onClick={() => router.push(`/4bm-4dm1n/sectors/sector/${sector._id}`)}
+              onClick={() =>
+                router.push(`/4bm-4dm1n/sectors/sector/${sector._id}`)
+              }
             >
               <div className="flex gap-3">
                 <Image
                   width={100}
                   height={100}
-                  src={sector.thumbnail}
+                  src={sector.thumbnail || "/assets/images/placeholder.png"}
                   alt={sector.title || ""}
                   className="w-8 h-8 object-cover rounded"
                 />
@@ -467,9 +507,30 @@ export default function SectorsPage() {
                       Hidden
                     </span>
                   )}
+                  {sector.projectsOnly && (
+                    <span className="text-[10px] uppercase font-semibold text-blue-500 border border-blue-300 rounded px-1.5 py-0.5">
+                      Projects Only
+                    </span>
+                  )}
                 </span>
               </div>
               <div className="flex items-center gap-3">
+                <button
+                  onClick={(e) => toggleSectorProjectsOnly(e, sector)}
+                  type="button"
+                  className="cursor-pointer"
+                  title={
+                    sector.projectsOnly
+                      ? "Projects only — click to make global"
+                      : "Global — click to restrict to Projects"
+                  }
+                >
+                  {sector.projectsOnly ? (
+                    <RiBriefcaseFill className="text-blue-600" size={22} />
+                  ) : (
+                    <RiBriefcaseLine className="text-gray-400" size={22} />
+                  )}
+                </button>
                 <button
                   onClick={(e) => toggleSectorHidden(e, sector)}
                   type="button"

@@ -30,10 +30,14 @@ export default function ProjectCard({
         </div>
 
         <div
-          className={`flex justify-between ${contentBg} px-30 py-5 text-description-2 text-description-color pr-[22.5%]`}
+          className={`flex justify-between ${contentBg} px-30 py-5 text-description-2 text-description-color pr-[22.5%] capitalize`}
         >
           <span>{project.location?.title}</span>
-          <span>{sectorList[0]?.title}</span>
+          <span>
+            {sectorList[0]?.title?.toLowerCase()}
+            {sectorList.length > 1 &&
+              ` - ${sectorList[1].title.toLowerCase().slice(0, 3)}...`}
+          </span>
         </div>
 
         <h3 className="mt-[10px] sm:mt-4 xl:mt-30 text-subtitle-3 line-clamp-2">

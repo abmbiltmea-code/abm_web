@@ -380,7 +380,7 @@ export default function CareersPage() {
           <Button
             type="button"
             addItem
-            onClick={() => router.push("/admin/careers/jobs/new")}
+            onClick={() => router.push("/4bm-4dm1n/careers/jobs/new")}
           >
             + Add Job
           </Button>
