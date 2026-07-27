@@ -11,6 +11,12 @@ export default function ProjectCard({
   project,
   contentBg = "bg-cream-background",
 }: ProjectCardProps) {
+  const sectorList = Array.isArray(project.sector)
+    ? project.sector
+    : project.sector
+      ? [project.sector]
+      : [];
+
   return (
     <Link href={`/projects/${project.slug}`}>
       <div className="group flex w-full flex-col">
@@ -27,7 +33,7 @@ export default function ProjectCard({
           className={`flex justify-between ${contentBg} px-30 py-5 text-description-2 text-description-color pr-[22.5%]`}
         >
           <span>{project.location?.title}</span>
-          <span>{project.sector?.title}</span>
+          <span>{sectorList[0]?.title}</span>
         </div>
 
         <h3 className="mt-[10px] sm:mt-4 xl:mt-30 text-subtitle-3 line-clamp-2">

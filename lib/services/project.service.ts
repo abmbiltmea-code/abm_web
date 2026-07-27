@@ -23,7 +23,17 @@ function resolveProjects(
     const status = statuses.find(
       (s: any) => String(s._id) === String(p.status),
     );
-    const sector = p.sector ? sectorsById.get(String(p.sector)) : null;
+
+    const sectorIds: any[] = Array.isArray(p.sector)
+      ? p.sector
+      : p.sector
+        ? [p.sector]
+        : [];
+    const sector = sectorIds
+      .map((id) => sectorsById.get(String(id)))
+      .filter(Boolean)
+      .map((s: any) => ({ _id: String(s._id), title: s.title }));
+
     const division = p.division ? divisionsById.get(String(p.division)) : null;
 
     return {
@@ -45,7 +55,7 @@ function resolveProjects(
         ? { _id: String(location._id), title: location.title }
         : null,
       status: status ? { _id: String(status._id), title: status.title } : null,
-      sector: sector ? { _id: String(sector._id), title: sector.title } : null,
+      sector,
       division: division
         ? {
             _id: String(division._id),
@@ -200,9 +210,14 @@ export const getProjectBySlug = (slug: string) =>
         .filter((p) => p._id !== current._id && !p.isHidden)
         .map((p) => {
           let score = 0;
-          if (p.sector?._id && p.sector._id === current.sector?._id) score += 1;
-          if (p.division?._id && p.division._id === current.division?._id) score += 1;
-          if (p.location?._id && p.location._id === current.location?._id) score += 1;
+          const sharesSector = p.sector?.some((s: any) =>
+            current.sector?.some((cs: any) => cs._id === s._id),
+          );
+          if (sharesSector) score += 1;
+          if (p.division?._id && p.division._id === current.division?._id)
+            score += 1;
+          if (p.location?._id && p.location._id === current.location?._id)
+            score += 1;
           return { p, score };
         })
         .filter(({ score }) => score > 0)
@@ -221,9 +236,7 @@ export const getProjectBySlug = (slug: string) =>
           division: p.division,
         }));
 
-      return JSON.parse(
-        JSON.stringify({ ...current, relatedProjects }),
-      );
+      return JSON.parse(JSON.stringify({ ...current, relatedProjects }));
     },
     ["Project-slug", slug],
     { tags: ["Project"] },
