@@ -4,7 +4,6 @@ import { getSector } from "@/lib/services/sector.service";
 
 const page = async () => {
   const data: GetSectorResult = await getSector();
-  console.log(data);
   return (
     <>
       <Index data={data} />

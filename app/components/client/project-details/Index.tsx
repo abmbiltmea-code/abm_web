@@ -11,7 +11,7 @@ const Index = ({ data }: { data: ProjectDetail }) => {
     : data.sector
       ? [data.sector]
       : [];
-  console.log(data);
+      
   return (
     <>
       <ProjectBanner title={data.title} />
