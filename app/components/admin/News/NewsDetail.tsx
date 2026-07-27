@@ -443,7 +443,7 @@ export default function NewsDetail() {
               <Button
                 type="button"
                 addItem
-                onClick={() => router.push("/admin/news/items/new")}
+                onClick={() => router.push("/4bm-4dm1n/news/items/new")}
               >
                 + Add News
               </Button>

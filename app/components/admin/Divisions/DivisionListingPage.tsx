@@ -103,7 +103,7 @@ export default function DivisionsListPage() {
           <Button
             type="button"
             addItem
-            onClick={() => router.push("/admin/divisions/new")}
+            onClick={() => router.push("/4bm-4dm1n/divisions/new")}
           >
             + Add Division
           </Button>

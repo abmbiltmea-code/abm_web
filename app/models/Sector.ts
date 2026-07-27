@@ -27,6 +27,7 @@ const sectorSchema = new mongoose.Schema({
       type: [
         {
           isHidden: { type: Boolean, default: false },
+          projectsOnly: { type: Boolean, default: false },
           title: { type: String },
           description: { type: String },
           thumbnail: { type: String },

@@ -67,12 +67,14 @@ export default function ProjectItemDetail() {
     fields: imageFields,
     append: appendImage,
     remove: removeImage,
+    replace: replaceImage,
   } = useFieldArray({ control, name: "images" });
 
   const {
     fields: scopeFields,
     append: appendScope,
     remove: removeScope,
+    replace: replaceScope,
   } = useFieldArray({ control, name: "scopeOfWorks.items" });
 
   const [content, setContent] = useState("");
@@ -156,11 +158,13 @@ export default function ProjectItemDetail() {
       setValue("thumbImage", data.thumbImage);
       setValue("thumbImageAlt", data.thumbImageAlt);
       setValue("images", data.images || []);
+      replaceImage(data.images || []);
       setValue("client", data.client);
       setValue("consultant", data.consultant);
       setValue("duration", data.duration);
       setValue("projectValue", data.projectValue);
       setValue("scopeOfWorks", data.scopeOfWorks || { items: [] });
+      replaceScope(data.scopeOfWorks?.items || []);
       setValue(
         "cta",
         data.cta || {
@@ -218,8 +222,11 @@ export default function ProjectItemDetail() {
   };
 
   useEffect(() => {
-    fetchLookups();
-    if (!isNew) fetchProject();
+    const load = async () => {
+      await fetchLookups();
+      if (!isNew) await fetchProject();
+    };
+    load();
   }, []);
 
   return (

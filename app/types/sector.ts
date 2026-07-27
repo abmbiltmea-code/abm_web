@@ -26,6 +26,7 @@ export interface FirstSection {
 export interface SectorItem {
   _id: string;
   isHidden: boolean;
+  projectsOnly: boolean;
   title: string;
   description: string;
   thumbnail: string;

@@ -14,12 +14,19 @@ export const getSector = unstable_cache(
     const sectorDoc = sector as any;
 
     const visibleSectors =
-      sectorDoc.secondSection?.sectors?.filter((s: any) => !s.isHidden) ?? [];
+      sectorDoc.secondSection?.sectors?.filter(
+        (s: any) => !s.isHidden && !s.projectsOnly,
+      ) ?? [];
 
     return JSON.parse(
       JSON.stringify({
-        sector: sectorDoc,
-        sectors: visibleSectors,
+        sector: {
+          ...sectorDoc,
+          secondSection: {
+            ...sectorDoc.secondSection,
+            sectors: visibleSectors,
+          },
+        },
       }),
     );
   },

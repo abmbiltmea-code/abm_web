@@ -166,12 +166,15 @@ export default function HomeDetail() {
       if (sectorsRes.ok) {
         const { data } = await sectorsRes.json();
         setSectors(
-          (data.secondSection?.sectors || []).map(
-            (s: { _id: string; title: string }) => ({
+          (data.secondSection?.sectors || [])
+            .filter(
+              (s: { isHidden?: boolean; projectsOnly?: boolean }) =>
+                !s.isHidden && !s.projectsOnly,
+            )
+            .map((s: { _id: string; title: string }) => ({
               _id: s._id,
               title: s.title,
-            }),
-          ),
+            })),
         );
       }
     } catch (e) {
@@ -235,7 +238,10 @@ export default function HomeDetail() {
       setValue("eighthSection.image", data.eighthSection?.image);
       setValue("eighthSection.imageAlt", data.eighthSection?.imageAlt);
       setValue("eighthSection.mobileImage", data.eighthSection?.mobileImage);
-      setValue("eighthSection.mobileImageAlt", data.eighthSection?.mobileImageAlt);
+      setValue(
+        "eighthSection.mobileImageAlt",
+        data.eighthSection?.mobileImageAlt,
+      );
 
       replaceFirst(data.firstSection?.items || []);
       replaceSecond(data.secondSection?.items || []);
