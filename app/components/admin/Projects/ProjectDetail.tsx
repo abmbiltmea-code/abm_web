@@ -533,7 +533,7 @@ export default function ProjectsDetail() {
             <Button
               type="button"
               addItem
-              onClick={() => router.push("/admin/projects/items/new")}
+              onClick={() => router.push("/4bm-4dm1n/projects/items/new")}
             >
               + Add Project
             </Button>
