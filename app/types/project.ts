@@ -32,7 +32,7 @@ export interface ProjectListItem {
   thumbImageAlt: string;
   location: RefEntry | null;
   status: RefEntry | null;
-  sector: RefEntry | null;
+  sector: RefEntry[]; 
   division: DivisionRef | null;
 }
 
