@@ -42,7 +42,7 @@ export default function Overview({ data }: { data: SecondSection }) {
         <div className="relative w-full lg:w-[45%] 3xl:w-[850px] h-[221px] sm:h-[360px] md:h-[450px] 3xl:h-[500px] rounded-[10px] overflow-hidden shrink-0">
           <Image
             ref={imageRef}
-            src={image}
+            src={image || "/assets/images/placeholder.png"}
             alt={imageAlt}
             fill
             className="object-cover pointer-events-none select-none"
