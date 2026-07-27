@@ -26,7 +26,7 @@ interface ProjectItemForm {
   status: string;
   location: string;
   division: string;
-  sector: string;
+  sector: string[];
   thumbImage: string;
   thumbImageAlt: string;
   images: { url: string; alt: string }[];
@@ -59,6 +59,7 @@ export default function ProjectItemDetail() {
         scopeOfWorks: { items: [] },
         isHidden: false,
         featured: false,
+        sector: [],
       },
     });
 
@@ -138,7 +139,20 @@ export default function ProjectItemDetail() {
       setValue("status", data.status || "");
       setValue("location", data.location || "");
       setValue("division", data.division || "");
-      setValue("sector", data.sector || "");
+
+      const sectorRaw = data.sector;
+      const sectorArray = Array.isArray(sectorRaw)
+        ? sectorRaw
+        : sectorRaw
+          ? [sectorRaw]
+          : [];
+      setValue(
+        "sector",
+        sectorArray.map((s: string | { _id: string }) =>
+          typeof s === "string" ? s : s._id,
+        ),
+      );
+
       setValue("thumbImage", data.thumbImage);
       setValue("thumbImageAlt", data.thumbImageAlt);
       setValue("images", data.images || []);
@@ -147,8 +161,18 @@ export default function ProjectItemDetail() {
       setValue("duration", data.duration);
       setValue("projectValue", data.projectValue);
       setValue("scopeOfWorks", data.scopeOfWorks || { items: [] });
-      setValue("cta", data.cta || { isHidden: false, title: "", description: "", image: "", imageAlt: "", button: { text: "", link: "" } });
-      
+      setValue(
+        "cta",
+        data.cta || {
+          isHidden: false,
+          title: "",
+          description: "",
+          image: "",
+          imageAlt: "",
+          button: { text: "", link: "" },
+        },
+      );
+
       setContent(data.content || "");
     } catch (e) {
       console.error(e);
@@ -161,7 +185,13 @@ export default function ProjectItemDetail() {
   const onSubmit = async (formData: ProjectItemForm) => {
     setIsSaving(true);
     try {
-      const payload = { ...formData, content };
+      const payload = {
+        ...formData,
+        content,
+        division: formData.division || undefined,
+        status: formData.status || undefined,
+        location: formData.location || undefined,
+      };
       const res = await fetch(
         isNew
           ? "/api/admin/projects/items"
@@ -245,7 +275,7 @@ export default function ProjectItemDetail() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div className="flex flex-col gap-2">
                 <Label className="font-bold">Status</Label>
                 <select
@@ -288,20 +318,42 @@ export default function ProjectItemDetail() {
                   ))}
                 </select>
               </div>
-              <div className="flex flex-col gap-2">
-                <Label className="font-bold">Sector</Label>
-                <select
-                  {...register("sector")}
-                  className="border border-black/20 rounded-md px-3 py-2 text-sm"
-                >
-                  <option value="">Select Sector</option>
-                  {sectors.map((s) => (
-                    <option key={s._id} value={s._id}>
-                      {s.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label className="font-bold">Sector</Label>
+              <Controller
+                name="sector"
+                control={control}
+                render={({ field }) => (
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 border border-black/20 rounded-md p-3">
+                    {sectors.map((s) => {
+                      const checked = field.value?.includes(s._id) ?? false;
+                      return (
+                        <label
+                          key={s._id}
+                          className="flex items-center gap-2 text-sm"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={(e) => {
+                              const next = e.target.checked
+                                ? [...(field.value || []), s._id]
+                                : (field.value || []).filter(
+                                    (id) => id !== s._id,
+                                  );
+                              field.onChange(next);
+                            }}
+                            className="w-4 h-4"
+                          />
+                          {s.title}
+                        </label>
+                      );
+                    })}
+                  </div>
+                )}
+              />
             </div>
           </div>
         </AdminItemContainer>
@@ -434,15 +486,12 @@ export default function ProjectItemDetail() {
           </div>
         </AdminItemContainer>
 
-                <AdminItemContainer>
+        <AdminItemContainer>
           <Label
             main
             isHidden={watch("cta.isHidden")}
             onToggleHidden={() =>
-              setValue(
-                "cta.isHidden",
-                !watch("cta.isHidden"),
-              )
+              setValue("cta.isHidden", !watch("cta.isHidden"))
             }
           >
             CTA
@@ -485,10 +534,7 @@ export default function ProjectItemDetail() {
                   )}
                 />
                 <Label className="font-bold">Image Alt</Label>
-                <Input
-                  {...register(`cta.imageAlt`)}
-                  placeholder="Image Alt"
-                />
+                <Input {...register(`cta.imageAlt`)} placeholder="Image Alt" />
               </div>
             </div>
           </div>

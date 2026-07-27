@@ -55,7 +55,10 @@ const projectSchema = new mongoose.Schema({
         status: { type: mongoose.Schema.Types.ObjectId },
         location: { type: mongoose.Schema.Types.ObjectId },
         division: { type: mongoose.Schema.Types.ObjectId, ref: "division" },
-        sector: { type: mongoose.Schema.Types.ObjectId },
+        sector: {
+  type: [mongoose.Schema.Types.ObjectId],
+  default: [],
+},
         thumbImage: { type: String },
         thumbImageAlt: { type: String },
         images: {

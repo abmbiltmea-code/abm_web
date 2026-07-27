@@ -96,19 +96,23 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
   };
 
   const divisionOptions = useMemo(
-    () => data.divisions.map((d) => d.name).filter((n): n is string => Boolean(n)),
+    () =>
+      data.divisions.map((d) => d.name).filter((n): n is string => Boolean(n)),
     [data.divisions],
   );
   const sectorOptions = useMemo(
-    () => data.sectors.map((s) => s.title).filter((t): t is string => Boolean(t)),
+    () =>
+      data.sectors.map((s) => s.title).filter((t): t is string => Boolean(t)),
     [data.sectors],
   );
   const locationOptions = useMemo(
-    () => data.locations.map((l) => l.title).filter((t): t is string => Boolean(t)),
+    () =>
+      data.locations.map((l) => l.title).filter((t): t is string => Boolean(t)),
     [data.locations],
   );
   const statusOptions = useMemo(
-    () => data.statuses.map((s) => s.title).filter((t): t is string => Boolean(t)),
+    () =>
+      data.statuses.map((s) => s.title).filter((t): t is string => Boolean(t)),
     [data.statuses],
   );
 
@@ -116,7 +120,10 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
     return data.projects.filter((project) => {
       if (filters.division && project.division?.name !== filters.division)
         return false;
-      if (filters.sector && project.sector?.title !== filters.sector)
+      if (
+        filters.sector &&
+        !project.sector?.some((s) => s.title === filters.sector)
+      )
         return false;
       if (filters.location && project.location?.title !== filters.location)
         return false;
@@ -124,7 +131,13 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
         return false;
       return true;
     });
-  }, [data.projects, filters.division, filters.sector, filters.location, filters.status]);
+  }, [
+    data.projects,
+    filters.division,
+    filters.sector,
+    filters.location,
+    filters.status,
+  ]);
 
   const totalPages = Math.max(
     1,
