@@ -32,7 +32,7 @@ const AdminNavbar = () => {
     { name: "Careers", href: "/4bm-4dm1n/careers", icon: BriefcaseBusiness },
     {
       name: "Contact",
-      href: "/admin/contact",
+      href: "/4bm-4dm1n/contact",
       icon: Phone,
       hasChild: true,
       children: [
@@ -48,7 +48,7 @@ const AdminNavbar = () => {
     { name: "How We Work", href: "/4bm-4dm1n/how-we-work", icon: Workflow },
     {
       name: "Forms",
-      href: "/admin/forms/home-enquiry",
+      href: "/4bm-4dm1n/forms/home-enquiry",
       icon: FormIcon,
       hasChild: true,
       children: [
