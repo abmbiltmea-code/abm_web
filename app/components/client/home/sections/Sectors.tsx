@@ -129,7 +129,7 @@ export default function Sectors({data, sectors}: {data: FourthSection, sectors: 
               {active.homePageDescription}
             </p>
             <div>
-              <CustomButton text={active.homePageButton.text || "View Projects"} href={active.homePageButton.link || `/projects?sector=${active.title}`} />
+              <CustomButton text={active.homePageButton.text || "View Projects"} href={active.homePageButton.link.toLowerCase() || `/projects?sector=${active.title.toLowerCase()}`} />
             </div>
           </div>
         </div>

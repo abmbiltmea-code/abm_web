@@ -69,10 +69,10 @@ export default function FilterSelectDropDown({
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="flex w-full items-center justify-between text-left text-description-2 cursor-pointer"
+        className="flex w-full items-center justify-between text-left text-description-2 cursor-pointer capitalize"
       >
         <span className={value ? "text-secondary" : "text-description-color"}>
-          {value ?? label}
+          {value?.toLowerCase() ?? label.toLowerCase()}
         </span>
 
         <motion.div
@@ -109,9 +109,9 @@ export default function FilterSelectDropDown({
               <button
                 type="button"
                 onClick={() => handleSelect(null)}
-                className="block w-full px-4 py-2.5 text-left text-description-2 text-description-color bg-primary/10 rounded-b-[10px]"
+                className="block w-full px-4 py-2.5 text-left text-description-2 text-description-color bg-primary/10 rounded-b-[10px] capitalize"
               >
-                {label}
+                {label.toLowerCase()}
               </button>
             </li>
             {options.map((option) => (
@@ -119,9 +119,9 @@ export default function FilterSelectDropDown({
                 <button
                   type="button"
                   onClick={() => handleSelect(option)}
-                  className={`block w-full px-4 py-2.5 text-left text-description-2 hover:bg-cream-background cursor-pointer capitalize ${
-                    option === value ? "text-primary" : "text-description-color"
-                  }`}
+className={`block w-full px-4 py-2.5 text-left text-description-2 hover:bg-cream-background cursor-pointer capitalize ${
+  option.toLowerCase() === value?.toLowerCase() ? "text-primary" : "text-description-color"
+}`}
                 >
                   {option.toLowerCase()}
                 </button>

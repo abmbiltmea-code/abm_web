@@ -81,15 +81,15 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
     [router, pathname, searchParams],
   );
 
-  const handleFiltersChange = (next: Filters) => {
-    updateParams({
-      division: next.division,
-      sector: next.sector,
-      location: next.location,
-      status: next.status,
-      page: null,
-    });
-  };
+const handleFiltersChange = (next: Filters) => {
+  updateParams({
+    division: next.division ? next.division.toLowerCase() : null,
+    sector: next.sector ? next.sector.toLowerCase() : null,
+    location: next.location ? next.location.toLowerCase() : null,
+    status: next.status ? next.status.toLowerCase() : null,
+    page: null,
+  });
+};
 
   const handlePageChange = (page: number) => {
     updateParams({ page: page === 1 ? null : String(page) });
@@ -116,28 +116,33 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
     [data.statuses],
   );
 
-  const filteredProjects = useMemo(() => {
-    return data.projects.filter((project) => {
-      if (filters.division && project.division?.name !== filters.division)
-        return false;
-      if (
-        filters.sector &&
-        !project.sector?.some((s) => s.title === filters.sector)
-      )
-        return false;
-      if (filters.location && project.location?.title !== filters.location)
-        return false;
-      if (filters.status && project.status?.title !== filters.status)
-        return false;
-      return true;
-    });
-  }, [
-    data.projects,
-    filters.division,
-    filters.sector,
-    filters.location,
-    filters.status,
-  ]);
+const filteredProjects = useMemo(() => {
+  const division = filters.division?.toLowerCase();
+  const sector = filters.sector?.toLowerCase();
+  const location = filters.location?.toLowerCase();
+  const status = filters.status?.toLowerCase();
+
+  return data.projects.filter((project) => {
+    if (division && project.division?.name?.toLowerCase() !== division)
+      return false;
+    if (
+      sector &&
+      !project.sector?.some((s) => s.title?.toLowerCase() === sector)
+    )
+      return false;
+    if (location && project.location?.title?.toLowerCase() !== location)
+      return false;
+    if (status && project.status?.title?.toLowerCase() !== status)
+      return false;
+    return true;
+  });
+}, [
+  data.projects,
+  filters.division,
+  filters.sector,
+  filters.location,
+  filters.status,
+]);
 
   const totalPages = Math.max(
     1,
