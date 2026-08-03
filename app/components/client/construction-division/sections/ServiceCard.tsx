@@ -16,7 +16,7 @@ export default function ServiceCard({
   description,
 }: ServiceCardProps) {
   return (
-    <div className="flex flex-col h-full rounded-[10px] overflow-hidden group min-[1900px]:max-h-[598px]">
+    <div className="flex flex-col h-full rounded-[10px] overflow-hidden group">
       <div className="relative aspect-4/3 max-h-[161px] sm:max-h-[266px] shrink-0 overflow-hidden">
         <Image
           src={image || "/assets/images/placeholder.png"}
