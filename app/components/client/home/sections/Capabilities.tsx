@@ -53,7 +53,7 @@ const CoreCapabilities = ({data, divisions} : {data: ThirdSection, divisions: Ho
   }, [recalc]);
 
   return (
-    <section className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
+    <section id="divisions" className="py-[60px] md:py-120 3xl:py-150 overflow-hidden">
       <div className="container">
         <div className="flex flex-col lg:flex-row 3xl:justify-between gap-y-5 md:gap-y-[30px] mb-40">
           <div>

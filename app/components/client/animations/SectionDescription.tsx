@@ -20,12 +20,13 @@ export default function SectionDescription({
   text,
   html,
   className = "",
-  as = "p",
+  as,
 }: SectionDescriptionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const MotionTag = tagMotion[as];
+  const resolvedTag = as ?? (html ? "div" : "p");
+  const MotionTag = tagMotion[resolvedTag];
 
   return (
     <div ref={ref} className="overflow-hidden">

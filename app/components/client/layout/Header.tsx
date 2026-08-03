@@ -277,9 +277,9 @@ export default function Header() {
                   <Link
                     href={sub.href}
                     onClick={() => setOpenLabel(null)}
-                    className="block whitespace-nowrap text-15 font-tasa text-secondary hover:text-primary hover:bg-primary/10 transition-colors duration-200 p-4 rounded-b-[10px]"
+                    className="block whitespace-nowrap capitalize text-15 font-tasa text-secondary hover:text-primary hover:bg-primary/10 transition-colors duration-200 p-4 rounded-b-[10px]"
                   >
-                    {sub.label}
+                    {sub.label.toLowerCase()}
                   </Link>
                 </li>
               ))}
