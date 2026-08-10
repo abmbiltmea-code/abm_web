@@ -41,7 +41,7 @@ const Team = ({ data }: { data: ThirdSection }) => {
             <SwiperSlide>
               <Reveal variants={moveUpV2} delayRange={index * 0.12} key={index}>
                 <div className="relative h-[286px] sm:h-[320px] md:h-[350px] lg:h-[380px] xl:h-[430px] 2xl:h-[400px] 3xl:h-[541px]">
-                  <div className="absolute inset-x-0 bottom-0 h-[93.16%] bg-cream-background" />
+                  <div className="absolute inset-x-0 bottom-0 h-[90%] bg-cream-background" />
                   <Image
                     src={item.image}
                     alt={item.imageAlt}
