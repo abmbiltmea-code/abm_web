@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import SectionLabel from "../../common/SectionLabel";
@@ -63,8 +63,8 @@ export default function AboutSection({ data }: { data: FirstSection }) {
                       from={extractNumber(stat.value) - 8}
                       to={stat.value}
                       duration={1.6}
+                      suffixClassName="section-heading text-primary"
                     />
-                    <span className="section-heading text-primary">+</span>
                   </span>
                 </div>
 

@@ -59,7 +59,7 @@ const ChairmanMessage = ({ data }: { data: SecondSection }) => {
               src={data.image}
               alt={data.imageAlt}
               fill
-              className="object-cover pointer-events-none select-none"
+              className="object-contain pointer-events-none select-none"
             />
           </div>
 
