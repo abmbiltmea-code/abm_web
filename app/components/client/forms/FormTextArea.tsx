@@ -2,8 +2,10 @@
 
 import { forwardRef, useRef } from "react";
 
-interface FormTextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "name"> {
+interface FormTextAreaProps extends Omit<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "name"
+> {
   label: string;
   name: string;
   required?: boolean;
@@ -54,7 +56,12 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         >
           {label}
           {required && (
-            <span className="ml-[-0.5px] text-description-color">﹡</span>
+            <span
+              className="ml-[3px] 2xl:ml-[6px] text-description-color text-[16px] lg:text-[22px]"
+              style={{ fontFamily: "TASA Orbiter" }}
+            >
+              *
+            </span>
           )}
         </label>
 
@@ -62,9 +69,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
         <span
           className={`absolute left-0 bottom-5 h-px transition-all duration-500 ease-in-out ${
-            error
-              ? "w-full bg-red-500"
-              : "w-0 bg-secondary peer-focus:w-full"
+            error ? "w-full bg-red-500" : "w-0 bg-secondary peer-focus:w-full"
           }`}
         />
 
@@ -73,7 +78,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         </span>
       </div>
     );
-  }
+  },
 );
 
 FormTextArea.displayName = "FormTextArea";

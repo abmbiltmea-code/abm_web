@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { setPendingScrollOffset } from "../layout/scrollOffset";
 
 interface CustomButtonBaseProps {
   text: string;
@@ -15,6 +16,7 @@ interface CustomButtonAsLink extends CustomButtonBaseProps {
   type?: never;
   disabled?: never;
   target?: string;
+  scrollOffset?: number;
 }
 
 interface CustomButtonAsButton extends CustomButtonBaseProps {
@@ -27,6 +29,7 @@ type CustomButtonProps = CustomButtonAsLink | CustomButtonAsButton;
 
 export default function CustomButton(props: CustomButtonProps) {
   const { text, className = "", onClick } = props;
+  const scrollOffset = "scrollOffset" in props ? props.scrollOffset : undefined;
   const [pulse, setPulse] = useState(false);
 
   const content = (
@@ -60,11 +63,20 @@ export default function CustomButton(props: CustomButtonProps) {
     </>
   );
 
-  const sharedClassName = `inline-flex items-stretch gap-[3px] sm:gap-[5px] group ${className}`;
-  const sharedHandlers = {
-    onMouseEnter: () => setPulse(true),
-    onAnimationEnd: () => setPulse(false),
-  };
+const sharedClassName = `inline-flex items-stretch gap-[3px] sm:gap-[5px] group ${className}`;
+
+const handleClick = () => {
+  if ("href" in props && props.href?.includes("#")) {
+    setPendingScrollOffset(scrollOffset ?? 0);
+  }
+  onClick?.();
+};
+
+const sharedHandlers = {
+  onMouseEnter: () => setPulse(true),
+  onAnimationEnd: () => setPulse(false),
+  onClick: handleClick,
+};
 
   if ("href" in props && props.href) {
     const isRealLink = props.href !== "#";
@@ -89,7 +101,6 @@ export default function CustomButton(props: CustomButtonProps) {
   return (
     <button
       type={props.type}
-      onClick={props.onClick}
       disabled={props.disabled}
       className={`${sharedClassName} cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
       {...sharedHandlers}
