@@ -95,6 +95,16 @@ function GalleryCard({
   );
 }
 
+export function NoData() {
+  return (
+    <div className="flex items-center w-full">
+      <p className="text-subtitle-3 md:text-subtitle text-secondary uppercase">
+        No items found
+      </p>
+    </div>
+  );
+}
+
 export default function GalleryShowcase({ data }: { data: GetGalleryResult }) {
   const [activeTab, setActiveTab] = useState(data.categories[0]?.title ?? "");
   const [lightboxImages, setLightboxImages] = useState<string[] | null>(null);
@@ -153,25 +163,29 @@ export default function GalleryShowcase({ data }: { data: GetGalleryResult }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
-        {activeItems.map((item, index) => (
-          <Reveal
-            variants={moveUpV2}
-            delayRange={0.05 * index}
-            key={item.title + index}
-          >
-            <GalleryCard
-              title={item.title}
-              images={item.images}
-              onOpen={() => {
-                setLightboxImages(item.images);
-                setActiveCardTitle(item.title);
-                setActiveIndex(0);
-              }}
-            />
-          </Reveal>
-        ))}
-      </div>
+      {activeItems.length > 0 ? (
+        <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:gap-y-50 sm:grid-cols-2 lg:grid-cols-3">
+          {activeItems.map((item, index) => (
+            <Reveal
+              variants={moveUpV2}
+              delayRange={0.05 * index}
+              key={item.title + index}
+            >
+              <GalleryCard
+                title={item.title}
+                images={item.images}
+                onOpen={() => {
+                  setLightboxImages(item.images);
+                  setActiveCardTitle(item.title);
+                  setActiveIndex(0);
+                }}
+              />
+            </Reveal>
+          ))}
+        </div>
+      ) : (
+        <NoData />
+      )}
 
       <AnimatePresence>
         {lightboxImages && (

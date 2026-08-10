@@ -217,7 +217,7 @@ export default function Header() {
                   href={item.href || "#"}
                   data-header-anim
                   onMouseEnter={() => hasSubItems && handleEnter(item.label)}
-                  className={`flex items-center gap-2 text-15 font-tasa font-bold leading-[1.33333] uppercase whitespace-nowrap transition-colors duration-300 ease-in-out ${
+                  className={`flex items-center gap-1 3xl:gap-2 text-15 font-tasa font-bold leading-[1.33333] uppercase whitespace-nowrap transition-colors duration-300 ease-in-out ${
                     isActive
                       ? "text-primary"
                       : "text-secondary hover:text-primary"

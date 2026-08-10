@@ -41,7 +41,12 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         >
           {label}
           {required && (
-            <span className="ml-[-0.5px] text-description-color">﹡</span>
+            <span
+              className="ml-[3px] 2xl:ml-[6px] text-description-color text-[16px] lg:text-[22px]"
+              style={{ fontFamily: "TASA Orbiter" }}
+            >
+              *
+            </span>
           )}
         </label>
 
