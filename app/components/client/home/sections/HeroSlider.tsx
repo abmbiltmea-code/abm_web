@@ -175,7 +175,7 @@ export default function HeroSlider({data} : {data : FirstSection} ) {
               <p className="text-white text-[14px] font-tasa font-bold leading-none sm:text-subtitle uppercase">
                 {data.items[activeIndex].subTitle}
               </p>
-              <p className="text-white text-15 leading-none sm:leading-[1.333] max-w-[398px] line-clamp-1">
+              <p className="text-white text-15 leading-none sm:leading-[1.333] max-w-[398px]">
                 {data.items[activeIndex].subDescription}
               </p>
             </div>

@@ -15,6 +15,7 @@ import {
   RiPencilLine,
   RiEyeLine,
   RiEyeOffLine,
+  RiDraggable,
 } from "react-icons/ri";
 import {
   Dialog,
@@ -24,6 +25,21 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import Image from "next/image";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  useSortable,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface Entry {
   _id: string;
@@ -67,6 +83,46 @@ interface ProjectsForm {
 
 type EntryKind = "locations" | "statuses";
 
+function SortableProjectRow({ project }: { project: ProjectItem }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
+    useSortable({ id: project._id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="flex items-center gap-3 border border-black/10 rounded-md px-4 py-3 bg-white"
+    >
+      <button
+        type="button"
+        className="cursor-grab active:cursor-grabbing text-black/40 hover:text-black/70"
+        {...attributes}
+        {...listeners}
+      >
+        <RiDraggable size={20} />
+      </button>
+      {project.thumbImage && (
+        <Image
+          width={100}
+          height={100}
+          src={project.thumbImage}
+          alt={project.thumbImageAlt || ""}
+          className="w-8 h-8 object-cover rounded"
+        />
+      )}
+      <span className="text-sm font-medium">
+        {project.title || "Untitled Project"}
+      </span>
+    </div>
+  );
+}
+
 export default function ProjectsDetail() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
@@ -88,6 +144,16 @@ export default function ProjectsDetail() {
   const [deleteProjectTarget, setDeleteProjectTarget] =
     useState<ProjectItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [reorderDialogOpen, setReorderDialogOpen] = useState(false);
+  const [orderedItems, setOrderedItems] = useState<ProjectItem[]>([]);
+  const [isSavingOrder, setIsSavingOrder] = useState(false);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 5 },
+    }),
+  );
 
   const fetchData = async () => {
     try {
@@ -252,6 +318,44 @@ export default function ProjectsDetail() {
       }
     } catch {
       toast.error("Something went wrong");
+    }
+  };
+
+  const openReorder = () => {
+    setOrderedItems(items);
+    setReorderDialogOpen(true);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setOrderedItems((prev) => {
+      const oldIndex = prev.findIndex((p) => p._id === active.id);
+      const newIndex = prev.findIndex((p) => p._id === over.id);
+      return arrayMove(prev, oldIndex, newIndex);
+    });
+  };
+
+  const saveOrder = async () => {
+    setIsSavingOrder(true);
+    try {
+      const res = await fetch("/api/admin/projects/items/reorder", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order: orderedItems.map((p) => p._id) }),
+      });
+      const { message } = await res.json();
+      if (res.ok) {
+        setItems(orderedItems);
+        toast.success(message);
+        setReorderDialogOpen(false);
+      } else {
+        toast.error(message);
+      }
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setIsSavingOrder(false);
     }
   };
 
@@ -532,6 +636,14 @@ export default function ProjectsDetail() {
             />
             <Button
               type="button"
+              variant="outline"
+              onClick={openReorder}
+              disabled={items.length < 2}
+            >
+              Reorder
+            </Button>
+            <Button
+              type="button"
               addItem
               onClick={() => router.push("/4bm-4dm1n/projects/items/new")}
             >
@@ -686,6 +798,47 @@ export default function ProjectsDetail() {
             </Button>
             <Button type="button" onClick={confirmDeleteProject}>
               Yes, Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Reorder Projects */}
+      <Dialog open={reorderDialogOpen} onOpenChange={setReorderDialogOpen}>
+        <DialogContent className="max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle>Reorder Projects</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-2 overflow-y-auto">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={orderedItems.map((p) => p._id)}
+                strategy={verticalListSortingStrategy}
+              >
+                {orderedItems.map((project) => (
+                  <SortableProjectRow key={project._id} project={project} />
+                ))}
+              </SortableContext>
+            </DndContext>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => setReorderDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              disabled={isSavingOrder}
+              onClick={saveOrder}
+            >
+              {isSavingOrder ? "Saving..." : "Save Order"}
             </Button>
           </DialogFooter>
         </DialogContent>
