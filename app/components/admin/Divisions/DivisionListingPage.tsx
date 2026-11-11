@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { RiDeleteBinLine, RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import ViewOnSiteButton from "@/app/components/admin/common/ViewOnSiteButton";
 import {
   Dialog,
   DialogContent,
@@ -128,6 +129,11 @@ export default function DivisionsListPage() {
                 )}
               </span>
               <div className="flex items-center gap-3">
+                <ViewOnSiteButton
+                  href={division.slug ? `/division/${division.slug}` : null}
+                  isHidden={division.isHidden}
+                  size={22}
+                />
                 <button onClick={(e) => toggleHidden(e, division)} type="button" className="cursor-pointer">
                   {division.isHidden ? (
                     <RiEyeOffLine className="text-gray-500" size={22} />

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { memo } from "react";
-import { MdExpandCircleDown } from "react-icons/md";
+import { ChevronDown } from "lucide-react";
 
 interface ClientSideLinkProps {
   href: string;
@@ -30,9 +30,11 @@ function ClientSideLink({
   isActiveOverride,
 }: ClientSideLinkProps) {
   const pathname = usePathname();
+  const isLogout = href === "/admin/logout";
 
   const isActive =
-    isActiveOverride ?? (pathname === href || pathname?.startsWith(`${href}/`));
+    !isLogout &&
+    (isActiveOverride ?? (pathname === href || pathname?.startsWith(`${href}/`)));
 
   const handleLogout = async () => {
     try {
@@ -47,56 +49,86 @@ function ClientSideLink({
   };
 
   return (
-    <>
+    <div>
       <Link
-        href={href == "/admin/logout" ? "#" : href}
-        onClick={() => {
-          setOpenLink?.(isOpen ? null : href);
-          if (href === "/admin/logout") {
+        href={isLogout ? "#" : href}
+        onClick={(e) => {
+          if (isLogout) {
+            e.preventDefault();
             handleLogout();
             return;
           }
+          setOpenLink?.(isOpen ? null : href);
         }}
         className={cn(
-          "flex items-center px-4 py-3 text-md font-medium transition-colors justify-between",
-          "hover:bg-primary/40 hover:text-secondary/80",
-          isActive ? "bg-primary text-white" : "text-gray-700",
+          "group relative flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[14px] font-medium transition-all duration-200",
+          isActive
+            ? "bg-primary/10 text-primary"
+            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
           className,
         )}
       >
-        <div className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {name}
-        </div>
-        {hasChild &&
-          (!isOpen ? (
-            <MdExpandCircleDown className="ml-1 mt-1" />
-          ) : (
-            <MdExpandCircleDown className="ml-1 mt-1 rotate-180" />
-          ))}
+        {isActive && (
+          <span className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-primary" />
+        )}
+        <span className="flex items-center gap-3 min-w-0">
+          <span
+            className={cn(
+              "flex h-8 w-8 shrink-0 items-center justify-center rounded-md transition-colors",
+              isActive
+                ? "bg-primary text-white shadow-sm shadow-primary/30"
+                : "bg-gray-100 text-gray-500 group-hover:bg-white group-hover:text-gray-800",
+              isLogout && "bg-red-50 text-red-600 group-hover:bg-red-100 group-hover:text-red-700",
+            )}
+          >
+            {icon}
+          </span>
+          <span className="truncate">{name}</span>
+        </span>
+        {hasChild && (
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 shrink-0 transition-transform duration-200",
+              isOpen && "rotate-180",
+            )}
+          />
+        )}
       </Link>
-      {isOpen && children && (
-        <div className="flex pl-14 flex-col items-start gap-2">
-          {children.map((item, index) => {
-            const isChildActive = pathname === item.href;
-            return (
-              <div key={index} className="flex items-center gap-2">
-                <div>-</div>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "w-full rounded-md cursor-pointer hover:bg-gray-50 hover:text-primary text-[15px] font-medium px-2 py-0.5",
-                    isChildActive && "text-primary font-semibold",
-                  )}
-                >
-                  {item.name}
-                </Link>
-              </div>
-            );
-          })}
+
+      {hasChild && children && (
+        <div
+          className={cn(
+            "grid transition-all duration-200 ease-out",
+            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+          )}
+        >
+          <div className="overflow-hidden">
+            <div className="ml-7 mt-1 mb-1 flex flex-col gap-0.5 border-l border-gray-200 pl-3">
+              {children.map((item) => {
+                const isChildActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "relative rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors",
+                      isChildActive
+                        ? "bg-primary/5 text-primary"
+                        : "text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                    )}
+                  >
+                    {isChildActive && (
+                      <span className="absolute -left-[13px] top-1/2 h-1.5 w-1.5 -translate-y-1/2 -translate-x-1/2 rounded-full bg-primary" />
+                    )}
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

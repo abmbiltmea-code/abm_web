@@ -63,7 +63,6 @@ export const footerData = {
 
 export const DropdownMenuItems = [
   { label: "Certifications & Accreditations", href: "/certifications-and-accreditations", image: "/assets/images/header/certifications.jpg" },
-  { label: "How We Work", href: "/how-we-work", image: "/assets/images/header/how-we-work.jpg" },
   { label: "Careers", href: "/careers", image: "/assets/images/header/careers.jpg" },
   { label: "News & Media", href: "/news-and-media", image: "/assets/images/header/news-and-media.jpg" },
   { label: "Contact Us", href: "/contact-us", image: "/assets/images/header/contact-us.jpg" },

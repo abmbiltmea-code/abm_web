@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Controller, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
+import AdminTabs from "@/app/components/admin/common/AdminTabs";
+import ViewOnSiteButton from "@/app/components/admin/common/ViewOnSiteButton";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -16,6 +18,8 @@ import {
   RiEyeLine,
   RiEyeOffLine,
   RiDraggable,
+  RiMapPin2Line,
+  RiBuilding2Line,
 } from "react-icons/ri";
 import {
   Dialog,
@@ -52,6 +56,10 @@ interface ProjectItem {
   title: string;
   thumbImage: string;
   thumbImageAlt: string;
+  slug?: string;
+  location?: string | null;
+  status?: string | null;
+  sector?: (string | { _id: string })[] | string | null;
 }
 
 interface ProjectsForm {
@@ -123,6 +131,8 @@ function SortableProjectRow({ project }: { project: ProjectItem }) {
   );
 }
 
+type ProjectsTab = "list" | "taxonomy" | "page";
+
 export default function ProjectsDetail() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
@@ -131,6 +141,7 @@ export default function ProjectsDetail() {
   const [locations, setLocations] = useState<Entry[]>([]);
   const [statuses, setStatuses] = useState<Entry[]>([]);
   const [items, setItems] = useState<ProjectItem[]>([]);
+  const [sectorEntries, setSectorEntries] = useState<Entry[]>([]);
 
   const [entryDialogOpen, setEntryDialogOpen] = useState(false);
   const [entryKind, setEntryKind] = useState<EntryKind>("locations");
@@ -148,6 +159,7 @@ export default function ProjectsDetail() {
   const [reorderDialogOpen, setReorderDialogOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState<ProjectItem[]>([]);
   const [isSavingOrder, setIsSavingOrder] = useState(false);
+  const [activeTab, setActiveTab] = useState<ProjectsTab>("list");
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -173,6 +185,24 @@ export default function ProjectsDetail() {
       setLocations(data.locations || []);
       setStatuses(data.statuses || []);
       setItems(data.items || []);
+
+      // Sector names live in the Sectors page document; used for list pills only.
+      try {
+        const sectorRes = await fetch("/api/admin/sector");
+        if (sectorRes.ok) {
+          const { data: sectorData } = await sectorRes.json();
+          setSectorEntries(
+            (sectorData?.secondSection?.sectors || []).map(
+              (sec: { _id: string; title: string }) => ({
+                _id: sec._id,
+                title: sec.title,
+              }),
+            ),
+          );
+        }
+      } catch (err) {
+        console.error(err);
+      }
     } catch (e) {
       console.error(e);
       toast.error("Failed to load projects data");
@@ -363,13 +393,51 @@ export default function ProjectsDetail() {
     fetchData();
   }, []);
 
+  const locationTitles = new Map(locations.map((l) => [l._id, l.title]));
+  const statusTitles = new Map(statuses.map((s) => [s._id, s.title]));
+  const sectorTitles = new Map(sectorEntries.map((s) => [s._id, s.title]));
+
+  const getPills = (project: ProjectItem) => {
+    const rawSectors = Array.isArray(project.sector)
+      ? project.sector
+      : project.sector
+        ? [project.sector]
+        : [];
+    return {
+      location: project.location
+        ? locationTitles.get(project.location)
+        : undefined,
+      status: project.status ? statusTitles.get(project.status) : undefined,
+      sectors: rawSectors
+        .map((sec) => sectorTitles.get(typeof sec === "string" ? sec : sec._id))
+        .filter((t): t is string => Boolean(t)),
+    };
+  };
+
   const filteredItems = items.filter((project) =>
     project.title?.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
     <div className="flex flex-col gap-5">
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      <AdminTabs
+        tabs={[
+          { key: "list", label: "Project List", count: items.length },
+          {
+            key: "taxonomy",
+            label: "Location & Status",
+            count: locations.length + statuses.length,
+          },
+          { key: "page", label: "Page" },
+        ]}
+        active={activeTab}
+        onChange={setActiveTab}
+      />
+
+      <form
+        className={`flex-col gap-5 ${activeTab === "page" ? "flex" : "hidden"}`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* Banner Section */}
         <AdminItemContainer>
           <Label
@@ -517,7 +585,9 @@ export default function ProjectsDetail() {
       </form>
 
       {/* Locations + Status */}
-      <div className="grid grid-cols-2 gap-5">
+      <div
+        className={`grid-cols-2 gap-5 ${activeTab === "taxonomy" ? "grid" : "hidden"}`}
+      >
         <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4 h-fit">
           <div className="flex items-center justify-between border-b border-black/20 pb-3">
             <Label className="text-base font-bold">Locations</Label>
@@ -619,7 +689,11 @@ export default function ProjectsDetail() {
       </div>
 
       {/* Projects — full width */}
-      <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
+      <div
+        className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 ${
+          activeTab === "list" ? "flex" : "hidden"
+        }`}
+      >
         <div className="flex items-center justify-between border-b border-black/20 pb-3">
           <Label className="text-base font-bold">
             Projects{" "}
@@ -670,19 +744,57 @@ export default function ProjectsDetail() {
                     height={100}
                     src={project.thumbImage}
                     alt={project.thumbImageAlt || ""}
-                    className="w-8 h-8 object-cover rounded"
+                    className="w-10 h-10 object-cover rounded"
                   />
                 )}
-                <span className="text-sm font-medium flex items-center gap-2">
-                  {project.title || "Untitled Project"}
-                  {project.isHidden && (
-                    <span className="text-[10px] uppercase font-semibold text-red-500 border border-red-300 rounded px-1.5 py-0.5">
-                      Hidden
-                    </span>
-                  )}
-                </span>
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-sm font-medium flex items-center gap-2">
+                    {project.title || "Untitled Project"}
+                    {project.isHidden && (
+                      <span className="text-[10px] uppercase font-semibold text-red-500 border border-red-300 rounded px-1.5 py-0.5">
+                        Hidden
+                      </span>
+                    )}
+                  </span>
+                  {(() => {
+                    const pills = getPills(project);
+                    if (!pills.location && !pills.status && !pills.sectors.length)
+                      return null;
+                    return (
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {pills.location && (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-sky-200 bg-sky-50 px-2 py-0.5 text-[11px] font-medium text-sky-700">
+                            <RiMapPin2Line size={12} />
+                            {pills.location}
+                          </span>
+                        )}
+                        {pills.status && (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
+                            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                            {pills.status}
+                          </span>
+                        )}
+                        {pills.sectors.length > 0 && (
+                          <span
+                            title={pills.sectors.join(", ")}
+                            className="inline-flex max-w-[360px] items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"
+                          >
+                            <RiBuilding2Line size={12} className="shrink-0" />
+                            <span className="truncate">
+                              {pills.sectors.join(", ")}
+                            </span>
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
               <div className="flex items-center gap-3">
+                <ViewOnSiteButton
+                  href={project.slug ? `/projects/${project.slug}` : null}
+                  isHidden={project.isHidden}
+                />
                 <button
                   className="cursor-pointer"
                   onClick={(e) => toggleProjectHidden(e, project)}

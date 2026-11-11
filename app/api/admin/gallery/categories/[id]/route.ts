@@ -18,9 +18,20 @@ export async function PATCH(
     const { id } = await params;
     const body = await request.json();
 
+    const setObj: Record<string, unknown> = {};
+    if (typeof body.title === "string") {
+      setObj["categories.$[cat].title"] = body.title;
+    }
+    if (typeof body.isHidden === "boolean") {
+      setObj["categories.$[cat].isHidden"] = body.isHidden;
+    }
+    if (Object.keys(setObj).length === 0) {
+      return NextResponse.json({ message: "Nothing to update" }, { status: 400 });
+    }
+
     const updated = await Gallery.findOneAndUpdate(
       { "categories._id": id },
-      { $set: { "categories.$[cat].title": body.title } },
+      { $set: setObj },
       { new: true, arrayFilters: [{ "cat._id": id }] },
     );
 

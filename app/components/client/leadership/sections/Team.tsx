@@ -10,10 +10,19 @@ import Reveal from "../../animations/RevealItemsOneByOneAnimation";
 import { moveUpV2 } from "../../animations/motionVariants";
 import { ThirdSection } from "@/app/types/team";
 
-const Team = ({ data }: { data: ThirdSection }) => {
+const Team = ({
+  data,
+  border = false,
+}: {
+  data: ThirdSection;
+  border?: boolean;
+}) => {
   const { title, description, items } = data;
   return (
-    <section className="container py-[60px] md:py-120 3xl:py-150 overflow-hidden">
+    <section className="container py-[60px] md:py-120 3xl:py-150 overflow-hidden relative">
+      {border && (
+        <div className={`absolute top-0 h-px w-full bg-border-color`} />
+      )}
       <div className="grid grid-cols-1 xl:grid-cols-2 3xl:grid-cols-[1fr_850px] gap-2.5 sm:gap-5 xl:gap-40 mb-40">
         <SectionTitle title={title} className="max-w-[21ch]" />
         <SectionDescription
@@ -26,7 +35,11 @@ const Team = ({ data }: { data: ThirdSection }) => {
           modules={[Autoplay]}
           slidesPerView={1.46}
           spaceBetween={12}
-          speed={700}
+          speed={800}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             640: { slidesPerView: 2, spaceBetween: 15 },
             768: { slidesPerView: 2.4, spaceBetween: 20 },
@@ -43,7 +56,7 @@ const Team = ({ data }: { data: ThirdSection }) => {
                 <div className="relative h-[286px] sm:h-[320px] md:h-[350px] lg:h-[380px] xl:h-[430px] 2xl:h-[400px] 3xl:h-[541px]">
                   <div className="absolute inset-x-0 bottom-0 h-[90%] bg-cream-background" />
                   <Image
-                    src={item.image}
+                    src={item.image || "/assets/images/placeholder.png"}
                     alt={item.imageAlt}
                     fill
                     className="object-cover object-top"

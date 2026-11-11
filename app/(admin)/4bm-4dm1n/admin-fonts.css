@@ -1,0 +1,22 @@
+/*
+ * Admin-only typography. Mirrors the frontend fonts (Parabolica for body,
+ * TASA Orbiter for headings) without touching globals.css. Scoped to
+ * .admin-console, which is set only on the admin <body>.
+ * Parabolica ships each weight as a separate family, so weight utilities
+ * are mapped to the matching family instead of relying on font-weight.
+ */
+.admin-console {
+  font-family: "Parabolica Test", sans-serif;
+}
+
+.admin-console .font-medium:not(.font-tasa) {
+  font-family: "Parabolica Test Medium", "Parabolica Test", sans-serif;
+}
+
+.admin-console :is(.font-semibold, .font-bold, b, strong, th):not(.font-tasa) {
+  font-family: "Parabolica Test Bold", "Parabolica Test", sans-serif;
+}
+
+.admin-console :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "TASA Orbiter", sans-serif;
+}

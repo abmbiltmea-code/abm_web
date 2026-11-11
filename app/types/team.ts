@@ -63,6 +63,7 @@ export interface TeamDoc {
   secondSection: SecondSection;
   thirdSection: ThirdSection;
   fourthSection: FourthSection;
+  fifthSection?: ThirdSection;
 }
 
 export interface GetTeamResult {
