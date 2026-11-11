@@ -19,6 +19,7 @@ const gallerySchema = new mongoose.Schema({
   categories: {
     type: [
       {
+        isHidden: { type: Boolean, default: false },
         title: { type: String },
       },
     ],

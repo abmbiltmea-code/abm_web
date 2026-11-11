@@ -17,6 +17,8 @@ export interface Filters {
 interface FilterBarProps {
   filters: Filters;
   onChange: (filters: Filters) => void;
+  /** Return to the page's default filters. Falls back to clearing all. */
+  onReset?: () => void;
   divisionOptions: string[];
   sectorOptions: string[];
   locationOptions: string[];
@@ -33,12 +35,14 @@ export const EMPTY_FILTERS: Filters = {
 export default function FilterBar({
   filters,
   onChange,
+  onReset,
   divisionOptions,
   sectorOptions,
   locationOptions,
   statusOptions,
 }: FilterBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const handleReset = () => (onReset ? onReset() : onChange(EMPTY_FILTERS));
 
   return (
     <div className="bg-cream-background px-5 sm:px-30 py-[15px] sm:py-30 3xl:py-[26px] rounded-[10px]">
@@ -99,7 +103,7 @@ export default function FilterBar({
 
                 <button
                   type="button"
-                  onClick={() => onChange(EMPTY_FILTERS)}
+                  onClick={handleReset}
                   className="self-end shrink-0 bg-primary px-5 py-3 text-15 font-bold font-tasa rounded-[5px] leading-[1.3333333] uppercase text-white cursor-pointer group"
                 >
                   <p className="group-hover:scale-[1.06] transition-transform duration-400 ease-in-out">
@@ -148,7 +152,7 @@ export default function FilterBar({
 
           <button
             type="button"
-            onClick={() => onChange(EMPTY_FILTERS)}
+            onClick={handleReset}
             className="shrink-0 ml-auto self-end bg-primary px-5 py-3 xl:p-5 text-15 font-bold font-tasa rounded-[5px] leading-[1.3333333] uppercase text-white cursor-pointer group"
           >
             <p className="group-hover:scale-[1.06] transition-transform duration-400 ease-in-out">

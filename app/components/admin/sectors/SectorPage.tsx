@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
+import AdminTabs from "@/app/components/admin/common/AdminTabs";
+import ViewOnSiteButton from "@/app/components/admin/common/ViewOnSiteButton";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -32,6 +34,7 @@ interface SectorItem {
   projectsOnly: boolean;
   title: string;
   thumbnail: string;
+  button?: { text?: string; link?: string };
 }
 
 interface SectorsForm {
@@ -72,11 +75,14 @@ interface SectorsForm {
   };
 }
 
+type SectorsTab = "list" | "page";
+
 export default function SectorsPage() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
     useForm<SectorsForm>();
   const [sectors, setSectors] = useState<SectorItem[]>([]);
+  const [activeTab, setActiveTab] = useState<SectorsTab>("list");
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedSector, setSelectedSector] = useState<SectorItem | null>(null);
 
@@ -220,7 +226,19 @@ export default function SectorsPage() {
 
   return (
     <div className="flex flex-col gap-5">
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      <AdminTabs
+        tabs={[
+          { key: "list", label: "Sectors List", count: sectors.length },
+          { key: "page", label: "Page" },
+        ]}
+        active={activeTab}
+        onChange={setActiveTab}
+      />
+
+      <form
+        className={`flex-col gap-5 ${activeTab === "page" ? "flex" : "hidden"}`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* Banner Section */}
         <AdminItemContainer>
           <Label main>Banner Section</Label>
@@ -469,7 +487,11 @@ export default function SectorsPage() {
       </form>
 
       {/* Sectors list — separate from page form */}
-      <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
+      <div
+        className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 ${
+          activeTab === "list" ? "flex" : "hidden"
+        }`}
+      >
         <div className="flex items-center justify-between border-b border-black/20 pb-3">
           <Label className="text-base font-bold">Sectors</Label>
           <Button
@@ -531,6 +553,16 @@ export default function SectorsPage() {
                     <RiBriefcaseLine className="text-gray-400" size={22} />
                   )}
                 </button>
+                <ViewOnSiteButton
+                  href={
+                    sector.button?.link ||
+                    (sector.title
+                      ? `/projects?sector=${encodeURIComponent(sector.title.toLowerCase())}`
+                      : null)
+                  }
+                  isHidden={sector.isHidden}
+                  size={22}
+                />
                 <button
                   onClick={(e) => toggleSectorHidden(e, sector)}
                   type="button"

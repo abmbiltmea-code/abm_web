@@ -109,9 +109,13 @@ export default function FilterSelectDropDown({
               <button
                 type="button"
                 onClick={() => handleSelect(null)}
-                className="block w-full px-4 py-2.5 text-left text-description-2 text-description-color bg-primary/10 rounded-b-[10px] capitalize"
+                className={`block w-full px-4 py-2.5 text-left text-description-2 cursor-pointer capitalize ${
+                  value
+                    ? "text-description-color hover:bg-cream-background"
+                    : "text-primary bg-primary/10"
+                }`}
               >
-                {label.toLowerCase()}
+                All
               </button>
             </li>
             {options.map((option) => (

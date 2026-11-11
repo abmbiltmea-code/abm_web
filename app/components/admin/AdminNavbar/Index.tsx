@@ -18,13 +18,25 @@ import {
   Settings,
   GalleryVerticalIcon,
   Phone,
+  Layers,
+  Route,
+  LayoutDashboard,
 } from "lucide-react";
 
 const AdminNavbar = () => {
   const pathname = usePathname();
 
-  const navItems = [
-    { name: "Home", href: "/4bm-4dm1n/home", icon: Home },
+  const navItems: {
+    group?: string;
+    name: string;
+    href: string;
+    icon: typeof Home;
+    exact?: boolean;
+    hasChild?: boolean;
+    children?: { name: string; href: string }[];
+  }[] = [
+    { name: "Dashboard", href: "/4bm-4dm1n", icon: LayoutDashboard, exact: true },
+    { group: "Pages", name: "Home", href: "/4bm-4dm1n/home", icon: Home },
     { name: "About", href: "/4bm-4dm1n/about", icon: Info },
     { name: "Team", href: "/4bm-4dm1n/team", icon: Users },
     { name: "Sectors", href: "/4bm-4dm1n/sectors", icon: Building2 },
@@ -40,13 +52,14 @@ const AdminNavbar = () => {
         { name: "Enquiries", href: "/4bm-4dm1n/contact/enquiry" },
       ],
     },
-    { name: "News", href: "/4bm-4dm1n/news", icon: Newspaper },
-    { name: "Divisions (Services)", href: "/4bm-4dm1n/divisions", icon: Workflow },
+    { group: "Content", name: "News", href: "/4bm-4dm1n/news", icon: Newspaper },
+    { name: "Divisions (Services)", href: "/4bm-4dm1n/divisions", icon: Layers },
     { name: "Gallery", href: "/4bm-4dm1n/gallery", icon: GalleryVerticalIcon },
     { name: "Certifications", href: "/4bm-4dm1n/certifications", icon: ShieldCheck },
     { name: "Clients", href: "/4bm-4dm1n/clients", icon: Handshake },
-    { name: "How We Work", href: "/4bm-4dm1n/how-we-work", icon: Workflow },
+    { name: "How We Work", href: "/4bm-4dm1n/how-we-work", icon: Route },
     {
+      group: "Submissions & System",
       name: "Forms",
       href: "/4bm-4dm1n/forms/home-enquiry",
       icon: FormIcon,
@@ -61,11 +74,13 @@ const AdminNavbar = () => {
   ];
 
   const isItemActive = (item: (typeof navItems)[number]) => {
-    const ownMatch = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+    const ownMatch =
+      pathname === item.href ||
+      (!item.exact && pathname?.startsWith(`${item.href}/`));
     const childMatch = item.children?.some(
       (child) => pathname === child.href || pathname?.startsWith(`${child.href}/`),
     );
-    return ownMatch || childMatch;
+    return Boolean(ownMatch || childMatch);
   };
 
 
@@ -87,18 +102,28 @@ const AdminNavbar = () => {
   return navItems.map((item, index) => {
     const Icon = item.icon;
     return (
-      <ClientSideLink
-        key={index}
-        href={item.href}
-        name={item.name}
-        icon={<Icon className="h-5 w-5" />}
-        isOpen={openLink === item.href}
-        setOpenLink={setOpenLink}
-        hasChild={item.hasChild}
-        isActiveOverride={isItemActive(item)}
-      >
-        {item.children}
-      </ClientSideLink>
+      <div key={index}>
+        {item.group && (
+          <p
+            className={`px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400 ${
+              index === 0 ? "pt-1" : "pt-5"
+            }`}
+          >
+            {item.group}
+          </p>
+        )}
+        <ClientSideLink
+          href={item.href}
+          name={item.name}
+          icon={<Icon className="h-4 w-4" />}
+          isOpen={openLink === item.href}
+          setOpenLink={setOpenLink}
+          hasChild={item.hasChild}
+          isActiveOverride={isItemActive(item)}
+        >
+          {item.children}
+        </ClientSideLink>
+      </div>
     );
   });
 };

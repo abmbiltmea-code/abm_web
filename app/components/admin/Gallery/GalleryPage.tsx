@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Controller, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
+import AdminTabs from "@/app/components/admin/common/AdminTabs";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ import {
 interface Category {
   _id: string;
   title: string;
+  isHidden?: boolean;
 }
 
 interface GalleryItem {
@@ -51,12 +53,15 @@ interface GalleryForm {
   };
 }
 
+type ContentTab = "list" | "category" | "page";
+
 export default function GalleryDetail() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
     useForm<GalleryForm>();
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [activeTab, setActiveTab] = useState<ContentTab>("list");
   const [items, setItems] = useState<GalleryItem[]>([]);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -202,6 +207,30 @@ export default function GalleryDetail() {
     }
   };
 
+  const toggleCategoryHidden = async (category: Category) => {
+    const next = !category.isHidden;
+    try {
+      const res = await fetch(`/api/admin/gallery/categories/${category._id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isHidden: next }),
+      });
+      if (res.ok) {
+        setCategories((prev) =>
+          prev.map((c) =>
+            c._id === category._id ? { ...c, isHidden: next } : c,
+          ),
+        );
+        toast.success(next ? "Category hidden" : "Category shown");
+      } else {
+        const { message } = await res.json();
+        toast.error(message);
+      }
+    } catch {
+      toast.error("Something went wrong");
+    }
+  };
+
   const toggleItemHidden = async (e: React.MouseEvent, item: GalleryItem) => {
     e.stopPropagation();
     try {
@@ -235,7 +264,20 @@ export default function GalleryDetail() {
 
   return (
     <div className="flex flex-col gap-5">
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      <AdminTabs
+        tabs={[
+          { key: "list", label: "Gallery List", count: items.length },
+          { key: "category", label: "Category", count: categories.length },
+          { key: "page", label: "Page" },
+        ]}
+        active={activeTab}
+        onChange={setActiveTab}
+      />
+
+      <form
+        className={`flex-col gap-5 ${activeTab === "page" ? "flex" : "hidden"}`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* Banner Section */}
         <AdminItemContainer>
           <Label main>Banner Section</Label>
@@ -317,9 +359,12 @@ export default function GalleryDetail() {
       </form>
 
       {/* Categories + Items — separate from page form */}
-      <div className="grid grid-cols-[1fr_2fr] gap-5">
+      <div className="flex flex-col gap-5">
         {/* Categories */}
-        <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4 h-fit">
+        <div
+          className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 h-fit ${
+            activeTab === "category" ? "flex" : "hidden"
+          }`}>
           <div className="flex items-center justify-between border-b border-black/20 pb-3">
             <Label className="text-base font-bold">Categories</Label>
             <Button type="button" addItem onClick={openAddCategory}>
@@ -335,8 +380,27 @@ export default function GalleryDetail() {
                 key={category._id}
                 className="flex items-center justify-between border border-black/10 rounded-md px-3 py-2"
               >
-                <span className="text-sm font-medium">{category.title}</span>
+                <span className="text-sm font-medium flex items-center gap-2">
+                  {category.title}
+                  {category.isHidden && (
+                    <span className="text-[10px] uppercase font-semibold text-red-500 border border-red-300 rounded px-1.5 py-0.5">
+                      Hidden
+                    </span>
+                  )}
+                </span>
                 <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => toggleCategoryHidden(category)}
+                    className="cursor-pointer"
+                    title={category.isHidden ? "Show on website" : "Hide from website"}
+                  >
+                    {category.isHidden ? (
+                      <RiEyeOffLine className="text-gray-500" size={18} />
+                    ) : (
+                      <RiEyeLine className="text-green-600" size={18} />
+                    )}
+                  </button>
                   <button
                     type="button"
                     onClick={() => openEditCategory(category)}
@@ -362,13 +426,16 @@ export default function GalleryDetail() {
         </div>
 
         {/* Items */}
-        <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
+        <div
+          className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 ${
+            activeTab === "list" ? "flex" : "hidden"
+          }`}>
           <div className="flex items-center justify-between border-b border-black/20 pb-3">
             <Label className="text-base font-bold">Gallery Items</Label>
             <Button
               type="button"
               addItem
-              onClick={() => router.push("/admin/gallery/items/new")}
+              onClick={() => router.push("/4bm-4dm1n/gallery/items/new")}
             >
               + Add Item
             </Button>
@@ -381,7 +448,7 @@ export default function GalleryDetail() {
               <div
                 key={item._id}
                 className="flex items-center justify-between border border-black/10 rounded-md px-4 py-3 hover:shadow-sm transition-all cursor-pointer"
-                onClick={() => router.push(`/admin/gallery/items/${item._id}`)}
+                onClick={() => router.push(`/4bm-4dm1n/gallery/items/${item._id}`)}
               >
                 <div className="flex items-center gap-3">
                   {item.images?.[0]?.url && (

@@ -13,11 +13,21 @@ export const getGallery = unstable_cache(
 
     const galleryDoc = gallery as any;
 
-    const allCategories = galleryDoc.categories ?? [];
+    // Hidden categories (and the items inside them) are not shown on the site
+    const allCategories = (galleryDoc.categories ?? []).filter(
+      (c: any) => !c.isHidden,
+    );
+    const visibleCategoryIds = new Set(
+      allCategories.map((c: any) => String(c._id)),
+    );
     const allItems = galleryDoc.items ?? [];
 
     const items = allItems
-      .filter((i: any) => !i.isHidden)
+      .filter(
+        (i: any) =>
+          !i.isHidden &&
+          (!i.category || visibleCategoryIds.has(String(i.category))),
+      )
       .map((i: any) => {
         const category = allCategories.find(
           (c: any) => String(c._id) === String(i.category),

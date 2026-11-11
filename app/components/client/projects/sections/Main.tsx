@@ -11,6 +11,16 @@ import { GetProjectsResult } from "@/app/types/project";
 const ITEMS_PER_PAGE_DESKTOP = 10;
 const ITEMS_PER_PAGE_MOBILE = 6;
 
+// Applied on a plain /projects visit (no filters in the URL).
+// Matched by slug first, then by name, so capitalisation or minor renames in
+// the CMS (currently "CONSTRUCTION DIVISION") don't break the default.
+const DEFAULT_DIVISION_SLUG = "construction-division";
+const DEFAULT_DIVISION_KEYWORD = "construction";
+const DEFAULT_LOCATION = "dubai";
+// Written when the visitor clears every filter, so the defaults don't come back.
+const VIEW_ALL_PARAM = "view";
+const VIEW_ALL_VALUE = "all";
+
 export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -33,19 +43,49 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
     return () => mql.removeEventListener("change", update);
   }, []);
 
-  const filters: Filters = {
+  // Filters exactly as they appear in the URL.
+  const urlFilters: Filters = {
     division: searchParams.get("division"),
     sector: searchParams.get("sector"),
     location: searchParams.get("location"),
     status: searchParams.get("status"),
   };
+  const hasUrlFilters = Boolean(
+    urlFilters.division ||
+      urlFilters.sector ||
+      urlFilters.location ||
+      urlFilters.status,
+  );
+  const isViewAll = searchParams.get(VIEW_ALL_PARAM) === VIEW_ALL_VALUE;
+
+  // Only default to values that actually exist, so a renamed division or
+  // location never produces an empty list.
+  const defaultDivisionDoc =
+    data.divisions.find((d) => d.slug === DEFAULT_DIVISION_SLUG) ??
+    data.divisions.find((d) =>
+      d.name?.toLowerCase().includes(DEFAULT_DIVISION_KEYWORD),
+    );
+  // The filter compares lower-cased division names.
+  const defaultDivision = defaultDivisionDoc?.name?.toLowerCase() ?? null;
+  const defaultLocation = data.locations.some(
+    (l) => l.title?.toLowerCase() === DEFAULT_LOCATION,
+  )
+    ? DEFAULT_LOCATION
+    : null;
+
+  // Defaults apply only on a plain visit. Links that already carry a filter
+  // (e.g. /projects?sector=residential from the Sectors page) are untouched.
+  const filters: Filters =
+    hasUrlFilters || isViewAll
+      ? urlFilters
+      : { ...urlFilters, division: defaultDivision, location: defaultLocation };
 
   const currentPage = Math.max(1, Number(searchParams.get("page")) || 1);
 
   useEffect(() => {
     if (hasAutoScrolled.current) return;
-    const cameWithFilter =
-      filters.division || filters.sector || filters.location || filters.status;
+    // Only scroll for filters that came in the URL, not the page defaults.
+    const cameWithFilter = hasUrlFilters;
 
     if (cameWithFilter) {
       hasAutoScrolled.current = true;
@@ -82,11 +122,33 @@ export default function ProjectsMain({ data }: { data: GetProjectsResult }) {
   );
 
 const handleFiltersChange = (next: Filters) => {
+  const isEmpty =
+    !next.division && !next.sector && !next.location && !next.status;
+  const isReset =
+    isEmpty &&
+    !filters.division &&
+    !filters.sector &&
+    !filters.location &&
+    !filters.status;
   updateParams({
     division: next.division ? next.division.toLowerCase() : null,
     sector: next.sector ? next.sector.toLowerCase() : null,
     location: next.location ? next.location.toLowerCase() : null,
     status: next.status ? next.status.toLowerCase() : null,
+    // Clearing the last filter shows everything instead of snapping back to
+    // the defaults. Reset (handled separately) returns to the defaults.
+    [VIEW_ALL_PARAM]: isEmpty && !isReset ? VIEW_ALL_VALUE : null,
+    page: null,
+  });
+};
+
+const handleReset = () => {
+  updateParams({
+    division: null,
+    sector: null,
+    location: null,
+    status: null,
+    [VIEW_ALL_PARAM]: null,
     page: null,
   });
 };
@@ -162,6 +224,7 @@ const filteredProjects = useMemo(() => {
       <FilterBar
         filters={filters}
         onChange={handleFiltersChange}
+        onReset={handleReset}
         divisionOptions={divisionOptions}
         sectorOptions={sectorOptions}
         locationOptions={locationOptions}

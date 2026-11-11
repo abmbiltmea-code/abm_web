@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../../../app/globals.css";
+import "./admin-fonts.css";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased overflow-hidden`}>
+      <body className={`admin-console antialiased overflow-hidden`}>
         <Toaster />
         {children}
       </body>

@@ -45,6 +45,17 @@ interface TeamForm {
       designation: string;
     }[];
   };
+  fifthSection: {
+    isHidden: boolean;
+    title: string;
+    description: string;
+    items: {
+      image: string;
+      imageAlt: string;
+      name: string;
+      designation: string;
+    }[];
+  };
   fourthSection: {
     isHidden: boolean;
     title: string;
@@ -66,6 +77,13 @@ export default function TeamPage() {
     replace: replaceThird,
   } = useFieldArray({ control, name: "thirdSection.items" });
 
+  const {
+    fields: fifthItems,
+    append: appendFifth,
+    remove: removeFifth,
+    replace: replaceFifth,
+  } = useFieldArray({ control, name: "fifthSection.items" });
+
   const fetchData = async () => {
     try {
       const res = await fetch("/api/admin/team");
@@ -77,8 +95,15 @@ export default function TeamPage() {
         setValue("secondSection", data.secondSection);
         setValue("thirdSection", data.thirdSection);
         setValue("fourthSection", data.fourthSection);
+        setValue("fifthSection", {
+          isHidden: data.fifthSection?.isHidden ?? false,
+          title: data.fifthSection?.title ?? "",
+          description: data.fifthSection?.description ?? "",
+          items: data.fifthSection?.items || [],
+        });
 
         replaceThird(data.thirdSection?.items || []);
+        replaceFifth(data.fifthSection?.items || []);
       } else {
         const { message } = await res.json();
         toast.error(message);
@@ -308,6 +333,92 @@ export default function TeamPage() {
                       <Label className="font-bold">Designation</Label>
                       <Input
                         {...register(`thirdSection.items.${index}.designation`)}
+                        placeholder="Designation"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        {/* Management Team */}
+        <AdminItemContainer>
+          <Label
+            main
+            isHidden={watch("fifthSection.isHidden")}
+            onToggleHidden={() =>
+              setValue("fifthSection.isHidden", !watch("fifthSection.isHidden"))
+            }
+          >
+            Management Team
+          </Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Title</Label>
+            <Input {...register("fifthSection.title")} placeholder="Title" />
+            <Label className="font-bold">Description</Label>
+            <Textarea
+              {...register("fifthSection.description")}
+              placeholder="Description"
+            />
+            <div className="flex items-center justify-between mt-2">
+              <Label className="font-bold">Items</Label>
+              <Button
+                type="button"
+                addItem
+                onClick={() =>
+                  appendFifth({
+                    image: "",
+                    imageAlt: "",
+                    name: "",
+                    designation: "",
+                  })
+                }
+              >
+                + Add Item
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {fifthItems.map((field, index) => (
+                <div
+                  key={field.id}
+                  className="border border-black/10 rounded-lg p-4 flex flex-col gap-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <Label className="font-bold">Item {index + 1}</Label>
+                    <Button type="button" onClick={() => removeFifth(index)}>
+                      <RiDeleteBinLine size={16} />
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <Label className="font-bold">Image</Label>
+                      <Controller
+                        name={`fifthSection.items.${index}.image`}
+                        control={control}
+                        render={({ field }) => (
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
+                        )}
+                      />
+                      <Label className="font-bold">Image Alt</Label>
+                      <Input
+                        {...register(`fifthSection.items.${index}.imageAlt`)}
+                        placeholder="Image Alt"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <Label className="font-bold">Name</Label>
+                      <Input
+                        {...register(`fifthSection.items.${index}.name`)}
+                        placeholder="Name"
+                      />
+                      <Label className="font-bold">Designation</Label>
+                      <Input
+                        {...register(`fifthSection.items.${index}.designation`)}
                         placeholder="Designation"
                       />
                     </div>

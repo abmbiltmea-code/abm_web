@@ -12,6 +12,9 @@ const Index = ({ data }: { data: GetTeamResult["team"] }) => {
       <TeamHeader data={data.firstSection} />
       <ChairmanMessage data={data.secondSection} />
       <Team data={data.thirdSection} />
+      {data.fifthSection && !data.fifthSection.isHidden && (
+        <Team data={data.fifthSection} border={true} />
+      )}
       <InnerCta data={data.fourthSection} />
     </>
   );

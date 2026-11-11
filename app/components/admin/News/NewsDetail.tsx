@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Controller, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { Textarea } from "@/components/ui/textarea";
+import AdminTabs from "@/app/components/admin/common/AdminTabs";
+import ViewOnSiteButton from "@/app/components/admin/common/ViewOnSiteButton";
 import AdminItemContainer from "@/app/components/admin/common/AdminItemContainer";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -61,12 +63,15 @@ interface NewsForm {
   };
 }
 
+type ContentTab = "list" | "category" | "page";
+
 export default function NewsDetail() {
   const router = useRouter();
   const { register, handleSubmit, setValue, control, watch } =
     useForm<NewsForm>();
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [activeTab, setActiveTab] = useState<ContentTab>("list");
   const [items, setItems] = useState<NewsItem[]>([]);
 
   const [categoryDialogOpen, setCategoryDialogOpen] = useState(false);
@@ -257,7 +262,20 @@ export default function NewsDetail() {
 
   return (
     <div className="flex flex-col gap-5">
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      <AdminTabs
+        tabs={[
+          { key: "list", label: "News List", count: items.length },
+          { key: "category", label: "Category", count: categories.length },
+          { key: "page", label: "Page" },
+        ]}
+        active={activeTab}
+        onChange={setActiveTab}
+      />
+
+      <form
+        className={`flex-col gap-5 ${activeTab === "page" ? "flex" : "hidden"}`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* Banner Section */}
         <AdminItemContainer>
           <Label
@@ -380,9 +398,12 @@ export default function NewsDetail() {
       </form>
 
       {/* Categories + News — separate from page form */}
-      <div className="grid grid-cols-[1fr_2fr] gap-5">
+      <div className="flex flex-col gap-5">
         {/* Categories */}
-        <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4 h-fit">
+        <div
+          className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 h-fit ${
+            activeTab === "category" ? "flex" : "hidden"
+          }`}>
           <div className="flex items-center justify-between border-b border-black/20 pb-3">
             <Label className="text-base font-bold">Categories</Label>
             <Button type="button" addItem onClick={openAddCategory}>
@@ -425,7 +446,10 @@ export default function NewsDetail() {
         </div>
 
         {/* News */}
-        <div className="bg-white border border-black/20 rounded-xl p-5 flex flex-col gap-4">
+        <div
+          className={`bg-white border border-black/20 rounded-xl p-5 flex-col gap-4 ${
+            activeTab === "list" ? "flex" : "hidden"
+          }`}>
           <div className="flex items-center justify-between border-b border-black/20 pb-3">
             <Label className="text-base font-bold">
               News{" "}
@@ -481,6 +505,10 @@ export default function NewsDetail() {
                   </div>
                 </div>
                 <div className="flex gap-3 items-center">
+                  <ViewOnSiteButton
+                    href={item.slug ? `/news-and-media/${item.slug}` : null}
+                    isHidden={item.isHidden}
+                  />
                   <button
                     className="cursor-pointer"
                     onClick={(e) => toggleNewsHidden(e, item)}

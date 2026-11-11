@@ -45,6 +45,22 @@ const teamSchema = new mongoose.Schema({
       default: [],
     },
   },
+  fifthSection: {
+    isHidden: { type: Boolean, default: false },
+    title: { type: String },
+    description: { type: String },
+    items: {
+      type: [
+        {
+          image: { type: String },
+          imageAlt: { type: String },
+          name: { type: String },
+          designation: { type: String },
+        },
+      ],
+      default: [],
+    },
+  },
   fourthSection: {
     isHidden: { type: Boolean, default: false },
     title: { type: String },
