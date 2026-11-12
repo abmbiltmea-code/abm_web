@@ -73,7 +73,9 @@ export default function CertificateLightbox({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
-            className="container relative mx-auto flex items-center justify-center"
+            // Full dynamic viewport height (dvh) so the phone browser bars are
+            // accounted for; the certificate takes whatever space is left.
+            className="container relative mx-auto flex h-[100dvh] items-center justify-center pt-[60px] pb-4 sm:pt-[76px] sm:pb-6 lg:py-[40px]"
           >
             <button
               type="button"
@@ -81,7 +83,7 @@ export default function CertificateLightbox({
                 e.stopPropagation();
                 onClose();
               }}
-              className="absolute h-9 w-9 lg:h-12 lg:w-12 flex items-center justify-center top-20 right-30 sm:top-40  text-white cursor-pointer rounded-full border border-white"
+              className="absolute z-10 h-9 w-9 lg:h-12 lg:w-12 flex items-center justify-center top-3 right-4 sm:top-5 sm:right-30 lg:top-40 text-white cursor-pointer rounded-full border border-white bg-black/30"
               aria-label="Close"
             >
               <RiCloseLine size={22} className="lg:hidden" />
@@ -117,21 +119,25 @@ export default function CertificateLightbox({
             )}
 
             <div
-              className="flex flex-col items-center gap-16 w-full max-w-[90vw] sm:max-w-[600px] xl:max-w-[720px]"
+              className="flex h-full w-full max-w-[640px] xl:max-w-[760px] flex-col items-center gap-3 sm:gap-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full h-[70vh] sm:h-[75vh]">
+              {/* Certificate fills all remaining height */}
+              <div className="relative w-full flex-1 min-h-0">
                 <Image
                   src={activeItem.image}
                   alt={activeItem.imageAlt}
                   fill
-                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 760px"
+                  // Sit the certificate on the bottom edge on mobile so any
+                  // spare space goes above it, not between it and the buttons.
+                  className="object-contain object-bottom lg:object-center"
                 />
               </div>
 
-              {/* Mobile / below-lg nav buttons, sitting under the image at the two ends */}
+              {/* Mobile / below-lg nav buttons, directly under the image */}
               {items.length > 1 && (
-                <div className="flex lg:hidden items-center justify-between w-full px-4 -mt-8">
+                <div className="flex lg:hidden w-full shrink-0 items-center justify-between mt-1">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -157,8 +163,8 @@ export default function CertificateLightbox({
                 </div>
               )}
 
-              <div className="text-center">
-                <h3 className="text-subtitle-3 mb-2 text-white">
+              <div className="w-full shrink-0 text-center">
+                <h3 className="text-subtitle-3 mb-1 text-white">
                   {activeItem.title}
                 </h3>
                 <p className="text-subtitle text-white/70">
