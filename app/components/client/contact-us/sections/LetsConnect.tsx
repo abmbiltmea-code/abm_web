@@ -9,6 +9,15 @@ import AnimatedDivider from "../../animations/AnimatedDivider";
 import { FirstSection } from "@/app/types/contact";
 import Link from "next/link";
 
+const getMapLink = (url?: string) => {
+  const fallback = "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6";
+  if (!url) return fallback;
+  if (!url.includes("/maps/embed")) return url; // already a normal link
+  const name = url.match(/!2s([^!]+)/)?.[1]; // place name, already URL-encoded
+  return name
+    ? `https://www.google.com/maps/search/?api=1&query=${name}`
+    : fallback;
+};
 export default function LetsConnect({
   data,
   address,
@@ -87,9 +96,7 @@ export default function LetsConnect({
                   </p>
                   <Link
                     target="_blank"
-                    href={
-                      address || "https://maps.app.goo.gl/5tCAML4NaT5EDX4Y6"
-                    }
+                    href={getMapLink(address)}
                     dangerouslySetInnerHTML={{ __html: data.address }}
                     className="text-description-2 text-description-color"
                   />
