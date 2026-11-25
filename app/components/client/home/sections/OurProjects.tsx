@@ -66,7 +66,7 @@ export default function OurProjects({ data, projects }: { data: SixthSection, pr
                 whileInView="show"
                 viewport={{ once: true }}
                 >
-                  <Link href={project.slug}>
+                  <Link href={`/projects/${project.slug}`}>
                     <div
                       className={`relative w-full rounded-[10px] overflow-hidden h-[315px] sm:h-[350px] md:h-[380px] xl:h-[380px] 3xl:h-[506px]`}
                       //    ${
