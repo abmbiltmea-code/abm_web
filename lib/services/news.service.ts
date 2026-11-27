@@ -98,6 +98,7 @@ export const getNewsBySlug = (slug: string) =>
           isHidden: item.isHidden,
           title: item.title,
           slug: item.slug,
+          seo: item.seo,
           date: item.date,
           thumbImage: item.thumbImage,
           thumbImageAlt: item.thumbImageAlt,

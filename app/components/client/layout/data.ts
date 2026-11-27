@@ -1,7 +1,19 @@
-export const NAV_ITEMS = [
+export type NavSubItem = {
+  label: string;
+  href: string;
+};
+
+export type NavItem = {
+  label: string;
+  href?: string;
+  subItems?: NavSubItem[];
+};
+
+// Single source of truth for the main navigation (desktop header + mobile menu).
+export const NAV_ITEMS: NavItem[] = [
   { label: "ABOUT", subItems: [{ label: "Company Overview", href: "/about" }, { label: "Leadership", href: "/about/leadership" }] },
   { label: "OUR SECTORS", href: "/sectors" },
-  { label: "OUR DIVISIONS", subItems: [{ label: "Construction", href: "/division/construction-division" }, { label: "DESIGN & BUILD", href: "/division/design-and-build-division" }, { label: "VALUE ENGINEERING", href: "/division/value-engineering-division" }] },
+  { label: "OUR DIVISIONS", subItems: [{ label: "Construction Division", href: "/division/construction-division" }, { label: "Design & Build", href: "/division/design-and-build-division" }, { label: "Value Engineering", href: "/division/value-engineering-division" }] },
   { label: "PROJECTS", href: "/projects" },
   { label: "CLIENTS", href: "/clients" },
   { label: "HOW WE WORK", href: "/how-we-work" },
@@ -66,71 +78,4 @@ export const DropdownMenuItems = [
   { label: "Careers", href: "/careers", image: "/assets/images/header/careers.jpg" },
   { label: "News & Media", href: "/news-and-media", image: "/assets/images/header/news-and-media.jpg" },
   { label: "Contact Us", href: "/contact-us", image: "/assets/images/header/contact-us.jpg" },
-];
-
-
-
-export type MobileSubItem = {
-  label: string;
-  href: string;
-};
-
-export type MobileMenuItem = {
-  label: string;
-  href: string;
-  subItems?: MobileSubItem[];
-};
-
-export const MobileMenuItems: MobileMenuItem[] = [
-  {
-    label: "About",
-    href: "#",
-    subItems: [
-      { label: "Company Overview", href: "/about" },
-      { label: "Leadership", href: "/about/leadership" },
-    ],
-  },
-  {
-    label: "Our Sectors",
-    href: "/sectors",
-  },
-  {
-    label: "Our Divisions",
-    href: "#",
-    subItems: [
-      { label: "Construction", href: "/division/construction-division" },
-    ],
-  },
-  {
-    label: "Projects",
-    href: "/projects",
-  },
-  {
-    label: "Clients",
-    href: "/clients",
-  },
-  {
-    label: "How We Work",
-    href: "/how-we-work",
-  },
-  {
-    label: "Gallery",
-    href: "/gallery",
-  },
-  {
-    label: "Certifications & Accreditations",
-    href: "/certifications-and-accreditations",
-  },
-  {
-    label: "Careers",
-    href: "/careers",
-  },
-  {
-    label: "News & Media",
-    href: "/news-and-media",
-  },
-  {
-    label: "Contact Us",
-    href: "/contact-us",
-  },
 ];

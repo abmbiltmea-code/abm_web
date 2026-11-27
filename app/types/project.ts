@@ -1,3 +1,5 @@
+import type { ItemSeo } from "@/lib/utils/seo";
+
 export interface RefEntry {
   _id: string;
   title: string;
@@ -38,6 +40,7 @@ export interface ProjectListItem {
 
 export interface ProjectDetail extends ProjectListItem {
   isHidden: boolean;
+  seo?: ItemSeo;
   images: ProjectImage[];
   client: string;
   consultant: string;

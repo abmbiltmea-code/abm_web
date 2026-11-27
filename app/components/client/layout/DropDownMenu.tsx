@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
-import { DropdownMenuItems, MobileMenuItems, footerData } from "./data";
+import { DropdownMenuItems, NAV_ITEMS, NavItem, footerData } from "./data";
 import { useContainerInset } from "@/app/hooks/useContainerInset";
 import { useLenis } from "./LenisProvider";
 import { motion } from "framer-motion";
@@ -17,6 +17,9 @@ type Props = {
 };
 
 const XL_QUERY = "(min-width: 1280px)";
+
+// Mobile menu = main nav (same as desktop header) + secondary links (same as desktop overlay).
+const MOBILE_MENU_ITEMS: NavItem[] = [...NAV_ITEMS, ...DropdownMenuItems];
 
 export default function FullscreenMenu({ isOpen, onClose }: Props) {
   // ---- desktop (xl+) refs — unchanged behavior ----
@@ -299,7 +302,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
             className="mt-6 overflow-y-auto overscroll-contain"
           >
             <ul className="flex flex-col gap-y-[25px]">
-              {MobileMenuItems.map((item, i) => {
+              {MOBILE_MENU_ITEMS.map((item, i) => {
                 const hasSub = !!item.subItems?.length;
                 const isExpanded = expandedIndex === i;
 
@@ -348,7 +351,7 @@ export default function FullscreenMenu({ isOpen, onClose }: Props) {
                         </button>
                       ) : (
                         <Link
-                          href={item.href}
+                          href={item.href ?? "#"}
                           onClick={onClose}
                           className="flex w-full items-center justify-between gap-20 px-[14px] text-subtitle uppercase font-tasa font-bold sm:px-30"
                         >

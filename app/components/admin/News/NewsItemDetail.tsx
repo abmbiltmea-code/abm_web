@@ -21,6 +21,7 @@ interface Category {
 interface NewsItemForm {
   title: string;
   slug: string;
+  seo: { metaTitle: string; metaDescription: string };
   category: string;
   date: string;
   thumbImage: string;
@@ -69,6 +70,8 @@ export default function NewsItemDetail() {
       const { data } = await res.json();
       setValue("title", data.title);
       setValue("slug", data.slug);
+      setValue("seo.metaTitle", data.seo?.metaTitle || "");
+      setValue("seo.metaDescription", data.seo?.metaDescription || "");
       setValue("category", data.category || "");
       setValue(
         "date",
@@ -239,6 +242,20 @@ export default function NewsItemDetail() {
                 <Input {...register(`cta.imageAlt`)} placeholder="Image Alt" />
               </div>
             </div>
+          </div>
+        </AdminItemContainer>
+
+        {/* SEO */}
+        <AdminItemContainer>
+          <Label main>SEO</Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Meta Title</Label>
+            <Input {...register("seo.metaTitle")} placeholder="Meta Title" />
+            <Label className="font-bold">Meta Description</Label>
+            <Input
+              {...register("seo.metaDescription")}
+              placeholder="Meta Description"
+            />
           </div>
         </AdminItemContainer>
 

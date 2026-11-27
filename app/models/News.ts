@@ -36,6 +36,10 @@ const newsSchema = new mongoose.Schema({
         isHidden: { type: Boolean, default: false },
         title: { type: String },
         slug: { type: String },
+        seo: {
+          metaTitle: { type: String },
+          metaDescription: { type: String },
+        },
         category: { type: mongoose.Schema.Types.ObjectId },
         date: { type: Date },
         thumbImage: { type: String },

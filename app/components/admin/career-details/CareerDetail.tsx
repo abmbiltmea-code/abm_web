@@ -14,6 +14,7 @@ interface JobForm {
   title: string;
   category: string;
   slug: string;
+  seo: { metaTitle: string; metaDescription: string };
   specs: {
     location: string;
     experience: string;
@@ -44,6 +45,8 @@ export default function JobEditPage() {
       setValue("title", data.title);
       setValue("category", data.category);
       setValue("slug", data.slug);
+      setValue("seo.metaTitle", data.seo?.metaTitle || "");
+      setValue("seo.metaDescription", data.seo?.metaDescription || "");
       setValue("specs", data.specs);
       setContent(data.content || "");
     } catch (e) {
@@ -155,6 +158,20 @@ export default function JobEditPage() {
               newsContent={content}
               setNewsContent={setContent}
               isLoading={isLoading}
+            />
+          </div>
+        </AdminItemContainer>
+
+        {/* SEO */}
+        <AdminItemContainer>
+          <Label main>SEO</Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Meta Title</Label>
+            <Input {...register("seo.metaTitle")} placeholder="Meta Title" />
+            <Label className="font-bold">Meta Description</Label>
+            <Input
+              {...register("seo.metaDescription")}
+              placeholder="Meta Description"
             />
           </div>
         </AdminItemContainer>

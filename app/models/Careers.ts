@@ -49,6 +49,10 @@ const careersSchema = new mongoose.Schema({
           title: { type: String },
           category: { type: String },
           slug: { type: String },
+          seo: {
+            metaTitle: { type: String },
+            metaDescription: { type: String },
+          },
           specs: {
             location: { type: String },
             experience: { type: String },

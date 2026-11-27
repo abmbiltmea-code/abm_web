@@ -22,6 +22,7 @@ interface ProjectItemForm {
   isHidden: boolean;
   title: string;
   slug: string;
+  seo: { metaTitle: string; metaDescription: string };
   featured: boolean;
   status: string;
   location: string;
@@ -137,6 +138,8 @@ export default function ProjectItemDetail() {
       setValue("isHidden", data.isHidden ?? false);
       setValue("title", data.title);
       setValue("slug", data.slug);
+      setValue("seo.metaTitle", data.seo?.metaTitle || "");
+      setValue("seo.metaDescription", data.seo?.metaDescription || "");
       setValue("featured", data.featured ?? false);
       setValue("status", data.status || "");
       setValue("location", data.location || "");
@@ -544,6 +547,20 @@ export default function ProjectItemDetail() {
                 <Input {...register(`cta.imageAlt`)} placeholder="Image Alt" />
               </div>
             </div>
+          </div>
+        </AdminItemContainer>
+
+        {/* SEO */}
+        <AdminItemContainer>
+          <Label main>SEO</Label>
+          <div className="p-5 flex flex-col gap-4">
+            <Label className="font-bold">Meta Title</Label>
+            <Input {...register("seo.metaTitle")} placeholder="Meta Title" />
+            <Label className="font-bold">Meta Description</Label>
+            <Input
+              {...register("seo.metaDescription")}
+              placeholder="Meta Description"
+            />
           </div>
         </AdminItemContainer>
 

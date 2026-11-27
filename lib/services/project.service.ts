@@ -41,6 +41,7 @@ function resolveProjects(
       isHidden: p.isHidden,
       title: p.title,
       slug: p.slug,
+      seo: p.seo,
       featured: p.featured,
       thumbImage: p.thumbImage,
       thumbImageAlt: p.thumbImageAlt,

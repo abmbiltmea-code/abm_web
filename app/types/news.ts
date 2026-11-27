@@ -1,3 +1,5 @@
+import type { ItemSeo } from "@/lib/utils/seo";
+
 export interface Button {
   text: string;
   link: string;
@@ -48,6 +50,7 @@ export interface NewsDetail {
   isHidden: boolean;
   title: string;
   slug: string;
+  seo?: ItemSeo;
   date: string;
   thumbImage: string;
   thumbImageAlt: string;

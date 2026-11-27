@@ -35,18 +35,24 @@ export default function GroupCompanies({ data }: { data: SixthSection }) {
               <SwiperSlide key={index}>
                 <div
                   key={index}
-                  className="flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pt-20 pb-60 3xl:pb-[66px] h-full"
+                  className={`flex flex-col rounded-[10px] border border-border-color px-[15px] sm:px-40 3xl:px-60 pb-60 3xl:pb-[66px] h-full ${
+                    card.icon ? "pt-20" : "pt-60 3xl:pt-[66px]"
+                  }`}
                 >
-                  <div className="relative w-full mb-20">
-                    <Image
-                      src={card.icon || "/assets/images/placeholder.png"}
-                      alt={card.iconAlt}
-                      width={245}
-                      height={123}
-                      className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px]"
-                    />
-                  </div>
-                  <span className="block w-full h-px bg-border-color mb-[50px] md:mb-80" />
+                  {card.icon && (
+                    <>
+                      <div className="relative w-full mb-20">
+                        <Image
+                          src={card.icon}
+                          alt={card.iconAlt}
+                          width={245}
+                          height={123}
+                          className="object-contain object-left h-[58px] w-[160px] sm:w-auto xl:h-[100px] 3xl:h-[123px]"
+                        />
+                      </div>
+                      <span className="block w-full h-px bg-border-color mb-[50px] md:mb-80" />
+                    </>
+                  )}
                   <h3 className="text-secondary text-subtitle-2 mb-20">
                     {card.title}
                   </h3>
