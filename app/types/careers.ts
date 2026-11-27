@@ -1,3 +1,5 @@
+import type { ItemSeo } from "@/lib/utils/seo";
+
 export interface Seo {
   metaTitle: string;
   metaDescription: string;
@@ -43,6 +45,7 @@ export interface JobDoc {
   title: string;
   category: string;
   slug: string;
+  seo?: ItemSeo;
   specs: JobSpecs;
   content: string;
 }

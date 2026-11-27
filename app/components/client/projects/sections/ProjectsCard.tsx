@@ -20,11 +20,12 @@ export default function ProjectCard({
   return (
     <Link href={`/projects/${project.slug}`}>
       <div className="group flex w-full flex-col">
-        <div className="relative aspect-square max-h-[294px] sm:max-h-full w-full overflow-hidden rounded-t-[10px]">
+        <div className="relative aspect-square w-full overflow-hidden rounded-t-[10px]">
           <Image
             src={project.thumbImage || "/assets/images/placeholder.png"}
             alt={project.thumbImageAlt || ""}
             fill
+            sizes="(min-width: 1280px) 60vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, (min-width: 640px) 67vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
           />
         </div>
